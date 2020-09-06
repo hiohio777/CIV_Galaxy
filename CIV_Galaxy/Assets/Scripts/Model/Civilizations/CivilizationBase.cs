@@ -2,34 +2,39 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 public abstract class CivilizationBase : MonoBehaviour
 {
     [SerializeField] protected CivilizationUI civilizationUI;
     protected bool isAssign = false;
+    private bool isOpen = false;
+    protected Vector2 _positionCiv;
 
-    // Данные цивилизации
-    protected ScanPlanets scanPlanets;
-    protected CivilizationData civilizationData;
+    protected CivilizationData civilizationData; // Данные цивилизации
+    protected ScannerPlanets scanerPlanets; // Сканер планет
 
-    // Другие цивилизации
-    protected List<ICivilization> anotherCivilization;
+    protected List<ICivilization> anotherCiv; // Другие цивилизации
 
     [Inject]
-    public void Inject(List<ICivilization> anotherCivilization)
+    public void Inject(List<ICivilization> anotherCivilization, CivilizationData civilizationData,
+        ScannerPlanets scanerPlanets)
     {
-        Debug.Log(anotherCivilization.Count);
-        this.anotherCivilization = anotherCivilization.Where(x => x != this as ICivilization).ToList();
+        this.anotherCiv = anotherCivilization.Where(x => x != this as ICivilization).ToList();
+        (this.civilizationData, this.scanerPlanets) = (civilizationData, scanerPlanets);
     }
 
     public CivilizationScriptable CivData { get; set; }
+    public bool IsOpen { get => isOpen; set => isOpen = scanerPlanets.IsOpen = value; }
 
     public virtual void Assign(CivilizationScriptable civData)
     {
         this.CivData = civData;
-        scanPlanets = new ScanPlanets(civData.TimeScan, ExicuteScanning);
-        civilizationData = new CivilizationData(civData, civilizationUI);
+
+        // Инициализация данных
+        civilizationData.Initialize(civData, civilizationUI);
+        scanerPlanets.Initialize(civData.TimeScan, _positionCiv, ExicuteScanning, civilizationData);
 
         isAssign = true;
     }
@@ -38,7 +43,7 @@ public abstract class CivilizationBase : MonoBehaviour
     {
         if (isAssign == false) return;
 
-        scanPlanets.Scan(deltaTime);
+        scanerPlanets.Scan(deltaTime);
         ExecuteOnTimeProcess();
     }
 
@@ -47,41 +52,78 @@ public abstract class CivilizationBase : MonoBehaviour
 }
 
 
-public class ScanPlanets
+public class ScannerPlanets
 {
-    private Action exicuteScanning;
-    private float timeScan; // Интервал между сканированиями галактики в поиске планет
-    private float scanProgress = 0; // Прогресс сканирования
+    private Action _exicuteScanningPlanets;
 
-    public float ScanProgressProc => scanProgress / (timeScan / 100); // Прогресс сканирования в процентах
+    private float _timeScan; // Интервал между сканированиями галактики в поиске планет
+    private float _scanProgress = 0; // Прогресс сканирования
 
-    public ScanPlanets(float timeScan, Action exicuteScanning)
+    private GalaxyData _galaxyData;
+    private PlanetsFactory _planetsFactory;
+    private CivilizationData _civilizationData;
+    private Vector2 _positionCiv; 
+
+    public ScannerPlanets(GalaxyData galaxyData, PlanetsFactory planetsFactory)
     {
-        (this.timeScan, this.exicuteScanning) = (timeScan, exicuteScanning);
+        (this._galaxyData, this._planetsFactory) = (galaxyData, planetsFactory);
+    }
+
+    public bool IsOpen { get; set; } = false;
+    public float ScanProgressProc => _scanProgress / (_timeScan / 100); // Прогресс сканирования в процентах
+    public bool IsActive { get; set; } = true; // Активен ли сканер
+
+    public void Initialize(float timeScan, Vector2 positionCiv, Action exicuteScanning, CivilizationData civilizationData)
+    {
+        (this._timeScan, this._positionCiv, this._exicuteScanningPlanets, this._civilizationData)
+        = (timeScan, positionCiv, exicuteScanning, civilizationData);
     }
 
     public void Scan(float deltaTime)
     {
-        scanProgress += deltaTime;
-        if (scanProgress > timeScan)
+        if (IsActive == false) return;
+
+        _scanProgress += deltaTime;
+        if (_scanProgress > _timeScan)
         {
-            scanProgress = 0;
-            exicuteScanning.Invoke();
+            _scanProgress = 0;
+            DiscoverPlanet();
+            _exicuteScanningPlanets.Invoke();
         }
+    }
+
+    private void DiscoverPlanet()
+    {
+        if (_galaxyData.CountPlanet <= 0)
+        {
+            Debug.Log("Планет не осталось!!!");
+
+            IsActive = false; // Остановить сканер
+            return;
+        }
+
+        // Открыть планету
+        var planet = _planetsFactory.GetNewPlanet(_galaxyData.GetTypePlanet());
+        planet.Hide(!IsOpen).SetPosition(_positionCiv, UnityEngine.Random.Range(1f,2f)).Run(()=> _civilizationData.AddPlanet(planet));
     }
 }
 
 public class CivilizationData
 {
-    private int planets;
-    private ICivilizationDataUI dataUI;
+    private int _planets;
+    private ICivilizationDataUI _dataUI;
 
-    public CivilizationData(CivilizationScriptable civData, ICivilizationDataUI dataUI)
+    public int Planets { get => _planets; set { _planets = value; _dataUI.SetCountPlanet(_planets); } }
+
+    public void Initialize(CivilizationScriptable civData, ICivilizationDataUI dataUI)
     {
-        planets = civData.Planets;
-
-        this.dataUI = dataUI;
+        this._dataUI = dataUI;
+        Planets = civData.Planets;
     }
 
-    public int Planets { get => planets; set { planets = value; dataUI.SetCountPlanet(planets); } }
+    public void AddPlanet(IPlanet planet)
+    {
+        Planets++;
+        planet.Destroy();
+    }
 }

@@ -76,3 +76,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c03381d866f10643bdf9d1ec50b3230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  messageDiscoveredPrefab: {fileID: 3455809953295383601, guid: 2cce9c1c1c5e357459fd0e78ff733c01,
+    type: 3}
+  messageStartGamePrefab: {fileID: 8022442089728712997, guid: 904479440d746a74d8792c511bf9be59,
+    type: 3}
+  planetPrefab: {fileID: 4861422404256699727, guid: 799c29339af917c49989018599ac05bb,
+    type: 3}
+  galaxyScriptableObject: {fileID: 11400000, guid: e1a77cf29120b38409569a58606d2560,
+    type: 2}

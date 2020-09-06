@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Zenject;
 
-public class OpenCivilization : MonoBehaviour, IPointerClickHandler
+public class CivilizationFromPlayerSelect : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Image fon, art;
     [SerializeField] private Text nameCiv;
@@ -20,8 +20,6 @@ public class OpenCivilization : MonoBehaviour, IPointerClickHandler
 
         art.sprite = civData.Icon;
         nameCiv.text = civData.Name;
-
-        Debug.Log(civData.Name);
     }
 
     public void OnPointerClick(PointerEventData eventData)

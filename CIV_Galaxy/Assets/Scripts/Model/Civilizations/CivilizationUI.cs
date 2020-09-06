@@ -37,8 +37,6 @@ public class CivilizationUI: ICivilizationDataUI
         art.sprite = this.civData.Icon;
         name.gameObject.SetActive(true);
         name.text = this.civData.Name;
-
-        countPlanet.text = this.civData.Planets.ToString();
     }
 }
 
