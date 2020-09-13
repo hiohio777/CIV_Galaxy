@@ -5,11 +5,12 @@ using UnityEngine;
 public class DiscoveredCivilization
 {
     private int _chanceDiscoverAnotherCiv, _countDiscoveredCiv;
-    private MessageDiscoveredCivilization.Factory _factoryMessageDiscovered;
+    private MessageDiscoveredCivilization _messageDiscovered;
+    private PlanetsFactory _planetsFactory;
 
-    public DiscoveredCivilization(MessageDiscoveredCivilization.Factory factoryMessageDiscovered)
+    public DiscoveredCivilization(MessageDiscoveredCivilization messageDiscovered, PlanetsFactory planetsFactory)
     {
-        this._factoryMessageDiscovered = factoryMessageDiscovered;
+        (this._messageDiscovered, _planetsFactory) = (messageDiscovered, planetsFactory);
     }
 
     // Попытаться открыть иную цивилизацию, если есть неоткрытые(цивилизации открываются по порядку с 1-вой)
@@ -29,17 +30,15 @@ public class DiscoveredCivilization
 
             Action welcome = () =>
             {
-                Debug.Log("welcome!");
                 anotherCiv.Open();
             };
 
             Action offend = () =>
             {
-                Debug.Log("offend!");
                 anotherCiv.Open();
             };
 
-            _factoryMessageDiscovered.Create().Show(anotherCiv.CivData, welcome, offend);
+            _messageDiscovered.Show(anotherCiv.CivDataBase, welcome, offend);
             return true;
         }
 

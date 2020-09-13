@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20e72a68aa64d0442a5667f9038f0db7, type: 3}
-  m_Name: Galaxy
+  m_Name: GalaxyStandart
   m_EditorClassIdentifier: 
-  icePlanets: 20
-  hotPlanets: 20
-  gasGiantsPlanets: 20
-  idealPlanet: 60
+  icePlanets: 30
+  hotPlanets: 30
+  gasGiantsPlanets: 30
+  idealPlanet: 200

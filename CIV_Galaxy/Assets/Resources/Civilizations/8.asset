@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: 8
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 1657ec819f5017144af6bcb151e354b7, type: 3}
-  isScan: 1
-  timeScan: 5.2
   planets: 1
+  isScan: 1
+  scannerAcceleration: 10
+  minimumDiscoveredPlanets: 1
+  randomDiscoveredPlanets: 0
+  treeOfSciencePrefab: {fileID: 1831939736030263351, guid: 1b5e957361092ed459ce056ca78659e2,
+    type: 3}
+  sciencePoints: 0
+  scienceRateResearch: 20

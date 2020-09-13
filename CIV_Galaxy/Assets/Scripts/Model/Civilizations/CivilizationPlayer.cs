@@ -2,51 +2,51 @@
 using UnityEngine.UI;
 using Zenject;
 
-/// <summary>
-/// Цивилизация игрока
-/// </summary>
 public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilizationPlayer
 {
-    [SerializeField, Space(10)] private Image scaner;
+    [SerializeField, Space(10)] private Image scanerImage;
+    [SerializeField] private Image scienceImage;
+    [SerializeField] private Text SciencePoints;
 
     private DiscoveredCivilization _discoveredCivilization;
 
-    private MessageDiscoveredCivilization.Factory _factoryMessageDiscovered;
-
-    public string CurrentCivilization { get; set; } = "Humanity";
-
     [Inject]
-    public void InjectCivilizationPlayer(MessageDiscoveredCivilization.Factory factoryMessageDiscovered)
+    public void InjectCivilizationPlayer(DiscoveredCivilization discoveredCivilization)
     {
-        this._factoryMessageDiscovered = factoryMessageDiscovered;
+        this._discoveredCivilization = discoveredCivilization;
     }
 
     public override void Assign(CivilizationScriptable civData)
     {
-        _positionCiv = transform.position;
         base.Assign(civData);
 
         civilizationUI.Assign(civData);
-        scaner.fillAmount = 0;
+        scanerImage.fillAmount = 0;
+        SciencePoints.text = "0";
 
-        _discoveredCivilization = new DiscoveredCivilization(_factoryMessageDiscovered);
+        ScanerPlanets.ProgressEvent += ScanerPlanets_ProgressUIEvent;
+        ScienceCiv.ProgressEvent += ScienceCiv_ProgressEvent;
 
         IsOpen = true;
     }
 
-    protected override void ExecuteOnTimeProcess()
+    public override void ExicuteScanning()
     {
-        if (scanerPlanets.IsActive)
-            scaner.fillAmount = scanerPlanets.ScanProgressProc / 100;
+        _discoveredCivilization.DiscoverAnotherCiv(anotherCiv);
     }
 
-    protected override void ExicuteScanning()
+    public override void ExicuteSciencePoints(int sciencePoints)
     {
-        // Debug.Log($"CivilizationPlayer: Сланирование!");
-        bool isDiscovered = _discoveredCivilization.DiscoverAnotherCiv(anotherCiv);
+        SciencePoints.text = sciencePoints.ToString();
+    }
 
-        if (isDiscovered == false) ;
+    private void ScienceCiv_ProgressEvent(float rogress)
+    {
+        scienceImage.fillAmount = rogress / 100;
+    }
 
+    private void ScanerPlanets_ProgressUIEvent(float rogress)
+    {
+        scanerImage.fillAmount = rogress / 100;
     }
 }
-

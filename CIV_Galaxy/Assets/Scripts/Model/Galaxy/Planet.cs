@@ -7,14 +7,17 @@ public class Planet : MonoBehaviour, IPlanet
     [SerializeField] private MovingPlanet moving;
     [SerializeField] private SpriteRenderer art;
 
-    private Action<Planet> buffered; 
+    private Action<Planet> _buffered;
+    private Transform _transform;
+    private static int sortingOrder = 1;
 
     public class Factory : PlaceholderFactory<Action<Planet>, Planet> { }
 
     [Inject]
     public void Inject(Action<Planet> buffered)
     {
-        this.buffered = buffered;
+        this._buffered = buffered;
+        _transform = transform;
     }
 
     public Planet Initialize(TypePlanetEnum typePlanet)
@@ -29,6 +32,8 @@ public class Planet : MonoBehaviour, IPlanet
 
         gameObject.SetActive(true);
         transform.position = new Vector3(0, 0, 0);
+
+        art.sortingOrder = sortingOrder++;
 
         return this;
     }
@@ -45,8 +50,16 @@ public class Planet : MonoBehaviour, IPlanet
 
     public void Destroy()
     {
-        buffered.Invoke(this);
+        _buffered.Invoke(this);
         gameObject.SetActive(false);
+    }
+
+    public void OpenPlanet(Vector3 positionTarget, bool isHide, Action actFinish)
+    {
+        _transform.localScale = new Vector3(0, 0, 0);
+        _transform.position = new Vector3(UnityEngine.Random.Range(-30f, 30f), UnityEngine.Random.Range(-30f, 30f), 0);
+
+        Hide(isHide).SetScale(1.3f, 0.3f).Run(() => SetScale(1, 0.2f).Run(() => SetPosition(positionTarget, UnityEngine.Random.Range(1f, 2f)).Run(actFinish)));
     }
 
     public MovingPlanet SetPosition(Vector3 positionTarget, float timePositionTarget) =>
@@ -61,6 +74,10 @@ public class Planet : MonoBehaviour, IPlanet
 
 public interface IPlanet
 {
+    /// <summary>
+    /// Открыть планету(получить новую планету из галактики)
+    /// </summary>
+    void OpenPlanet(Vector3 positionTarget, bool isHide, Action actFinish);
     MovingPlanet SetPosition(Vector3 positionTarget, float timePositionTarget);
     MovingPlanet SetScale(float scaleTarget, float timeScaleTarget);
     void Run();

@@ -19,10 +19,8 @@ public class MessageDiscoveredCivilization : MessageBase
         this._galaxyUITimer = galaxyUITimer;
 
         welcome.onClick.AddListener(OnWelcome);
-        offend.onClick.AddListener(OnOffend); ;
+        offend.onClick.AddListener(OnOffend); 
     }
-
-    public class Factory : PlaceholderFactory<MessageDiscoveredCivilization> { }
 
     public void Show(CivilizationScriptable civData, Action actWelcome, Action actOffend)
     {
@@ -31,7 +29,9 @@ public class MessageDiscoveredCivilization : MessageBase
         descriptionCiv.SetKey(civData.Description);
         artDiscoveredCivilization.sprite = civData.Icon;
 
+        gameObject.SetActive(true);
         _galaxyUITimer.SetPause(true);
+        _animator.SetTrigger("DisplayMessage");
     }
 
     public void EndAnimation()
@@ -39,20 +39,26 @@ public class MessageDiscoveredCivilization : MessageBase
         if (_selectButton) _actWelcome.Invoke();
         else _actOffend.Invoke();
 
+        welcome.interactable = offend.interactable = true;
+
         _galaxyUITimer.SetPause(false);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     private void OnWelcome()
     {
         _animator.SetTrigger("CloseMessage");
         _selectButton = true;
+
+        welcome.interactable = offend.interactable = false;
     }
 
     private void OnOffend()
     {
         _animator.SetTrigger("CloseMessage");
         _selectButton = false;
+
+        welcome.interactable = offend.interactable = false;
     }
 }
 

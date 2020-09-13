@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class GameUI : MonoBehaviour
+public class MainSceneUI : MonoBehaviour
 {
     private Dictionary<string, PanelUI> panelsUI = new Dictionary<string, PanelUI>();
     private PanelUI current;
@@ -44,6 +44,12 @@ public class GameUI : MonoBehaviour
         current.Enable();
     }
 
+    private void RestartMainScene()
+    {
+        current = panelsUI["MainMenu"];
+        current.Enable();
+    }
+
     private void DisableFinishUI()
     {
         current = panelsUI[nextPanalName];
@@ -59,6 +65,6 @@ public class GameUI : MonoBehaviour
         PanelUI.finishDisableUI = DisableFinishUI;
         panels.ForEach(x => panelsUI.Add(x.name, x.Initialize()));
 
-        loaderDataGame.Load(StartGame);
+        loaderDataGame.Load(StartGame, RestartMainScene);
     }
 }

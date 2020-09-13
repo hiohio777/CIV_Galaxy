@@ -6,10 +6,6 @@ public abstract class MessageBase : MonoBehaviour
 
     private void Awake()
     {
-        var canvas = GetComponent<Canvas>();
-        canvas.worldCamera = Camera.main;
-        canvas.sortingLayerName = "Default";
-
         _animator = GetComponent<Animator>();
         _animator.SetTrigger("DisplayMessage");
     }

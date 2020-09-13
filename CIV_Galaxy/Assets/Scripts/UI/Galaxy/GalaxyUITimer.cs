@@ -73,6 +73,7 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
 
 public interface IGalaxyUITimer
 {
+    bool IsPause { get; set; }
     void SetPause(bool isPause);
     void StopTimer();
     void StartTimer(Action<float> execute);

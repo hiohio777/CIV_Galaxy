@@ -6,11 +6,12 @@ public class LoaderDataGame
 {
     public bool IsLoad { get; private set; }
 
-    public void Load(Action startGame)
+    public void Load(Action startGame, Action restartMainScene)
     {
         if (IsLoad)
         {
             Debug.Log("Data already loaded!");
+            restartMainScene.Invoke();
             return;
         }
 

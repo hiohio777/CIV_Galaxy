@@ -20,8 +20,6 @@ public class MessageStartGame : MessageBase
         OK.onClick.AddListener(OnOK);
     }
 
-    public class Factory : PlaceholderFactory<MessageStartGame> { }
-
     public void Show(CivilizationScriptable civData, Action actOK)
     {
         this._actOK = actOK;
@@ -29,16 +27,26 @@ public class MessageStartGame : MessageBase
         descriptionCiv.SetKey(civData.Description);
         art.sprite = civData.Icon;
 
+        gameObject.SetActive(true);
         _galaxyUITimer.SetPause(true);
+        _animator.SetTrigger("DisplayMessage");
     }
 
     public void EndAnimation()
     {
         _actOK.Invoke();
 
+        OK.interactable = true;
+
         _galaxyUITimer.SetPause(false);
         Destroy(gameObject);
     }
 
-    private void OnOK() => _animator.SetTrigger("CloseMessage");
+    private void OnOK()
+    {
+        OK.interactable = false;
+
+        _animator.SetTrigger("CloseMessage");
+    }
+    
 }

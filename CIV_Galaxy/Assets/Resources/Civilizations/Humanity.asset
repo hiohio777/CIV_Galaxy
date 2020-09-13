@@ -13,5 +13,12 @@ MonoBehaviour:
   m_Name: Humanity
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: d0070ca8a3b716a4aba438b3e3bd689a, type: 3}
+  planets: 1
   isScan: 1
-  timeScan: 5
+  scannerAcceleration: 10
+  minimumDiscoveredPlanets: 1
+  randomDiscoveredPlanets: 0
+  treeOfSciencePrefab: {fileID: 1831939736030263351, guid: 1b5e957361092ed459ce056ca78659e2,
+    type: 3}
+  sciencePoints: 0
+  scienceRateResearch: 20

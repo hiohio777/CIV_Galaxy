@@ -1,10 +1,25 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public interface ICivilization
 {
-    CivilizationScriptable CivData { get; set; }
+    CivilizationScriptable CivDataBase { get; }
     void Assign(CivilizationScriptable civData);
     void ExecuteOnTime(float deltaTime);
+}
+
+public interface ICivilizationBase
+{
+    event Action<float> ExecuteOnTimeEvent;
+    bool IsOpen { get; }
+    Vector2 PositionCiv { get; }
+    CivilizationScriptable CivDataBase { get; }
+    CivilizationData CivData { get; }
+    ScannerPlanets ScanerPlanets { get; }
+    Science ScienceCiv { get; }
+
+    void ExicuteScanning();
+    void ExicuteSciencePoints(int sciencePoints);
 }
 
 public interface ICivilizationAl : ICivilization
@@ -14,5 +29,5 @@ public interface ICivilizationAl : ICivilization
 
 public interface ICivilizationPlayer : ICivilization
 {
-    string CurrentCivilization { get; set; }
+    Science ScienceCiv { get; }
 }

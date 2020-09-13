@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using Zenject;
 
 public class MovingPlanet : MonoBehaviour
 {
@@ -10,6 +11,14 @@ public class MovingPlanet : MonoBehaviour
     private Vector3 positionTarget;
     private float scaleTarget;
     private float timePositionTarget, timeScaleTarget;
+
+    private IGalaxyUITimer _galaxyUITimer;
+
+    [Inject]
+    public void Inject(IGalaxyUITimer galaxyUITimer)
+    {
+        this._galaxyUITimer = galaxyUITimer;
+    }
 
     public void Stop()
     {
@@ -57,8 +66,11 @@ public class MovingPlanet : MonoBehaviour
 
         while (_transform.position != positionTarget)
         {
-            float stepMove = speedMove * Time.deltaTime;
-            _transform.position = Vector3.MoveTowards(_transform.position, positionTarget, stepMove);
+            if (_galaxyUITimer.IsPause == false)
+            {
+                float stepMove = speedMove * Time.deltaTime;
+                _transform.position = Vector3.MoveTowards(_transform.position, positionTarget, stepMove);
+            }
 
             yield return new WaitForFixedUpdate();
         }
@@ -74,8 +86,11 @@ public class MovingPlanet : MonoBehaviour
 
         while (_transform.localScale != target)
         {
-            float stepMove = speedMove * Time.deltaTime;
-            _transform.localScale = Vector3.MoveTowards(_transform.localScale, target, stepMove);
+            if (_galaxyUITimer.IsPause == false)
+            {
+                float stepMove = speedMove * Time.deltaTime;
+                _transform.localScale = Vector3.MoveTowards(_transform.localScale, target, stepMove);
+            }
 
             yield return new WaitForFixedUpdate();
         }

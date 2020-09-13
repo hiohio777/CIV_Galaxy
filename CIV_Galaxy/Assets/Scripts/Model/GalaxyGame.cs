@@ -6,17 +6,19 @@ public class GalaxyGame
 {
     public Civilizations civilizations { get; }
 
-    private ICivilizationPlayer civPlayer;
-    private List<ICivilizationAl> civsAl;
+    private ICivilizationPlayer _civPlayer;
+    private List<ICivilizationAl> _civsAl;
+    private PlayerData _playerData;
 
-    private List<ICivilization> civs;
+    private List<ICivilization> _civs;
 
-    public GalaxyGame(Civilizations civilizations, ICivilizationPlayer civPlayer, List<ICivilizationAl> civsAl)
+    public GalaxyGame(Civilizations civilizations, ICivilizationPlayer civPlayer, List<ICivilizationAl> civsAl, PlayerData playerData)
     {
-        (this.civilizations, this.civPlayer, this.civsAl) = (civilizations, civPlayer, civsAl);
+        (this.civilizations, this._civPlayer, this._civsAl, this._playerData)
+        = (civilizations, civPlayer, civsAl, playerData);
 
-        civs = new List<ICivilization>(civsAl);
-        civs.Add(civPlayer);
+        _civs = new List<ICivilization>(civsAl);
+        _civs.Add(civPlayer);
     }
 
     public void InitializeNewGame()
@@ -24,13 +26,14 @@ public class GalaxyGame
         civilizations.Reset();
 
         // Создание цивилизации игрока
-        civPlayer.Assign(civilizations.GetCivilizationPlayer(civPlayer.CurrentCivilization));
+        _civPlayer.Assign(civilizations.GetCivilizationPlayer(_playerData.CurrentCivilization));
         // Создание других цивилизаций
-        civsAl.ForEach(x => x.Assign(civilizations.GetCivilizationEnemy()));
+        _civsAl.ForEach(x => x.Assign(civilizations.GetCivilizationEnemy()));
     }
 
     public void ExecuteOnTime(float secondTime)
     {
-        civs.ForEach(x => x.ExecuteOnTime(secondTime));
+        for (int i = _civs.Count - 1; i >= 0; i--)
+            _civs[i].ExecuteOnTime(secondTime);
     }
 }

@@ -1,27 +1,24 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
 {
     public override void Assign(CivilizationScriptable civData)
     {
-        _positionCiv = transform.position;
         base.Assign(civData);
     }
 
     public void Open()
     {
-        civilizationUI.Assign(CivData);
+        civilizationUI.Assign(CivDataBase);
         IsOpen = true;
-
-        Debug.Log($"Discover Civilization: {CivData.name}");
     }
 
-    protected override void ExecuteOnTimeProcess() { }
+    public override void ExicuteScanning()  { }
 
-    protected override void ExicuteScanning()
+    public override void ExicuteSciencePoints(int sciencePoints)
     {
-        // Debug.Log($"{CivData.Name}: Сканирование!");
-
+        ScienceCiv.ExicuteSciencePointsAl();
     }
 
     private void Start()
