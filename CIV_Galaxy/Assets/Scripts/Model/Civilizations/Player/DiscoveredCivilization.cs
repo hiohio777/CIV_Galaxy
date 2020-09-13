@@ -38,7 +38,7 @@ public class DiscoveredCivilization
                 anotherCiv.Open();
             };
 
-            _messageDiscovered.Show(anotherCiv.CivDataBase, welcome, offend);
+            _messageDiscovered.Show(anotherCiv.DataBase, welcome, offend);
             return true;
         }
 

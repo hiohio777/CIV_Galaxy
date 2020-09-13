@@ -17,12 +17,15 @@ public class GalaxySceneDIInstaller : MonoInstaller
         // Цивилизации
         Container.Bind<CivilizationData>().AsTransient();
         Container.Bind<ScannerPlanets>().AsTransient(); 
-        Container.Bind<Science>().AsTransient();
+        Container.Bind<Science>().AsTransient(); 
+        Container.Bind<Industry>().AsTransient();
 
         Container.Bind<ICivilization>().FromComponentsInHierarchy().AsTransient();
         Container.Bind<ICivilizationAl>().FromComponentsInHierarchy().AsTransient();
         Container.Bind<ICivilizationPlayer>().FromComponentInHierarchy().AsTransient();
-
+        
+        Container.Bind<IndustryPanelUI>().FromComponentsInHierarchy().AsSingle();
+        Container.Bind<ScanerPanelUI>().FromComponentsInHierarchy().AsSingle();
         Container.Bind<SciencePlayerUI>().FromComponentsInHierarchy().AsSingle(); 
         Container.Bind<SciencePanelUI>().FromComponentsInHierarchy().AsSingle();
         Container.Bind<ImagePanelInfoScience>().FromComponentsInHierarchy().AsSingle(); 

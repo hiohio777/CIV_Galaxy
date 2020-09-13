@@ -5,11 +5,12 @@ public class ScannerPlanets
 {
     public event Action<float> ProgressEvent; // Отображение на экране
 
-    private float _progress = 0; // Прогресс сканирования
+    private float _progress = 0;
 
     private GalaxyData _galaxyData;
     private PlanetsFactory _planetsFactory;
     private ICivilizationBase _civilization;
+    private ScanerData _scanerData;
 
     public ScannerPlanets(GalaxyData galaxyData, PlanetsFactory planetsFactory)
     {
@@ -19,21 +20,22 @@ public class ScannerPlanets
     public void Initialize(ICivilizationBase civilization)
     {
         this._civilization = civilization;
-        _civilization.ExecuteOnTimeEvent += _civilization_ExecuteOnTimeEvent;
+        _scanerData = this._civilization.DataBase.Scaner;
+        _civilization.ExecuteOnTimeEvent += Civilization_ExecuteOnTimeEvent;
     }
 
-    public bool IsActive { get; set; } = true; // Активен ли сканер
+    public bool IsActive { get; set; } = true; // Активен ли
 
     //Бонусы
-    public float ScannerAccelerationBonus { get; set; } = 0; // Бонус скорости работы сканера
+    public float AccelerationBonus { get; set; } = 0; // Бонус скорости работы
     public int MinimumDiscoveredPlanetsBonus { get; set; } = 0; // Минимальное количество открываемых планет
     public int RandomDiscoveredPlanetsBonus { get; set; } = 0; // Рандомное количество открываемых планет
 
-    private float GetTime => _civilization.CivDataBase.ScannerAcceleration + ScannerAccelerationBonus; // Получить Интервал между сканированиями галактики в поиске планет
+    private float GetTime => _scanerData.Acceleration + AccelerationBonus; // Получить Интервал между сканированиями галактики в поиске планет
     private float ProgressProc => _progress / (GetTime / 100); // Прогресс сканирования в процентах
     
     // Сканирование
-    private void _civilization_ExecuteOnTimeEvent(float deltaTime)
+    private void Civilization_ExecuteOnTimeEvent(float deltaTime)
     {
         if (IsActive == false) return;
 
@@ -52,9 +54,9 @@ public class ScannerPlanets
     private void DiscoverPlanet()
     {
         // Открыть планеты
-        int countNewPlanet = _civilization.CivDataBase.MinimumDiscoveredPlanets 
+        int countNewPlanet = _scanerData.MinimumDiscoveredPlanets 
         + MinimumDiscoveredPlanetsBonus 
-        + UnityEngine.Random.Range(0, (_civilization.CivDataBase.RandomDiscoveredPlanets + RandomDiscoveredPlanetsBonus));
+        + UnityEngine.Random.Range(0, (_scanerData.RandomDiscoveredPlanets + RandomDiscoveredPlanetsBonus));
 
         if (countNewPlanet < 0)
             return;
@@ -63,7 +65,7 @@ public class ScannerPlanets
         {
             if (_galaxyData.CountPlanet <= 0)
             {
-                _civilization.ExecuteOnTimeEvent -= _civilization_ExecuteOnTimeEvent;
+                _civilization.ExecuteOnTimeEvent -= Civilization_ExecuteOnTimeEvent;
                 return;
             }
 

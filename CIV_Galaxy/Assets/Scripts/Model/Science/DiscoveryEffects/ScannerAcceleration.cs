@@ -9,8 +9,6 @@ public class ScannerAcceleration : MonoBehaviour, IDiscoveryEffects
 
     public void ExecuteStudy(ICivilizationBase civilization, string nameDiscovery)
     {
-        Debug.Log($"{civilization.CivDataBase.Name}: Discovery({nameDiscovery}) Effect -> {name}");
-
-        civilization.ScanerPlanets.ScannerAccelerationBonus += scannerAcceleration;
+        civilization.ScanerPlanets.AccelerationBonus += scannerAcceleration;
     }
 }

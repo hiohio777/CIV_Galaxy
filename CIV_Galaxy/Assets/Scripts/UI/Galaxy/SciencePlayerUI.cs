@@ -30,7 +30,7 @@ public class SciencePlayerUI : MonoBehaviour
         if (isInit == false) InitiateUIScience();
 
         foreach (var item in discoveries)
-            item.CheckPrice(_scienceCiv.SciencePoints);
+            item.CheckPrice(_scienceCiv.Points);
     }
 
     public void Disable()
@@ -43,7 +43,7 @@ public class SciencePlayerUI : MonoBehaviour
     // Настроить отображение древа наук и его UI
     public void InitiateUIScience()
     {
-        artCivPlayer.sprite = _civPlayer.CivDataBase.Icon;
+        artCivPlayer.sprite = _civPlayer.DataBase.Icon;
 
         foreach (var item in _scienceCiv.TreeOfScienceCiv.Discoveries)
         {

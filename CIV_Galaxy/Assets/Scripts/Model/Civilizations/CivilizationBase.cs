@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 public abstract class CivilizationBase : MonoBehaviour, ICivilizationBase
@@ -13,10 +12,11 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilizationBase
 
     [Inject]
     public void Inject(List<ICivilization> anotherCivilization, CivilizationData civData,
-        ScannerPlanets scanerPlanets, Science scienceCiv)
+        ScannerPlanets scanerPlanets, Science scienceCiv, Industry industryCiv)
     {
         this.anotherCiv = anotherCivilization.Where(x => x != this as ICivilization).ToList();
-        (this.CivData, this.ScanerPlanets, this.ScienceCiv) = (civData, scanerPlanets, scienceCiv);
+        (this.CivData, this.ScanerPlanets, this.ScienceCiv, this.IndustryCiv)
+        = (civData, scanerPlanets, scienceCiv, industryCiv);
 
         PositionCiv = transform.position;
     }
@@ -24,19 +24,21 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilizationBase
     public event Action<float> ExecuteOnTimeEvent;
     public bool IsOpen { get; protected set; }
     public Vector2 PositionCiv { get; private set; }
-    public CivilizationScriptable CivDataBase { get; private set; }
+    public CivilizationScriptable DataBase { get; private set; }
     public CivilizationData CivData { get; private set; }
     public ScannerPlanets ScanerPlanets { get; private set; }
     public Science ScienceCiv { get; private set; }
+    public Industry IndustryCiv { get; private set; }
 
-    public virtual void Assign(CivilizationScriptable civData)
+    public virtual void Assign(CivilizationScriptable dataBase)
     {
-        this.CivDataBase = civData;
+        this.DataBase = dataBase;
 
         // Инициализация данных
-        CivData.Initialize(civData, civilizationUI);
+        CivData.Initialize(this.DataBase, civilizationUI);
         ScanerPlanets.Initialize(this);
         ScienceCiv.Initialize(this);
+        IndustryCiv.Initialize(this);
 
         isAssign = true;
     }
@@ -50,4 +52,5 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilizationBase
 
     public abstract void ExicuteScanning();
     public abstract void ExicuteSciencePoints(int sciencePoints);
+    public abstract void ExicuteIndustryPoints(int points, float pointProc);
 }

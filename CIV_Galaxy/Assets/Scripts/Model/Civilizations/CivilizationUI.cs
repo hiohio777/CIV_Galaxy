@@ -10,12 +10,18 @@ public class CivilizationUI: ICivilizationDataUI
 
     [SerializeField, Space(10)] private Text name;
     [SerializeField] private Text countPlanet;
+    [SerializeField] private Text countDominationPoints;
 
     private CivilizationScriptable civData;
 
     public void SetCountPlanet(int count)
     {
         countPlanet.text = count.ToString();
+    }
+
+    public void SetCountDominationPoints(int dominationPoints)
+    {
+        countDominationPoints.text = dominationPoints.ToString();
     }
 
     /// <summary>
@@ -42,5 +48,6 @@ public class CivilizationUI: ICivilizationDataUI
 
 public interface ICivilizationDataUI
 {
+    void SetCountDominationPoints(int dominationPoints);
     void SetCountPlanet(int count);
 }

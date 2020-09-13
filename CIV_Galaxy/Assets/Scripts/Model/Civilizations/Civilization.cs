@@ -10,7 +10,7 @@ public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
 
     public void Open()
     {
-        civilizationUI.Assign(CivDataBase);
+        civilizationUI.Assign(DataBase);
         IsOpen = true;
     }
 
@@ -19,6 +19,11 @@ public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
     public override void ExicuteSciencePoints(int sciencePoints)
     {
         ScienceCiv.ExicuteSciencePointsAl();
+    }
+
+    public override void ExicuteIndustryPoints(int points, float pointProc)
+    {
+        IndustryCiv.ExicuteIndustryAl();
     }
 
     private void Start()

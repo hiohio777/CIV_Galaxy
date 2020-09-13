@@ -26,12 +26,12 @@ public class GalaxySceneUI : MonoBehaviour
 
     public void BackMainMenu()
     {
-        _messageBackMainMenu.Show(_civPlayer.CivDataBase, BackMainScene, () => { });
+        _messageBackMainMenu.Show(_civPlayer.DataBase, BackMainScene, () => { });
     }
 
     public void ShowMessageStart()
     {
-        _messageStartGame.Show(_civPlayer.CivDataBase, () => _animator.SetTrigger("PlayerStart"));
+        _messageStartGame.Show(_civPlayer.DataBase, () => _animator.SetTrigger("PlayerStart"));
     }
 
     private void BackMainScene()
