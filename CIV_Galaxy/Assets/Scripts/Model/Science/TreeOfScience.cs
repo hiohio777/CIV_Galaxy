@@ -17,10 +17,9 @@ public class TreeOfScience : MonoBehaviour, ITreeOfScience
         }
     }
 
-    private void Start()
+    private void Awake()
     {
         Discoveries = GetComponentsInChildren<DiscoveryCell>();
-        gameObject.SetActive(false);
     }
 }
 

@@ -37,7 +37,7 @@ public class DiscoveryCellUI : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-        researchCost.color = Color.red;
+        researchCost.color = Color.white;
     }
 
     public void OnPointerClick(PointerEventData eventData)

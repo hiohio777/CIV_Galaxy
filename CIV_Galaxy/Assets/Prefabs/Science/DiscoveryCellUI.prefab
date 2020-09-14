@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.40730044, g: 1, b: 0.3915094, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   researchCost: {fileID: 1970390216520200483}
   frameCost: {fileID: 3387989181136552532}
-  colorResearch: {r: 0.4554112, g: 0.8113208, b: 0.50335014, a: 1}
+  colorResearch: {r: 0.4481132, g: 1, b: 0.52088946, a: 1}
   colorAvailable: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &8187373747917845603
 GameObject:
@@ -259,5 +259,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 2, y: -2}
+  m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1

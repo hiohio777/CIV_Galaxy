@@ -33,11 +33,11 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
 
     public override void ExicuteSciencePoints(int sciencePoints)
     {
-        _sciencePanelUI.SetSciencePoints(sciencePoints);
+        _sciencePanelUI.SetSciencePoints(sciencePoints, ScienceCiv.IsAvailableForStudy());
     }
-    public override void ExicuteIndustryPoints(int points, float pointProc)
+    public override void ExicuteIndustryPoints(float points)
     {
-        _industryPanelUI.SetIndustryPoints(points, pointProc);
+        _industryPanelUI.SetIndustryPoints(points);
     }
 
     private void OnEnable()

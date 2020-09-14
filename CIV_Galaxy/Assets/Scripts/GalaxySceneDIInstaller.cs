@@ -16,7 +16,7 @@ public class GalaxySceneDIInstaller : MonoInstaller
 
         // Цивилизации
         Container.Bind<CivilizationData>().AsTransient();
-        Container.Bind<ScannerPlanets>().AsTransient(); 
+        Container.Bind<Scanner>().AsTransient(); 
         Container.Bind<Science>().AsTransient(); 
         Container.Bind<Industry>().AsTransient();
 

@@ -5,18 +5,12 @@ using Zenject;
 
 public class IndustryPanelUI : MonoBehaviour
 {
-    [SerializeField] private Image indicator;
-    [SerializeField] private Text points;
+    [SerializeField] private Image indicator, imageFullIndustry;
 
-    public void SetIndustryPoints(int points, float pointProc)
+    public void SetIndustryPoints(float points)
     {
-        this.points.text = points.ToString();
-        indicator.fillAmount = pointProc / 100;
-    }
-
-    private void Start()
-    {
-        indicator.fillAmount = 0;
-        points.text = "0";
+        indicator.fillAmount = points;
+        if (points >= 1) imageFullIndustry.gameObject.SetActive(true);
+        else imageFullIndustry.gameObject.SetActive(false);
     }
 }

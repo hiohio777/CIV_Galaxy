@@ -12,7 +12,7 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilizationBase
 
     [Inject]
     public void Inject(List<ICivilization> anotherCivilization, CivilizationData civData,
-        ScannerPlanets scanerPlanets, Science scienceCiv, Industry industryCiv)
+        Scanner scanerPlanets, Science scienceCiv, Industry industryCiv)
     {
         this.anotherCiv = anotherCivilization.Where(x => x != this as ICivilization).ToList();
         (this.CivData, this.ScanerPlanets, this.ScienceCiv, this.IndustryCiv)
@@ -26,7 +26,7 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilizationBase
     public Vector2 PositionCiv { get; private set; }
     public CivilizationScriptable DataBase { get; private set; }
     public CivilizationData CivData { get; private set; }
-    public ScannerPlanets ScanerPlanets { get; private set; }
+    public Scanner ScanerPlanets { get; private set; }
     public Science ScienceCiv { get; private set; }
     public Industry IndustryCiv { get; private set; }
 
@@ -52,5 +52,5 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilizationBase
 
     public abstract void ExicuteScanning();
     public abstract void ExicuteSciencePoints(int sciencePoints);
-    public abstract void ExicuteIndustryPoints(int points, float pointProc);
+    public abstract void ExicuteIndustryPoints(float points);
 }

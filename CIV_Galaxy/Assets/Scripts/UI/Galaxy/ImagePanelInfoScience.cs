@@ -33,7 +33,7 @@ public class ImagePanelInfoScience : MonoBehaviour
         nameDiscovery.text = discoveryCell.name;
         infoDiscovery.text = discoveryCell.Description;
 
-        if (_scienceCiv.Points >= discoveryCell.ResearchCost)
+        if (discoveryCell.IsResearch == false && _scienceCiv.Points >= discoveryCell.ResearchCost)
         {
             buttonStudy.gameObject.SetActive(true);
         }

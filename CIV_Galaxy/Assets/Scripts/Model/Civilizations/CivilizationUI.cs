@@ -19,9 +19,9 @@ public class CivilizationUI: ICivilizationDataUI
         countPlanet.text = count.ToString();
     }
 
-    public void SetCountDominationPoints(int dominationPoints)
+    public void SetCountDominationPoints(float dominationPoints)
     {
-        countDominationPoints.text = dominationPoints.ToString();
+        countDominationPoints.text = ((int)dominationPoints).ToString();
     }
 
     /// <summary>
@@ -48,6 +48,6 @@ public class CivilizationUI: ICivilizationDataUI
 
 public interface ICivilizationDataUI
 {
-    void SetCountDominationPoints(int dominationPoints);
+    void SetCountDominationPoints(float dominationPoints);
     void SetCountPlanet(int count);
 }

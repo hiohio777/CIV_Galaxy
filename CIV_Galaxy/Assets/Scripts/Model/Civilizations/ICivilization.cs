@@ -15,13 +15,13 @@ public interface ICivilizationBase
     Vector2 PositionCiv { get; }
     CivilizationScriptable DataBase { get; }
     CivilizationData CivData { get; }
-    ScannerPlanets ScanerPlanets { get; }
+    Scanner ScanerPlanets { get; }
     Science ScienceCiv { get; }
     Industry IndustryCiv { get; }
 
     void ExicuteScanning();
     void ExicuteSciencePoints(int sciencePoints);
-    void ExicuteIndustryPoints(int points, float pointProc);
+    void ExicuteIndustryPoints(float points);
 }
 
 public interface ICivilizationAl : ICivilization

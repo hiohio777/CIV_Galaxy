@@ -9,9 +9,4 @@ public class ScanerPanelUI : MonoBehaviour
     {
         indicator.fillAmount = rogress / 100;
     }
-
-    private void Start()
-    {
-        indicator.fillAmount = 0;
-    }
 }

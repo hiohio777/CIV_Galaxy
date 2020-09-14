@@ -23,7 +23,9 @@ public class Science
         TreeOfScienceCiv.Name = $"Science_{civilization.DataBase.Name}";
 
         Points = _scienceData.SciencePoints;
-        civilization.CivData.GetSciencePoints += () => Points;
+
+        ProgressEvent?.Invoke(ProgressProc);
+        _civilization.ExicuteSciencePoints(Points);
     }
 
     public bool IsActive { get; set; } = true; // Активен ли
@@ -68,6 +70,16 @@ public class Science
             ExicuteSciencePointsAl(); // Рекруссивное назначение нового желанного открытия для Al
             return true;
         }
+
+        return false;
+    }
+
+    public bool IsAvailableForStudy()
+    {
+        TreeOfScienceCiv.CreatAvailableDiscoveriesList();
+
+        foreach (var item in TreeOfScienceCiv.AvailableDiscoveries)
+            if (item.ResearchCost <= Points) return true;
 
         return false;
     }

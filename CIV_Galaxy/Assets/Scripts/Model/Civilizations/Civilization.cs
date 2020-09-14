@@ -21,7 +21,7 @@ public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
         ScienceCiv.ExicuteSciencePointsAl();
     }
 
-    public override void ExicuteIndustryPoints(int points, float pointProc)
+    public override void ExicuteIndustryPoints(float points)
     {
         IndustryCiv.ExicuteIndustryAl();
     }

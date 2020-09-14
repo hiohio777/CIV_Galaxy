@@ -9,12 +9,10 @@ public class BaseData
     [SerializeField] private float growthDominanceOverall = 0; // роста доминирования(общий в процентах к годовому приросту)
     [SerializeField] private float growthDominancePlanets = 0; // роста доминирования от планет(от одной планеты)
     [SerializeField] private float growthDominanceIndustry = 0; // роста доминирования от Индустрии(процент)
-    [SerializeField] private float growthDominanceScience = 0; // роста доминирования от науки(процент)
 
     public float GrowthDominanceOverall => growthDominanceOverall; 
     public float GrowthDominancePlanets => growthDominancePlanets;  
     public float GrowthDominanceIndustry => growthDominanceIndustry;
-    public float GrowthDominanceScience => growthDominanceScience;
 
     public int Planets => planets;
     public int DominationPoints => dominationPoints;
@@ -23,7 +21,8 @@ public class BaseData
     {
         if (planets <= 0) planets = 1;
 
-        if (growthDominancePlanets <= 0) growthDominancePlanets = 1;
+        if (growthDominancePlanets == 0) growthDominancePlanets = 1;
+        if (growthDominanceIndustry == 0) growthDominanceIndustry = 0.05f;
     }
 }
 
@@ -72,19 +71,17 @@ public class ScienceData
 public class IndustryData
 {
     [SerializeField, Space(10), Range(0, 60)] private float acceleration = 0; // Интервал между между ростом индустрии(добавление поинта)
-    [SerializeField, Range(0, 100)] private int points = 0; // Начальные очки индустрии
-    [SerializeField, Range(0, 100)] private int maxPoints = 0; // Максимальное количество очков индустрии
+    [SerializeField, Range(0, 1)] private float points = 0; // Начальные очки индустрии
 
     public float Acceleration => acceleration;
-    public int Points => points;
-    public int MaxPoints => maxPoints;
+    public float Points => points;
 
     public void Validate()
     {
         if (acceleration <= 0)
             acceleration = UnityEngine.Random.Range(2f, 3f);
-        if (maxPoints <= 0)
-            maxPoints = UnityEngine.Random.Range(18, 20);
+        if (points <= 0)
+            points = UnityEngine.Random.Range(0, 0.5f);
     }
 }
 

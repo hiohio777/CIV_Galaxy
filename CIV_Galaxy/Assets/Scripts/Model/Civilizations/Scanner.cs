@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class ScannerPlanets
+public class Scanner
 {
     public event Action<float> ProgressEvent; // Отображение на экране
 
@@ -12,7 +12,7 @@ public class ScannerPlanets
     private ICivilizationBase _civilization;
     private ScanerData _scanerData;
 
-    public ScannerPlanets(GalaxyData galaxyData, PlanetsFactory planetsFactory)
+    public Scanner(GalaxyData galaxyData, PlanetsFactory planetsFactory)
     {
         (this._galaxyData, this._planetsFactory) = (galaxyData, planetsFactory);
     }
@@ -22,6 +22,8 @@ public class ScannerPlanets
         this._civilization = civilization;
         _scanerData = this._civilization.DataBase.Scaner;
         _civilization.ExecuteOnTimeEvent += Civilization_ExecuteOnTimeEvent;
+
+        ProgressEvent?.Invoke(ProgressProc);
     }
 
     public bool IsActive { get; set; } = true; // Активен ли

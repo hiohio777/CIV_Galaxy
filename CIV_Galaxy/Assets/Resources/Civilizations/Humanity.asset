@@ -15,6 +15,10 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: d0070ca8a3b716a4aba438b3e3bd689a, type: 3}
   baseData:
     planets: 1
+    dominationPoints: 0
+    growthDominanceOverall: 0
+    growthDominancePlanets: 1
+    growthDominanceIndustry: 0.5
   scanerData:
     isScan: 1
     acceleration: 9.723478
@@ -26,6 +30,5 @@ MonoBehaviour:
     Points: 0
     acceleration: 18.782486
   industryData:
-    acceleration: 2.626159
-    points: 0
-    maxPoints: 19
+    acceleration: 2.9980314
+    points: 0.98

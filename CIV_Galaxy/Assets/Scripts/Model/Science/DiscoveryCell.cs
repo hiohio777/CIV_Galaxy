@@ -47,12 +47,18 @@ public class DiscoveryCell : MonoBehaviour
 
             AvailableUI?.Invoke(isAvailable);
         }
+
+
+        Debug.Log(name + ": " + CountSciencesRequired);
     }
 
     private void Awake()
     {
         foreach (var item in dependentSciences)
+        {
             item.CountSciencesRequired++;
+            Debug.Log(item.name + ": "+ item.CountSciencesRequired);
+        }
 
         if (IsResearch)
         {
@@ -64,6 +70,8 @@ public class DiscoveryCell : MonoBehaviour
             AvailableUI?.Invoke(isAvailable);
             sprite.color = colorAvailable;
         }
+
+        gameObject.SetActive(false);
     }
 
     private void OnDrawGizmos() //Встроенный метод,необходим для работы с Gizmos объектами и их отрисовки

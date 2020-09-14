@@ -6,6 +6,7 @@ using Zenject;
 public class SciencePanelUI : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Image indicator;
+    [SerializeField] private GameObject IconAccessible;
     [SerializeField] private Text points;
 
     private SciencePlayerUI _sciencePlayerUI;
@@ -14,13 +15,12 @@ public class SciencePanelUI : MonoBehaviour, IPointerClickHandler
     public void Inject(SciencePlayerUI sciencePlayerUI)
     {
         this._sciencePlayerUI = sciencePlayerUI;
-
-        points.text = "0";
     }
 
-    public void SetSciencePoints(int points)
+    public void SetSciencePoints(int points, bool isAccessible)
     {
         this.points.text = points.ToString();
+        IconAccessible.SetActive(isAccessible);
     }
 
     public void ProgressEvent(float rogress)
