@@ -5,6 +5,7 @@ public class Industry
     public event Action<float> ProgressEvent; // Отображение на экране
 
     private const float maxPoint = 1; // Максимальное количество поинтов индустрии
+    private const float _progressInterval = 5; // Интервал
     private float _progress = 0; // Прогресс
 
     private ICivilizationBase _civilization;
@@ -37,16 +38,14 @@ public class Industry
     //Бонусы
     public float AccelerationBonus { get; set; } = 0; // Бонус к скорости роста индустрии(уменьшает интервал между добавлением очков индустрии)
 
-    private float GetTime => _industryData.Acceleration + AccelerationBonus; // Получить Интервал
-
     // Рост индустрии
     private void Civilization_ExecuteOnTimeEvent(float deltaTime)
     {
         if (IsActive == false || Points >= maxPoint) return;
 
-        _progress += deltaTime;
+        _progress += deltaTime * (_industryData.Acceleration + AccelerationBonus);
 
-        if (_progress > GetTime)
+        if (_progress > _progressInterval)
         {
             _progress = 0;
 

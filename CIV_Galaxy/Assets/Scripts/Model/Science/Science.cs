@@ -5,16 +5,19 @@ public class Science
 {
     public event Action<float> ProgressEvent; // Отображение на экране
 
+    private const float _progressInterval = 30; // Интервал
     private float _progress = 0; // Прогресс получения нового поинта SciencePoints
 
     private ICivilizationBase _civilization;
     private DiscoveryCell _currentDiscovery;
     private ScienceData _scienceData;
+    private Func<float> _pointIndustry;
 
     public Science() { }
 
-    public void Initialize(ICivilizationBase civilization)
+    public void Initialize(ICivilizationBase civilization, Func<float> pointIndustry)
     {
+        this._pointIndustry = pointIndustry;
         this._civilization = civilization;
         _scienceData = this._civilization.DataBase.Science;
         _civilization.ExecuteOnTimeEvent += Сivilization_ExecuteOnTimeEvent;
@@ -32,15 +35,14 @@ public class Science
     public int Points { get; set; }
 
     //Бонусы
-    public float AccelerationBonus { get; set; } = 0; // Бонус скорости работы
+    public float AccelerationBonus { get; set; } = 0; // Бонус скорости работы( уменьшает интервал получения нового поинта - зависит от индустрии)
 
     public ITreeOfScience TreeOfScienceCiv { get; private set; }
-    private float ProgressProc => _progress / (GetTime / 100); // Прогресс в процентах
-    private float GetTime => _scienceData.Acceleration + AccelerationBonus; // Получить Интервал
+    private float ProgressProc => _progress / (_progressInterval / 100); // Прогресс в процентах
 
-    public void ExicuteSciencePointsPlayer(DiscoveryCell discoveryCell)
+    public void ExicuteSciencePointsPlayer(int researchCost)
     {
-        Points -= discoveryCell.ResearchCost;
+        Points -= researchCost;
         _civilization.ExicuteSciencePoints(Points);
     }
 
@@ -88,10 +90,10 @@ public class Science
     {
         if (IsActive == false) return;
 
-        _progress += deltaTime;
+        _progress += deltaTime * (_scienceData.Acceleration + AccelerationBonus + _pointIndustry.Invoke());
         ProgressEvent?.Invoke(ProgressProc);
 
-        if (_progress > GetTime)
+        if (_progress > _progressInterval)
         {
             _progress = 0;
 

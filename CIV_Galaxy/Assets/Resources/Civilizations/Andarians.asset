@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75d273a886687044980f9e39709d0491, type: 3}
-  m_Name: 6
+  m_Name: Andarians
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 135b6dd0f9e102f4b853fb6ee04968d5, type: 3}
+  icon: {fileID: 21300000, guid: 1657ec819f5017144af6bcb151e354b7, type: 3}
   baseData:
     planets: 1
     dominationPoints: 0
     growthDominanceOverall: 0
     growthDominancePlanets: 1
-    growthDominanceIndustry: 0.5
+    growthDominanceIndustry: 1
   scanerData:
     isScan: 1
-    acceleration: 9.38827
+    acceleration: 0.8396902
     minimumDiscoveredPlanets: 1
     randomDiscoveredPlanets: 0
   scienceData:
     treeOfSciencePrefab: {fileID: 1831939736030263351, guid: 1b5e957361092ed459ce056ca78659e2,
       type: 3}
     Points: 0
-    acceleration: 19.422817
+    acceleration: 0.80906767
   industryData:
-    acceleration: 2.5020156
-    points: 0.49981356
+    acceleration: 0.9818026
+    points: 0.5

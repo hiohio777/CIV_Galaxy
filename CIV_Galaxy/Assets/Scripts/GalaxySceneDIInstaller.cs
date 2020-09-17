@@ -24,7 +24,6 @@ public class GalaxySceneDIInstaller : MonoInstaller
         Container.Bind<ICivilizationAl>().FromComponentsInHierarchy().AsTransient();
         Container.Bind<ICivilizationPlayer>().FromComponentInHierarchy().AsTransient();
         
-        Container.Bind<IndustryPanelUI>().FromComponentsInHierarchy().AsSingle();
         Container.Bind<ScanerPanelUI>().FromComponentsInHierarchy().AsSingle();
         Container.Bind<SciencePlayerUI>().FromComponentsInHierarchy().AsSingle(); 
         Container.Bind<SciencePanelUI>().FromComponentsInHierarchy().AsSingle();

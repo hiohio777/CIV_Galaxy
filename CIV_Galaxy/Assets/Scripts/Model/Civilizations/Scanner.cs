@@ -5,6 +5,7 @@ public class Scanner
 {
     public event Action<float> ProgressEvent; // Отображение на экране
 
+    private const float _progressInterval = 10; // Интервал
     private float _progress = 0;
 
     private GalaxyData _galaxyData;
@@ -33,18 +34,17 @@ public class Scanner
     public int MinimumDiscoveredPlanetsBonus { get; set; } = 0; // Минимальное количество открываемых планет
     public int RandomDiscoveredPlanetsBonus { get; set; } = 0; // Рандомное количество открываемых планет
 
-    private float GetTime => _scanerData.Acceleration + AccelerationBonus; // Получить Интервал между сканированиями галактики в поиске планет
-    private float ProgressProc => _progress / (GetTime / 100); // Прогресс сканирования в процентах
+    private float ProgressProc => _progress / (_progressInterval / 100); // Прогресс сканирования в процентах
     
     // Сканирование
     private void Civilization_ExecuteOnTimeEvent(float deltaTime)
     {
         if (IsActive == false) return;
 
-        _progress += deltaTime;
+        _progress += deltaTime * (_scanerData.Acceleration + AccelerationBonus);
         ProgressEvent?.Invoke(ProgressProc);
 
-        if (_progress > GetTime)
+        if (_progress > _progressInterval)
         {
             _progress = 0;
             DiscoverPlanet();

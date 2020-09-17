@@ -3,16 +3,37 @@ using System;
 using UnityEngine.UI;
 
 [Serializable]
-public class CivilizationUI: ICivilizationDataUI
+public class CivilizationUI : ICivilizationDataUI
 {
     [SerializeField] private Image art;
     [SerializeField] private Sprite spriteEmpty;
 
+    [SerializeField, Space(10)] private GameObject panel;
     [SerializeField, Space(10)] private Text name;
     [SerializeField] private Text countPlanet;
     [SerializeField] private Text countDominationPoints;
 
+    [SerializeField] private Image indicator, imageFullIndustry;
+
     private CivilizationScriptable civData;
+
+    public void SetIndustryPoints(float points)
+    {
+        indicator.fillAmount = points;
+
+        if (imageFullIndustry != null)
+        {
+            // Для Игрока
+            if (points >= 1) imageFullIndustry.gameObject.SetActive(true);
+            else imageFullIndustry.gameObject.SetActive(false);
+        }
+        else
+        {
+            // Для Al
+            if (points >= 1) indicator.color = Color.blue;
+            else indicator.color = Color.red;
+        }
+    }
 
     public void SetCountPlanet(int count)
     {
@@ -30,7 +51,7 @@ public class CivilizationUI: ICivilizationDataUI
     public void Close()
     {
         art.sprite = spriteEmpty;
-        name.gameObject.SetActive(false);
+        if (panel != null) panel.SetActive(false);
     }
 
     /// <summary>
@@ -41,7 +62,7 @@ public class CivilizationUI: ICivilizationDataUI
         this.civData = civData;
 
         art.sprite = this.civData.Icon;
-        name.gameObject.SetActive(true);
+        if (panel != null) panel.SetActive(true);
         name.text = this.civData.Name;
     }
 }

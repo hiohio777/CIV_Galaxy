@@ -18,17 +18,17 @@ MonoBehaviour:
     dominationPoints: 0
     growthDominanceOverall: 0
     growthDominancePlanets: 1
-    growthDominanceIndustry: 0.5
+    growthDominanceIndustry: 1
   scanerData:
     isScan: 1
-    acceleration: 9.723478
+    acceleration: 1
     minimumDiscoveredPlanets: 1
     randomDiscoveredPlanets: 0
   scienceData:
     treeOfSciencePrefab: {fileID: 1831939736030263351, guid: 1b5e957361092ed459ce056ca78659e2,
       type: 3}
     Points: 0
-    acceleration: 18.782486
+    acceleration: 1
   industryData:
-    acceleration: 2.9980314
-    points: 0.98
+    acceleration: 1
+    points: 0.5

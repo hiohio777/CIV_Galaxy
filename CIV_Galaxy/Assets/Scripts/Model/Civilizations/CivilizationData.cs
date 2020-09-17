@@ -42,8 +42,7 @@ public class CivilizationData
     private void ProgressDominance()
     {
         float dominancePlanets = _planets * (baseData.GrowthDominancePlanets + GrowthDominancePlanetsBonus);
-
-        float dominanceIndustry = _planets * ((float)GetIndustryPoints.Invoke() * (baseData.GrowthDominanceIndustry + GrowthDominanceIndustryBonus));
+        float dominanceIndustry = _planets * (GetIndustryPoints.Invoke() * (baseData.GrowthDominanceIndustry + GrowthDominanceIndustryBonus));
 
         float dominance = dominancePlanets + dominanceIndustry; // Общий годовой рост
         float dominanceOverall = dominance * (baseData.GrowthDominanceOverall + GrowthDominanceOverallBonus); // Бонус к годовому росту

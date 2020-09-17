@@ -47,18 +47,12 @@ public class DiscoveryCell : MonoBehaviour
 
             AvailableUI?.Invoke(isAvailable);
         }
-
-
-        Debug.Log(name + ": " + CountSciencesRequired);
     }
 
     private void Awake()
     {
         foreach (var item in dependentSciences)
-        {
             item.CountSciencesRequired++;
-            Debug.Log(item.name + ": "+ item.CountSciencesRequired);
-        }
 
         if (IsResearch)
         {
@@ -78,8 +72,6 @@ public class DiscoveryCell : MonoBehaviour
     {
         Gizmos.color = Color.green; //Назначаем цвет нашему объекту
         foreach (var item in dependentSciences)
-        {
             Gizmos.DrawLine(transform.position, item.transform.position);
-        }
     }
 }

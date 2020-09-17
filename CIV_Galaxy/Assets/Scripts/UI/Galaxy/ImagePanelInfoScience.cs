@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
@@ -24,6 +25,9 @@ public class ImagePanelInfoScience : MonoBehaviour
 
         _animator = GetComponent<Animator>();
     }
+
+
+    public event Action UpdateCostDiscoveriesEvent;
 
     public void Show(DiscoveryCell discoveryCell)
     {
@@ -59,7 +63,8 @@ public class ImagePanelInfoScience : MonoBehaviour
 
         _discoveryCell.Study(_civPlayer as ICivilizationBase);
 
-        _scienceCiv.ExicuteSciencePointsPlayer(_discoveryCell);
+        _scienceCiv.ExicuteSciencePointsPlayer(_discoveryCell.ResearchCost);
+        UpdateCostDiscoveriesEvent.Invoke();
     }
 
     private void OnClose()

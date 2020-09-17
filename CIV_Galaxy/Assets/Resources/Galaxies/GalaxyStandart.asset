@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e72a68aa64d0442a5667f9038f0db7, type: 3}
   m_Name: GalaxyStandart
   m_EditorClassIdentifier: 
-  icePlanets: 30
-  hotPlanets: 30
-  gasGiantsPlanets: 30
-  idealPlanet: 200
+  icePlanets: 60
+  hotPlanets: 60
+  gasGiantsPlanets: 60
+  idealPlanet: 400

@@ -22,7 +22,7 @@ public class BaseData
         if (planets <= 0) planets = 1;
 
         if (growthDominancePlanets == 0) growthDominancePlanets = 1;
-        if (growthDominanceIndustry == 0) growthDominanceIndustry = 0.05f;
+        if (growthDominanceIndustry == 0) growthDominanceIndustry = 0.5f;
     }
 }
 
@@ -30,7 +30,7 @@ public class BaseData
 public class ScanerData
 {
     [SerializeField, Space(10), Space(10)] private bool isScan = true; // Разрешение сканировать галактику(искать планеты сканером)
-    [SerializeField, Range(0, 60)] private float acceleration = 0; // Интервал между сканированиями галактики в поиске планет
+    [SerializeField, Range(0, 5)] private float acceleration = 0; // Интервал между сканированиями галактики в поиске планет
     [SerializeField, Range(0, 20)] private int minimumDiscoveredPlanets = 0; // Минимальное количество открываемых планет
     [SerializeField, Range(0, 20)] private int randomDiscoveredPlanets = 0; // Рандомное количество открываемых планет
 
@@ -41,7 +41,7 @@ public class ScanerData
     public void Validate()
     {
         if (acceleration <= 0)
-            acceleration = UnityEngine.Random.Range(9f, 10f);
+            acceleration = UnityEngine.Random.Range(0.8f, 1f);
         if (minimumDiscoveredPlanets <= 0)
             minimumDiscoveredPlanets = 1;
     }
@@ -52,7 +52,7 @@ public class ScienceData
 {
     [SerializeField, Space(10)] private TreeOfScience treeOfSciencePrefab; // Префаб дерева науки
     [SerializeField, Range(0, 100)] private int Points = 0; // Начальные очки науки
-    [SerializeField, Range(0, 100)] private float acceleration = 0; // Скорость накопления очков исследований
+    [SerializeField, Range(0, 5)] private float acceleration = 0; // Скорость накопления очков исследований
 
     public TreeOfScience TreeOfSciencePrefab => treeOfSciencePrefab;
     public int SciencePoints => Points;
@@ -61,7 +61,7 @@ public class ScienceData
     public void Validate(string name)
     {
         if (acceleration <= 0)
-            acceleration = UnityEngine.Random.Range(18f, 20f);
+            acceleration = UnityEngine.Random.Range(0.8f, 1f);
         if (treeOfSciencePrefab == null)
             Debug.Log($"{name}: Не назначено дерево наук!");
     }
@@ -70,7 +70,7 @@ public class ScienceData
 [Serializable]
 public class IndustryData
 {
-    [SerializeField, Space(10), Range(0, 60)] private float acceleration = 0; // Интервал между между ростом индустрии(добавление поинта)
+    [SerializeField, Space(10), Range(0, 5)] private float acceleration = 0; // Скорость в процентах
     [SerializeField, Range(0, 1)] private float points = 0; // Начальные очки индустрии
 
     public float Acceleration => acceleration;
@@ -79,7 +79,7 @@ public class IndustryData
     public void Validate()
     {
         if (acceleration <= 0)
-            acceleration = UnityEngine.Random.Range(2f, 3f);
+            acceleration = UnityEngine.Random.Range(0.8f, 1f);
         if (points <= 0)
             points = UnityEngine.Random.Range(0, 0.5f);
     }

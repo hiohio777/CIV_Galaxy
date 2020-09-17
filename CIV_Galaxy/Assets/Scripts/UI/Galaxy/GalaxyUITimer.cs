@@ -7,7 +7,7 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
 {
     [SerializeField] private Button buttonPause;
     [SerializeField] private Text textTimer;
-    [SerializeField, Space(10)] private float lengthOfYear = 2;
+    [SerializeField, Space(10)] private float lengthOfYear = 4;
     [SerializeField] private float speedGame = 1;
 
     private int years;

@@ -6,16 +6,15 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
 {
     private ScanerPanelUI _scanerPanelUI;
     private SciencePanelUI _sciencePanelUI;
-    private IndustryPanelUI _industryPanelUI;
     
     private DiscoveredCivilization _discoveredCivilization;
 
     [Inject]
     public void InjectCivilizationPlayer(DiscoveredCivilization discoveredCivilization, SciencePanelUI sciencePanelUI,
-       ScanerPanelUI scanerPanelUI, IndustryPanelUI industryPanelUI)
+       ScanerPanelUI scanerPanelUI)
     {
-        (this._discoveredCivilization, this._sciencePanelUI, this._scanerPanelUI, this._industryPanelUI)
-        = (discoveredCivilization, sciencePanelUI, scanerPanelUI, industryPanelUI);
+        (this._discoveredCivilization, this._sciencePanelUI, this._scanerPanelUI)
+        = (discoveredCivilization, sciencePanelUI, scanerPanelUI);
     }
 
     public override void Assign(CivilizationScriptable civData)
@@ -34,10 +33,6 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
     public override void ExicuteSciencePoints(int sciencePoints)
     {
         _sciencePanelUI.SetSciencePoints(sciencePoints, ScienceCiv.IsAvailableForStudy());
-    }
-    public override void ExicuteIndustryPoints(float points)
-    {
-        _industryPanelUI.SetIndustryPoints(points);
     }
 
     private void OnEnable()
