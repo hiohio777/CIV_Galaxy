@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class CivilizationData
 {
+    public event Action DefineLeader;
     public BaseData baseData { get; private set; }
     private int _planets;
 
@@ -16,7 +17,12 @@ public class CivilizationData
     }
 
     public int Planets { get => _planets; set { _planets = value; _dataUI.SetCountPlanet(_planets); } }
-    public float DominationPoints { get => _dominationPoints; set { _dominationPoints = value; _dataUI.SetCountDominationPoints(_dominationPoints); } }
+    public float DominationPoints {
+        get => _dominationPoints; set {
+            _dominationPoints = value;
+            _dataUI.SetCountDominationPoints(_dominationPoints); DefineLeader?.Invoke();
+        }
+    }
 
     public event Func<float> GetIndustryPoints;
 
@@ -39,15 +45,14 @@ public class CivilizationData
         planet.Destroy();
     }
 
+    public float GetPointsFromPlanets => _planets * (baseData.GrowthDominancePlanets + GrowthDominancePlanetsBonus);
+    public float GetPointsFromIndustry => _planets * (GetIndustryPoints.Invoke() * (baseData.GrowthDominanceIndustry + GrowthDominanceIndustryBonus));
+    public float GetPointsFromBonus => GetPointsFromPlanets + GetPointsFromIndustry;
+    public float GetPointsAll => GetPointsFromBonus + GetPointsFromBonus * (baseData.GrowthDominanceOverall + GrowthDominanceOverallBonus);
+
     private void ProgressDominance()
     {
-        float dominancePlanets = _planets * (baseData.GrowthDominancePlanets + GrowthDominancePlanetsBonus);
-        float dominanceIndustry = _planets * (GetIndustryPoints.Invoke() * (baseData.GrowthDominanceIndustry + GrowthDominanceIndustryBonus));
-
-        float dominance = dominancePlanets + dominanceIndustry; // Общий годовой рост
-        float dominanceOverall = dominance * (baseData.GrowthDominanceOverall + GrowthDominanceOverallBonus); // Бонус к годовому росту
-
-        // Финальный подсчёт
-        DominationPoints += (dominance + dominanceOverall);
+        // подсчёт
+        DominationPoints += GetPointsAll;
     }
 }

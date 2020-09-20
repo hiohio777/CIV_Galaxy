@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 [Serializable]
 public class BaseData
@@ -95,6 +96,8 @@ public class CivilizationScriptable : ScriptableObject
     [SerializeField] private ScienceData scienceData;
     [SerializeField] private IndustryData industryData;
 
+    [SerializeField] private List<GameObject> abilities;
+
     public Sprite Icon => icon;
     public string Name => name;
     public string Description => $"{name}_description";
@@ -103,6 +106,8 @@ public class CivilizationScriptable : ScriptableObject
     public ScanerData Scaner => scanerData;
     public ScienceData Science => scienceData;
     public IndustryData Industry => industryData;
+
+    public List<GameObject> Abilities => abilities;
 
     private void OnEnable()
     {

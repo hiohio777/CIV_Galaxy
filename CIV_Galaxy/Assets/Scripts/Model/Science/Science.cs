@@ -8,14 +8,14 @@ public class Science
     private const float _progressInterval = 30; // Интервал
     private float _progress = 0; // Прогресс получения нового поинта SciencePoints
 
-    private ICivilizationBase _civilization;
+    private ICivilization _civilization;
     private DiscoveryCell _currentDiscovery;
     private ScienceData _scienceData;
     private Func<float> _pointIndustry;
 
     public Science() { }
 
-    public void Initialize(ICivilizationBase civilization, Func<float> pointIndustry)
+    public void Initialize(ICivilization civilization, Func<float> pointIndustry)
     {
         this._pointIndustry = pointIndustry;
         this._civilization = civilization;
@@ -39,6 +39,18 @@ public class Science
 
     public ITreeOfScience TreeOfScienceCiv { get; private set; }
     private float ProgressProc => _progress / (_progressInterval / 100); // Прогресс в процентах
+
+    public void AddPoints(int point) 
+    {
+        Points += point;
+        _civilization.ExicuteSciencePoints(Points);
+    }
+
+    public void AddProgress(float count)
+    {
+        _progress += count;
+        ProgressEvent?.Invoke(ProgressProc);
+    }
 
     public void ExicuteSciencePointsPlayer(int researchCost)
     {

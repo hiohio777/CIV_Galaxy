@@ -24,7 +24,7 @@ public class DiscoveryCell : MonoBehaviour
     /// <summary>
     /// Изучить науку(открыть её)
     /// </summary>
-    public void Study(ICivilizationBase civilization)
+    public void Study(ICivilization civilization)
     {
         IsResearch = true;
         sprite.color = colorResearch;

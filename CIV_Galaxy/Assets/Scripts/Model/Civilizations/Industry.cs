@@ -7,13 +7,14 @@ public class Industry
     private const float maxPoint = 1; // Максимальное количество поинтов индустрии
     private const float _progressInterval = 5; // Интервал
     private float _progress = 0; // Прогресс
+    private float _point = 0;
 
-    private ICivilizationBase _civilization;
+    private ICivilization _civilization;
     private IndustryData _industryData;
 
     public Industry() { }
 
-    public void Initialize(ICivilizationBase civilization)
+    public void Initialize(ICivilization civilization)
     {
         this._civilization = civilization;
         _industryData = this._civilization.DataBase.Industry;
@@ -32,8 +33,18 @@ public class Industry
     }
 
     public bool IsActive { get; set; } = true; // Активен ли
-
-    public float Points { get; set; }
+    public float Points {
+        get => _point;
+        private set {
+            _point = value; if (_point > 1) _point = 1;
+            else if (_point < 0) _point = 0;
+        }
+    }
+    public void AddPoints(float point)
+    {
+        Points += point;
+        _civilization.ExicuteIndustryPoints(Points);
+    }
 
     //Бонусы
     public float AccelerationBonus { get; set; } = 0; // Бонус к скорости роста индустрии(уменьшает интервал между добавлением очков индустрии)

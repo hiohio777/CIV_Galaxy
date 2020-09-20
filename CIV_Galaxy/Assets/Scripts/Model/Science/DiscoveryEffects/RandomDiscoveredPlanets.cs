@@ -6,7 +6,7 @@ public class RandomDiscoveredPlanets : MonoBehaviour, IDiscoveryEffects
 {
     [SerializeField, Range(-100, 100)] private int randomDiscoveredPlanets;
 
-    public void ExecuteStudy(ICivilizationBase civilization, string nameDiscovery)
+    public void ExecuteStudy(ICivilization civilization, string nameDiscovery)
     {
         civilization.ScanerPlanets.RandomDiscoveredPlanetsBonus += randomDiscoveredPlanets;
     }

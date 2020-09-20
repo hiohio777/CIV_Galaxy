@@ -10,7 +10,7 @@ public class Scanner
 
     private GalaxyData _galaxyData;
     private PlanetsFactory _planetsFactory;
-    private ICivilizationBase _civilization;
+    private ICivilization _civilization;
     private ScanerData _scanerData;
 
     public Scanner(GalaxyData galaxyData, PlanetsFactory planetsFactory)
@@ -18,7 +18,7 @@ public class Scanner
         (this._galaxyData, this._planetsFactory) = (galaxyData, planetsFactory);
     }
 
-    public void Initialize(ICivilizationBase civilization)
+    public void Initialize(ICivilization civilization)
     {
         this._civilization = civilization;
         _scanerData = this._civilization.DataBase.Scaner;
@@ -65,7 +65,7 @@ public class Scanner
 
         for (int i = 0; i < countNewPlanet; i++)
         {
-            if (_galaxyData.CountPlanet <= 0)
+            if (_galaxyData.CountAllPlanet <= 0)
             {
                 _civilization.ExecuteOnTimeEvent -= Civilization_ExecuteOnTimeEvent;
                 return;

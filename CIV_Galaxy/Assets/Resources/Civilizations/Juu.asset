@@ -31,4 +31,6 @@ MonoBehaviour:
     acceleration: 0.98968476
   industryData:
     acceleration: 0.95044684
-    points: 0.5
+    points: 0.3
+  abilities:
+  - {fileID: 3201525429964300333, guid: dc7cab9ea9fa0f34b898b65fd22129e3, type: 3}

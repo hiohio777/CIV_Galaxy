@@ -4,7 +4,7 @@ using Zenject;
 
 public class GalaxySceneDIInstaller : MonoInstaller
 {
-    [SerializeField] private UnityEngine.Object planetPrefab, discoveryCellUIPrefab;
+    [SerializeField] private UnityEngine.Object planetPrefab, discoveryCellUIPrefab, galacticEventDisplayPrefab;
 
     public override void InstallBindings()
     {
@@ -12,25 +12,34 @@ public class GalaxySceneDIInstaller : MonoInstaller
         Container.Bind<GalaxyData>().AsSingle();
         Container.Bind<DiscoveredCivilization>().AsSingle();
 
-        Container.Bind<IGalaxyUITimer>().FromComponentInHierarchy().AsSingle(); 
+        Container.Bind<IGalaxyUITimer>().FromComponentInHierarchy().AsSingle();
 
         // Цивилизации
         Container.Bind<CivilizationData>().AsTransient();
-        Container.Bind<Scanner>().AsTransient(); 
-        Container.Bind<Science>().AsTransient(); 
+        Container.Bind<Scanner>().AsTransient();
+        Container.Bind<Science>().AsTransient();
         Container.Bind<Industry>().AsTransient();
 
-        Container.Bind<ICivilization>().FromComponentsInHierarchy().AsTransient();
-        Container.Bind<ICivilizationAl>().FromComponentsInHierarchy().AsTransient();
-        Container.Bind<ICivilizationPlayer>().FromComponentInHierarchy().AsTransient();
-        
+        Container.Bind<GalacticEventGenerator>().AsTransient();
+        Container.Bind<GalacticEventGeneratorPlayer>().AsTransient();
+
+        Container.Bind<ICivilization>().FromComponentsInHierarchy().AsSingle();
+        Container.Bind<ICivilizationAl>().FromComponentsInHierarchy().AsSingle();
+        Container.Bind<ICivilizationPlayer>().FromComponentInHierarchy().AsSingle();
+
+
+        Container.Bind<AbilityUI>().FromComponentsInHierarchy().AsSingle();
+        Container.Bind<MessageWholeGalaxyExplored>().FromComponentsInHierarchy().AsSingle();
+        Container.Bind<CanvasFonGalaxy>().FromComponentsInHierarchy().AsSingle();
+        Container.Bind<PlayerCivInfo>().FromComponentsInHierarchy().AsSingle();
         Container.Bind<ScanerPanelUI>().FromComponentsInHierarchy().AsSingle();
-        Container.Bind<SciencePlayerUI>().FromComponentsInHierarchy().AsSingle(); 
+        Container.Bind<SciencePlayerUI>().FromComponentsInHierarchy().AsSingle();
         Container.Bind<SciencePanelUI>().FromComponentsInHierarchy().AsSingle();
-        Container.Bind<ImagePanelInfoScience>().FromComponentsInHierarchy().AsSingle(); 
+        Container.Bind<ImagePanelInfoScience>().FromComponentsInHierarchy().AsSingle();
+        Container.Bind<IGalacticEventDisplay>().FromComponentsInHierarchy().AsSingle();
 
         Container.Bind<MessageDiscoveredCivilization>().FromComponentsInHierarchy().AsSingle();
-        Container.Bind<MessageStartGame>().FromComponentsInHierarchy().AsSingle(); 
+        Container.Bind<MessageStartGame>().FromComponentsInHierarchy().AsSingle();
         Container.Bind<MessageBackMainMenu>().FromComponentsInHierarchy().AsSingle();
 
         // Фабрики

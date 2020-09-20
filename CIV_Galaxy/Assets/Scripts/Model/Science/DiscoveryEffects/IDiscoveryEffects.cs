@@ -1,5 +1,5 @@
 ﻿public interface IDiscoveryEffects
 {
 
-    void ExecuteStudy(ICivilizationBase civilization, string nameDiscovery);
+    void ExecuteStudy(ICivilization civilization, string nameDiscovery);
 }

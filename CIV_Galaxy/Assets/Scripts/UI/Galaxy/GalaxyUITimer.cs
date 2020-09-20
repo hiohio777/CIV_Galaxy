@@ -32,6 +32,7 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
         textTimer.text = (years = 0).ToString();
     }
 
+    public float GetYears => years;
     public void SetPause(bool isPause) => SetColorButtonPause(IsPause = isPause);
     private void OnPause() => SetColorButtonPause(IsPause = !IsPause);
     private void SetColorButtonPause(bool active)
@@ -77,6 +78,8 @@ public interface IGalaxyUITimer
 {
     event Action ExecuteYears; // События происходящие каждый год
     bool IsPause { get; set; }
+    float GetYears { get; }
+
     void SetPause(bool isPause);
     void StopTimer();
     void StartTimer(Action<float> execute);

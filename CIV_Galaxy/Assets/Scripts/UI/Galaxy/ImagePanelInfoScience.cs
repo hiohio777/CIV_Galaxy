@@ -13,6 +13,7 @@ public class ImagePanelInfoScience : MonoBehaviour
     private Science _scienceCiv;
     private DiscoveryCell _discoveryCell;
     private ICivilizationPlayer _civPlayer;
+    private bool isStudy = false;
 
     [Inject]
     public void Inject(ICivilizationPlayer civPlayer)
@@ -52,6 +53,13 @@ public class ImagePanelInfoScience : MonoBehaviour
 
     public void EndAnimation()
     {
+        if (isStudy)
+        {
+            _discoveryCell.Study(_civPlayer);
+            _scienceCiv.ExicuteSciencePointsPlayer(_discoveryCell.ResearchCost);
+            UpdateCostDiscoveriesEvent.Invoke();
+        }
+
         buttonStudy.interactable = buttonClose.interactable = true;
         gameObject.SetActive(false);
     }
@@ -60,16 +68,13 @@ public class ImagePanelInfoScience : MonoBehaviour
     {
         _animator.SetTrigger("CloseMessage");
         buttonStudy.interactable = buttonClose.interactable = false;
-
-        _discoveryCell.Study(_civPlayer as ICivilizationBase);
-
-        _scienceCiv.ExicuteSciencePointsPlayer(_discoveryCell.ResearchCost);
-        UpdateCostDiscoveriesEvent.Invoke();
+        isStudy = true;
     }
 
     private void OnClose()
     {
         _animator.SetTrigger("CloseMessage");
         buttonStudy.interactable = buttonClose.interactable = false;
+        isStudy = false;
     }
 }

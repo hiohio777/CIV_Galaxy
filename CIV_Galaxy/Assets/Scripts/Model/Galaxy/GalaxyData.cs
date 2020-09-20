@@ -1,43 +1,57 @@
 ﻿public class GalaxyData
 {
-    private int idealPlanet, icePlanets, hotPlanets, gasGiantsPlanets;
-    private GalaxyScriptableObject _galaxyScriptable;
+    private int _idealPlanet, _icePlanets, _hotPlanets, _gasGiantsPlanets, _allPlanet, _openPlanets;
+    private CanvasFonGalaxy _canvasFonGalaxy;
+    private MessageWholeGalaxyExplored _messageWholeGalaxyExplored;
 
-    public GalaxyData(GalaxyScriptableObject galaxyScriptable)
+    public GalaxyData(GalaxyScriptableObject galaxyScriptable, CanvasFonGalaxy canvasFonGalaxy, MessageWholeGalaxyExplored messageWholeGalaxyExplored)
     {
-        this._galaxyScriptable = galaxyScriptable;
+        this._canvasFonGalaxy = canvasFonGalaxy;
+        this._messageWholeGalaxyExplored = messageWholeGalaxyExplored;
 
-        icePlanets = galaxyScriptable.IcePlanets;
-        hotPlanets = galaxyScriptable.HotPlanets;
-        gasGiantsPlanets = galaxyScriptable.GasGiantsPlanets;
-        idealPlanet = galaxyScriptable.IdealPlanet;
+        _icePlanets = galaxyScriptable.IcePlanets;
+        _hotPlanets = galaxyScriptable.HotPlanets;
+        _gasGiantsPlanets = galaxyScriptable.GasGiantsPlanets;
+        _idealPlanet = galaxyScriptable.IdealPlanet;
+
+        _allPlanet = _idealPlanet + _icePlanets + _hotPlanets + _gasGiantsPlanets;
+        _canvasFonGalaxy.ProgressEvent(_allPlanet / 100);
     }
 
-    public int CountPlanet => idealPlanet + icePlanets + hotPlanets + gasGiantsPlanets;
+    public int CountAllPlanet => _allPlanet - _openPlanets;
 
     public TypePlanetEnum GetTypePlanet()
     {
-        int rand = UnityEngine.Random.Range(1, CountPlanet);
+        int rand = UnityEngine.Random.Range(1, CountAllPlanet);
+        TypePlanetEnum typePlanetEnum;
 
-        if (rand <= idealPlanet)
+        if (rand <= _idealPlanet)
         {
-            idealPlanet--;
-            return TypePlanetEnum.Ideal;
+            _idealPlanet--;
+            typePlanetEnum = TypePlanetEnum.Ideal;
+        }
+        else if (rand <= _idealPlanet + _icePlanets)
+        {
+            _icePlanets--;
+            typePlanetEnum = TypePlanetEnum.Ice;
+        }
+        else if (rand <= _idealPlanet + _icePlanets + _hotPlanets)
+        {
+            _hotPlanets--;
+            typePlanetEnum = TypePlanetEnum.Hot;
+        }
+        else
+        {
+            _gasGiantsPlanets--;
+            typePlanetEnum = TypePlanetEnum.GasGiants;
         }
 
-        if (rand <= idealPlanet + icePlanets)
-        {
-            icePlanets--;
-            return TypePlanetEnum.Ice;
-        }
+        _openPlanets++;
 
-        if (rand <= idealPlanet + icePlanets + hotPlanets)
-        {
-            hotPlanets--;
-            return TypePlanetEnum.Hot;
-        }
+        _canvasFonGalaxy.ProgressEvent(_openPlanets / ((float)_allPlanet / 100));
+        if (_openPlanets >= _allPlanet)
+            _messageWholeGalaxyExplored.Show("Вся Галактика исследована!");
 
-        gasGiantsPlanets--;
-        return TypePlanetEnum.GasGiants;
+        return typePlanetEnum;
     }
 }

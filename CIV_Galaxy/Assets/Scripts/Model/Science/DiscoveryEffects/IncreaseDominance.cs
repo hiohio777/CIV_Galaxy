@@ -6,7 +6,7 @@ public class IncreaseDominance : MonoBehaviour, IDiscoveryEffects
 {
     [SerializeField] private int increaseDominance;
 
-    public void ExecuteStudy(ICivilizationBase civilization, string nameDiscovery)
+    public void ExecuteStudy(ICivilization civilization, string nameDiscovery)
     {
         civilization.CivData.DominationPoints += increaseDominance;
     }

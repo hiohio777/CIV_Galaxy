@@ -3,17 +3,14 @@ using UnityEngine;
 
 public interface ICivilization
 {
-    CivilizationScriptable DataBase { get; }
     void Assign(CivilizationScriptable civData);
-    void ExecuteOnTime(float deltaTime);
-}
-
-public interface ICivilizationBase
-{
-    event Action<float> ExecuteOnTimeEvent;
     bool IsOpen { get; }
-    Vector2 PositionCiv { get; }
+
+    event Action<float> ExecuteOnTimeEvent;
+    void ExecuteOnTime(float deltaTime);
+
     CivilizationScriptable DataBase { get; }
+    Vector2 PositionCiv { get; }
     CivilizationData CivData { get; }
     Scanner ScanerPlanets { get; }
     Science ScienceCiv { get; }
@@ -22,6 +19,8 @@ public interface ICivilizationBase
     void ExicuteScanning();
     void ExicuteSciencePoints(int sciencePoints);
     void ExicuteIndustryPoints(float points);
+    void ExicuteAbility(IAbility ability);
+    void DefineLeader();
 }
 
 public interface ICivilizationAl : ICivilization
@@ -31,5 +30,5 @@ public interface ICivilizationAl : ICivilization
 
 public interface ICivilizationPlayer : ICivilization
 {
-    Science ScienceCiv { get; }
+    AbilityUI SelectAbility { get; set; }
 }

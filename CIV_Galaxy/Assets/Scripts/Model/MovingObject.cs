@@ -3,10 +3,10 @@ using System.Collections;
 using UnityEngine;
 using Zenject;
 
-public class MovingPlanet : MonoBehaviour
+public class MovingObject : MonoBehaviour
 {
     private Transform _transform;
-    private Action execute, StartAnimation;
+    private Action execute, positionAnimation, scaleAnimation;
 
     private Vector3 positionTarget;
     private float scaleTarget;
@@ -17,29 +17,31 @@ public class MovingPlanet : MonoBehaviour
     [Inject]
     public void Inject(IGalaxyUITimer galaxyUITimer)
     {
-        this._galaxyUITimer = galaxyUITimer;
+        this._galaxyUITimer = galaxyUITimer; 
+        _transform = GetComponent<Transform>();
     }
 
     public void Stop()
     {
-        execute?.Invoke();
+        StopAllCoroutines();
+        execute = positionAnimation = scaleAnimation =null;
     }
 
-    public MovingPlanet SetPosition(Vector3 positionTarget, float timePositionTarget)
+    public MovingObject SetPosition(Vector3 positionTarget, float timePositionTarget)
     {
         this.positionTarget = positionTarget;
         this.timePositionTarget = timePositionTarget;
 
-        StartAnimation += StartPositionTarget;
+        positionAnimation = StartPositionTarget;
         return this;
     }
 
-    public MovingPlanet SetScale(float scaleTarget, float timeScaleTarget)
+    public MovingObject SetScale(float scaleTarget, float timeScaleTarget)
     {
         this.scaleTarget = scaleTarget;
         this.timeScaleTarget = timeScaleTarget;
 
-        StartAnimation += StartScaleTarget;
+        scaleAnimation = StartScaleTarget;
         return this;
     }
 
@@ -47,7 +49,8 @@ public class MovingPlanet : MonoBehaviour
     public void Run(Action execute)
     {
         this.execute = execute;
-        StartAnimation?.Invoke();
+        positionAnimation?.Invoke();
+        scaleAnimation?.Invoke();
     }
 
     private void StartPositionTarget()
@@ -75,7 +78,7 @@ public class MovingPlanet : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
-        StartAnimation -= StartPositionTarget;
+        positionAnimation = null;
         EndAnimation();
     }
 
@@ -95,14 +98,12 @@ public class MovingPlanet : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
-        StartAnimation -= StartScaleTarget;
+        scaleAnimation = null;
         EndAnimation();
     }
 
     private void EndAnimation()
     {
-        if (StartAnimation == null) Stop();
+        if (positionAnimation == null && scaleAnimation == null) execute?.Invoke();
     }
-
-    private void Awake() => _transform = GetComponent<Transform>();
 }

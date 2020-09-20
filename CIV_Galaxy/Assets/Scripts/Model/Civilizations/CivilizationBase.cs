@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using Zenject;
 
-public abstract class CivilizationBase : MonoBehaviour, ICivilizationBase
+public abstract class CivilizationBase : MonoBehaviour, ICivilization
 {
     [SerializeField] protected CivilizationUI civilizationUI;
     protected bool isAssign = false;
@@ -29,6 +29,7 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilizationBase
     public Scanner ScanerPlanets { get; private set; }
     public Industry IndustryCiv { get; private set; }
     public Science ScienceCiv { get; private set; }
+    public List<IAbility> Abilities { get; private set; } = new List<IAbility>();
 
     public virtual void Assign(CivilizationScriptable dataBase)
     {
@@ -36,9 +37,24 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilizationBase
 
         // Инициализация данных
         CivData.Initialize(this.DataBase, civilizationUI);
+        CivData.DefineLeader += DefineLeader;
+
         ScanerPlanets.Initialize(this);
         ScienceCiv.Initialize(this, () => IndustryCiv.Points);
         IndustryCiv.Initialize(this);
+
+        // Инициировать абилки
+        int id = 0;
+        foreach (var item in dataBase.Abilities)
+        {
+            var prefab = Instantiate(item).GetComponent<IAbility>();
+            prefab.Initialize(id, this);
+            Abilities.Add(prefab);
+
+            id++;
+        }
+
+        if (Abilities.Count > 0) Abilities[0].IsActive = true;
 
         isAssign = true;
     }
@@ -56,4 +72,6 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilizationBase
 
     public abstract void ExicuteScanning();
     public abstract void ExicuteSciencePoints(int sciencePoints);
+    public abstract void ExicuteAbility(IAbility ability);
+    public abstract void DefineLeader();
 }

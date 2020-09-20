@@ -6,7 +6,7 @@ public class IndustryAcceleration : MonoBehaviour, IDiscoveryEffects
 {
     [SerializeField, Range(-5, 5)] private float accelerationIndustry;
 
-    public void ExecuteStudy(ICivilizationBase civilization, string nameDiscovery)
+    public void ExecuteStudy(ICivilization civilization, string nameDiscovery)
     {
         civilization.IndustryCiv.AccelerationBonus += accelerationIndustry;
     }
