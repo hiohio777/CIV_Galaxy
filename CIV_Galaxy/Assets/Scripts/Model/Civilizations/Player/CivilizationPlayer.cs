@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -10,21 +11,24 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
     private List<AbilityUI> _abilitiesUI;
     private PlayerCivInfo _playerCivInfo;
     private GalacticEventGenerator _galacticEventGenerator;
+    private List<ICivilizationAl> _anotherCivilization;
 
     private DiscoveredCivilization _discoveredCivilization;
 
     [Inject]
     public void InjectCivilizationPlayer(DiscoveredCivilization discoveredCivilization, SciencePanelUI sciencePanelUI,
        ScanerPanelUI scanerPanelUI, PlayerCivInfo playerCivInfo, GalacticEventGeneratorPlayer galacticEventGenerator,
-       List<AbilityUI> abilitiesUI)
+       List<AbilityUI> abilitiesUI, List<ICivilizationAl> anotherCivilization)
     {
         (this._discoveredCivilization, this._sciencePanelUI, this._scanerPanelUI, this._playerCivInfo,
         this._galacticEventGenerator, this._abilitiesUI)
-        = (discoveredCivilization, sciencePanelUI, scanerPanelUI, playerCivInfo,
-        galacticEventGenerator, abilitiesUI);
+        = (discoveredCivilization, sciencePanelUI, scanerPanelUI, playerCivInfo, galacticEventGenerator, abilitiesUI);
+
+        _anotherCivilization = anotherCivilization;
     }
 
-    public AbilityUI SelectAbility { get; set; }
+    public override TypeCivEnum TypeCiv { get; } = TypeCivEnum.Player;
+    public AbilityUI SelectedAbility { get; set; }
 
     public override void Assign(CivilizationScriptable civData)
     {
@@ -33,6 +37,7 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
         civilizationUI.Assign(civData);
         _galacticEventGenerator.Initialize(this);
 
+        InitAbility();
         for (int i = 0; i < _abilitiesUI.Count; i++)
         {
             if (i < Abilities.Count)
@@ -47,7 +52,7 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
 
     public override void ExicuteScanning()
     {
-        _discoveredCivilization.DiscoverAnotherCiv(anotherCiv);
+        _discoveredCivilization.DiscoverAnotherCiv(_anotherCivilization);
     }
 
     public override void ExicuteSciencePoints(int sciencePoints)
@@ -75,7 +80,7 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
     public override void DefineLeader()
     {
         // определение лидерства
-        foreach (var item in anotherCiv)
+        foreach (var item in _anotherCivilization)
         {
             if (CivData.Planets >= item.CivData.Planets)
                 item.DefineLeader();

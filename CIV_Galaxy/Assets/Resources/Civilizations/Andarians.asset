@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Andarians
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 1657ec819f5017144af6bcb151e354b7, type: 3}
+  color: {r: 1, g: 0, b: 0.6778517, a: 1}
   baseData:
     planets: 1
     dominationPoints: 0
@@ -31,6 +32,6 @@ MonoBehaviour:
     acceleration: 0.80906767
   industryData:
     acceleration: 0.9818026
-    points: 0.3
+    points: 0.5
   abilities:
   - {fileID: 3201525429964300333, guid: dc7cab9ea9fa0f34b898b65fd22129e3, type: 3}

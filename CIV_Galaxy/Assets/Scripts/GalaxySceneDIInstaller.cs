@@ -4,7 +4,7 @@ using Zenject;
 
 public class GalaxySceneDIInstaller : MonoInstaller
 {
-    [SerializeField] private UnityEngine.Object planetPrefab, discoveryCellUIPrefab, galacticEventDisplayPrefab;
+    [SerializeField] private UnityEngine.Object planetPrefab, discoveryCellUIPrefab, unitAbilityPrefab;
 
     public override void InstallBindings()
     {
@@ -16,9 +16,10 @@ public class GalaxySceneDIInstaller : MonoInstaller
 
         // Цивилизации
         Container.Bind<CivilizationData>().AsTransient();
-        Container.Bind<Scanner>().AsTransient();
+        Container.Bind<Scanner>().AsTransient(); 
         Container.Bind<Science>().AsTransient();
         Container.Bind<Industry>().AsTransient();
+        Container.Bind<Diplomacy>().AsTransient();
 
         Container.Bind<GalacticEventGenerator>().AsTransient();
         Container.Bind<GalacticEventGeneratorPlayer>().AsTransient();
@@ -44,8 +45,11 @@ public class GalaxySceneDIInstaller : MonoInstaller
 
         // Фабрики
         Container.Bind<PlanetsFactory>().AsSingle();
+        Container.Bind<UnitAbilityFactory>().AsSingle(); 
+        Container.Bind<AbilityFactory>().AsSingle();
 
-        Container.BindFactory<Action<Planet>, Planet, Planet.Factory>().FromComponentInNewPrefab(planetPrefab);
-        Container.BindFactory<DiscoveryCell, DiscoveryCellUI, DiscoveryCellUI.Factory>().FromComponentInNewPrefab(discoveryCellUIPrefab);
+        Container.BindFactory<Action<UnitBase>, Planet, Planet.Factory>().FromComponentInNewPrefab(planetPrefab).AsSingle();
+        Container.BindFactory<Action<UnitBase>, UnitAbility, UnitAbility.Factory>().FromComponentInNewPrefab(unitAbilityPrefab).AsSingle();
+        Container.BindFactory<DiscoveryCell, DiscoveryCellUI, DiscoveryCellUI.Factory>().FromComponentInNewPrefab(discoveryCellUIPrefab).AsSingle();
     }
 }

@@ -8,7 +8,7 @@ public class IndustryBonus : GalacticEvent
     public override float Execute()
     {
         float count = 0.10f;
-        _civilization.IndustryCiv.AddPoints(count);
+        _civilization.IndustryCiv.Points += count;
 
         return count;
     }

@@ -1,58 +1,92 @@
 ﻿using System;
 using UnityEngine;
 
-public class AbilityFleet : MonoBehaviour, IAbility
+public enum TypeCivEnum
 {
-    public event Action<float> ProgressEvent; // Отображение на экране
+    Player,
+    Al,
+}
 
-    [SerializeField] private Sprite spriteArtFon, spriteArt, frame;
-    [SerializeField] private float _progressInterval = 20; // Интервал
-    private float _progress = 0; // Прогресс
+public class AbilityFleet : AbilityBase
+{
+    [SerializeField] private float minAttackIndustry, randomAttackIndustry; // Атака по индустрии
+    [SerializeField] private int minConquestPlanets, randomConquestPlanets; // Завоевание планет
+    private IUnitAbility unit;
+    private PlanetsFactory _planetsFactory;
+    protected UnitAbilityFactory _unitFactory;
 
-    private ICivilization _civilization;
-
-    public void Initialize(int id, ICivilization civilization)
+    public void Initialize(PlanetsFactory planetsFactory, UnitAbilityFactory unitFactory)
     {
-        this.Id = id;
-        this._civilization = civilization;
-        _civilization.ExecuteOnTimeEvent += Civilization_ExecuteOnTimeEvent;
-
-        ProgressEvent?.Invoke(ProgressProc);
+        (this._planetsFactory, this._unitFactory) = (planetsFactory, unitFactory);
     }
 
-    public int Id { get; private set; }
-    public bool IsActive { get; set; } = false; // Активен ли(доступна ли способность)
-    public bool IsReady { get; set; } = false;
-    public Sprite Fon => spriteArtFon;
-    public Sprite Art => spriteArt;
-    public Sprite Frame => frame;
-
-    //Бонусы
-    public float AccelerationBonus { get; set; } = 0; // Бонус скорости работы
-    private float ProgressProc => _progress / (_progressInterval / 100); // Прогресс сканирования в процентах
-
-    public void Civilization_ExecuteOnTimeEvent(float deltaTime)
+    public override void ApplyAl(Diplomacy diplomacyCiv)
     {
-        if (IsActive == false || IsReady) return;
+        Debug.Log($"{ThisCivilization.DataBase.Name} --> AbilityFleet");
 
-        _progress += deltaTime * (1 + _civilization.IndustryCiv.Points / 4 + AccelerationBonus);
-        ProgressEvent?.Invoke(ProgressProc);
-
-        if (_progress > _progressInterval)
+        var enemy = diplomacyCiv.FindEnemy();
+        if (enemy != null)
+            StartAttack(enemy); // Враг найден
+        else
         {
-            _progress = 0;
-            IsReady = true;
-            _civilization.ExicuteAbility(this);
+            // Враг не найден(отсрочка выполнения(чуть сбрасывается готовность скилла))
+            DelayExecutionAl();
         }
     }
 
-    public void ApplyAl()
+    public override void Apply(ICivilization civilizationTarget)
     {
-
+        base.Apply(civilizationTarget);
+        StartAttack(civilizationTarget);
     }
 
-    public void Apply()
+    // Отправить флот в атаку
+    private void StartAttack(ICivilization civilizationTarget)
     {
+        IsReady = false;
+        unit = _unitFactory.GetNewUnit(this, ThisCivilization.PositionCiv, ThisCivilization.TypeCiv, civilizationTarget.TypeCiv);
 
+        var centrGlaxy = new Vector3(UnityEngine.Random.Range(-50f, 50f), UnityEngine.Random.Range(-50f, 50f), 0);
+
+        Action battelAct = () => unit.SetScale(0f, 0.2f).Run(() => EndAttack(civilizationTarget));
+        Action toMoveAttackAct = () => unit.SetScale(1.3f, 4.5f).SetPosition(civilizationTarget.PositionCiv, 5f).Run(battelAct);
+        Action toMoveGalaxyAct = () => unit.SetScale(1f, 4.5f).SetPosition(centrGlaxy, 5f).Run(toMoveAttackAct);
+        Action startAct = () => unit.SetScale(1.3f, 0.2f).Run(toMoveGalaxyAct);
+        unit.SetScale(1.5f, 0.3f).Run(startAct);
+    }
+
+    private void EndAttack(ICivilization civilizationTarget)
+    {
+        AttackIndustry(civilizationTarget);
+        ConquestPlanets(civilizationTarget);
+
+        unit.Destroy();
+        unit = null;
+    }
+
+    // Урон по индустрии
+    private void AttackIndustry(ICivilization civilizationTarget)
+    {
+        civilizationTarget.IndustryCiv.Points -= minAttackIndustry + UnityEngine.Random.Range(0, randomAttackIndustry);
+    }
+
+    // Завоевание планет
+    private void ConquestPlanets(ICivilization civilizationTarget)
+    {
+        // Определить количество завоёванных планет(-1 так как нельзя забрать последнюю планету)
+        int planets = minConquestPlanets + UnityEngine.Random.Range(0, randomConquestPlanets + 1);
+
+        if (planets <= 0) return; // Нет завоеваний 
+
+        if (planets >= civilizationTarget.CivData.Planets)
+            planets = civilizationTarget.CivData.Planets - 1; // Нет завоеваний
+
+        civilizationTarget.CivData.Planets -= planets;
+        // Визуализация завоеваний
+        for (int i = 0; i < planets; i++)
+        {
+            var planet = _planetsFactory.GetNewUnit(TypePlanetEnum.Ideal);
+            planet.ConquestPlanets(civilizationTarget.PositionCiv, ThisCivilization.PositionCiv, () => { ThisCivilization.CivData.Planets++; planet.Destroy(); });
+        }
     }
 }

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Humanity
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: d0070ca8a3b716a4aba438b3e3bd689a, type: 3}
+  color: {r: 0.8209176, g: 0, b: 1, a: 1}
   baseData:
     planets: 1
     dominationPoints: 0
@@ -31,6 +32,6 @@ MonoBehaviour:
     acceleration: 1
   industryData:
     acceleration: 1
-    points: 0.3
+    points: 0.5
   abilities:
-  - {fileID: 3201525429964300333, guid: dc7cab9ea9fa0f34b898b65fd22129e3, type: 3}
+  - {fileID: 3201525429964300333, guid: aef0b77b66e4d9e49becb57e11a25fc2, type: 3}

@@ -22,7 +22,7 @@ public class Scanner
     {
         this._civilization = civilization;
         _scanerData = this._civilization.DataBase.Scaner;
-        _civilization.ExecuteOnTimeEvent += Civilization_ExecuteOnTimeEvent;
+        _civilization.ExecuteOnTimeEvent += ExecuteOnTimeEvent;
 
         ProgressEvent?.Invoke(ProgressProc);
     }
@@ -37,7 +37,7 @@ public class Scanner
     private float ProgressProc => _progress / (_progressInterval / 100); // Прогресс сканирования в процентах
     
     // Сканирование
-    private void Civilization_ExecuteOnTimeEvent(float deltaTime)
+    private void ExecuteOnTimeEvent(float deltaTime)
     {
         if (IsActive == false) return;
 
@@ -58,7 +58,7 @@ public class Scanner
         // Открыть планеты
         int countNewPlanet = _scanerData.MinimumDiscoveredPlanets 
         + MinimumDiscoveredPlanetsBonus 
-        + UnityEngine.Random.Range(0, (_scanerData.RandomDiscoveredPlanets + RandomDiscoveredPlanetsBonus));
+        + UnityEngine.Random.Range(0, (_scanerData.RandomDiscoveredPlanets + RandomDiscoveredPlanetsBonus + 1));
 
         if (countNewPlanet < 0)
             return;
@@ -67,11 +67,11 @@ public class Scanner
         {
             if (_galaxyData.CountAllPlanet <= 0)
             {
-                _civilization.ExecuteOnTimeEvent -= Civilization_ExecuteOnTimeEvent;
+                _civilization.ExecuteOnTimeEvent -= ExecuteOnTimeEvent;
                 return;
             }
 
-            var planet = _planetsFactory.GetNewPlanet(_galaxyData.GetTypePlanet());
+            var planet = _planetsFactory.GetNewUnit(_galaxyData.GetTypePlanet());
             planet.OpenPlanet(_civilization.PositionCiv, !_civilization.IsOpen, () => _civilization.CivData.AddPlanet(planet));
         }
     }

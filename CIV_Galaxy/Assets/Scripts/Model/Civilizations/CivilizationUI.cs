@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using UnityEngine.UI;
+using System.Globalization;
 
 [Serializable]
 public class CivilizationUI : ICivilizationDataUI
@@ -42,7 +43,7 @@ public class CivilizationUI : ICivilizationDataUI
 
     public void SetCountDominationPoints(float dominationPoints)
     {
-        countDominationPoints.text = ((int)dominationPoints).ToString();
+        countDominationPoints.text = ((int)dominationPoints).ToString("#,#", CultureInfo.InvariantCulture);
     }
 
     /// <summary>

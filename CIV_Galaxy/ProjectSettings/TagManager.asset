@@ -41,9 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: UI
-    uniqueID: 2439722695
-    locked: 0
   - name: Science
     uniqueID: 3158288075
+    locked: 0
+  - name: Planets
+    uniqueID: 1742285867
+    locked: 0
+  - name: Units
+    uniqueID: 3682006987
+    locked: 0
+  - name: UI
+    uniqueID: 2439722695
     locked: 0

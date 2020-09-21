@@ -30,18 +30,24 @@ public class AbilityUI : MonoBehaviour, IPointerClickHandler
         gameObject.SetActive(ability.IsActive);
     }
 
+    public void Apply(ICivilization civilizationTarget)
+    {
+        _ability.Apply(civilizationTarget);
+        Select(false);
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if (_ability.IsReady && _ability.IsActive)
         {
-            if (_civilizationPlayer.SelectAbility == this)
+            if (_civilizationPlayer.SelectedAbility == this)
             {
                 Select(false);
-                _civilizationPlayer.SelectAbility = null;
+                _civilizationPlayer.SelectedAbility = null;
             }
             else
             {
-                _civilizationPlayer.SelectAbility?.Select(false);
+                _civilizationPlayer.SelectedAbility?.Select(false);
                 Select(true);
             }
         }
@@ -53,7 +59,7 @@ public class AbilityUI : MonoBehaviour, IPointerClickHandler
         {
             frame.enabled = true;
             frame.color = new Color(0, 1, 0, 1);
-            _civilizationPlayer.SelectAbility = this;
+            _civilizationPlayer.SelectedAbility = this;
         }
         else
         {

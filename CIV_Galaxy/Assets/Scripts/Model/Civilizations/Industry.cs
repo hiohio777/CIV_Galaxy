@@ -19,7 +19,7 @@ public class Industry
         this._civilization = civilization;
         _industryData = this._civilization.DataBase.Industry;
 
-        _civilization.ExecuteOnTimeEvent += Civilization_ExecuteOnTimeEvent;
+        _civilization.ExecuteOnTimeEvent += ExecuteOnTimeEvent;
 
         Points = _industryData.Points;
         civilization.CivData.GetIndustryPoints += () => Points;
@@ -35,22 +35,19 @@ public class Industry
     public bool IsActive { get; set; } = true; // Активен ли
     public float Points {
         get => _point;
-        private set {
+        set {
             _point = value; if (_point > 1) _point = 1;
             else if (_point < 0) _point = 0;
+
+            _civilization.ExicuteIndustryPoints(_point);
         }
-    }
-    public void AddPoints(float point)
-    {
-        Points += point;
-        _civilization.ExicuteIndustryPoints(Points);
     }
 
     //Бонусы
     public float AccelerationBonus { get; set; } = 0; // Бонус к скорости роста индустрии(уменьшает интервал между добавлением очков индустрии)
 
     // Рост индустрии
-    private void Civilization_ExecuteOnTimeEvent(float deltaTime)
+    private void ExecuteOnTimeEvent(float deltaTime)
     {
         if (IsActive == false || Points >= maxPoint) return;
 

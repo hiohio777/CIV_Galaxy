@@ -7,7 +7,7 @@ public class CivilizationData
     public BaseData baseData { get; private set; }
     private int _planets;
 
-    private float _dominationPoints;
+    private float _dominationPoints, _dominationPointsKK, _dominationPointsMM; // KK - тысячи, ММ - миллионы
 
     private ICivilizationDataUI _dataUI;
 

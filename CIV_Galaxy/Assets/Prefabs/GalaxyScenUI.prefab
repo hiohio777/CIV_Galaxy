@@ -1499,7 +1499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonPause: {fileID: 1935769126624579447}
   textTimer: {fileID: 9185532384288801733}
-  lengthOfYear: 4
+  lengthOfYear: 6
   speedGame: 1
 --- !u!1 &4252902121950755657
 GameObject:

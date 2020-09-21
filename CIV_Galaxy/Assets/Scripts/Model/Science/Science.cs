@@ -11,16 +11,16 @@ public class Science
     private ICivilization _civilization;
     private DiscoveryCell _currentDiscovery;
     private ScienceData _scienceData;
-    private Func<float> _pointIndustry;
+    Industry _industry;
 
     public Science() { }
 
-    public void Initialize(ICivilization civilization, Func<float> pointIndustry)
+    public void Initialize(ICivilization civilization, Industry industry)
     {
-        this._pointIndustry = pointIndustry;
+        this._industry = industry;
         this._civilization = civilization;
         _scienceData = this._civilization.DataBase.Science;
-        _civilization.ExecuteOnTimeEvent += Сivilization_ExecuteOnTimeEvent;
+        _civilization.ExecuteOnTimeEvent += ExecuteOnTimeEvent;
 
         TreeOfScienceCiv = UnityEngine.Object.Instantiate(_scienceData.TreeOfSciencePrefab);
         TreeOfScienceCiv.Name = $"Science_{civilization.DataBase.Name}";
@@ -35,7 +35,7 @@ public class Science
     public int Points { get; set; }
 
     //Бонусы
-    public float AccelerationBonus { get; set; } = 0; // Бонус скорости работы( уменьшает интервал получения нового поинта - зависит от индустрии)
+    public float AccelerationBonus { get; set; } = 0f; // Бонус скорости работы( уменьшает интервал получения нового поинта - зависит от индустрии)
 
     public ITreeOfScience TreeOfScienceCiv { get; private set; }
     private float ProgressProc => _progress / (_progressInterval / 100); // Прогресс в процентах
@@ -98,11 +98,11 @@ public class Science
         return false;
     }
 
-    private void Сivilization_ExecuteOnTimeEvent(float deltaTime)
+    private void ExecuteOnTimeEvent(float deltaTime)
     {
         if (IsActive == false) return;
 
-        _progress += deltaTime * (_scienceData.Acceleration + AccelerationBonus + _pointIndustry.Invoke());
+        _progress += deltaTime * (_scienceData.Acceleration + (_industry.Points / 2 * AccelerationBonus));
         ProgressEvent?.Invoke(ProgressProc);
 
         if (_progress > _progressInterval)

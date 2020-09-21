@@ -1,13 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public interface ICivilization
 {
-    void Assign(CivilizationScriptable civData);
-    bool IsOpen { get; }
+    TypeCivEnum TypeCiv { get; }
 
     event Action<float> ExecuteOnTimeEvent;
-    void ExecuteOnTime(float deltaTime);
 
     CivilizationScriptable DataBase { get; }
     Vector2 PositionCiv { get; }
@@ -15,6 +14,10 @@ public interface ICivilization
     Scanner ScanerPlanets { get; }
     Science ScienceCiv { get; }
     Industry IndustryCiv { get; }
+
+    void Assign(CivilizationScriptable civData);
+    bool IsOpen { get; }
+    void ExecuteOnTime(float deltaTime);
 
     void ExicuteScanning();
     void ExicuteSciencePoints(int sciencePoints);
@@ -26,9 +29,10 @@ public interface ICivilization
 public interface ICivilizationAl : ICivilization
 {
     void Open();
+    void SetSetDiplomaticRelations(DiplomaticRelationsEnum relations);
 }
 
 public interface ICivilizationPlayer : ICivilization
 {
-    AbilityUI SelectAbility { get; set; }
+    AbilityUI SelectedAbility { get; set; }
 }

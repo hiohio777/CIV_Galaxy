@@ -90,8 +90,9 @@ public class IndustryData
 public class CivilizationScriptable : ScriptableObject
 {
     [SerializeField, Space(10)] private Sprite icon = null;
+    [SerializeField] private Color color = Color.red;
 
-    [SerializeField] private BaseData baseData;
+    [SerializeField, Space(10)] private BaseData baseData;
     [SerializeField] private ScanerData scanerData;
     [SerializeField] private ScienceData scienceData;
     [SerializeField] private IndustryData industryData;
@@ -99,6 +100,7 @@ public class CivilizationScriptable : ScriptableObject
     [SerializeField] private List<GameObject> abilities;
 
     public Sprite Icon => icon;
+    public Color ColorCiv => color;
     public string Name => name;
     public string Description => $"{name}_description";
 

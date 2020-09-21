@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Zenject;
 
@@ -8,19 +7,19 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
 {
     [SerializeField] protected CivilizationUI civilizationUI;
     protected bool isAssign = false;
-    protected List<ICivilization> anotherCiv; // Другие цивилизации
+    private AbilityFactory _abilityFactory;
 
     [Inject]
-    public void Inject(List<ICivilization> anotherCivilization, CivilizationData civData,
-        Scanner scanerPlanets, Science scienceCiv, Industry industryCiv)
+    public void Inject(CivilizationData civData, Scanner scanerPlanets, Science scienceCiv,
+        Industry industryCiv, AbilityFactory abilityFactory)
     {
-        this.anotherCiv = anotherCivilization.Where(x => x != this as ICivilization).ToList();
-        (this.CivData, this.ScanerPlanets, this.ScienceCiv, this.IndustryCiv)
-        = (civData, scanerPlanets, scienceCiv, industryCiv);
+        (this.CivData, this.ScanerPlanets, this.ScienceCiv, this.IndustryCiv, this._abilityFactory)
+        = (civData, scanerPlanets, scienceCiv, industryCiv, abilityFactory);
 
         PositionCiv = transform.position;
     }
 
+    public abstract TypeCivEnum TypeCiv { get; }
     public event Action<float> ExecuteOnTimeEvent;
     public bool IsOpen { get; protected set; }
     public Vector2 PositionCiv { get; private set; }
@@ -40,23 +39,16 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
         CivData.DefineLeader += DefineLeader;
 
         ScanerPlanets.Initialize(this);
-        ScienceCiv.Initialize(this, () => IndustryCiv.Points);
+        ScienceCiv.Initialize(this, IndustryCiv);
         IndustryCiv.Initialize(this);
 
-        // Инициировать абилки
-        int id = 0;
-        foreach (var item in dataBase.Abilities)
-        {
-            var prefab = Instantiate(item).GetComponent<IAbility>();
-            prefab.Initialize(id, this);
-            Abilities.Add(prefab);
-
-            id++;
-        }
-
-        if (Abilities.Count > 0) Abilities[0].IsActive = true;
-
         isAssign = true;
+    }
+
+    protected void InitAbility()
+    {
+        // Инициировать абилки
+        Abilities = _abilityFactory.GetAbilities(this);
     }
 
     public void ExecuteOnTime(float deltaTime)

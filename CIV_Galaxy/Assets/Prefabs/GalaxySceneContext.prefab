@@ -76,9 +76,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07629d3b8cfbee4f9d95379840f9727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messageDiscoveredPrefab: {fileID: 3455809953295383601, guid: 2cce9c1c1c5e357459fd0e78ff733c01,
+  planetPrefab: {fileID: 2727914233711452278, guid: 799c29339af917c49989018599ac05bb,
     type: 3}
-  messageStartGamePrefab: {fileID: 8022442089728712997, guid: 904479440d746a74d8792c511bf9be59,
+  discoveryCellUIPrefab: {fileID: 4760145323672368197, guid: 2860ea3bcfa571248ae8c005b0047e9b,
     type: 3}
-  planetPrefab: {fileID: 4861422404256699727, guid: 799c29339af917c49989018599ac05bb,
+  unitAbilityPrefab: {fileID: 3763614538343413743, guid: d16eb0d097cd5d94388543cb75b42beb,
     type: 3}

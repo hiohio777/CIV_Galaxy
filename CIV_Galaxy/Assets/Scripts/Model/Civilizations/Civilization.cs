@@ -3,17 +3,30 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
+public enum DiplomaticRelationsEnum
+{
+    Hatred = 0, Threat = 1, Neutrality = 2, Cooperation = 3, Friendship = 4
+}
+
 public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
 {
-    [SerializeField] private Image leaderIcon, dominatorIcon;
+    [SerializeField, Space(10)] private Image leaderIcon;
+    [SerializeField] private Image dominatorIcon, diplomaticRelationsIcon;
+    [SerializeField] private Color colorHatred, colorThreat, colorNeutrality, colorCooperation, colorFriendship;
+
     private GalacticEventGenerator _galacticEventGenerator;
     private ICivilizationPlayer _player;
+    private Diplomacy diplomacy;
 
     [Inject]
-    public void InjectCivilizationPlayer(GalacticEventGenerator galacticEventGenerator, ICivilizationPlayer player)
+    public void InjectCivilizationPlayer(GalacticEventGenerator galacticEventGenerator, ICivilizationPlayer player,
+        Diplomacy diplomacyCiv)
     {
-        (this._galacticEventGenerator, this._player) = (galacticEventGenerator, player);
+        (this._galacticEventGenerator, this._player, this.diplomacy)
+        = (galacticEventGenerator, player, diplomacyCiv);
     }
+
+    public override TypeCivEnum TypeCiv { get; } = TypeCivEnum.Al;
 
     public override void Assign(CivilizationScriptable civData)
     {
@@ -25,7 +38,23 @@ public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
     public void Open()
     {
         civilizationUI.Assign(DataBase);
+        diplomacy.Initialize(this);
+        InitAbility();
+
         IsOpen = true;
+    }
+
+    public void OnClick()
+    {
+        if (_player.SelectedAbility == null) 
+        {
+            return;
+        }
+        else
+        {
+            _player.SelectedAbility.Apply(this);
+            _player.SelectedAbility = null;
+        }
     }
 
     public override void ExicuteSciencePoints(int sciencePoints)
@@ -36,7 +65,10 @@ public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
     public override void ExicuteScanning()
     { }
 
-    public override void ExicuteAbility(IAbility ability) { }
+    public override void ExicuteAbility(IAbility ability) 
+    {
+        ability.ApplyAl(diplomacy);
+    }
 
     private void Start()
     {
@@ -58,6 +90,18 @@ public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
         else
         {
             leaderIcon.enabled = dominatorIcon.enabled = false;
+        }
+    }
+
+    public void SetSetDiplomaticRelations(DiplomaticRelationsEnum relations)
+    {
+        switch (relations)
+        {
+            case DiplomaticRelationsEnum.Hatred: diplomaticRelationsIcon.color = colorHatred; break;
+            case DiplomaticRelationsEnum.Threat: diplomaticRelationsIcon.color = colorThreat; break;
+            case DiplomaticRelationsEnum.Neutrality: diplomaticRelationsIcon.color = colorNeutrality; break;
+            case DiplomaticRelationsEnum.Cooperation: diplomaticRelationsIcon.color = colorCooperation; break;
+            case DiplomaticRelationsEnum.Friendship: diplomaticRelationsIcon.color = colorFriendship; break;
         }
     }
 }

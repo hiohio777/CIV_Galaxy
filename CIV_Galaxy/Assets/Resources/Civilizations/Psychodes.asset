@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Psychodes
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 135b6dd0f9e102f4b853fb6ee04968d5, type: 3}
+  color: {r: 0, g: 1, b: 0.6798725, a: 1}
   baseData:
     planets: 1
     dominationPoints: 0
@@ -31,6 +32,6 @@ MonoBehaviour:
     acceleration: 0.9979648
   industryData:
     acceleration: 0.8173347
-    points: 0.3
+    points: 0.5
   abilities:
   - {fileID: 3201525429964300333, guid: dc7cab9ea9fa0f34b898b65fd22129e3, type: 3}

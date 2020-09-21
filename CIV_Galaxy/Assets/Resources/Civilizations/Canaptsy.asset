@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Canaptsy
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 4d280e4b17a188f4399b8275c023a418, type: 3}
+  color: {r: 0.9427508, g: 1, b: 0, a: 1}
   baseData:
     planets: 1
     dominationPoints: 0
@@ -31,6 +32,6 @@ MonoBehaviour:
     acceleration: 0.8868946
   industryData:
     acceleration: 0.904922
-    points: 0.3
+    points: 0.5
   abilities:
   - {fileID: 3201525429964300333, guid: dc7cab9ea9fa0f34b898b65fd22129e3, type: 3}
