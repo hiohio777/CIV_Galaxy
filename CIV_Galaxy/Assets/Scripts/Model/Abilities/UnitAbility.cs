@@ -19,19 +19,13 @@ public class UnitAbility : UnitBase, IUnitAbility
 
         frame.sprite = ability.Frame;
         art.sprite = ability.Art;
-        frame.sortingOrder = GetSortingOrder - 1;
-        art.sortingOrder = GetSortingOrder;
         switch (type)
         {
             case TypeDisplayAbilityEnum.PlayerTarget:
-                frame.enabled = true;
-                frame.color = new Color(1, 0, 0, 0.8f);
-                art.color = Color.white;
+                InitTypeDisplay(new Color(1, 0, 0, 0.8f));
                 break;
             case TypeDisplayAbilityEnum.PlayerAttack:
-                frame.enabled = true;
-                frame.color = new Color(0, 1, 0, 0.8f);
-                art.color = Color.white;
+                InitTypeDisplay(new Color(0, 1, 0, 0.8f));
                 break;
             case TypeDisplayAbilityEnum.Al:
                 frame.enabled = false;
@@ -41,6 +35,16 @@ public class UnitAbility : UnitBase, IUnitAbility
         }
 
         return this;
+    }
+
+    private void InitTypeDisplay(Color color)
+    {
+        frame.enabled = true;
+        frame.sortingOrder = GetSortingOrder;
+        art.sortingOrder = GetSortingOrder + 1;
+        art.color = Color.white;
+
+        frame.color = color;
     }
 
     #region IUnitAbility

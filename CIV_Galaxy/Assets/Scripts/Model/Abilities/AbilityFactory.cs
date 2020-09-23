@@ -4,11 +4,13 @@ public class AbilityFactory
 {
     private UnitAbilityFactory _unitAbilityFactor;
     private PlanetsFactory _planetsFactory;
+    private IGalaxyUITimer _galaxyUITimer;
 
-    public AbilityFactory(PlanetsFactory planetsFactory, UnitAbilityFactory unitAbilityFactor)
+    public AbilityFactory(PlanetsFactory planetsFactory, UnitAbilityFactory unitAbilityFactor, IGalaxyUITimer galaxyUITimer)
     {
         this._planetsFactory = planetsFactory;
         this._unitAbilityFactor = unitAbilityFactor;
+        this._galaxyUITimer = galaxyUITimer;
     }
 
     public List<IAbility> GetAbilities(ICivilization civilization)
@@ -19,7 +21,7 @@ public class AbilityFactory
         foreach (var item in civilization.DataBase.Abilities)
         {
             var prefab = UnityEngine.Object.Instantiate(item).GetComponent<IAbility>();
-            prefab.Initialize(id, civilization);
+            prefab.Initialize(id, civilization, _galaxyUITimer);
 
             // Инициировать в зависимости от типа абилки
             switch (prefab)

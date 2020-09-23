@@ -6,7 +6,7 @@ using Zenject;
 public abstract class CivilizationBase : MonoBehaviour, ICivilization
 {
     [SerializeField] protected CivilizationUI civilizationUI;
-    protected bool isAssign = false;
+    protected bool isAssign = false; // Назначена ли цивилизация
     private AbilityFactory _abilityFactory;
 
     [Inject]
@@ -19,8 +19,6 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
         PositionCiv = transform.position;
     }
 
-    public abstract TypeCivEnum TypeCiv { get; }
-    public event Action<float> ExecuteOnTimeEvent;
     public bool IsOpen { get; protected set; }
     public Vector2 PositionCiv { get; private set; }
     public CivilizationScriptable DataBase { get; private set; }
@@ -36,8 +34,6 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
 
         // Инициализация данных
         CivData.Initialize(this.DataBase, civilizationUI);
-        CivData.DefineLeader += DefineLeader;
-
         ScanerPlanets.Initialize(this);
         ScienceCiv.Initialize(this, IndustryCiv);
         IndustryCiv.Initialize(this);
@@ -51,12 +47,6 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
         Abilities = _abilityFactory.GetAbilities(this);
     }
 
-    public void ExecuteOnTime(float deltaTime)
-    {
-        if (isAssign == false) return;
-
-        ExecuteOnTimeEvent?.Invoke(deltaTime);
-    }
     public void ExicuteIndustryPoints(float points)
     {
         civilizationUI.SetIndustryPoints(points);
@@ -65,5 +55,5 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
     public abstract void ExicuteScanning();
     public abstract void ExicuteSciencePoints(int sciencePoints);
     public abstract void ExicuteAbility(IAbility ability);
-    public abstract void DefineLeader();
+    public abstract void DefineLeader(LeaderEnum leaderEnum);
 }

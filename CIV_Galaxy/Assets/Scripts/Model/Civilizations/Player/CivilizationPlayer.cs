@@ -27,7 +27,6 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
         _anotherCivilization = anotherCivilization;
     }
 
-    public override TypeCivEnum TypeCiv { get; } = TypeCivEnum.Player;
     public AbilityUI SelectedAbility { get; set; }
 
     public override void Assign(CivilizationScriptable civData)
@@ -77,13 +76,8 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
         _abilitiesUI[ability.Id].Select(false);
     }
 
-    public override void DefineLeader()
+    public override void DefineLeader(LeaderEnum leaderEnum)
     {
-        // определение лидерства
-        foreach (var item in _anotherCivilization)
-        {
-            if (CivData.Planets >= item.CivData.Planets)
-                item.DefineLeader();
-        }
+        
     }
 }

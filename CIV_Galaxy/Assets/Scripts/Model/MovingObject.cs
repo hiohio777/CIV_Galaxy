@@ -12,19 +12,34 @@ public class MovingObject : MonoBehaviour
     private float scaleTarget;
     private float timePositionTarget, timeScaleTarget;
 
+    // Bezier
+    private Vector3 positionStart, posBezier1, posBezier2;
+
     private IGalaxyUITimer _galaxyUITimer;
 
     [Inject]
     public void Inject(IGalaxyUITimer galaxyUITimer)
     {
-        this._galaxyUITimer = galaxyUITimer; 
+        this._galaxyUITimer = galaxyUITimer;
         _transform = GetComponent<Transform>();
     }
 
     public void Stop()
     {
         StopAllCoroutines();
-        execute = positionAnimation = scaleAnimation =null;
+        execute = positionAnimation = scaleAnimation = null;
+    }
+
+    public MovingObject SetPositionBezier(Vector3 positionTarget, Vector3 posBezier1, Vector3 posBezier2, float timePositionTarget)
+    {
+        this.posBezier1 = posBezier1;
+        this.posBezier2 = posBezier2;
+        this.positionTarget = positionTarget;
+
+        this.timePositionTarget = timePositionTarget;
+
+        positionAnimation = StartBezierPositionTarget;
+        return this;
     }
 
     public MovingObject SetPosition(Vector3 positionTarget, float timePositionTarget)
@@ -53,14 +68,30 @@ public class MovingObject : MonoBehaviour
         scaleAnimation?.Invoke();
     }
 
-    private void StartPositionTarget()
-    {
-        StartCoroutine(MoveTo());
-    }
+    private void StartBezierPositionTarget() => StartCoroutine(MoveToBezier());
+    private void StartPositionTarget() => StartCoroutine(MoveTo());
+    private void StartScaleTarget() => StartCoroutine(Resize());
 
-    private void StartScaleTarget()
+    private IEnumerator MoveToBezier()
     {
-        StartCoroutine(Resize());
+        float t = 0;
+        positionStart = _transform.position;
+
+        while (t < 1)
+        {
+            if (_galaxyUITimer.IsPause == false)
+            {
+                t = Mathf.Clamp(t + Time.deltaTime / timePositionTarget, 0, 1f);
+
+                _transform.position = Bezier.GetPoint(positionStart, posBezier1, posBezier2, positionTarget, t);
+                _transform.up = Bezier.GetFirstDerivative(positionStart, posBezier1, posBezier2, positionTarget, t);
+            }
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        positionAnimation = null;
+        EndAnimation();
     }
 
     private IEnumerator MoveTo()
@@ -104,6 +135,7 @@ public class MovingObject : MonoBehaviour
 
     private void EndAnimation()
     {
-        if (positionAnimation == null && scaleAnimation == null) execute?.Invoke();
+        if (positionAnimation == null && scaleAnimation == null)
+            execute?.Invoke();
     }
 }

@@ -3,11 +3,10 @@ using UnityEngine;
 
 public class CivilizationData
 {
-    public event Action DefineLeader;
     public BaseData baseData { get; private set; }
     private int _planets;
 
-    private float _dominationPoints, _dominationPointsKK, _dominationPointsMM; // KK - тысячи, ММ - миллионы
+    private float _dominationPoints;
 
     private ICivilizationDataUI _dataUI;
 
@@ -20,7 +19,7 @@ public class CivilizationData
     public float DominationPoints {
         get => _dominationPoints; set {
             _dominationPoints = value;
-            _dataUI.SetCountDominationPoints(_dominationPoints); DefineLeader?.Invoke();
+            _dataUI.SetCountDominationPoints(_dominationPoints);
         }
     }
 

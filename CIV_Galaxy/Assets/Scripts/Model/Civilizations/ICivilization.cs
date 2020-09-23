@@ -4,10 +4,6 @@ using UnityEngine;
 
 public interface ICivilization
 {
-    TypeCivEnum TypeCiv { get; }
-
-    event Action<float> ExecuteOnTimeEvent;
-
     CivilizationScriptable DataBase { get; }
     Vector2 PositionCiv { get; }
     CivilizationData CivData { get; }
@@ -17,13 +13,12 @@ public interface ICivilization
 
     void Assign(CivilizationScriptable civData);
     bool IsOpen { get; }
-    void ExecuteOnTime(float deltaTime);
 
     void ExicuteScanning();
     void ExicuteSciencePoints(int sciencePoints);
     void ExicuteIndustryPoints(float points);
     void ExicuteAbility(IAbility ability);
-    void DefineLeader();
+    void DefineLeader(LeaderEnum leaderEnum);
 }
 
 public interface ICivilizationAl : ICivilization

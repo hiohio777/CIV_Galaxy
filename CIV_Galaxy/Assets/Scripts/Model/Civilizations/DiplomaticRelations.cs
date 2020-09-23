@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class DiplomaticRelations
+public class DiplomaticRelations : CivilizationStructureBase
 {
     public float Danger { get; private set; }
     private float _progressInterval = 0; // Интервал(Изменить отношение)
@@ -27,7 +27,6 @@ public class DiplomaticRelations
     public DiplomaticRelations Initialize(ICivilizationAl civilization)
     {
         this._civilization = civilization;
-        _civilization.ExecuteOnTimeEvent += ExecuteOnTimeEvent;
 
         SetProgressInterval();
         ChangeRelations(UnityEngine.Random.Range(0, 4));
@@ -69,7 +68,7 @@ public class DiplomaticRelations
         }
     }
 
-    private void ExecuteOnTimeEvent(float deltaTime)
+    protected override void ExecuteOnTimeEvent(float deltaTime)
     {
         if (_civilization.IsOpen && AnotherCiv.IsOpen)
             _progress += deltaTime;

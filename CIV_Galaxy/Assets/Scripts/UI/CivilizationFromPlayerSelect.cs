@@ -10,10 +10,10 @@ public class CivilizationFromPlayerSelect : MonoBehaviour, IPointerClickHandler
     [SerializeField] private CivilizationScriptable civData;
 
     private ChoiceCivilization _choiceCivilization;
-    private PlayerData _playerData;
+    private PlayerSettings _playerData;
 
    [Inject]
-    public void Inject(ChoiceCivilization choiceCivilization, PlayerData playerData)
+    public void Inject(ChoiceCivilization choiceCivilization, PlayerSettings playerData)
     {
         this._choiceCivilization = choiceCivilization;
         this._playerData = playerData;

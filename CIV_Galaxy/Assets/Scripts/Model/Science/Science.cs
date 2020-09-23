@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class Science
+public class Science : CivilizationStructureBase
 {
     public event Action<float> ProgressEvent; // Отображение на экране
 
@@ -20,7 +20,6 @@ public class Science
         this._industry = industry;
         this._civilization = civilization;
         _scienceData = this._civilization.DataBase.Science;
-        _civilization.ExecuteOnTimeEvent += ExecuteOnTimeEvent;
 
         TreeOfScienceCiv = UnityEngine.Object.Instantiate(_scienceData.TreeOfSciencePrefab);
         TreeOfScienceCiv.Name = $"Science_{civilization.DataBase.Name}";
@@ -98,7 +97,7 @@ public class Science
         return false;
     }
 
-    private void ExecuteOnTimeEvent(float deltaTime)
+    protected override void ExecuteOnTimeEvent(float deltaTime)
     {
         if (IsActive == false) return;
 

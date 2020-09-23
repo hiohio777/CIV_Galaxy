@@ -22,18 +22,18 @@ public abstract class AbilityBase : MonoBehaviour, IAbility
 
     private float ProgressProc => _progress / (_progressInterval / 100); // Прогресс сканирования в процентах
 
-    public virtual void Initialize(int id, ICivilization civilization)
+    public virtual void Initialize(int id, ICivilization civilization, IGalaxyUITimer galaxyUITimer)
     {
         (this.Id, this.ThisCivilization) = (id, civilization);
-        ThisCivilization.ExecuteOnTimeEvent += Civilization_ExecuteOnTimeEvent;
+        galaxyUITimer.ExecuteOfTime += ExecuteOnTimeEvent;
 
-        if (civilization.TypeCiv == TypeCivEnum.Al)
+        if (civilization is ICivilizationAl)
             _progress = UnityEngine.Random.Range(_progressInterval / 2, _progressInterval);
 
         ProgressEvent?.Invoke(ProgressProc);
     }
 
-    public void Civilization_ExecuteOnTimeEvent(float deltaTime)
+    private void ExecuteOnTimeEvent(float deltaTime)
     {
         if (IsActive == false || IsReady) return;
 

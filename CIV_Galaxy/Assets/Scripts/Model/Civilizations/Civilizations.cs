@@ -8,10 +8,10 @@ public class Civilizations
 
     public Civilizations()
     {
-        Reset();
+        Refresh();
     }
 
-    public void Reset() =>  civilizationsData = Resources.LoadAll<CivilizationScriptable>($"Civilizations/").ToList();
+    public void Refresh() =>  civilizationsData = Resources.LoadAll<CivilizationScriptable>($"Civilizations/").ToList();
 
     public CivilizationScriptable GetCivilizationPlayer(string name)
     {

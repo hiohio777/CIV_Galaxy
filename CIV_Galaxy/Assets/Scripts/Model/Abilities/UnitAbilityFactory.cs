@@ -9,7 +9,7 @@ public class UnitAbilityFactory : UnitBaseFactory
         this.factory = factory;
     }
 
-    public IUnitAbility GetNewUnit(AbilityBase ability, Vector3 startPosition, TypeCivEnum typeCiv, TypeCivEnum typeCivTarget)
+    public IUnitAbility GetNewUnit(AbilityBase ability, ICivilization civilization, ICivilization civilizationTarget)
     {
         UnitAbility unit;
 
@@ -17,11 +17,11 @@ public class UnitAbilityFactory : UnitBaseFactory
         else unit = factory.Create(Buffered);
 
         TypeDisplayAbilityEnum type;
-        if (typeCiv == TypeCivEnum.Player)
+        if (civilization is ICivilizationPlayer)
         {
             type = TypeDisplayAbilityEnum.PlayerAttack;
         }
-        else if (typeCivTarget == TypeCivEnum.Player)
+        else if (civilizationTarget is ICivilizationPlayer)
         {
             type = TypeDisplayAbilityEnum.PlayerTarget;
         }
@@ -30,10 +30,7 @@ public class UnitAbilityFactory : UnitBaseFactory
             type = TypeDisplayAbilityEnum.Al;
         }
 
-        unit.Initialize(ability, startPosition, type);
-
-
-        return unit;
+        return unit.Initialize(ability, civilization.PositionCiv, type);
     }
 }
 

@@ -1,7 +1,8 @@
 ﻿using System;
 using UnityEngine;
+using Zenject;
 
-public class Scanner
+public class Scanner : CivilizationStructureBase
 {
     public event Action<float> ProgressEvent; // Отображение на экране
 
@@ -13,6 +14,7 @@ public class Scanner
     private ICivilization _civilization;
     private ScanerData _scanerData;
 
+
     public Scanner(GalaxyData galaxyData, PlanetsFactory planetsFactory)
     {
         (this._galaxyData, this._planetsFactory) = (galaxyData, planetsFactory);
@@ -22,7 +24,6 @@ public class Scanner
     {
         this._civilization = civilization;
         _scanerData = this._civilization.DataBase.Scaner;
-        _civilization.ExecuteOnTimeEvent += ExecuteOnTimeEvent;
 
         ProgressEvent?.Invoke(ProgressProc);
     }
@@ -35,9 +36,9 @@ public class Scanner
     public int RandomDiscoveredPlanetsBonus { get; set; } = 0; // Рандомное количество открываемых планет
 
     private float ProgressProc => _progress / (_progressInterval / 100); // Прогресс сканирования в процентах
-    
+
     // Сканирование
-    private void ExecuteOnTimeEvent(float deltaTime)
+    protected override void ExecuteOnTimeEvent(float deltaTime)
     {
         if (IsActive == false) return;
 
@@ -56,8 +57,8 @@ public class Scanner
     private void DiscoverPlanet()
     {
         // Открыть планеты
-        int countNewPlanet = _scanerData.MinimumDiscoveredPlanets 
-        + MinimumDiscoveredPlanetsBonus 
+        int countNewPlanet = _scanerData.MinimumDiscoveredPlanets
+        + MinimumDiscoveredPlanetsBonus
         + UnityEngine.Random.Range(0, (_scanerData.RandomDiscoveredPlanets + RandomDiscoveredPlanetsBonus + 1));
 
         if (countNewPlanet < 0)
@@ -67,12 +68,24 @@ public class Scanner
         {
             if (_galaxyData.CountAllPlanet <= 0)
             {
-                _civilization.ExecuteOnTimeEvent -= ExecuteOnTimeEvent;
+                IsActive = false;
                 return;
             }
 
             var planet = _planetsFactory.GetNewUnit(_galaxyData.GetTypePlanet());
-            planet.OpenPlanet(_civilization.PositionCiv, !_civilization.IsOpen, () => _civilization.CivData.AddPlanet(planet));
+            if (_civilization.IsOpen == false) _civilization.CivData.AddPlanet(planet);
+            else planet.OpenPlanet(_civilization.PositionCiv, () => _civilization.CivData.AddPlanet(planet));
         }
     }
+}
+
+public abstract class CivilizationStructureBase
+{
+    [Inject]
+    public void Inject(IGalaxyUITimer galaxyUITimer)
+    {
+        galaxyUITimer.ExecuteOfTime += ExecuteOnTimeEvent;
+    }
+
+    protected abstract void ExecuteOnTimeEvent(float deltaTime);
 }

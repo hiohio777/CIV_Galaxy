@@ -3,8 +3,9 @@ using UnityEngine;
 
 public interface IUnitAbility
 {
+    Transform TtransformUnit { get; }
     void Destroy();
-    UnitBase Hide(bool isHide);
+    MovingObject SetPositionBezier(Vector3 positionTarget, Vector3 posBezier1, Vector3 posBezier2, float timePositionTarget);
     MovingObject SetPosition(Vector3 positionTarget, float timePositionTarget);
     MovingObject SetScale(float scaleTarget, float timeScaleTarget);
     void Run(Action execute);

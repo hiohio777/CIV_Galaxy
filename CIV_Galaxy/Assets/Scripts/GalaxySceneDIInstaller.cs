@@ -8,9 +8,9 @@ public class GalaxySceneDIInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.Bind<GalaxyGame>().AsSingle();
         Container.Bind<GalaxyData>().AsSingle();
-        Container.Bind<DiscoveredCivilization>().AsSingle();
+        Container.Bind<DiscoveredCivilization>().AsSingle(); 
+        Container.Bind<LeaderQualifier>().AsSingle();
 
         Container.Bind<IGalaxyUITimer>().FromComponentInHierarchy().AsSingle();
 

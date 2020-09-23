@@ -11,26 +11,9 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
     [SerializeField] private float speedGame = 1;
 
     private int years;
-    public bool IsPause { get; set; }
+    public bool IsPause { get; private set; }
     public event Action ExecuteYears; // События происходящие каждый год
-    private Action<float> execute;
-
-    public void StopTimer()
-    {
-        SetColorButtonPause(IsPause = true);
-        StopAllCoroutines();
-        execute = null;
-    }
-
-    public void StartTimer(Action<float> execute)
-    {
-        this.execute = execute;
-        SetColorButtonPause(IsPause = true);
-
-        StartCoroutine(RunTimer());
-
-        textTimer.text = (years = 0).ToString();
-    }
+    public event Action<float> ExecuteOfTime = delegate { }; // Постоянный апдейт
 
     public float GetYears => years;
     public void SetPause(bool isPause) => SetColorButtonPause(IsPause = isPause);
@@ -60,7 +43,7 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
                     ExecuteYears.Invoke();
                 }
 
-                execute.Invoke(current);
+                ExecuteOfTime.Invoke(current);
             }
 
             yield return null;
@@ -70,17 +53,18 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
     private void Awake()
     {
         buttonPause.onClick.AddListener(OnPause);
-        textTimer.text = "0";
+
+        SetColorButtonPause(IsPause = true);
+        StartCoroutine(RunTimer());
+        textTimer.text = (years = 0).ToString();
     }
 }
 
 public interface IGalaxyUITimer
 {
     event Action ExecuteYears; // События происходящие каждый год
-    bool IsPause { get; set; }
+    event Action<float> ExecuteOfTime;
+    bool IsPause { get;}
     float GetYears { get; }
-
     void SetPause(bool isPause);
-    void StopTimer();
-    void StartTimer(Action<float> execute);
 }

@@ -1,4 +1,4 @@
-﻿public class GalacticEventGenerator
+﻿public class GalacticEventGenerator : CivilizationStructureBase
 {
     protected float _progressInterval = 30; // Интервал
     private float _progress = 0; // Прогресс
@@ -8,12 +8,11 @@
     public void Initialize(ICivilization civilization)
     {
         this._civilization = civilization;
-        _civilization.ExecuteOnTimeEvent += Сivilization_ExecuteOnTimeEvent;
 
         _progressInterval = UnityEngine.Random.Range(5, 10);
     }
 
-    private void Сivilization_ExecuteOnTimeEvent(float deltaTime)
+    protected override void ExecuteOnTimeEvent(float deltaTime)
     {
         _progress += deltaTime;
 

@@ -11,7 +11,7 @@ public interface IAbility
     Sprite Fon { get; }
     Sprite Frame { get; }
     float AccelerationBonus { get; set; }
-    void Initialize(int id, ICivilization civilization);
+    void Initialize(int id, ICivilization civilization, IGalaxyUITimer galaxyUITimer);
     void ApplyAl(Diplomacy diplomacyCiv);
     void Apply(ICivilization civilizationTarget);
 }

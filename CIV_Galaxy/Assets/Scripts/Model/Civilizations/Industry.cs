@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class Industry
+public class Industry : CivilizationStructureBase
 {
     public event Action<float> ProgressEvent; // Отображение на экране
 
@@ -18,8 +18,6 @@ public class Industry
     {
         this._civilization = civilization;
         _industryData = this._civilization.DataBase.Industry;
-
-        _civilization.ExecuteOnTimeEvent += ExecuteOnTimeEvent;
 
         Points = _industryData.Points;
         civilization.CivData.GetIndustryPoints += () => Points;
@@ -47,7 +45,7 @@ public class Industry
     public float AccelerationBonus { get; set; } = 0; // Бонус к скорости роста индустрии(уменьшает интервал между добавлением очков индустрии)
 
     // Рост индустрии
-    private void ExecuteOnTimeEvent(float deltaTime)
+    protected override void ExecuteOnTimeEvent(float deltaTime)
     {
         if (IsActive == false || Points >= maxPoint) return;
 

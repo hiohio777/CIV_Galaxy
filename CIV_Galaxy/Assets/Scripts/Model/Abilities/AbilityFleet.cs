@@ -44,14 +44,13 @@ public class AbilityFleet : AbilityBase
     private void StartAttack(ICivilization civilizationTarget)
     {
         IsReady = false;
-        unit = _unitFactory.GetNewUnit(this, ThisCivilization.PositionCiv, ThisCivilization.TypeCiv, civilizationTarget.TypeCiv);
+        unit = _unitFactory.GetNewUnit(this, ThisCivilization, civilizationTarget);
 
-        var centrGlaxy = new Vector3(UnityEngine.Random.Range(-50f, 50f), UnityEngine.Random.Range(-50f, 50f), 0);
+        unit.TtransformUnit.up = new Vector2(0, 0) - ThisCivilization.PositionCiv;
 
-        Action battelAct = () => unit.SetScale(0f, 0.2f).Run(() => EndAttack(civilizationTarget));
-        Action toMoveAttackAct = () => unit.SetScale(1.3f, 4.5f).SetPosition(civilizationTarget.PositionCiv, 5f).Run(battelAct);
-        Action toMoveGalaxyAct = () => unit.SetScale(1f, 4.5f).SetPosition(centrGlaxy, 5f).Run(toMoveAttackAct);
-        Action startAct = () => unit.SetScale(1.3f, 0.2f).Run(toMoveGalaxyAct);
+        Action endAct = () => unit.SetScale(0f, 0.2f).Run(() => EndAttack(civilizationTarget));
+        Action moveAct = () => unit.SetPositionBezier(civilizationTarget.PositionCiv, new Vector3(0,0), new Vector3(0,0), 5f).Run(() => EndAttack(civilizationTarget));
+        Action startAct = () => unit.SetScale(1f, 0.2f).Run(moveAct);
         unit.SetScale(1.5f, 0.3f).Run(startAct);
     }
 

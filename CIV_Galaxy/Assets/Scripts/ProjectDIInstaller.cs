@@ -6,7 +6,7 @@ public class ProjectDIInstaller : MonoInstaller
     public override void InstallBindings()
     {
         Container.Bind<LoaderDataGame>().AsSingle();
-        Container.Bind<PlayerData>().AsSingle();
+        Container.Bind<PlayerSettings>().AsSingle();
 
         Container.Bind<Civilizations>().AsTransient();
 

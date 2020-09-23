@@ -46,6 +46,16 @@ public class CivilizationUI : ICivilizationDataUI
         countDominationPoints.text = ((int)dominationPoints).ToString("#,#", CultureInfo.InvariantCulture);
     }
 
+    public void SetAdvancedDomination(LeaderEnum leaderEnum)
+    {
+        switch (leaderEnum)
+        {
+            case LeaderEnum.Advanced: countDominationPoints.color = new Color(1, 1, 0, 1); break;
+            case LeaderEnum.Lagging: countDominationPoints.color = new Color(0.4f, 0.4f, 0, 1); break;
+            case LeaderEnum.Leader: countDominationPoints.color = new Color(1, 1, 0, 1); break;
+        }
+    }
+
     /// <summary>
     /// Закрыть(скрыть) цивилизацию - Неизвесна игроку
     /// </summary>
@@ -73,3 +83,5 @@ public interface ICivilizationDataUI
     void SetCountDominationPoints(float dominationPoints);
     void SetCountPlanet(int count);
 }
+
+public enum LeaderEnum { Advanced, Lagging, Leader }

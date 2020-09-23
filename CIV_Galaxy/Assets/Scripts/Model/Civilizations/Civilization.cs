@@ -26,8 +26,6 @@ public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
         = (galacticEventGenerator, player, diplomacyCiv);
     }
 
-    public override TypeCivEnum TypeCiv { get; } = TypeCivEnum.Al;
-
     public override void Assign(CivilizationScriptable civData)
     {
         base.Assign(civData);
@@ -75,21 +73,30 @@ public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
         var canvas = GetComponent<Canvas>();
         canvas.worldCamera = Camera.main;
         canvas.sortingLayerName = "Default";
-        leaderIcon.enabled = dominatorIcon.enabled = false;
+        dominatorIcon.enabled = false;
 
         civilizationUI.Close();
     }
 
-    public override void DefineLeader()
+    public override void DefineLeader(LeaderEnum leaderEnum)
     {
-        // определение лидерства
-        if (CivData.DominationPoints >= _player.CivData.DominationPoints)
+
+        Debug.Log(leaderEnum);
+
+        civilizationUI.SetAdvancedDomination(leaderEnum);
+        switch (leaderEnum)
         {
-            dominatorIcon.enabled = true;
-        }
-        else
-        {
-            leaderIcon.enabled = dominatorIcon.enabled = false;
+            case LeaderEnum.Lagging:
+                dominatorIcon.enabled = false;
+                break;
+            case LeaderEnum.Advanced:
+                dominatorIcon.enabled = true;
+                dominatorIcon.color = new Color(1, 1, 0, 0.15f);
+                break;
+            case LeaderEnum.Leader:
+                dominatorIcon.enabled = true;
+                dominatorIcon.color = new Color(1, 1, 0, 0.75f);
+                break;
         }
     }
 
