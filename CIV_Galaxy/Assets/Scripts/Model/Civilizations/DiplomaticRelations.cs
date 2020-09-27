@@ -1,6 +1,7 @@
 ﻿using System;
+using UnityEngine;
 
-public class DiplomaticRelations : CivilizationStructureBase
+public class DiplomaticRelations
 {
     public float Danger { get; private set; }
     private float _progressInterval = 0; // Интервал(Изменить отношение)
@@ -9,9 +10,10 @@ public class DiplomaticRelations : CivilizationStructureBase
     private int _relations = 0;
     private DiplomaticRelationsEnum _relationsType;
     private ICivilizationAl _civilization;
+    private int _dangerPlayer; // Настройка сложности(агрессивность Al по отношению к игроку)
 
     public ICivilization AnotherCiv { get; private set; }
-    public DiplomaticRelationsEnum Relations {
+    public DiplomaticRelationsEnum Relation {
         get => _relationsType; private set {
             _relationsType = value;
             if (AnotherCiv is ICivilizationPlayer)
@@ -19,19 +21,35 @@ public class DiplomaticRelations : CivilizationStructureBase
         }
     }
 
-    public DiplomaticRelations(ICivilization civ)
-    {
-        AnotherCiv = civ ?? throw new ArgumentNullException(nameof(civ));
-    }
-
-    public DiplomaticRelations Initialize(ICivilizationAl civilization)
+    public DiplomaticRelations(ICivilizationAl civilization, ICivilization anotherCiv, int dangerPlayer, IGalaxyUITimer galaxyUITimer)
     {
         this._civilization = civilization;
+        AnotherCiv = anotherCiv ?? throw new ArgumentNullException(nameof(anotherCiv));
+        this._dangerPlayer = dangerPlayer;
 
+        galaxyUITimer.ExecuteOfTime += ExecuteOnTimeEvent;
         SetProgressInterval();
         ChangeRelations(UnityEngine.Random.Range(0, 4));
+    }
 
-        return this;
+    public void CalculateDanger()
+    {
+        if (AnotherCiv.IsOpen == false || Relation == DiplomaticRelationsEnum.Friendship)
+        {
+            Danger = -1000;
+            return;
+        }
+
+        Danger = UnityEngine.Random.Range((float)Relation * 10 - 60, 100f);
+
+        if (_civilization.CivData.DominationPoints < AnotherCiv.CivData.DominationPoints)
+            Danger += UnityEngine.Random.Range(0f, 20f);
+        if (_civilization.CivData.Planets < AnotherCiv.CivData.Planets)
+            Danger += UnityEngine.Random.Range(0f, 20f);
+        if (AnotherCiv.IsLider == LeaderEnum.Leader)
+            Danger += 20f;
+        if (AnotherCiv is ICivilizationPlayer)
+            Danger += UnityEngine.Random.Range(_dangerPlayer / 2, _dangerPlayer);
     }
 
     public DiplomaticRelationsEnum ChangeRelations(int count = 0)
@@ -40,35 +58,12 @@ public class DiplomaticRelations : CivilizationStructureBase
         if (_relations < 0) _relations = 0;
         if (_relations > 4) _relations = 4;
 
-        return Relations = (DiplomaticRelationsEnum)_relations;
+        return Relation = (DiplomaticRelationsEnum)_relations;
     }
 
-    public void CalculateDanger()
-    {
-        if (AnotherCiv.IsOpen == false)
-        {
-            Danger = -1;
-            return;
-        }
+    private void SetProgressInterval() => _progressInterval = UnityEngine.Random.Range(20, 31);
 
-        Danger = 0;
-        if (_civilization.CivData.DominationPoints < AnotherCiv.CivData.DominationPoints)
-            Danger += UnityEngine.Random.Range(10f, 40f);
-        if (_civilization.CivData.Planets < AnotherCiv.CivData.Planets)
-            Danger += UnityEngine.Random.Range(10f, 40f);
-
-        switch (Relations)
-        {
-            case DiplomaticRelationsEnum.Hatred: Danger += UnityEngine.Random.Range(60f, 100f); break;
-            case DiplomaticRelationsEnum.Threat: Danger += UnityEngine.Random.Range(40f, 100f); break;
-            case DiplomaticRelationsEnum.Neutrality: Danger += UnityEngine.Random.Range(-20f, 100f); break;
-            case DiplomaticRelationsEnum.Cooperation: Danger += UnityEngine.Random.Range(-80f, 80f); break;
-            case DiplomaticRelationsEnum.Friendship: Danger += UnityEngine.Random.Range(-100f, 50f); break;
-            default: Danger = -100f; break;
-        }
-    }
-
-    protected override void ExecuteOnTimeEvent(float deltaTime)
+    private void ExecuteOnTimeEvent(float deltaTime)
     {
         if (_civilization.IsOpen && AnotherCiv.IsOpen)
             _progress += deltaTime;
@@ -82,6 +77,6 @@ public class DiplomaticRelations : CivilizationStructureBase
             ChangeRelations(UnityEngine.Random.Range(-1, +2));
         }
     }
-
-    private void SetProgressInterval() => _progressInterval = UnityEngine.Random.Range(20, 31);
 }
+
+public enum DiplomaticRelationsEnum { Friendship = 0, Cooperation = 1, Neutrality = 2, Threat = 3, Hatred = 4,   }

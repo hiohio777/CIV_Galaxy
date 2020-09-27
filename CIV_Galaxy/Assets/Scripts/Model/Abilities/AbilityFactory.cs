@@ -21,21 +21,19 @@ public class AbilityFactory
         foreach (var item in civilization.DataBase.Abilities)
         {
             var prefab = UnityEngine.Object.Instantiate(item).GetComponent<IAbility>();
-            prefab.Initialize(id, civilization, _galaxyUITimer);
+            prefab.Initialize(id, civilization);
 
             // Инициировать в зависимости от типа абилки
             switch (prefab)
             {
-                case AbilityFleet ability: ability.Initialize(_planetsFactory, _unitAbilityFactor); break;
+                case SpaceFleet ability: ability.Initialize(_planetsFactory, _unitAbilityFactor); break;
+                case ScientificMission ability: ability.Initialize(_unitAbilityFactor); break;
             }
 
             abilities.Add(prefab);
 
             id++;
         }
-
-        if (abilities.Count > 0)
-            abilities[0].IsActive = true;
 
         return abilities;
     }

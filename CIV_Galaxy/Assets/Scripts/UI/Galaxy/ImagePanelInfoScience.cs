@@ -10,7 +10,6 @@ public class ImagePanelInfoScience : MonoBehaviour
     [SerializeField] private Button buttonStudy, buttonClose;
 
     private Animator _animator;
-    private Science _scienceCiv;
     private DiscoveryCell _discoveryCell;
     private ICivilizationPlayer _civPlayer;
     private bool isStudy = false;
@@ -19,7 +18,6 @@ public class ImagePanelInfoScience : MonoBehaviour
     public void Inject(ICivilizationPlayer civPlayer)
     {
         this._civPlayer = civPlayer;
-        this._scienceCiv = civPlayer.ScienceCiv;
 
         buttonStudy.onClick.AddListener(OnStudy);
         buttonClose.onClick.AddListener(OnClose);
@@ -38,7 +36,7 @@ public class ImagePanelInfoScience : MonoBehaviour
         nameDiscovery.text = discoveryCell.name;
         infoDiscovery.text = discoveryCell.Description;
 
-        if (discoveryCell.IsResearch == false && _scienceCiv.Points >= discoveryCell.ResearchCost)
+        if (discoveryCell.IsResearch == false && _civPlayer.ScienceCiv.Points >= discoveryCell.ResearchCost)
         {
             buttonStudy.gameObject.SetActive(true);
         }
@@ -56,7 +54,7 @@ public class ImagePanelInfoScience : MonoBehaviour
         if (isStudy)
         {
             _discoveryCell.Study(_civPlayer);
-            _scienceCiv.ExicuteSciencePointsPlayer(_discoveryCell.ResearchCost);
+            _civPlayer.ScienceCiv.ExicuteSciencePointsPlayer(_discoveryCell.ResearchCost);
             UpdateCostDiscoveriesEvent.Invoke();
         }
 

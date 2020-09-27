@@ -7,33 +7,34 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
 {
     [SerializeField] protected CivilizationUI civilizationUI;
     protected bool isAssign = false; // Назначена ли цивилизация
-    private AbilityFactory _abilityFactory;
 
     [Inject]
     public void Inject(CivilizationData civData, Scanner scanerPlanets, Science scienceCiv,
-        Industry industryCiv, AbilityFactory abilityFactory)
+        Industry industryCiv, Ability abilityCiv)
     {
-        (this.CivData, this.ScanerPlanets, this.ScienceCiv, this.IndustryCiv, this._abilityFactory)
-        = (civData, scanerPlanets, scienceCiv, industryCiv, abilityFactory);
+        (this.CivData, this.ScanerPlanets, this.ScienceCiv, this.IndustryCiv, this.AbilityCiv)
+        = (civData, scanerPlanets, scienceCiv, industryCiv, abilityCiv);
 
         PositionCiv = transform.position;
     }
 
+    public CivilizationUI CivUI => civilizationUI;
     public bool IsOpen { get; protected set; }
+    public LeaderEnum IsLider { get; protected set; } = LeaderEnum.Lagging;
     public Vector2 PositionCiv { get; private set; }
     public CivilizationScriptable DataBase { get; private set; }
     public CivilizationData CivData { get; private set; }
     public Scanner ScanerPlanets { get; private set; }
     public Industry IndustryCiv { get; private set; }
     public Science ScienceCiv { get; private set; }
-    public List<IAbility> Abilities { get; private set; } = new List<IAbility>();
+    public Ability AbilityCiv { get; private set; }
 
     public virtual void Assign(CivilizationScriptable dataBase)
     {
         this.DataBase = dataBase;
 
         // Инициализация данных
-        CivData.Initialize(this.DataBase, civilizationUI);
+        CivData.Initialize(this);
         ScanerPlanets.Initialize(this);
         ScienceCiv.Initialize(this, IndustryCiv);
         IndustryCiv.Initialize(this);
@@ -41,19 +42,18 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
         isAssign = true;
     }
 
-    protected void InitAbility()
-    {
-        // Инициировать абилки
-        Abilities = _abilityFactory.GetAbilities(this);
-    }
-
     public void ExicuteIndustryPoints(float points)
     {
         civilizationUI.SetIndustryPoints(points);
     }
 
+    public void DefineLeader(LeaderEnum leaderEnum)
+    {
+        IsLider = leaderEnum;
+        civilizationUI.SetAdvancedDomination(leaderEnum);
+    }
+
     public abstract void ExicuteScanning();
     public abstract void ExicuteSciencePoints(int sciencePoints);
     public abstract void ExicuteAbility(IAbility ability);
-    public abstract void DefineLeader(LeaderEnum leaderEnum);
 }

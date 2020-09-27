@@ -4,15 +4,18 @@ using UnityEngine;
 
 public interface ICivilization
 {
+    CivilizationUI CivUI { get; }
     CivilizationScriptable DataBase { get; }
     Vector2 PositionCiv { get; }
     CivilizationData CivData { get; }
     Scanner ScanerPlanets { get; }
     Science ScienceCiv { get; }
     Industry IndustryCiv { get; }
+    Ability AbilityCiv { get; }
 
     void Assign(CivilizationScriptable civData);
     bool IsOpen { get; }
+    LeaderEnum IsLider { get; }
 
     void ExicuteScanning();
     void ExicuteSciencePoints(int sciencePoints);
@@ -23,6 +26,7 @@ public interface ICivilization
 
 public interface ICivilizationAl : ICivilization
 {
+    Diplomacy DiplomacyCiv { get; }
     void Open();
     void SetSetDiplomaticRelations(DiplomaticRelationsEnum relations);
 }

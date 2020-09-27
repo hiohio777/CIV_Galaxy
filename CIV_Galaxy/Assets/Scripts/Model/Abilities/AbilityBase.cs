@@ -3,61 +3,48 @@ using UnityEngine;
 
 public abstract class AbilityBase : MonoBehaviour, IAbility
 {
-    [SerializeField] private Sprite spriteArtFon, spriteArt, frame;
-    [SerializeField] private float _progressInterval = 20; // Интервал
-    private float _progress = 0; // Прогресс
-
-    protected ICivilization ThisCivilization { get; private set; }
     public event Action<float> ProgressEvent; // Отображение на экране
 
+    [SerializeField] private Sprite spriteArtFon, spriteArt, frame;
+    [SerializeField] private float costTime;
+
+    protected ICivilization ThisCivilization { get; private set; }
+
+    public string Name => name;
     public int Id { get; private set; }
     public bool IsActive { get; set; } = false; // Активен ли(доступна ли способность)
-    public bool IsReady { get; protected set; } = false; // Готова ли к использованию
+    public bool IsReady { get; set; } = false; // Готовность зарядки
     public Sprite Fon => spriteArtFon;
     public Sprite Art => spriteArt;
     public Sprite Frame => frame;
+    public float GetCost => costTime;
 
-    //Бонусы
-    public float AccelerationBonus { get; set; } = 0; // Бонус скорости работы
 
-    private float ProgressProc => _progress / (_progressInterval / 100); // Прогресс сканирования в процентах
-
-    public virtual void Initialize(int id, ICivilization civilization, IGalaxyUITimer galaxyUITimer)
+    public virtual void Initialize(int id, ICivilization civilization)
     {
         (this.Id, this.ThisCivilization) = (id, civilization);
-        galaxyUITimer.ExecuteOfTime += ExecuteOnTimeEvent;
-
-        if (civilization is ICivilizationAl)
-            _progress = UnityEngine.Random.Range(_progressInterval / 2, _progressInterval);
-
-        ProgressEvent?.Invoke(ProgressProc);
     }
 
-    private void ExecuteOnTimeEvent(float deltaTime)
+    public abstract bool ApplyAl(Diplomacy diplomacyCiv);
+    public abstract bool Apply(ICivilization civilizationTarget);
+
+    public void ExecuteOnTimeEvent(float progress)
     {
-        if (IsActive == false || IsReady) return;
+        if (IsActive == false) return;
 
-        _progress += deltaTime * (1 + ThisCivilization.IndustryCiv.Points + AccelerationBonus);
-        ProgressEvent?.Invoke(ProgressProc);
-
-        if (_progress > _progressInterval)
+        if (IsReady == false)
         {
-            _progress = 0;
-            IsReady = true;
-            ThisCivilization.ExicuteAbility(this);
+            if (progress >= costTime)
+                IsReady = true;
+
+            ProgressEvent?.Invoke(progress / (costTime / 100));
         }
+
+        ThisCivilization.ExicuteAbility(this);
     }
 
-    public abstract void ApplyAl(Diplomacy diplomacyCiv);
-    public virtual void Apply(ICivilization civilizationTarget)
+    protected void Ready()
     {
-        ProgressEvent?.Invoke(0);
-    }
-
-    // Враг не найден(отсрочка выполнения(чуть сбрасывается готовность скилла))
-    protected void DelayExecutionAl()
-    {
-        Debug.Log("--> DelayExecutionAl <--");
-        _progress = _progressInterval / 100 * 80;
+        ThisCivilization.AbilityCiv.ReduceProgress(costTime);
     }
 }

@@ -2,44 +2,46 @@
 using UnityEngine;
 using Zenject;
 
-public class LeaderQualifier : MonoBehaviour
+public class LeaderQualifier
 {
-    private List<ICivilization> _civilizations = new List<ICivilization>();
-    private ICivilizationPlayer _civPlayer;
-    private List<ICivilizationAl> _civsAl;
-
+    private ICivilization _civPlayer;
+    private ICivilization _lider;
 
     [Inject]
-    public void Inject(IGalaxyUITimer galaxyUITimer, ICivilizationPlayer civPlayer, List<ICivilizationAl> civsAl)
+    public void Inject(ICivilizationPlayer civPlayer)
     {
-        this._civPlayer = civPlayer;
-        this._civsAl = civsAl;
-
-        galaxyUITimer.ExecuteYears += ExecuteYears;
-        _civilizations.Add(civPlayer);
-        civsAl.ForEach(x => _civilizations.Add(x));
-
-        Debug.Log("Inject");
+        _lider = this._civPlayer = civPlayer;
     }
 
-    private void ExecuteYears()
+    public void DefineLeader(ICivilization civilization)
     {
-        // определение отсталости или опережения в сравнении с игроком
-        foreach (var item in _civsAl)
+        if (civilization == _lider) return;
+
+        ComparePlayer(civilization);
+        CompareLider(civilization);
+    }
+
+    private void ComparePlayer(ICivilization civilization)
+    {
+        if (civilization is ICivilizationAl)
         {
-            if (item.CivData.DominationPoints >= _civPlayer.CivData.DominationPoints)
-                item.DefineLeader(LeaderEnum.Advanced);
+            if (civilization.CivData.DominationPoints > _civPlayer.CivData.DominationPoints)
+                civilization.DefineLeader(LeaderEnum.Advanced);
             else
-                item.DefineLeader(LeaderEnum.Lagging);
+                civilization.DefineLeader(LeaderEnum.Lagging);
         }
+        else civilization.DefineLeader(LeaderEnum.Lagging);
+    }
 
-        ICivilization lider = _civilizations[0];
-        foreach (var item in _civilizations)
+    private void CompareLider(ICivilization civilization)
+    {
+        if (civilization != _lider && civilization.CivData.DominationPoints > _lider.CivData.DominationPoints)
         {
-            if (item.CivData.DominationPoints > lider.CivData.DominationPoints)
-                lider = item;
-        }
+            civilization.DefineLeader(LeaderEnum.Leader);
+            var oldLider = _lider;
+            _lider = civilization;
 
-        lider.DefineLeader(LeaderEnum.Leader);
+            ComparePlayer(oldLider);
+        }
     }
 }

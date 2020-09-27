@@ -2,9 +2,9 @@
 {
     private int _idealPlanet, _icePlanets, _hotPlanets, _gasGiantsPlanets, _allPlanet, _openPlanets;
     private CanvasFonGalaxy _canvasFonGalaxy;
-    private MessageWholeGalaxyExplored _messageWholeGalaxyExplored;
+    private MessageGalaxy _messageWholeGalaxyExplored;
 
-    public GalaxyData(GalaxyScriptableObject galaxyScriptable, CanvasFonGalaxy canvasFonGalaxy, MessageWholeGalaxyExplored messageWholeGalaxyExplored)
+    public GalaxyData(GalaxyScriptableObject galaxyScriptable, CanvasFonGalaxy canvasFonGalaxy, MessageGalaxy messageWholeGalaxyExplored)
     {
         this._canvasFonGalaxy = canvasFonGalaxy;
         this._messageWholeGalaxyExplored = messageWholeGalaxyExplored;

@@ -5,13 +5,16 @@ public interface IAbility
 {
     event Action<float> ProgressEvent;
     int Id { get; }
+    string Name { get; }
     bool IsActive { get; set; }
-    bool IsReady { get; }
+    bool IsReady { get; set; }
     Sprite Art { get; }
     Sprite Fon { get; }
     Sprite Frame { get; }
-    float AccelerationBonus { get; set; }
-    void Initialize(int id, ICivilization civilization, IGalaxyUITimer galaxyUITimer);
-    void ApplyAl(Diplomacy diplomacyCiv);
-    void Apply(ICivilization civilizationTarget);
+    float GetCost { get; }
+
+    void Initialize(int id, ICivilization civilization);
+    bool ApplyAl(Diplomacy diplomacyCiv);
+    bool Apply(ICivilization civilizationTarget);
+    void ExecuteOnTimeEvent(float deltaTime);
 }

@@ -19,7 +19,8 @@ public class GalaxySceneDIInstaller : MonoInstaller
         Container.Bind<Scanner>().AsTransient(); 
         Container.Bind<Science>().AsTransient();
         Container.Bind<Industry>().AsTransient();
-        Container.Bind<Diplomacy>().AsTransient();
+        Container.Bind<Diplomacy>().AsTransient(); 
+        Container.Bind<Ability>().AsTransient();
 
         Container.Bind<GalacticEventGenerator>().AsTransient();
         Container.Bind<GalacticEventGeneratorPlayer>().AsTransient();
@@ -30,7 +31,7 @@ public class GalaxySceneDIInstaller : MonoInstaller
 
 
         Container.Bind<AbilityUI>().FromComponentsInHierarchy().AsSingle();
-        Container.Bind<MessageWholeGalaxyExplored>().FromComponentsInHierarchy().AsSingle();
+        Container.Bind<MessageGalaxy>().FromComponentsInHierarchy().AsSingle();
         Container.Bind<CanvasFonGalaxy>().FromComponentsInHierarchy().AsSingle();
         Container.Bind<PlayerCivInfo>().FromComponentsInHierarchy().AsSingle();
         Container.Bind<ScanerPanelUI>().FromComponentsInHierarchy().AsSingle();

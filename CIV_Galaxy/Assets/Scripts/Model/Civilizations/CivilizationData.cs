@@ -3,23 +3,23 @@ using UnityEngine;
 
 public class CivilizationData
 {
-    public BaseData baseData { get; private set; }
     private int _planets;
-
     private float _dominationPoints;
 
-    private ICivilizationDataUI _dataUI;
+    private ICivilization _civilization;
+    private LeaderQualifier _leaderQualifier;
 
-    public CivilizationData(IGalaxyUITimer galaxyUITimer)
+    public CivilizationData(IGalaxyUITimer galaxyUITimer, LeaderQualifier leaderQualifier)
     {
         galaxyUITimer.ExecuteYears += ProgressDominance;
+        this._leaderQualifier = leaderQualifier;
     }
 
-    public int Planets { get => _planets; set { _planets = value; _dataUI.SetCountPlanet(_planets); } }
+    public int Planets { get => _planets; set { _planets = value; _civilization.CivUI.SetCountPlanet(_planets); } }
     public float DominationPoints {
         get => _dominationPoints; set {
-            _dominationPoints = value;
-            _dataUI.SetCountDominationPoints(_dominationPoints);
+            _civilization.CivUI.SetCountDominationPoints(_dominationPoints = value);
+            _leaderQualifier.DefineLeader(_civilization);
         }
     }
 
@@ -30,12 +30,12 @@ public class CivilizationData
     public float GrowthDominanceIndustryBonus { get; set; } = 0; // Бонус роста доминирования от Индустрии
     public float GrowthDominanceOverallBonus { get; set; } = 0; // Бонус роста доминирования(общий в процентах к годовому приросту)
 
-    public void Initialize(CivilizationScriptable civData, ICivilizationDataUI dataUI)
+    public void Initialize(ICivilization civilization)
     {
-        (this.baseData, this._dataUI) = (civData.Base, dataUI);
+        this._civilization = civilization;
+        _planets = this._civilization.DataBase.Base.Planets;
+        DominationPoints = this._civilization.DataBase.Base.DominationPoints;
 
-        Planets = this.baseData.Planets;
-        DominationPoints = this.baseData.DominationPoints;
     }
 
     public void AddPlanet(IPlanet planet)
@@ -44,10 +44,10 @@ public class CivilizationData
         planet.Destroy();
     }
 
-    public float GetPointsFromPlanets => _planets * (baseData.GrowthDominancePlanets + GrowthDominancePlanetsBonus);
-    public float GetPointsFromIndustry => _planets * (GetIndustryPoints.Invoke() * (baseData.GrowthDominanceIndustry + GrowthDominanceIndustryBonus));
+    public float GetPointsFromPlanets => _planets * (_civilization.DataBase.Base.GrowthDominancePlanets + GrowthDominancePlanetsBonus);
+    public float GetPointsFromIndustry => _planets * (GetIndustryPoints.Invoke() * (_civilization.DataBase.Base.GrowthDominanceIndustry + GrowthDominanceIndustryBonus));
     public float GetPointsFromBonus => GetPointsFromPlanets + GetPointsFromIndustry;
-    public float GetPointsAll => GetPointsFromBonus + GetPointsFromBonus * (baseData.GrowthDominanceOverall + GrowthDominanceOverallBonus);
+    public float GetPointsAll => GetPointsFromBonus + GetPointsFromBonus * (_civilization.DataBase.Base.GrowthDominanceOverall + GrowthDominanceOverallBonus);
 
     private void ProgressDominance()
     {

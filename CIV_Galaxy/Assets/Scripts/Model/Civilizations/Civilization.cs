@@ -3,26 +3,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public enum DiplomaticRelationsEnum
-{
-    Hatred = 0, Threat = 1, Neutrality = 2, Cooperation = 3, Friendship = 4
-}
-
 public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
 {
     [SerializeField, Space(10)] private Image leaderIcon;
-    [SerializeField] private Image dominatorIcon, diplomaticRelationsIcon;
+    [SerializeField] private Image diplomaticRelationsIcon;
     [SerializeField] private Color colorHatred, colorThreat, colorNeutrality, colorCooperation, colorFriendship;
 
     private GalacticEventGenerator _galacticEventGenerator;
     private ICivilizationPlayer _player;
-    private Diplomacy diplomacy;
+
+    public Diplomacy DiplomacyCiv { get; private set; }
 
     [Inject]
     public void InjectCivilizationPlayer(GalacticEventGenerator galacticEventGenerator, ICivilizationPlayer player,
         Diplomacy diplomacyCiv)
     {
-        (this._galacticEventGenerator, this._player, this.diplomacy)
+        (this._galacticEventGenerator, this._player, this.DiplomacyCiv)
         = (galacticEventGenerator, player, diplomacyCiv);
     }
 
@@ -35,23 +31,21 @@ public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
 
     public void Open()
     {
-        civilizationUI.Assign(DataBase);
-        diplomacy.Initialize(this);
-        InitAbility();
+        DiplomacyCiv.Initialize(this);
+        AbilityCiv.Initialize(this);
+        civilizationUI.Assign(this);
 
         IsOpen = true;
     }
 
     public void OnClick()
     {
-        if (_player.SelectedAbility == null) 
-        {
+        if (_player.SelectedAbility == null)
             return;
-        }
         else
         {
-            _player.SelectedAbility.Apply(this);
-            _player.SelectedAbility = null;
+            if (_player.SelectedAbility.Apply(this))
+                _player.SelectedAbility = null;
         }
     }
 
@@ -61,11 +55,13 @@ public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
     }
 
     public override void ExicuteScanning()
-    { }
-
-    public override void ExicuteAbility(IAbility ability) 
     {
-        ability.ApplyAl(diplomacy);
+        if (IsOpen) civilizationUI.ScanerEffect();
+    }
+
+    public override void ExicuteAbility(IAbility ability)
+    {
+        AbilityCiv.ApplyAl(DiplomacyCiv);
     }
 
     private void Start()
@@ -73,31 +69,8 @@ public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
         var canvas = GetComponent<Canvas>();
         canvas.worldCamera = Camera.main;
         canvas.sortingLayerName = "Default";
-        dominatorIcon.enabled = false;
 
         civilizationUI.Close();
-    }
-
-    public override void DefineLeader(LeaderEnum leaderEnum)
-    {
-
-        Debug.Log(leaderEnum);
-
-        civilizationUI.SetAdvancedDomination(leaderEnum);
-        switch (leaderEnum)
-        {
-            case LeaderEnum.Lagging:
-                dominatorIcon.enabled = false;
-                break;
-            case LeaderEnum.Advanced:
-                dominatorIcon.enabled = true;
-                dominatorIcon.color = new Color(1, 1, 0, 0.15f);
-                break;
-            case LeaderEnum.Leader:
-                dominatorIcon.enabled = true;
-                dominatorIcon.color = new Color(1, 1, 0, 0.75f);
-                break;
-        }
     }
 
     public void SetSetDiplomaticRelations(DiplomaticRelationsEnum relations)

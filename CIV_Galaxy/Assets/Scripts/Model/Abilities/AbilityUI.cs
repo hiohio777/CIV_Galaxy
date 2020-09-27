@@ -5,48 +5,60 @@ using Zenject;
 
 public class AbilityUI : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField] private Image indicatorFon, indicator, frame;
+    [SerializeField] private Image fon, artIndicator, frame;
 
     private ICivilizationPlayer _civilizationPlayer;
     private IAbility _ability;
+    private Ability _abilityCiv;
+    private IGalaxyUITimer _galaxyUITimer;
 
     [Inject]
-    public void Inject(ICivilizationPlayer civilizationPlayer)
+    public void Inject(ICivilizationPlayer civilizationPlayer, IGalaxyUITimer galaxyUITimer)
     {
         this._civilizationPlayer = civilizationPlayer;
+        this._galaxyUITimer = galaxyUITimer;
     }
 
-    public void Assing(IAbility ability)
+    public void Assing(IAbility ability, Ability abilityCiv)
     {
         this._ability = ability;
+        this._abilityCiv = abilityCiv;
 
-        indicatorFon.sprite = ability.Art;
-        indicatorFon.sprite = ability.Fon;
-        frame.sprite = ability.Frame;
+        _ability.ProgressEvent += SetProgress;
 
-        ability.ProgressEvent += ProgressEvent;
+        frame.sprite = _ability.Frame;
+        fon.sprite = _ability.Fon;
+        artIndicator.sprite = _ability.Art;
 
-        Select(false);
+        SetReady();
         gameObject.SetActive(ability.IsActive);
     }
 
-    public void Apply(ICivilization civilizationTarget)
+    public bool Apply(ICivilization civilizationTarget)
     {
-        _ability.Apply(civilizationTarget);
-        Select(false);
+        if (_ability.Apply(civilizationTarget))
+        {
+            Select(false);
+            _galaxyUITimer.SetPause(false);
+            return true;
+        }
+
+        return false;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (_ability.IsReady && _ability.IsActive)
+        if (_ability.IsActive && _ability.IsReady)
         {
             if (_civilizationPlayer.SelectedAbility == this)
             {
-                Select(false);
                 _civilizationPlayer.SelectedAbility = null;
+                Select(false);
+                _galaxyUITimer.SetPause(false);
             }
             else
             {
+                _galaxyUITimer.SetPause(true);
                 _civilizationPlayer.SelectedAbility?.Select(false);
                 Select(true);
             }
@@ -63,21 +75,27 @@ public class AbilityUI : MonoBehaviour, IPointerClickHandler
         }
         else
         {
-            if (_ability.IsReady)
-            {
-                frame.enabled = true;
-                frame.color = new Color(0, 0.7f, 1, 1);
-            }
-            else
-            {
-                frame.enabled = false;
-                indicator.fillAmount = 0;
-            }
+            SetReady();
         }
     }
 
-    private void ProgressEvent(float rogress)
+
+    public void SetReady()
     {
-        indicator.fillAmount = rogress / 100;
+        if (_ability.IsReady)
+        {
+            frame.enabled = true;
+            frame.color = new Color(0, 0.7f, 1, 1);
+        }
+        else
+        {
+            frame.enabled = false;
+        }
+    }
+
+    public void SetProgress(float progress)
+    {
+        artIndicator.fillAmount = progress / 100;
+        SetReady();
     }
 }

@@ -33,14 +33,14 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
     {
         base.Assign(civData);
 
-        civilizationUI.Assign(civData);
+        civilizationUI.Assign(this);
         _galacticEventGenerator.Initialize(this);
 
-        InitAbility();
+        AbilityCiv.Initialize(this);
         for (int i = 0; i < _abilitiesUI.Count; i++)
         {
-            if (i < Abilities.Count)
-                _abilitiesUI[i].Assing(Abilities[i]);
+            if (i < AbilityCiv.Abilities.Count)
+                _abilitiesUI[i].Assing(AbilityCiv.Abilities[i], AbilityCiv);
             else _abilitiesUI[i].gameObject.SetActive(false);
         }
 
@@ -51,6 +51,7 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
 
     public override void ExicuteScanning()
     {
+        civilizationUI.ScanerEffect();
         _discoveredCivilization.DiscoverAnotherCiv(_anotherCivilization);
     }
 
@@ -72,12 +73,5 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
     }
 
     public override void ExicuteAbility(IAbility ability)
-    {
-        _abilitiesUI[ability.Id].Select(false);
-    }
-
-    public override void DefineLeader(LeaderEnum leaderEnum)
-    {
-        
-    }
+    { }
 }

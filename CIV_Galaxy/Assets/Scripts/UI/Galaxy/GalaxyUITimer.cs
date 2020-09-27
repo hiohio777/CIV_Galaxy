@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
 {
@@ -11,19 +12,37 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
     [SerializeField] private float speedGame = 1;
 
     private int years;
+    private ICivilizationPlayer _civilizationPlayer;
+
     public bool IsPause { get; private set; }
     public event Action ExecuteYears; // События происходящие каждый год
     public event Action<float> ExecuteOfTime = delegate { }; // Постоянный апдейт
 
     public float GetYears => years;
-    public void SetPause(bool isPause) => SetColorButtonPause(IsPause = isPause);
-    private void OnPause() => SetColorButtonPause(IsPause = !IsPause);
+    public void SetPause(bool isPause) =>  SetColorButtonPause(IsPause = isPause);
+
+    private void OnPause() 
+    {
+        if (_civilizationPlayer.SelectedAbility != null)
+        {
+            _civilizationPlayer.SelectedAbility.Select(false);
+            _civilizationPlayer.SelectedAbility = null;
+        }
+
+        SetColorButtonPause(IsPause = !IsPause);
+    }
     private void SetColorButtonPause(bool active)
     {
         if (active)
             buttonPause.image.color = new Color(1, 1, 1, 1);
         else
             buttonPause.image.color = new Color(0.5f, 0.5f, 0.5f, 1);
+    }
+
+    [Inject]
+    public void InjectCivilizationPlayer(ICivilizationPlayer civilizationPlayer)
+    {
+        this._civilizationPlayer = civilizationPlayer;
     }
 
     private IEnumerator RunTimer()

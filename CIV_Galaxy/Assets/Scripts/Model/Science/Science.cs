@@ -47,7 +47,7 @@ public class Science : CivilizationStructureBase
 
     public void AddProgress(float count)
     {
-        _progress += count;
+        _progress += _progressInterval / 100 * count; ;
         ProgressEvent?.Invoke(ProgressProc);
     }
 

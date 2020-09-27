@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using Zenject;
 
-public class MessageWholeGalaxyExplored : MonoBehaviour
+public class MessageGalaxy : MonoBehaviour
 {
     [SerializeField] private Text messadge;
 
