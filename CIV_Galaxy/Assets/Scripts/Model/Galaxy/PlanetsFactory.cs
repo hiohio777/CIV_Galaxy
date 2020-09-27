@@ -9,7 +9,7 @@ public class PlanetsFactory : UnitBaseFactory
         this.factory = factory;
     }
 
-    public IPlanet GetNewUnit(TypePlanetEnum typePlanet)
+    public IPlanet GetNewUnit(SpriteUnitEnum typePlanet)
     {
         Planet unit;
 

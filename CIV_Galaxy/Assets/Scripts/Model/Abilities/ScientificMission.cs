@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ScientificMission : AbilityBase
@@ -20,8 +21,19 @@ public class ScientificMission : AbilityBase
             StartMission(target); // Цель найдена
             return true;
         }
-        
+
         return false;
+    }
+
+    public override void SelectedApplayPlayer(List<ICivilizationAl> civilizationsTarget)
+    {
+        foreach (var item in civilizationsTarget)
+        {
+            if (item.IsOpen == false) continue;
+
+            if (item.DiplomacyCiv.GetRelationsPlayer() == DiplomaticRelationsEnum.Friendship)
+                item.EnableFrame(Color.green);
+        }
     }
 
     public override bool Apply(ICivilization civilizationTarget)

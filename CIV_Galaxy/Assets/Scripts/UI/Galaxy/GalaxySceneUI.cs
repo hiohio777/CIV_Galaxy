@@ -35,7 +35,7 @@ public class GalaxySceneUI : MonoBehaviour
         _messageStartGame.Show(_civPlayer.DataBase, () => _animator.SetTrigger("PlayerStart"));
     }
 
-    private void BackMainScene()
+    public void BackMainScene()
     {
         Debug.Log("BackMainScen!");
         SceneManager.LoadScene("MainScene");
@@ -45,6 +45,8 @@ public class GalaxySceneUI : MonoBehaviour
     {
         InitializeNewGame();
 
+        var canvas = GetComponent<Canvas>();
+        canvas.worldCamera = Camera.main;
         _animator = GetComponent<Animator>();
         _animator.SetTrigger("Start");
     }

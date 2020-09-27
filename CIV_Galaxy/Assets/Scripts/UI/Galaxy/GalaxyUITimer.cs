@@ -6,11 +6,14 @@ using Zenject;
 
 public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
 {
-    [SerializeField] private Button buttonPause;
-    [SerializeField] private Text textTimer;
+    [SerializeField] private Button buttonPause, buttonAssingSpeed;
+    [SerializeField] private Image speedIcon1, speedIcon2;
+    [SerializeField] private Text textTimer, TextSpeed;
     [SerializeField, Space(10)] private float lengthOfYear = 4;
-    [SerializeField] private float speedGame = 1;
+    [SerializeField] private Sprite playIcon, pauseIcon;
 
+
+    private float speedGame = 0.5f;
     private int years;
     private ICivilizationPlayer _civilizationPlayer;
 
@@ -19,9 +22,44 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
     public event Action<float> ExecuteOfTime = delegate { }; // Постоянный апдейт
 
     public float GetYears => years;
-    public void SetPause(bool isPause) =>  SetColorButtonPause(IsPause = isPause);
+    public float GetSpeed => speedGame;
 
-    private void OnPause() 
+    [Inject]
+    public void InjectCivilizationPlayer(ICivilizationPlayer civilizationPlayer)
+    {
+        this._civilizationPlayer = civilizationPlayer;
+
+        buttonPause.onClick.AddListener(OnPause);
+        buttonAssingSpeed.onClick.AddListener(OnAssingSpeed);
+
+        TextSpeed.text = $"{speedGame}x";
+        SetPause(true);
+        StartCoroutine(RunTimer());
+        textTimer.text = (years = 0).ToString();
+        OnAssingSpeed();
+    }
+
+    public void SetPause(bool active)
+    {
+        if (IsPause = active)
+            buttonPause.image.sprite = playIcon;
+        else
+            buttonPause.image.sprite = pauseIcon;
+    }
+
+    private void OnAssingSpeed()
+    {
+        speedIcon1.enabled = speedIcon2.enabled = false;
+        switch (speedGame)
+        {
+            case 0.5f: speedGame = 1f; speedIcon1.enabled = true; break;
+            case 1f: speedGame = 2f; speedIcon1.enabled = speedIcon2.enabled = true; break;
+            case 2f: speedGame = 0.5f; break;
+        }
+        TextSpeed.text = $"{speedGame}x";
+    }
+
+    private void OnPause()
     {
         if (_civilizationPlayer.SelectedAbility != null)
         {
@@ -29,20 +67,7 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
             _civilizationPlayer.SelectedAbility = null;
         }
 
-        SetColorButtonPause(IsPause = !IsPause);
-    }
-    private void SetColorButtonPause(bool active)
-    {
-        if (active)
-            buttonPause.image.color = new Color(1, 1, 1, 1);
-        else
-            buttonPause.image.color = new Color(0.5f, 0.5f, 0.5f, 1);
-    }
-
-    [Inject]
-    public void InjectCivilizationPlayer(ICivilizationPlayer civilizationPlayer)
-    {
-        this._civilizationPlayer = civilizationPlayer;
+        SetPause(!IsPause);
     }
 
     private IEnumerator RunTimer()
@@ -68,22 +93,14 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
             yield return null;
         }
     }
-
-    private void Awake()
-    {
-        buttonPause.onClick.AddListener(OnPause);
-
-        SetColorButtonPause(IsPause = true);
-        StartCoroutine(RunTimer());
-        textTimer.text = (years = 0).ToString();
-    }
 }
 
 public interface IGalaxyUITimer
 {
     event Action ExecuteYears; // События происходящие каждый год
     event Action<float> ExecuteOfTime;
-    bool IsPause { get;}
+    bool IsPause { get; }
     float GetYears { get; }
+    float GetSpeed { get; }
     void SetPause(bool isPause);
 }

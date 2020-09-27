@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public interface IAbility
 {
     event Action<float> ProgressEvent;
-    int Id { get; }
     string Name { get; }
     bool IsActive { get; set; }
     bool IsReady { get; set; }
@@ -13,8 +13,9 @@ public interface IAbility
     Sprite Frame { get; }
     float GetCost { get; }
 
-    void Initialize(int id, ICivilization civilization);
+    void Initialize(ICivilization civilization);
     bool ApplyAl(Diplomacy diplomacyCiv);
+    void SelectedApplayPlayer(List<ICivilizationAl> civilizationsTarget); // Выделение доступных целей
     bool Apply(ICivilization civilizationTarget);
     void ExecuteOnTimeEvent(float deltaTime);
 }

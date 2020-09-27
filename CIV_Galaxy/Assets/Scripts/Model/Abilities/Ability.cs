@@ -70,8 +70,6 @@ public class Ability : CivilizationStructureBase
 
         currentAlAbility.ApplyAl(diplomacyCiv);
         AssingCurrentAlAbility();
-
-        Debug.Log($"{currentAlAbility.Name}");
     }
 
     private void AssingCurrentAlAbility()

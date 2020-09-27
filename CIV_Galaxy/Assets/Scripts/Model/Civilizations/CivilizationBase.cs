@@ -15,6 +15,8 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
         (this.CivData, this.ScanerPlanets, this.ScienceCiv, this.IndustryCiv, this.AbilityCiv)
         = (civData, scanerPlanets, scienceCiv, industryCiv, abilityCiv);
 
+        var canvas = GetComponent<Canvas>();
+        canvas.worldCamera = Camera.main;
         PositionCiv = transform.position;
     }
 

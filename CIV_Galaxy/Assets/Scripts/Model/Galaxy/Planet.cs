@@ -8,16 +8,16 @@ public class Planet : UnitBase, IPlanet
 
     public class Factory : PlaceholderFactory<Action<UnitBase>, Planet> { }
 
-    public Planet Initialize(TypePlanetEnum typePlanet)
+    public Planet Initialize(SpriteUnitEnum typePlanet)
     {
         gameObject.SetActive(true);
 
         switch (typePlanet)
         {
-            case TypePlanetEnum.Ideal: art.color = Color.green; break;
-            case TypePlanetEnum.Ice: art.color = Color.blue; break;
-            case TypePlanetEnum.Hot: art.color = Color.red; break;
-            case TypePlanetEnum.GasGiants: art.color = Color.cyan; break;
+            case SpriteUnitEnum.Ideal: art.color = Color.green; break;
+            case SpriteUnitEnum.Ice: art.color = Color.blue; break;
+            case SpriteUnitEnum.Hot: art.color = Color.red; break;
+            case SpriteUnitEnum.GasGiants: art.color = Color.cyan; break;
         }
 
         transform.position = new Vector3(0, 0, 0);

@@ -25,9 +25,25 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
         = (discoveredCivilization, sciencePanelUI, scanerPanelUI, playerCivInfo, galacticEventGenerator, abilitiesUI);
 
         _anotherCivilization = anotherCivilization;
+
     }
 
-    public AbilityUI SelectedAbility { get; set; }
+    private AbilityUI _selectedAbility;
+    public AbilityUI SelectedAbility {
+        get => _selectedAbility; set {
+            if (value == null)
+            {
+                _selectedAbility = null;
+                _anotherCivilization.ForEach(x => x.TurnOffFrame());
+            }
+            else
+            {
+                _selectedAbility = value;
+                _anotherCivilization.ForEach(x => x.TurnOffFrame());
+                _selectedAbility.Getability.SelectedApplayPlayer(_anotherCivilization);
+            }
+        }
+    }
 
     public override void Assign(CivilizationScriptable civData)
     {

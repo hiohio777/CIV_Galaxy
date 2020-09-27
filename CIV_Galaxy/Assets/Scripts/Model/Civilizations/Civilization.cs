@@ -5,7 +5,7 @@ using Zenject;
 
 public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
 {
-    [SerializeField, Space(10)] private Image leaderIcon;
+    [SerializeField, Space(10)] private Image leaderIcon, frame;
     [SerializeField] private Image diplomaticRelationsIcon;
     [SerializeField] private Color colorHatred, colorThreat, colorNeutrality, colorCooperation, colorFriendship;
 
@@ -14,12 +14,25 @@ public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
 
     public Diplomacy DiplomacyCiv { get; private set; }
 
+    public void EnableFrame(Color color)
+    {
+        frame.enabled = true;
+        frame.color = color;
+    }
+
+    public void TurnOffFrame()
+    {
+        frame.enabled = false;
+    }
+
     [Inject]
     public void InjectCivilizationPlayer(GalacticEventGenerator galacticEventGenerator, ICivilizationPlayer player,
         Diplomacy diplomacyCiv)
     {
         (this._galacticEventGenerator, this._player, this.DiplomacyCiv)
         = (galacticEventGenerator, player, diplomacyCiv);
+
+        TurnOffFrame();
     }
 
     public override void Assign(CivilizationScriptable civData)

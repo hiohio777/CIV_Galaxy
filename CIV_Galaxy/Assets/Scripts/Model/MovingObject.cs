@@ -81,7 +81,7 @@ public class MovingObject : MonoBehaviour
         {
             if (_galaxyUITimer.IsPause == false)
             {
-                t = Mathf.Clamp(t + Time.deltaTime / timePositionTarget, 0, 1f);
+                    t = Mathf.Clamp(t + (Time.deltaTime * _galaxyUITimer.GetSpeed) / timePositionTarget, 0, 1f);
 
                 _transform.position = Bezier.GetPoint(positionStart, posBezier1, posBezier2, positionTarget, t);
                 _transform.up = Bezier.GetFirstDerivative(positionStart, posBezier1, posBezier2, positionTarget, t);
@@ -102,7 +102,7 @@ public class MovingObject : MonoBehaviour
         {
             if (_galaxyUITimer.IsPause == false)
             {
-                float stepMove = speedMove * Time.deltaTime;
+                float stepMove = speedMove * (Time.deltaTime * _galaxyUITimer.GetSpeed);
                 _transform.position = Vector3.MoveTowards(_transform.position, positionTarget, stepMove);
             }
 
@@ -122,7 +122,7 @@ public class MovingObject : MonoBehaviour
         {
             if (_galaxyUITimer.IsPause == false)
             {
-                float stepMove = speedMove * Time.deltaTime;
+                float stepMove = speedMove * (Time.deltaTime * _galaxyUITimer.GetSpeed);
                 _transform.localScale = Vector3.MoveTowards(_transform.localScale, target, stepMove);
             }
 

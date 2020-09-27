@@ -9,8 +9,5 @@ public class ProjectDIInstaller : MonoInstaller
         Container.Bind<PlayerSettings>().AsSingle();
 
         Container.Bind<Civilizations>().AsTransient();
-
-        Container.Bind<GalaxyScriptableObject>().FromNewScriptableObjectResource("Galaxies/GalaxyStandart").AsSingle();
-
     }
 }

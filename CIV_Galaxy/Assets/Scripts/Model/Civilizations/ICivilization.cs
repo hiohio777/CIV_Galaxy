@@ -29,6 +29,9 @@ public interface ICivilizationAl : ICivilization
     Diplomacy DiplomacyCiv { get; }
     void Open();
     void SetSetDiplomaticRelations(DiplomaticRelationsEnum relations);
+
+    void EnableFrame(Color color);
+    void TurnOffFrame();
 }
 
 public interface ICivilizationPlayer : ICivilization

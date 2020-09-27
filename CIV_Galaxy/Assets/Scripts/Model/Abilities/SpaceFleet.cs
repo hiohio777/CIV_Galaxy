@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SpaceFleet : AbilityBase
@@ -13,6 +14,27 @@ public class SpaceFleet : AbilityBase
         (this._planetsFactory, this._unitFactory) = (planetsFactory, unitFactory);
     }
 
+    public void AddBonus_minAttackIndustry(float bonus)
+    {
+        minAttackIndustry += bonus;
+        if (minAttackIndustry < 0) minAttackIndustry = 0;
+    }
+    public void AddBonus_randomAttackIndustry(float bonus)
+    {
+        randomAttackIndustry += bonus;
+        if (randomAttackIndustry < 0) randomAttackIndustry = 0;
+    }
+    public void AddBonus_minConquestPlanets(int bonus)
+    {
+        minConquestPlanets += bonus;
+        if (minConquestPlanets < 0) minConquestPlanets = 0;
+    }
+    public void AddBonus_randomConquestPlanets(int bonus)
+    {
+        randomConquestPlanets += bonus;
+        if (randomConquestPlanets < 0) randomConquestPlanets = 0;
+    }
+
     public override bool ApplyAl(Diplomacy diplomacyCiv)
     {
         var target = diplomacyCiv.FindEnemy();
@@ -22,6 +44,16 @@ public class SpaceFleet : AbilityBase
             return true;
         }
         else return false;
+    }
+
+    public override void SelectedApplayPlayer(List<ICivilizationAl> civilizationsTarget)
+    {
+        foreach (var item in civilizationsTarget)
+        {
+            if (item.IsOpen == false) continue;
+
+            item.EnableFrame(Color.red);
+        }
     }
 
     public override bool Apply(ICivilization civilizationTarget)
@@ -55,7 +87,7 @@ public class SpaceFleet : AbilityBase
 
         // Ухудшить отношения, если напал игрок, а отношения были "дружба"
 
-        if(ThisCivilization is ICivilizationPlayer)
+        if (ThisCivilization is ICivilizationPlayer)
             (civilizationTarget as ICivilizationAl).DiplomacyCiv.ChangeRelations(ThisCivilization, +1);
 
         unit.Destroy();
@@ -82,7 +114,7 @@ public class SpaceFleet : AbilityBase
         // Визуализация завоеваний
         for (int i = 0; i < planets; i++)
         {
-            var planet = _planetsFactory.GetNewUnit(TypePlanetEnum.Ideal);
+            var planet = _planetsFactory.GetNewUnit(SpriteUnitEnum.Ideal);
             planet.ConquestPlanets(civilizationTarget.PositionCiv, ThisCivilization.PositionCiv, () => { ThisCivilization.CivData.Planets++; planet.Destroy(); });
         }
     }

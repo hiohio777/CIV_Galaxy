@@ -48,5 +48,4 @@ public class MessageStartGame : MessageBase
 
         _animator.SetTrigger("CloseMessage");
     }
-    
 }

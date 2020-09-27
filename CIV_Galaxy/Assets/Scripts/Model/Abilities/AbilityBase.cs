@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class AbilityBase : MonoBehaviour, IAbility
@@ -11,7 +12,6 @@ public abstract class AbilityBase : MonoBehaviour, IAbility
     protected ICivilization ThisCivilization { get; private set; }
 
     public string Name => name;
-    public int Id { get; private set; }
     public bool IsActive { get; set; } = false; // Активен ли(доступна ли способность)
     public bool IsReady { get; set; } = false; // Готовность зарядки
     public Sprite Fon => spriteArtFon;
@@ -20,13 +20,14 @@ public abstract class AbilityBase : MonoBehaviour, IAbility
     public float GetCost => costTime;
 
 
-    public virtual void Initialize(int id, ICivilization civilization)
+    public virtual void Initialize(ICivilization civilization)
     {
-        (this.Id, this.ThisCivilization) = (id, civilization);
+        (this.ThisCivilization) = (civilization);
     }
 
     public abstract bool ApplyAl(Diplomacy diplomacyCiv);
     public abstract bool Apply(ICivilization civilizationTarget);
+    public abstract void SelectedApplayPlayer(List<ICivilizationAl> civilizationsTarget); // Выделение доступных целей
 
     public void ExecuteOnTimeEvent(float progress)
     {

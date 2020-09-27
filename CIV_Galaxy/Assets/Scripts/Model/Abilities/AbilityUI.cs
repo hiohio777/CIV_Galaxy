@@ -19,6 +19,8 @@ public class AbilityUI : MonoBehaviour, IPointerClickHandler
         this._galaxyUITimer = galaxyUITimer;
     }
 
+    public IAbility Getability => _ability;
+
     public void Assing(IAbility ability, Ability abilityCiv)
     {
         this._ability = ability;

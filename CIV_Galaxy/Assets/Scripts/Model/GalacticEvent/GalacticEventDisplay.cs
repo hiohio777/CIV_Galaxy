@@ -54,7 +54,7 @@ public class GalacticEventDisplay : MonoBehaviour, IGalacticEventDisplay
         while (timeSecond < 2f)
         {
             if (_galaxyUITimer.IsPause == false)
-                timeSecond += Time.deltaTime;
+                timeSecond += Time.deltaTime * _galaxyUITimer.GetSpeed;
 
             yield return null;
         }

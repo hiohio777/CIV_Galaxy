@@ -1,4 +1,4 @@
-﻿public enum TypePlanetEnum
+﻿public enum SpriteUnitEnum
 {
     Ideal,
 
