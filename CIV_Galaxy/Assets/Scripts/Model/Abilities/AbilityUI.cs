@@ -26,7 +26,7 @@ public class AbilityUI : MonoBehaviour, IPointerClickHandler
         this._ability = ability;
         this._abilityCiv = abilityCiv;
 
-        _ability.ProgressEvent += SetProgress;
+        abilityCiv.ProgressEvent += SetProgress;
 
         frame.sprite = _ability.Frame;
         fon.sprite = _ability.Fon;
@@ -50,7 +50,7 @@ public class AbilityUI : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (_ability.IsActive && _ability.IsReady)
+        if (_ability.IsActive && _abilityCiv.IsReady)
         {
             if (_civilizationPlayer.SelectedAbility == this)
             {
@@ -84,7 +84,7 @@ public class AbilityUI : MonoBehaviour, IPointerClickHandler
 
     public void SetReady()
     {
-        if (_ability.IsReady)
+        if (_abilityCiv.IsReady)
         {
             frame.enabled = true;
             frame.color = new Color(0, 0.7f, 1, 1);

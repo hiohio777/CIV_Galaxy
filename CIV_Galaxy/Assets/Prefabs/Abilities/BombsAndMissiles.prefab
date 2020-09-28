@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7333326909734857223}
-  - component: {fileID: 4622210127362824720}
+  - component: {fileID: 3811776985947085971}
   m_Layer: 0
-  m_Name: AbilitiesFleet_01
+  m_Name: BombsAndMissiles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4622210127362824720
+--- !u!114 &3811776985947085971
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,14 +40,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3201525429964300333}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e3d37d4b3e1b564cbc9b9ccd026c1e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 96414b5fadb16274a9d46b1a7851fa4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteArtFon: {fileID: 21300000, guid: 0af8967cdad24664f9791aff8c184c35, type: 3}
-  spriteArt: {fileID: 21300000, guid: 48741319f7b49184f9fdc23ceb814761, type: 3}
-  frame: {fileID: 21300000, guid: cc305887564ea0344905b401f36df6df, type: 3}
-  costTime: 50
-  minAttackIndustry: 0.1
-  randomAttackIndustry: 0.2
-  minConquestPlanets: 0
-  randomConquestPlanets: 0
+  spriteArtFon: {fileID: 21300000, guid: eb4cf1201595b4a49b7b9fcc2f7cbd43, type: 3}
+  spriteArt: {fileID: 21300000, guid: 8eed1055891014a46b19e699158aeb72, type: 3}
+  frame: {fileID: 21300000, guid: 816c3d5121763824ba511a6640838066, type: 3}
+  speedUnits: 3
+  countUnits: 1
+  size: 1
+  minAttackIndustry: 10
+  randomAttackIndustry: 10

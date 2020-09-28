@@ -559,10 +559,10 @@ RectTransform:
   m_Father: {fileID: 7778410559773047661}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -4.1800003, y: 0}
-  m_SizeDelta: {x: 183.63824, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 70.82, y: 0}
+  m_SizeDelta: {x: 183.63824, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2353535956764208169
 CanvasRenderer:
@@ -593,7 +593,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: ced6c8a6a1337f84cafeb9c72e965fde, type: 3}
-    m_FontSize: 38
+    m_FontSize: 45
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -947,6 +947,7 @@ GameObject:
   - component: {fileID: 8022442089728712998}
   - component: {fileID: 8022442089728712999}
   - component: {fileID: 4659932301417722615}
+  - component: {fileID: 3515930032553746362}
   m_Layer: 5
   m_Name: Civilization
   m_TagString: Untagged
@@ -1066,6 +1067,18 @@ MonoBehaviour:
   colorNeutrality: {r: 1, g: 0.9864793, b: 0, a: 1}
   colorCooperation: {r: 0.022027409, g: 0.757774, b: 0.9339623, a: 1}
   colorFriendship: {r: 0, g: 0.8018868, b: 0.06904827, a: 1}
+--- !u!114 &3515930032553746362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8022442089728712997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9429a710617449f41a9c93891fec7182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8117905285950011580
 GameObject:
   m_ObjectHideFlags: 0

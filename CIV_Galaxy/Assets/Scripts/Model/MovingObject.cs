@@ -10,7 +10,7 @@ public class MovingObject : MonoBehaviour
 
     private Vector3 positionTarget;
     private float scaleTarget;
-    private float timePositionTarget, timeScaleTarget;
+    private float timePositionTarget, timeScaleTarget, timeWait;
 
     // Bezier
     private Vector3 positionStart, posBezier1, posBezier2;
@@ -60,6 +60,11 @@ public class MovingObject : MonoBehaviour
         return this;
     }
 
+    public MovingObject SetWaitForSeconds(float timeWait)
+    {
+        this.timeWait = timeWait;
+        return this;
+    }
     public void Run() => Run(null);
     public void Run(Action execute)
     {
@@ -74,6 +79,12 @@ public class MovingObject : MonoBehaviour
 
     private IEnumerator MoveToBezier()
     {
+        if (timeWait > 0)
+        {
+            yield return new WaitForSeconds(timeWait / _galaxyUITimer.GetSpeed);
+            timeWait = 0;
+        }
+
         float t = 0;
         positionStart = _transform.position;
 
@@ -81,7 +92,7 @@ public class MovingObject : MonoBehaviour
         {
             if (_galaxyUITimer.IsPause == false)
             {
-                    t = Mathf.Clamp(t + (Time.deltaTime * _galaxyUITimer.GetSpeed) / timePositionTarget, 0, 1f);
+                t = Mathf.Clamp(t + (Time.deltaTime * _galaxyUITimer.GetSpeed) / timePositionTarget, 0, 1f);
 
                 _transform.position = Bezier.GetPoint(positionStart, posBezier1, posBezier2, positionTarget, t);
                 _transform.up = Bezier.GetFirstDerivative(positionStart, posBezier1, posBezier2, positionTarget, t);
@@ -96,6 +107,12 @@ public class MovingObject : MonoBehaviour
 
     private IEnumerator MoveTo()
     {
+        if (timeWait > 0)
+        {
+            yield return new WaitForSeconds(timeWait / _galaxyUITimer.GetSpeed);
+            timeWait = 0;
+        }
+
         float speedMove = Vector2.Distance(_transform.position, positionTarget) / timePositionTarget;
 
         while (_transform.position != positionTarget)
@@ -115,6 +132,12 @@ public class MovingObject : MonoBehaviour
 
     private IEnumerator Resize()
     {
+        if (timeWait > 0)
+        {
+            yield return new WaitForSeconds(timeWait / _galaxyUITimer.GetSpeed);
+            timeWait = 0;
+        }
+
         var target = new Vector3(scaleTarget, scaleTarget, scaleTarget);
         float speedMove = Vector2.Distance(_transform.localScale, target) / timeScaleTarget;
 

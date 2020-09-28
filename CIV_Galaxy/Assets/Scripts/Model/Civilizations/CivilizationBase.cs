@@ -15,8 +15,6 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
         (this.CivData, this.ScanerPlanets, this.ScienceCiv, this.IndustryCiv, this.AbilityCiv)
         = (civData, scanerPlanets, scienceCiv, industryCiv, abilityCiv);
 
-        var canvas = GetComponent<Canvas>();
-        canvas.worldCamera = Camera.main;
         PositionCiv = transform.position;
     }
 
@@ -57,5 +55,4 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
 
     public abstract void ExicuteScanning();
     public abstract void ExicuteSciencePoints(int sciencePoints);
-    public abstract void ExicuteAbility(IAbility ability);
 }

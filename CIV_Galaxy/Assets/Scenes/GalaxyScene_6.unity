@@ -191,7 +191,7 @@ PrefabInstance:
     - target: {fileID: 8022442089728713016, guid: e143e36bd3904c544a715e6dda2c1952,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -650
+      value: -600
       objectReference: {fileID: 0}
     - target: {fileID: 8022442089728713016, guid: e143e36bd3904c544a715e6dda2c1952,
         type: 3}
@@ -331,7 +331,7 @@ PrefabInstance:
     - target: {fileID: 8022442089728713016, guid: e143e36bd3904c544a715e6dda2c1952,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -650
+      value: -600
       objectReference: {fileID: 0}
     - target: {fileID: 8022442089728713016, guid: e143e36bd3904c544a715e6dda2c1952,
         type: 3}
@@ -471,7 +471,7 @@ PrefabInstance:
     - target: {fileID: 8022442089728713016, guid: e143e36bd3904c544a715e6dda2c1952,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 720
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 8022442089728713016, guid: e143e36bd3904c544a715e6dda2c1952,
         type: 3}
@@ -859,7 +859,7 @@ PrefabInstance:
     - target: {fileID: 8022442089728713016, guid: e143e36bd3904c544a715e6dda2c1952,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -720
+      value: -700
       objectReference: {fileID: 0}
     - target: {fileID: 8022442089728713016, guid: e143e36bd3904c544a715e6dda2c1952,
         type: 3}
@@ -1140,7 +1140,7 @@ PrefabInstance:
     - target: {fileID: 8022442089728713016, guid: e143e36bd3904c544a715e6dda2c1952,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 650
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 8022442089728713016, guid: e143e36bd3904c544a715e6dda2c1952,
         type: 3}
@@ -1280,7 +1280,7 @@ PrefabInstance:
     - target: {fileID: 8022442089728713016, guid: e143e36bd3904c544a715e6dda2c1952,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 650
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 8022442089728713016, guid: e143e36bd3904c544a715e6dda2c1952,
         type: 3}
@@ -1619,6 +1619,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GalaxySceneUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8250116365497581842, guid: 9ddb94fc153f0bc4ab60e07208ed7191,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ddb94fc153f0bc4ab60e07208ed7191, type: 3}

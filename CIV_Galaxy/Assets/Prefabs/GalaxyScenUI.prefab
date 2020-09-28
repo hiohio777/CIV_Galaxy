@@ -886,7 +886,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -50}
+  m_AnchoredPosition: {x: 0, y: -50.00006}
   m_SizeDelta: {x: 0, y: -100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1373976220845952636
@@ -941,6 +941,7 @@ GameObject:
   - component: {fileID: 460271392026657371}
   - component: {fileID: 8157961634398486361}
   - component: {fileID: 1630231165867566573}
+  - component: {fileID: 6632846541473747234}
   m_Layer: 5
   m_Name: GalaxyScenUI
   m_TagString: Untagged
@@ -1083,6 +1084,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allPlanet: 2000
+--- !u!114 &6632846541473747234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8157961634398486360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9429a710617449f41a9c93891fec7182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8192652094239640577
 GameObject:
   m_ObjectHideFlags: 0
@@ -2162,9 +2175,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &455476905908130859 stripped
+--- !u!114 &3782637140649958857 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7489967120378482284, guid: 41358cd17be67034caa35c57b76f98fe,
+  m_CorrespondingSourceObject: {fileID: 6187163914370566030, guid: 41358cd17be67034caa35c57b76f98fe,
     type: 3}
   m_PrefabInstance: {fileID: 7035634979217316423}
   m_PrefabAsset: {fileID: 0}
@@ -2174,9 +2187,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3782637140649958857 stripped
+--- !u!114 &455476905908130859 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6187163914370566030, guid: 41358cd17be67034caa35c57b76f98fe,
+  m_CorrespondingSourceObject: {fileID: 7489967120378482284, guid: 41358cd17be67034caa35c57b76f98fe,
     type: 3}
   m_PrefabInstance: {fileID: 7035634979217316423}
   m_PrefabAsset: {fileID: 0}

@@ -87,7 +87,4 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
         ScanerPlanets.ProgressEvent -= _scanerPanelUI.ProgressEvent;
         ScienceCiv.ProgressEvent -= _sciencePanelUI.ProgressEvent;
     }
-
-    public override void ExicuteAbility(IAbility ability)
-    { }
 }

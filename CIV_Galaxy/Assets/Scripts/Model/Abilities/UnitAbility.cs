@@ -5,15 +5,13 @@ using Zenject;
 public class UnitAbility : UnitBase, IUnitAbility
 {
     [SerializeField] private SpriteRenderer frame, art;
-    protected AbilityBase _ability;
 
     public class Factory : PlaceholderFactory<Action<UnitBase>, UnitAbility> { }
 
-    public UnitAbility Initialize(AbilityBase ability, Vector3 startPosition, TypeDisplayAbilityEnum type)
+    public UnitAbility Initialize(AttackerAbility ability, Vector3 startPosition, TypeDisplayAbilityEnum type)
     {
         gameObject.SetActive(true);
 
-        this._ability = ability;
         transform.position = startPosition;
         transform.localScale = new Vector3(0, 0, 0);
 

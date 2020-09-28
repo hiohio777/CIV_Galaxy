@@ -20,7 +20,6 @@ public interface ICivilization
     void ExicuteScanning();
     void ExicuteSciencePoints(int sciencePoints);
     void ExicuteIndustryPoints(float points);
-    void ExicuteAbility(IAbility ability);
     void DefineLeader(LeaderEnum leaderEnum);
 }
 

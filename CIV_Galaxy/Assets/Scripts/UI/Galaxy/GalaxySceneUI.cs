@@ -45,8 +45,6 @@ public class GalaxySceneUI : MonoBehaviour
     {
         InitializeNewGame();
 
-        var canvas = GetComponent<Canvas>();
-        canvas.worldCamera = Camera.main;
         _animator = GetComponent<Animator>();
         _animator.SetTrigger("Start");
     }
@@ -55,9 +53,8 @@ public class GalaxySceneUI : MonoBehaviour
     {
         _allCivilizations.Refresh();
 
-        // Создание цивилизации игрока
+        // Создание цивилизаций
         _civPlayer.Assign(_allCivilizations.GetCivilizationPlayer(_playerData.CurrentCivilization));
-        // Создание других цивилизаций
         _civsAl.ForEach(x => x.Assign(_allCivilizations.GetCivilizationEnemy()));
     }
 }

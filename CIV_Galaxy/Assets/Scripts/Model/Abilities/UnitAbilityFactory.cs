@@ -9,7 +9,7 @@ public class UnitAbilityFactory : UnitBaseFactory
         this.factory = factory;
     }
 
-    public IUnitAbility GetNewUnit(AbilityBase ability, ICivilization civilization, ICivilization civilizationTarget)
+    public IUnitAbility GetNewUnit(AttackerAbility ability, ICivilization civilization, ICivilization civilizationTarget)
     {
         UnitAbility unit;
 

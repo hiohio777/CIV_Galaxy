@@ -33,6 +33,7 @@ public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
         = (galacticEventGenerator, player, diplomacyCiv);
 
         TurnOffFrame();
+        civilizationUI.Close();
     }
 
     public override void Assign(CivilizationScriptable civData)
@@ -70,20 +71,6 @@ public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
     public override void ExicuteScanning()
     {
         if (IsOpen) civilizationUI.ScanerEffect();
-    }
-
-    public override void ExicuteAbility(IAbility ability)
-    {
-        AbilityCiv.ApplyAl(DiplomacyCiv);
-    }
-
-    private void Start()
-    {
-        var canvas = GetComponent<Canvas>();
-        canvas.worldCamera = Camera.main;
-        canvas.sortingLayerName = "Default";
-
-        civilizationUI.Close();
     }
 
     public void SetSetDiplomaticRelations(DiplomaticRelationsEnum relations)

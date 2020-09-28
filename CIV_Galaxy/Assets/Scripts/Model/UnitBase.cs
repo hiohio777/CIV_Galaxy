@@ -34,6 +34,7 @@ public class UnitBase : MonoBehaviour
         moving.SetPosition(positionTarget, timePositionTarget);
     public MovingObject SetScale(float scaleTarget, float timeScaleTarget) =>
         moving.SetScale(scaleTarget, timeScaleTarget);
+    public MovingObject SetWaitForSeconds(float timeWait) => moving.SetWaitForSeconds(timeWait);
     public void Run() => moving.Run();
     public void Run(Action execute) => moving.Run(execute);
     #endregion
