@@ -8,7 +8,7 @@ public class GalacticEventDisplay : MonoBehaviour, IGalacticEventDisplay
 {
     [SerializeField] private MovingObject moving;
     [SerializeField] private SpriteRenderer art;
-    [SerializeField] private Sprite dominationBonusSprite, industryBonusSprite, sciencePointBonusSprite, researchBonusSprite;
+    [SerializeField] private Sprite dominationBonusSprite, industryBonusSprite, sciencePointBonusSprite, researchBonusSprite, progressAbiliryBonusSprite;
 
     private GalacticEvent _galacticEvent;
     private bool isActive = false;
@@ -29,6 +29,7 @@ public class GalacticEventDisplay : MonoBehaviour, IGalacticEventDisplay
             case IndustryBonus _: Assing(new Vector3(208, -364), industryBonusSprite, Color.red); break;
             case SciencePointBonus _: Assing(new Vector3(-204, -423), sciencePointBonusSprite, Color.green); break;
             case ResearchBonus _: Assing(new Vector3(-208, -363), researchBonusSprite, Color.cyan); break;
+            case ProgressAbiliryBonus _: Assing(new Vector3(-236, -31), progressAbiliryBonusSprite, Color.blue); break;
         }
 
         isActive = false;

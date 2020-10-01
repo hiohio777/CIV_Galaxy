@@ -1,6 +1,6 @@
 ﻿public class GalacticEventGenerator : CivilizationStructureBase
 {
-    protected float _progressInterval = 30; // Интервал
+    protected float _progressInterval = 6; // Интервал
     private float _progress = 0; // Прогресс
 
     private ICivilization _civilization;
@@ -8,26 +8,24 @@
     public void Initialize(ICivilization civilization)
     {
         this._civilization = civilization;
-
-        _progressInterval = UnityEngine.Random.Range(5, 10);
     }
 
     protected override void ExecuteOnTimeEvent(float deltaTime)
     {
         _progress += deltaTime;
 
-        if (_progress > _progressInterval)
+        if (_progress >= _progressInterval)
         {
-            _progress = 0;
+            _progress -= _progressInterval;
 
+            SelectEvent().Execute();
+            _progressInterval = GetInterval; // Задать время для срабатывания нового события
             StartNewGalacticEvent();
         }
     }
 
     protected virtual void StartNewGalacticEvent()
     {
-        SelectEvent().Execute();
-        _progressInterval = GetInterval; // Задать время для срабатывания нового события
     }
 
     protected GalacticEvent SelectEvent()
@@ -45,6 +43,10 @@
         else if (resultRandom <= 6)
         {
             return new ResearchBonus(_civilization);
+        }
+        else if (resultRandom <= 9)
+        {
+            return new ProgressAbiliryBonus(_civilization);
         }
 
         return new DominationBonus(_civilization);

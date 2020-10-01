@@ -53,7 +53,7 @@ public class Industry : CivilizationStructureBase
 
         if (_progress > _progressInterval)
         {
-            _progress = 0;
+            _progress -= _progressInterval;
 
             Points += 0.01f;
             _civilization.ExicuteIndustryPoints(Points);

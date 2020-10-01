@@ -36,7 +36,7 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
         // Инициализация данных
         CivData.Initialize(this);
         ScanerPlanets.Initialize(this);
-        ScienceCiv.Initialize(this, IndustryCiv);
+        ScienceCiv.Initialize(this);
         IndustryCiv.Initialize(this);
 
         isAssign = true;

@@ -2,12 +2,10 @@
 
 public class GalacticEventGeneratorPlayer : GalacticEventGenerator
 {
-    private IGalaxyUITimer _galaxyUITimer;
     private IGalacticEventDisplay _galacticEventDisplay;
 
-    public GalacticEventGeneratorPlayer(IGalaxyUITimer galaxyUITimer, IGalacticEventDisplay galacticEventDisplay)
+    public GalacticEventGeneratorPlayer(IGalacticEventDisplay galacticEventDisplay)
     {
-        this._galaxyUITimer = galaxyUITimer;
         this._galacticEventDisplay = galacticEventDisplay;
     }
 

@@ -7,7 +7,7 @@ public class ResearchBonus : GalacticEvent
 
     public override float Execute()
     {
-        float count = 3f;
+        float count = 15f;
         _civilization.ScienceCiv.AddProgress(count);
 
         return count;

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 201261495}
   - component: {fileID: 201261499}
   - component: {fileID: 201261498}
-  - component: {fileID: 201261497}
   - component: {fileID: 201261496}
   m_Layer: 0
   m_Name: Star Destroyers
@@ -104,19 +103,6 @@ MonoBehaviour:
   isAvailable: 0
   colorResearch: {r: 0.48504806, g: 0.9433962, b: 0.50621927, a: 1}
   colorAvailable: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &201261497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 201261494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae0c4c87433ec8245bc9dae3715aafcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillRechargeCost: 0.3
 --- !u!114 &201261496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,8 +115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f401baac2f8354191779782cf9168a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minAttackIndustry: 0.1
-  randomAttackIndustry: 0
   minConquestPlanets: 2
   randomConquestPlanets: 0
 --- !u!1 &504536936
@@ -246,8 +230,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f401baac2f8354191779782cf9168a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minAttackIndustry: 0
-  randomAttackIndustry: 0.1
   minConquestPlanets: 0
   randomConquestPlanets: 5
 --- !u!1 &670636016
@@ -365,8 +347,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f401baac2f8354191779782cf9168a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minAttackIndustry: 0
-  randomAttackIndustry: 0
   minConquestPlanets: 0
   randomConquestPlanets: 3
 --- !u!1 &751687964
@@ -483,10 +463,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f401baac2f8354191779782cf9168a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minAttackIndustry: 0
-  randomAttackIndustry: 0.2
   minConquestPlanets: 0
-  randomConquestPlanets: 0
+  randomConquestPlanets: 20
 --- !u!1 &824829351
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,7 +476,7 @@ GameObject:
   - component: {fileID: 824829352}
   - component: {fileID: 824829356}
   - component: {fileID: 824829355}
-  - component: {fileID: 824829353}
+  - component: {fileID: 8971124440113936000}
   m_Layer: 0
   m_Name: Galactic shipyards
   m_TagString: Untagged
@@ -588,7 +566,7 @@ MonoBehaviour:
   isAvailable: 0
   colorResearch: {r: 0.48504806, g: 0.9433962, b: 0.50621927, a: 1}
   colorAvailable: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &824829353
+--- !u!114 &8971124440113936000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -757,9 +735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f401baac2f8354191779782cf9168a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minAttackIndustry: 0
-  randomAttackIndustry: 0.2
-  minConquestPlanets: 0
+  minConquestPlanets: 10
   randomConquestPlanets: 0
 --- !u!1 &1588055846
 GameObject:
@@ -875,8 +851,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f401baac2f8354191779782cf9168a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minAttackIndustry: 0
-  randomAttackIndustry: 0
   minConquestPlanets: 2
   randomConquestPlanets: 0
 --- !u!1 &1700868644
@@ -992,9 +966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f401baac2f8354191779782cf9168a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minAttackIndustry: 0.1
-  randomAttackIndustry: 0
-  minConquestPlanets: 0
+  minConquestPlanets: 10
   randomConquestPlanets: 0
 --- !u!1 &1738160769
 GameObject:
@@ -1340,8 +1312,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f401baac2f8354191779782cf9168a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minAttackIndustry: 0
-  randomAttackIndustry: 0
   minConquestPlanets: 0
   randomConquestPlanets: 10
 --- !u!1 &647361106758389662
@@ -3409,7 +3379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d77a07520a479c24a897f83ce46ccb77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accelerationIndustry: 0.5
+  accelerationIndustry: 1
 --- !u!1 &6033414042250646925
 GameObject:
   m_ObjectHideFlags: 0
@@ -4218,7 +4188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d77a07520a479c24a897f83ce46ccb77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accelerationIndustry: 1.5
+  accelerationIndustry: 1
 --- !u!1 &8999729424843480456
 GameObject:
   m_ObjectHideFlags: 0

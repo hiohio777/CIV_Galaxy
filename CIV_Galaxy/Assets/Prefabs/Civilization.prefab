@@ -946,8 +946,8 @@ GameObject:
   - component: {fileID: 8022442089728713017}
   - component: {fileID: 8022442089728712998}
   - component: {fileID: 8022442089728712999}
-  - component: {fileID: 4659932301417722615}
   - component: {fileID: 3515930032553746362}
+  - component: {fileID: 4659932301417722615}
   m_Layer: 5
   m_Name: Civilization
   m_TagString: Untagged
@@ -1037,6 +1037,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3515930032553746362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8022442089728712997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9429a710617449f41a9c93891fec7182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4659932301417722615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1067,18 +1079,6 @@ MonoBehaviour:
   colorNeutrality: {r: 1, g: 0.9864793, b: 0, a: 1}
   colorCooperation: {r: 0.022027409, g: 0.757774, b: 0.9339623, a: 1}
   colorFriendship: {r: 0, g: 0.8018868, b: 0.06904827, a: 1}
---- !u!114 &3515930032553746362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8022442089728712997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9429a710617449f41a9c93891fec7182, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8117905285950011580
 GameObject:
   m_ObjectHideFlags: 0

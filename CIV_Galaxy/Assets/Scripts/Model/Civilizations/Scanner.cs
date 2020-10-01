@@ -47,7 +47,7 @@ public class Scanner : CivilizationStructureBase
 
         if (_progress > _progressInterval)
         {
-            _progress = 0;
+            _progress -= _progressInterval;
             DiscoverPlanet();
 
             _civilization.ExicuteScanning();

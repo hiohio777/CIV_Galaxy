@@ -11,13 +11,11 @@ public class Science : CivilizationStructureBase
     private ICivilization _civilization;
     private DiscoveryCell _currentDiscovery;
     private ScienceData _scienceData;
-    Industry _industry;
 
     public Science() { }
 
-    public void Initialize(ICivilization civilization, Industry industry)
+    public void Initialize(ICivilization civilization)
     {
-        this._industry = industry;
         this._civilization = civilization;
         _scienceData = this._civilization.DataBase.Science;
 
@@ -101,12 +99,12 @@ public class Science : CivilizationStructureBase
     {
         if (IsActive == false) return;
 
-        _progress += deltaTime * (_scienceData.Acceleration + (_industry.Points / 2 * AccelerationBonus));
+        _progress += deltaTime * (_scienceData.Acceleration + (_civilization.IndustryCiv.Points / 2 * AccelerationBonus));
         ProgressEvent?.Invoke(ProgressProc);
 
         if (_progress > _progressInterval)
         {
-            _progress = 0;
+            _progress -= _progressInterval;
 
             Points++;
             _civilization.ExicuteSciencePoints(Points);

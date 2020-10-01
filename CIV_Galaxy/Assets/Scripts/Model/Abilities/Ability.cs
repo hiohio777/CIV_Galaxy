@@ -6,7 +6,7 @@ using UnityEngine;
 public class Ability : CivilizationStructureBase
 {
     public event Action<float> ProgressEvent; // Отображение на экране
-    private float _progress, _maxProgress = 60;
+    private float _progress, _progressInterval = 60;
 
     private AbilityFactory _abilityFactory;
     protected ICivilization _civilization;
@@ -17,11 +17,18 @@ public class Ability : CivilizationStructureBase
     }
 
     public bool IsActive { get; set; } = false; // Активен ли(доступна ли способность)
+    protected float ProgressProc => _progress / (_progressInterval / 100); // Прогресс в процентах
     public List<IAbility> Abilities { get; private set; }
+
+    public void AddProgress(float count)
+    {
+        _progress += _progressInterval / 100 * count; ;
+        ProgressEvent?.Invoke(ProgressProc);
+    }
 
     //Бонусы
     public float AccelerationBonus { get; set; } = 1; // Бонус скорости работы
-    public bool IsReady => _progress >= _maxProgress;
+    public bool IsReady => _progress >= _progressInterval;
 
     public virtual void Initialize(ICivilization civilization)
     {
@@ -30,7 +37,7 @@ public class Ability : CivilizationStructureBase
 
         if (civilization is ICivilizationAl)
         {
-            _progress = UnityEngine.Random.Range(0, _maxProgress);
+            _progress = UnityEngine.Random.Range(0, _progressInterval);
             AssingCurrentAlAbility();
         }
 
@@ -49,14 +56,14 @@ public class Ability : CivilizationStructureBase
     {
         if (IsActive == false) return;
 
-        if (_progress < _maxProgress)
+        if (_progress < _progressInterval)
         {
-            _progress += deltaTime * AccelerationBonus;
+            _progress += deltaTime * (_civilization.IndustryCiv.Points / 2 + AccelerationBonus);
 
-            if (_progress >= _maxProgress)
-                _progress = _maxProgress;
+            if (_progress >= _progressInterval)
+                _progress = _progressInterval;
 
-            ProgressEvent?.Invoke(_progress / (_maxProgress / 100));
+            ProgressEvent?.Invoke(ProgressProc);
 
             return;
         }

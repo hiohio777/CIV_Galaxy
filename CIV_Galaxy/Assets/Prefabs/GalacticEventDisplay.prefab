@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1855244601
-  m_SortingLayer: 1
+  m_SortingLayer: 4
   m_SortingOrder: 7
   m_Sprite: {fileID: 21300000, guid: 4fcec927cdaac3f47be7252cd4ce35b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -121,6 +121,8 @@ MonoBehaviour:
   sciencePointBonusSprite: {fileID: 21300000, guid: bdb0486fca7eeb14ab543a8df9340781,
     type: 3}
   researchBonusSprite: {fileID: 21300000, guid: 6b5f048523ae8ec47ace0ab11a47547d,
+    type: 3}
+  progressAbiliryBonusSprite: {fileID: 21300000, guid: 0af8967cdad24664f9791aff8c184c35,
     type: 3}
 --- !u!114 &8223919050781118832
 MonoBehaviour:
