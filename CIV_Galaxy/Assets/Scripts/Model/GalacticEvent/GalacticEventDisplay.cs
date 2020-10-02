@@ -29,7 +29,7 @@ public class GalacticEventDisplay : MonoBehaviour, IGalacticEventDisplay
             case IndustryBonus _: Assing(new Vector3(208, -364), industryBonusSprite, Color.red); break;
             case SciencePointBonus _: Assing(new Vector3(-204, -423), sciencePointBonusSprite, Color.green); break;
             case ResearchBonus _: Assing(new Vector3(-208, -363), researchBonusSprite, Color.cyan); break;
-            case ProgressAbiliryBonus _: Assing(new Vector3(-236, -31), progressAbiliryBonusSprite, Color.blue); break;
+            case ProgressAbiliryBonus _: Assing(new Vector3(400, -400), progressAbiliryBonusSprite, Color.grey); break;
         }
 
         isActive = false;

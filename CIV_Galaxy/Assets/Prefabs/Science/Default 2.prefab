@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minConquestPlanets: 2
-  randomConquestPlanets: 0
+  randomConquestPlanets: 2
 --- !u!1 &504536936
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f401baac2f8354191779782cf9168a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minConquestPlanets: 0
+  minConquestPlanets: 5
   randomConquestPlanets: 5
 --- !u!1 &670636016
 GameObject:
@@ -360,7 +360,7 @@ GameObject:
   - component: {fileID: 751687965}
   - component: {fileID: 751687969}
   - component: {fileID: 751687968}
-  - component: {fileID: 751687966}
+  - component: {fileID: 809587052123765459}
   m_Layer: 0
   m_Name: Orbital bombs
   m_TagString: Untagged
@@ -451,7 +451,7 @@ MonoBehaviour:
   isAvailable: 0
   colorResearch: {r: 0.48504806, g: 0.9433962, b: 0.50621927, a: 1}
   colorAvailable: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &751687966
+--- !u!114 &809587052123765459
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -460,11 +460,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 751687964}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99f401baac2f8354191779782cf9168a, type: 3}
+  m_Script: {fileID: 11500000, guid: a1c7e7ddaa414664986a132a1b3f6627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minConquestPlanets: 0
-  randomConquestPlanets: 20
+  minAttackIndustry: 10
+  randomAttackIndustry: 0
 --- !u!1 &824829351
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,7 +631,7 @@ GameObject:
   - component: {fileID: 1292728965}
   - component: {fileID: 1292728969}
   - component: {fileID: 1292728968}
-  - component: {fileID: 1292728966}
+  - component: {fileID: 1305340214273847114}
   m_Layer: 0
   m_Name: Covert operations
   m_TagString: Untagged
@@ -723,7 +723,7 @@ MonoBehaviour:
   isAvailable: 0
   colorResearch: {r: 0.48504806, g: 0.9433962, b: 0.50621927, a: 1}
   colorAvailable: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &1292728966
+--- !u!114 &1305340214273847114
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -732,11 +732,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1292728964}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99f401baac2f8354191779782cf9168a, type: 3}
+  m_Script: {fileID: 11500000, guid: a1c7e7ddaa414664986a132a1b3f6627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minConquestPlanets: 10
-  randomConquestPlanets: 0
+  minAttackIndustry: 0
+  randomAttackIndustry: 20
 --- !u!1 &1588055846
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,7 +864,7 @@ GameObject:
   - component: {fileID: 1700868645}
   - component: {fileID: 1700868649}
   - component: {fileID: 1700868648}
-  - component: {fileID: 1700868646}
+  - component: {fileID: 3232715477517115379}
   m_Layer: 0
   m_Name: Covert operations II
   m_TagString: Untagged
@@ -954,7 +954,7 @@ MonoBehaviour:
   isAvailable: 0
   colorResearch: {r: 0.48504806, g: 0.9433962, b: 0.50621927, a: 1}
   colorAvailable: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &1700868646
+--- !u!114 &3232715477517115379
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -963,11 +963,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1700868644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99f401baac2f8354191779782cf9168a, type: 3}
+  m_Script: {fileID: 11500000, guid: a1c7e7ddaa414664986a132a1b3f6627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minConquestPlanets: 10
-  randomConquestPlanets: 0
+  minAttackIndustry: 10
+  randomAttackIndustry: 10
 --- !u!1 &1738160769
 GameObject:
   m_ObjectHideFlags: 0
@@ -1082,7 +1082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0c4c87433ec8245bc9dae3715aafcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillRechargeCost: 0.1
+  skillRechargeCost: 0.2
 --- !u!1 &1995918499
 GameObject:
   m_ObjectHideFlags: 0
@@ -1198,7 +1198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0c4c87433ec8245bc9dae3715aafcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillRechargeCost: 0.2
+  skillRechargeCost: 0.3
 --- !u!1 &2113682892
 GameObject:
   m_ObjectHideFlags: 0

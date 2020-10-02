@@ -5,7 +5,7 @@
 
     public override float Execute()
     {
-        float count = 10f;
+        float count = 20f;
         _civilization.AbilityCiv.AddProgress(count);
 
         return count;

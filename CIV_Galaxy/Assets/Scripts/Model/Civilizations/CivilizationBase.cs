@@ -10,12 +10,14 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
 
     [Inject]
     public void Inject(CivilizationData civData, Scanner scanerPlanets, Science scienceCiv,
-        Industry industryCiv, Ability abilityCiv)
+        Industry industryCiv, Ability abilityCiv, ValueChangeEffectFactory valueChangeEffectFactory)
     {
         (this.CivData, this.ScanerPlanets, this.ScienceCiv, this.IndustryCiv, this.AbilityCiv)
         = (civData, scanerPlanets, scienceCiv, industryCiv, abilityCiv);
 
         PositionCiv = transform.position;
+
+        civilizationUI.valueChangeEffectFactory = valueChangeEffectFactory;
     }
 
     public CivilizationUI CivUI => civilizationUI;

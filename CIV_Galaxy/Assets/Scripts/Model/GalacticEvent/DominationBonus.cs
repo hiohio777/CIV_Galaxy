@@ -8,7 +8,7 @@ public class DominationBonus : GalacticEvent
     public override float Execute()
     {
         float count = _civilization.CivData.Planets * 1.5f;
-        _civilization.CivData.DominationPoints += count;
+        _civilization.CivData.AddDominance(count);
 
         return count;
     }

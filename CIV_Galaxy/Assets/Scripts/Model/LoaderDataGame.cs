@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class LoaderDataGame
 {
-    public bool IsLoad { get; private set; }
+    private static bool isLoad = false;
 
     public void Load(Action startGame, Action restartMainScene)
     {
-        if (IsLoad)
+        if (isLoad)
         {
             Debug.Log("Data already loaded!");
             restartMainScene.Invoke();
@@ -17,7 +17,7 @@ public class LoaderDataGame
 
         // Загрузка данных
         Debug.Log("Data Loaded!");
-        IsLoad = true;
+        isLoad = true;
         startGame.Invoke();
     }
 

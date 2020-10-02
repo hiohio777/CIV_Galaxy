@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-public class PlanetsFactory : UnitBaseFactory
+public class PlanetsFactory : BaseFactory
 {
     private readonly Planet.Factory factory;
 
@@ -21,9 +21,9 @@ public class PlanetsFactory : UnitBaseFactory
     }
 }
 
-public abstract class UnitBaseFactory
+public abstract class BaseFactory
 {
-    protected readonly Stack<UnitBase> buffer = new Stack<UnitBase>();
+    protected readonly Stack<object> buffer = new Stack<object>();
     public void ClearBuffer() => buffer.Clear();
-    protected void Buffered(UnitBase obj) => buffer.Push(obj);
+    protected void Buffered(object obj) => buffer.Push(obj);
 }

@@ -4,7 +4,7 @@ using Zenject;
 
 public class GalaxySceneDIInstaller : MonoInstaller
 {
-    [SerializeField] private UnityEngine.Object planetPrefab, discoveryCellUIPrefab, unitAbilityPrefab;
+    [SerializeField] private UnityEngine.Object planetPrefab, discoveryCellUIPrefab, unitAbilityPrefab, valueChangeEffectPrefab;
 
     public override void InstallBindings()
     {
@@ -50,10 +50,12 @@ public class GalaxySceneDIInstaller : MonoInstaller
         // Фабрики
         Container.Bind<PlanetsFactory>().AsSingle();
         Container.Bind<UnitAbilityFactory>().AsSingle(); 
-        Container.Bind<AbilityFactory>().AsSingle();
+        Container.Bind<AbilityFactory>().AsSingle(); 
+        Container.Bind<ValueChangeEffectFactory>().AsSingle();
 
-        Container.BindFactory<Action<UnitBase>, Planet, Planet.Factory>().FromComponentInNewPrefab(planetPrefab).AsSingle();
-        Container.BindFactory<Action<UnitBase>, UnitAbility, UnitAbility.Factory>().FromComponentInNewPrefab(unitAbilityPrefab).AsSingle();
+        Container.BindFactory<Action<object>, ValueChangeEffect, ValueChangeEffect.Factory>().FromComponentInNewPrefab(valueChangeEffectPrefab).AsSingle();
+        Container.BindFactory<Action<object>, Planet, Planet.Factory>().FromComponentInNewPrefab(planetPrefab).AsSingle();
+        Container.BindFactory<Action<object>, UnitAbility, UnitAbility.Factory>().FromComponentInNewPrefab(unitAbilityPrefab).AsSingle();
         Container.BindFactory<DiscoveryCell, DiscoveryCellUI, DiscoveryCellUI.Factory>().FromComponentInNewPrefab(discoveryCellUIPrefab).AsSingle();
     }
 }

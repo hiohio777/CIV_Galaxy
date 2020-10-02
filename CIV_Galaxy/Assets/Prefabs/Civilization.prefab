@@ -1071,6 +1071,7 @@ MonoBehaviour:
     countDominationPoints: {fileID: 869060075909551481}
     indicator: {fileID: 8193258387431219689}
     animatorScanerEffect: {fileID: 5012203477155469800}
+    transform: {fileID: 0}
   leaderIcon: {fileID: 7620817684608587050}
   frame: {fileID: 4524077270428614310}
   diplomaticRelationsIcon: {fileID: 2880793333301797660}

@@ -8,10 +8,10 @@ public class UnitBase : MonoBehaviour
     [SerializeField] private GameObject unitDisplay;
     private static int sortingOrder = 0;
     private MovingObject moving;
-    private Action<UnitBase> _buffered;
+    private Action<object> _buffered;
 
     [Inject]
-    public void Inject(Action<UnitBase> buffered)
+    public void Inject(Action<object> buffered)
     {
         this._buffered = buffered;
         TtransformUnit = transform;

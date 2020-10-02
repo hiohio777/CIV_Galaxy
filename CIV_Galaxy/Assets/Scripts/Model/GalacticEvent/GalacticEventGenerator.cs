@@ -32,24 +32,19 @@
     {
         int resultRandom = UnityEngine.Random.Range(0, 10);
 
-        if (resultRandom == 0)
+        if (resultRandom > 0)
         {
-            return new SciencePointBonus(_civilization);
-        }
-        else if (resultRandom <= 3)
-        {
-            return new IndustryBonus(_civilization);
-        }
-        else if (resultRandom <= 6)
-        {
-            return new ResearchBonus(_civilization);
-        }
-        else if (resultRandom <= 9)
-        {
-            return new ProgressAbiliryBonus(_civilization);
+            resultRandom = UnityEngine.Random.Range(0, 4);
+            switch (resultRandom)
+            {
+                case 0: return new IndustryBonus(_civilization);
+                case 1: return new ResearchBonus(_civilization);
+                case 2: return new ProgressAbiliryBonus(_civilization);
+                default: return new DominationBonus(_civilization);
+            }
         }
 
-        return new DominationBonus(_civilization);
+        return new SciencePointBonus(_civilization);
     }
 
     protected float GetInterval => UnityEngine.Random.Range(10, 20);

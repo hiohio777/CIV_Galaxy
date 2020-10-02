@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class UnitAbilityFactory : UnitBaseFactory
+public class UnitAbilityFactory : BaseFactory
 {
     private readonly UnitAbility.Factory factory;
 

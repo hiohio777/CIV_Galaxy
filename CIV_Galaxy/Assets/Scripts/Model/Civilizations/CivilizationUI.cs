@@ -18,6 +18,8 @@ public class CivilizationUI
     [SerializeField] private Image indicator;
     [SerializeField] private Animator animatorScanerEffect;
 
+    public ValueChangeEffectFactory valueChangeEffectFactory;
+
     public void SetIndustryPoints(float points)
     {
         indicator.fillAmount = points;
@@ -31,9 +33,10 @@ public class CivilizationUI
         countPlanet.text = count.ToString();
     }
 
-    public void SetCountDominationPoints(float dominationPoints)
+    public void SetCountDominationPoints(float dominationPoints, float count)
     {
-        countDominationPoints.text = ((int)dominationPoints).ToString("#,#");
+        Action act = () => countDominationPoints.text = ((int)dominationPoints).ToString("#,#");
+        valueChangeEffectFactory.GetEffect().Display(countDominationPoints.transform, ((int)count).ToString("#,#"), count > 0, act);
     }
 
     public void SetAdvancedDomination(LeaderEnum leaderEnum)
@@ -80,8 +83,9 @@ public class CivilizationUI
         if (panel != null) panel.SetActive(true);
         name.text = civilization.DataBase.Name;
 
+        countDominationPoints.text = ((int)civilization.CivData.DominationPoints).ToString("#,#");
+
         SetCountPlanet(civilization.CivData.Planets);
-        SetCountDominationPoints(civilization.CivData.DominationPoints);
         SetIndustryPoints(civilization.IndustryCiv.Points);
         SetAdvancedDomination(civilization.IsLider);
     }

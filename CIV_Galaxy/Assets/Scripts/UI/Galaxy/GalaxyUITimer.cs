@@ -12,7 +12,6 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
     [SerializeField, Space(10)] private float lengthOfYear = 4;
     [SerializeField] private Sprite playIcon, pauseIcon;
 
-
     private float speedGame = 0.5f;
     private int years;
     private ICivilizationPlayer _civilizationPlayer;
@@ -20,6 +19,7 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
     public bool IsPause { get; private set; }
     public event Action ExecuteYears; // События происходящие каждый год
     public event Action<float> ExecuteOfTime = delegate { }; // Постоянный апдейт
+    public event Action<bool> PauseAct; // События вызываются когда игра ставится или снимается с паузы(нужно для контроля за анимациями)
 
     public float GetYears => years;
     public float GetSpeed => speedGame;
@@ -45,6 +45,8 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
             buttonPause.image.sprite = playIcon;
         else
             buttonPause.image.sprite = pauseIcon;
+
+        PauseAct?.Invoke(IsPause);
     }
 
     private void OnAssingSpeed()
@@ -99,6 +101,7 @@ public interface IGalaxyUITimer
 {
     event Action ExecuteYears; // События происходящие каждый год
     event Action<float> ExecuteOfTime;
+    event Action<bool> PauseAct;
     bool IsPause { get; }
     float GetYears { get; }
     float GetSpeed { get; }

@@ -82,3 +82,5 @@ MonoBehaviour:
     type: 3}
   unitAbilityPrefab: {fileID: 3763614538343413743, guid: d16eb0d097cd5d94388543cb75b42beb,
     type: 3}
+  valueChangeEffectPrefab: {fileID: 57317334369050565, guid: cebdcc0e6bc7a3c499fdfde0d35683f2,
+    type: 3}

@@ -18,7 +18,7 @@ public class CivilizationData
     public int Planets { get => _planets; set { _planets = value; _civilization.CivUI.SetCountPlanet(_planets); } }
     public float DominationPoints {
         get => _dominationPoints; set {
-            _civilization.CivUI.SetCountDominationPoints(_dominationPoints = value);
+            _dominationPoints = value;
             _leaderQualifier.DefineLeader(_civilization);
         }
     }
@@ -44,6 +44,12 @@ public class CivilizationData
         planet.Destroy();
     }
 
+    public void AddDominance(float count)
+    {
+        DominationPoints += count;
+        _civilization.CivUI.SetCountDominationPoints(DominationPoints, count);
+    }
+
     public float GetPointsFromPlanets => _planets * (_civilization.DataBase.Base.GrowthDominancePlanets + GrowthDominancePlanetsBonus);
     public float GetPointsFromIndustry => _planets * (GetIndustryPoints.Invoke() * (_civilization.DataBase.Base.GrowthDominanceIndustry + GrowthDominanceIndustryBonus));
     public float GetPointsFromBonus => GetPointsFromPlanets + GetPointsFromIndustry;
@@ -52,6 +58,9 @@ public class CivilizationData
     private void ProgressDominance()
     {
         // подсчёт
-        DominationPoints += GetPointsAll;
+        float count = GetPointsAll;
+        DominationPoints += count;
+
+        _civilization.CivUI.SetCountDominationPoints(DominationPoints, count);
     }
 }

@@ -6,7 +6,7 @@ public class Planet : UnitBase, IPlanet
 {
     [SerializeField] protected SpriteRenderer art;
 
-    public class Factory : PlaceholderFactory<Action<UnitBase>, Planet> { }
+    public class Factory : PlaceholderFactory<Action<object>, Planet> { }
 
     public Planet Initialize(SpriteUnitEnum typePlanet)
     {

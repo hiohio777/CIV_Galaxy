@@ -6,7 +6,7 @@ public class UnitAbility : UnitBase, IUnitAbility
 {
     [SerializeField] private SpriteRenderer frame, art;
 
-    public class Factory : PlaceholderFactory<Action<UnitBase>, UnitAbility> { }
+    public class Factory : PlaceholderFactory<Action<object>, UnitAbility> { }
 
     public UnitAbility Initialize(AttackerAbility ability, Vector3 startPosition, TypeDisplayAbilityEnum type)
     {
