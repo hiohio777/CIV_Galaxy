@@ -19,6 +19,7 @@ public class DiscoveryCell : MonoBehaviour
     public bool IsAvailable => isAvailable;
     public string Description => $"{name}_Description";
     public int CountSciencesRequired { get; set; }
+    public IDiscoveryEffects[] Boneses { get; private set; }
 
     /// <summary>
     /// Изучить науку(открыть её)
@@ -29,7 +30,7 @@ public class DiscoveryCell : MonoBehaviour
         _sprite.color = colorResearch;
         ResearchUI?.Invoke();
 
-        foreach (var item in GetComponents<IDiscoveryEffects>())
+        foreach (var item in Boneses)
             item.ExecuteStudy(civilization, name);
 
         foreach (var item in dependentSciences)
@@ -53,6 +54,8 @@ public class DiscoveryCell : MonoBehaviour
         _sprite = GetComponent<SpriteRenderer>();
         foreach (var item in dependentSciences)
             item.CountSciencesRequired++;
+
+        Boneses = GetComponents<IDiscoveryEffects>();
 
         if (IsResearch)
         {

@@ -10,4 +10,10 @@ public class GrowthDominanceOverallBonus : MonoBehaviour, IDiscoveryEffects
     {
         civilization.CivData.GDOverall += growthDominanceOverallBonus;
     }
+
+    public string GetInfo()
+    {
+        string info = $"{LocalisationGame.Instance.GetLocalisationString("gd_overall_bonus")}: +{growthDominanceOverallBonus}%\r\n";
+        return info;
+    }
 }

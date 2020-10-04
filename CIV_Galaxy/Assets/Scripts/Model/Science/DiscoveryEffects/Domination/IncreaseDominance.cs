@@ -10,4 +10,10 @@ public class IncreaseDominance : MonoBehaviour, IDiscoveryEffects
     {
         civilization.CivData.DominationPoints += increaseDominance;
     }
+
+    public string GetInfo()
+    {
+        string info = $"{LocalisationGame.Instance.GetLocalisationString("increase_dominance")}: +{increaseDominance}\r\n";
+        return info;
+    }
 }

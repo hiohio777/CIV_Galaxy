@@ -7,8 +7,7 @@ using Zenject;
 public class DiscoveryCellUI : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Text researchCost;
-    [SerializeField] private GameObject frameCost;
-    [SerializeField] private Color colorResearch, colorAvailable;
+    [SerializeField] private Color colorResearch, colorAvailable, colorAvailablePrice;
     private Image imageDiscovery;
     private ImagePanelInfoScience _imagePanelInfoScience;
     private DiscoveryCell _discoveryCellData;
@@ -34,11 +33,13 @@ public class DiscoveryCellUI : MonoBehaviour, IPointerClickHandler
    
         if (sciencePoints >= _discoveryCellData.ResearchCost) 
         {
-            researchCost.color = Color.green; 
+            imageDiscovery.color = colorAvailablePrice;
+            researchCost.color = colorAvailablePrice;
             return;
         }
 
-        researchCost.color = Color.white;
+        imageDiscovery.color = colorAvailable;
+        researchCost.color = colorAvailable;
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -49,14 +50,14 @@ public class DiscoveryCellUI : MonoBehaviour, IPointerClickHandler
 
     private void DiscoveryCell_AvailableUI(bool isAvailable)
     {
-        imageDiscovery.color = colorAvailable;
+        // imageDiscovery.color = colorAvailable;
         gameObject.SetActive(isAvailable);
     }
 
     private void DiscoveryCell_ResearchUI()
     {
         imageDiscovery.color = colorResearch;
-        frameCost.gameObject.SetActive(false);
+        researchCost.gameObject.SetActive(false);
     }
 
     private void Awake()

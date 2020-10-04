@@ -9,14 +9,14 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
     private ScanerPanelUI _scanerPanelUI;
     private SciencePanelUI _sciencePanelUI;
     private List<AbilityUI> _abilitiesUI;
-    private PlayerCivInfo _playerCivInfo;
+    private InfoPlayerCivUI _playerCivInfo;
     private List<ICivilizationAl> _anotherCivilization;
 
     private DiscoveredCivilization _discoveredCivilization;
 
     [Inject]
     public void InjectCivilizationPlayer(DiscoveredCivilization discoveredCivilization, SciencePanelUI sciencePanelUI,
-       ScanerPanelUI scanerPanelUI, PlayerCivInfo playerCivInfo, GalacticEventGeneratorPlayer galacticEventGenerator,
+       ScanerPanelUI scanerPanelUI, InfoPlayerCivUI playerCivInfo, GalacticEventGeneratorPlayer galacticEventGenerator,
        List<AbilityUI> abilitiesUI, List<ICivilizationAl> anotherCivilization)
     {
         (this._discoveredCivilization, this._sciencePanelUI, this._scanerPanelUI, this._playerCivInfo,
@@ -62,7 +62,7 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
         IsOpen = true;
     }
 
-    public void OpenPanelPlayerCivInfo() => _playerCivInfo.Show(this);
+    public void OpenPanelPlayerCivInfo() => _playerCivInfo.Enable();
 
     public override void ExicuteScanning()
     {

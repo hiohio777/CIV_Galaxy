@@ -28,12 +28,10 @@ public class GalaxySceneDIInstaller : MonoInstaller
         Container.Bind<ICivilizationAl>().FromComponentsInHierarchy().AsSingle();
         Container.Bind<ICivilizationPlayer>().FromComponentInHierarchy().AsSingle();
 
-
         Container.Bind<GalaxySceneUI>().FromComponentsInHierarchy().AsSingle();
         Container.Bind<AbilityUI>().FromComponentsInHierarchy().AsSingle();
         Container.Bind<MessageGalaxy>().FromComponentsInHierarchy().AsSingle();
         Container.Bind<CanvasFonGalaxy>().FromComponentsInHierarchy().AsSingle();
-        Container.Bind<PlayerCivInfo>().FromComponentsInHierarchy().AsSingle();
         Container.Bind<ScanerPanelUI>().FromComponentsInHierarchy().AsSingle();
         Container.Bind<SciencePlayerUI>().FromComponentsInHierarchy().AsSingle();
         Container.Bind<SciencePanelUI>().FromComponentsInHierarchy().AsSingle();
@@ -42,6 +40,7 @@ public class GalaxySceneDIInstaller : MonoInstaller
         Container.Bind<CounterEndGame>().FromComponentsInHierarchy().AsSingle(); 
         Container.Bind<EndGameUI>().FromComponentsInHierarchy().AsSingle(); 
         Container.Bind<GalaxyData>().FromComponentsInHierarchy().AsSingle();
+        Container.Bind<InfoPlayerCivUI>().FromComponentsInHierarchy().AsSingle();
 
         Container.Bind<MessageDiscoveredCivilization>().FromComponentsInHierarchy().AsSingle();
         Container.Bind<MessageStartGame>().FromComponentsInHierarchy().AsSingle();

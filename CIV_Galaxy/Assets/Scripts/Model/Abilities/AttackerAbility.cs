@@ -86,9 +86,6 @@ public abstract class AttackerAbility : MonoBehaviour, IAbility
     private void Finish(IUnitAbility unit, ICivilization civilizationTarget)
     {
         Finall(unit, civilizationTarget);
-        // Ухудшить отношения, если напал игрок, а отношения были "дружба"
-        if (ThisCivilization is ICivilizationPlayer)
-            (civilizationTarget as ICivilizationAl).DiplomacyCiv.ChangeRelations(ThisCivilization, +1);
 
         unit.Destroy();
     }

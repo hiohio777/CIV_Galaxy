@@ -10,4 +10,10 @@ public class GrowthDominancePlanetsBonus : MonoBehaviour, IDiscoveryEffects
     {
         civilization.CivData.GDPlanets += growthDominancePlanetsBonus;
     }
+
+    public string GetInfo()
+    {
+        string info = $"{LocalisationGame.Instance.GetLocalisationString("gd_planets_bonus")}: +{growthDominancePlanetsBonus}%\r\n";
+        return info;
+    }
 }

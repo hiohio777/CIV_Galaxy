@@ -96,7 +96,7 @@ public class Science : CivilizationStructureBase
     {
         if (IsActive == false) return;
 
-        _progress += deltaTime * (_acceleration + (_civilization.IndustryCiv.Points / 2 * _accelerationBonus));
+        _progress += deltaTime * (_acceleration + (_civilization.IndustryCiv.Points / 2f * _accelerationBonus));
         ProgressEvent?.Invoke(ProgressProc);
 
         if (_progress > _progressInterval)

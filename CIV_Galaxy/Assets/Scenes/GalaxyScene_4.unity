@@ -258,6 +258,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CivilizationPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 3367411643802439791, guid: 2aa8cad61406d3f4c808b358b489928e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3367411643802439794, guid: 2aa8cad61406d3f4c808b358b489928e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1022,6 +1027,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GalacticEventDisplay
       objectReference: {fileID: 0}
+    - target: {fileID: 6183976265109077442, guid: 8c09071c8934cb9448f14ab09c76197c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6183976265109077444, guid: 8c09071c8934cb9448f14ab09c76197c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1210,6 +1220,31 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4378556068865124245, guid: 9ddb94fc153f0bc4ab60e07208ed7191,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 198.2002
+      objectReference: {fileID: 0}
+    - target: {fileID: 4463493839254471651, guid: 9ddb94fc153f0bc4ab60e07208ed7191,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511003132333652467, guid: 9ddb94fc153f0bc4ab60e07208ed7191,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511003132333652467, guid: 9ddb94fc153f0bc4ab60e07208ed7191,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4511003132333652467, guid: 9ddb94fc153f0bc4ab60e07208ed7191,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -79
+      objectReference: {fileID: 0}
     - target: {fileID: 5644726030972885555, guid: 9ddb94fc153f0bc4ab60e07208ed7191,
         type: 3}
       propertyPath: m_Camera
@@ -1329,6 +1364,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GalaxySceneUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8649091273879589185, guid: 9ddb94fc153f0bc4ab60e07208ed7191,
+        type: 3}
+      propertyPath: m_Name
+      value: MessageInfoScience
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996029342822670326, guid: 9ddb94fc153f0bc4ab60e07208ed7191,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ddb94fc153f0bc4ab60e07208ed7191, type: 3}

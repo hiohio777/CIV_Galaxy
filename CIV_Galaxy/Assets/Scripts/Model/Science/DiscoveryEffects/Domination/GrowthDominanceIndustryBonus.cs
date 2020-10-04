@@ -10,4 +10,10 @@ public class GrowthDominanceIndustryBonus : MonoBehaviour, IDiscoveryEffects
     {
         civilization.CivData.GDIndustry += growthDominanceIndustryBonus;
     }
+
+    public string GetInfo()
+    {
+        string info = $"{LocalisationGame.Instance.GetLocalisationString("gd_industry_bonus")}: +{growthDominanceIndustryBonus}%\r\n";
+        return info;
+    }
 }

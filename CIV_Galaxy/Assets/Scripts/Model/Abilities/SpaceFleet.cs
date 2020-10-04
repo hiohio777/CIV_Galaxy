@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SpaceFleet : AttackerAbility
@@ -23,6 +24,31 @@ public class SpaceFleet : AttackerAbility
     {
         randomConquestPlanets += bonus;
         if (randomConquestPlanets < 0) randomConquestPlanets = 0;
+    }
+
+    public override void SelectedApplayPlayer(List<ICivilizationAl> civilizationsTarget)
+    {
+        foreach (var item in civilizationsTarget)
+        {
+            if (item.IsOpen == false) continue;
+
+            if (item.DiplomacyCiv.GetRelationsPlayer() == DiplomaticRelationsEnum.Hatred
+                || item.DiplomacyCiv.GetRelationsPlayer() == DiplomaticRelationsEnum.Threat)
+                item.EnableFrame(Color.red);
+        }
+    }
+
+    public override bool Apply(ICivilization civilizationTarget)
+    {
+        var civ = civilizationTarget as ICivilizationAl;
+        if (civ.DiplomacyCiv.GetRelationsPlayer() == DiplomaticRelationsEnum.Hatred
+            || civ.DiplomacyCiv.GetRelationsPlayer() == DiplomaticRelationsEnum.Threat)
+        {
+            StartAttack(civilizationTarget);
+            return true;
+        }
+
+        return false;
     }
 
     protected override void Finall(IUnitAbility unit, ICivilization civilizationTarget)

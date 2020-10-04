@@ -6,7 +6,7 @@ using UnityEngine;
 public class Ability : CivilizationStructureBase
 {
     public event Action<float> ProgressEvent; // Отображение на экране
-    private float _progress, _progressInterval = 60;
+    private float _progress, _progressInterval = 50;
 
     private AbilityFactory _abilityFactory;
     protected ICivilization _civilization;
@@ -27,7 +27,8 @@ public class Ability : CivilizationStructureBase
     }
 
     //Бонусы
-    public float AccelerationBonus { get; set; } = 1; // Бонус скорости работы
+    private float _accelerationBonus = 1;
+    public int AccelerationBonus { get => (int)(_accelerationBonus * 100); set => _accelerationBonus = value / 100f; }
     public bool IsReady => _progress >= _progressInterval;
 
     public virtual void Initialize(ICivilization civilization)
@@ -44,7 +45,7 @@ public class Ability : CivilizationStructureBase
         IsActive = true;
     }
 
-    public void ReduceProgress() => _progress = 0;
+    public void ReduceProgress() => _progress = 1;
 
     private void AssingCurrentAlAbility()
     {
@@ -58,7 +59,7 @@ public class Ability : CivilizationStructureBase
 
         if (_progress < _progressInterval)
         {
-            _progress += deltaTime * (_civilization.IndustryCiv.Points / 2 + AccelerationBonus);
+            _progress += deltaTime * (1 + _civilization.IndustryCiv.Points / 1.5f * _accelerationBonus);
 
             if (_progress >= _progressInterval)
                 _progress = _progressInterval;

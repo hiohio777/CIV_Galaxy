@@ -49,5 +49,5 @@ MonoBehaviour:
   speedUnits: 3
   countUnits: 1
   size: 1
-  minAttackIndustry: 20
+  minAttackIndustry: 10
   randomAttackIndustry: 10

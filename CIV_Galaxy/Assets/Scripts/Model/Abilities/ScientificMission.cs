@@ -17,6 +17,11 @@ public class ScientificMission : AttackerAbility
 
         return false;
     }
+    public void AddBonus_ProgressScienty(int bonus)
+    {
+        addProgressScienty += bonus;
+        if (addProgressScienty < 0) addProgressScienty = 0;
+    }
 
     public override void SelectedApplayPlayer(List<ICivilizationAl> civilizationsTarget)
     {

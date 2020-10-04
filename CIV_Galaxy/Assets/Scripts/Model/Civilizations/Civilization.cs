@@ -40,13 +40,15 @@ public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
         base.Assign(civData);
 
         EventGenerator.Initialize(this);
+        AbilityCiv.Initialize(this);
+        AbilityCiv.IsActive = false;
     }
 
     public void Open()
     {
         DiplomacyCiv.Initialize(this);
-        AbilityCiv.Initialize(this);
         civilizationUI.Assign(this);
+        AbilityCiv.IsActive = true;
 
         IsOpen = true;
     }

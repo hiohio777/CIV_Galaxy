@@ -3984,7 +3984,7 @@ PrefabInstance:
         type: 3}
       propertyPath: civData
       value: 
-      objectReference: {fileID: 11400000, guid: 6ee97c2c8162da84b923bb39495e9554,
+      objectReference: {fileID: 11400000, guid: 4db27053ffa066547bbb837433820ad8,
         type: 2}
     - target: {fileID: 8696127721678706548, guid: 852d43da29fe3674599d6aeec0931647,
         type: 3}
@@ -4240,7 +4240,7 @@ PrefabInstance:
         type: 3}
       propertyPath: civData
       value: 
-      objectReference: {fileID: 11400000, guid: 82fcacca2f973ec41bb89889506360d2,
+      objectReference: {fileID: 11400000, guid: 4b56b664b0bf75d429c43bf23d1d5201,
         type: 2}
     - target: {fileID: 8696127721678706548, guid: 852d43da29fe3674599d6aeec0931647,
         type: 3}
@@ -4371,7 +4371,7 @@ PrefabInstance:
         type: 3}
       propertyPath: civData
       value: 
-      objectReference: {fileID: 11400000, guid: dc0d383d93ee03a4ab965e0253652525,
+      objectReference: {fileID: 11400000, guid: 6ee97c2c8162da84b923bb39495e9554,
         type: 2}
     - target: {fileID: 8696127721678706548, guid: 852d43da29fe3674599d6aeec0931647,
         type: 3}

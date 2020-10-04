@@ -5,7 +5,7 @@ using UnityEngine;
 /// </summary>
 public class BombsAndMissilesBonus : MonoBehaviour, IDiscoveryEffects
 {
-    [SerializeField, Header("Урон инустрии(%)"), Range(0, 500)] private int minAttackIndustry, randomAttackIndustry;
+    [SerializeField, Header("Урон инустрии(%)"), Range(0, 500)] private int minAttackIndustry, randomAttackIndustry, countUnits;
 
     public void ExecuteStudy(ICivilization civilization, string nameDiscovery)
     {
@@ -17,6 +17,27 @@ public class BombsAndMissilesBonus : MonoBehaviour, IDiscoveryEffects
             // Бонусы
             abil.AddBonus_minAttackIndustry(minAttackIndustry);
             abil.AddBonus_randomAttackIndustry(randomAttackIndustry);
+            abil.CountUnits += countUnits;
         }
+    }
+
+    public string GetInfo()
+    {
+        string info = string.Empty;
+
+        if (minAttackIndustry > 0)
+        {
+            info += $"{LocalisationGame.Instance.GetLocalisationString("bombs_bonus_minAttack_industry")}: +{minAttackIndustry}%\r\n";
+        }
+        if (randomAttackIndustry > 0)
+        {
+            info += $"{LocalisationGame.Instance.GetLocalisationString("bombs_bonus_random_attack_industry")}: +{randomAttackIndustry}%\r\n";
+        }
+        if (countUnits > 0)
+        {
+            info += $"{LocalisationGame.Instance.GetLocalisationString("bombs_bonus_countUnits")}: +{countUnits}\r\n";
+        }
+
+        return info;
     }
 }

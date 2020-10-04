@@ -10,4 +10,10 @@ public class IncreaseDominanceProc : MonoBehaviour, IDiscoveryEffects
     {
         civilization.CivData.DominationPoints += civilization.CivData.DominationPoints / 100 * increaseDominanceProc;
     }
+
+    public string GetInfo()
+    {
+        string info = $"{LocalisationGame.Instance.GetLocalisationString("increase_dominance_proc")}: +{increaseDominanceProc}%\r\n";
+        return info;
+    }
 }

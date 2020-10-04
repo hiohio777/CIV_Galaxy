@@ -10,4 +10,10 @@ public class IndustryAcceleration : MonoBehaviour, IDiscoveryEffects
     {
         civilization.IndustryCiv.Acceleration += accelerationIndustry;
     }
+
+    public string GetInfo()
+    {
+        string info = $"{LocalisationGame.Instance.GetLocalisationString("industry_acceleration")}: +{accelerationIndustry}%\r\n";
+        return info;
+    }
 }

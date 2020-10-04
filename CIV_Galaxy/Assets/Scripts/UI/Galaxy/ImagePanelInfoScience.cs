@@ -35,7 +35,11 @@ public class ImagePanelInfoScience : MonoBehaviour
         imageIcon.sprite = discoveryCell.SpriteIcon;
         nameDiscovery.text = discoveryCell.name;
         cost.text = discoveryCell.ResearchCost.ToString();
-        infoDiscovery.text = discoveryCell.Description;
+
+        infoDiscovery.text = string.Empty;
+        // Вывод информации о бонусах
+        foreach (var item in discoveryCell.Boneses)
+            infoDiscovery.text += item.GetInfo();
 
         if (discoveryCell.IsResearch == false && _civPlayer.ScienceCiv.Points >= discoveryCell.ResearchCost)
         {
