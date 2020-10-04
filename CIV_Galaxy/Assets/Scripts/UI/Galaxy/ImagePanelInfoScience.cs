@@ -6,7 +6,7 @@ using Zenject;
 public class ImagePanelInfoScience : MonoBehaviour
 {
     [SerializeField] private Image imageIcon;
-    [SerializeField] private Text nameDiscovery, infoDiscovery;
+    [SerializeField] private Text nameDiscovery, cost, infoDiscovery;
     [SerializeField] private Button buttonStudy, buttonClose;
 
     private Animator _animator;
@@ -34,6 +34,7 @@ public class ImagePanelInfoScience : MonoBehaviour
 
         imageIcon.sprite = discoveryCell.SpriteIcon;
         nameDiscovery.text = discoveryCell.name;
+        cost.text = discoveryCell.ResearchCost.ToString();
         infoDiscovery.text = discoveryCell.Description;
 
         if (discoveryCell.IsResearch == false && _civPlayer.ScienceCiv.Points >= discoveryCell.ResearchCost)

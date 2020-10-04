@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public class MessageBackMainMenu : MessageBase
+public class MessageBackMainMenu : MonoBehaviour
 {
     [SerializeField] private Image art;
     [SerializeField] private Button yes, no;
@@ -11,12 +11,14 @@ public class MessageBackMainMenu : MessageBase
     private Action _actYes, _actNo;
     private IGalaxyUITimer _galaxyUITimer;
     private bool _selectButton;
+    private Animator _animator;
 
     [Inject]
     public void Inject(IGalaxyUITimer galaxyUITimer)
     {
         this._galaxyUITimer = galaxyUITimer;
 
+        _animator = GetComponent<Animator>();
         yes.onClick.AddListener(OnWelcome);
         no.onClick.AddListener(OnOffend); ;
     }

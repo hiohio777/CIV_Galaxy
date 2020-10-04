@@ -10,7 +10,6 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
     private SciencePanelUI _sciencePanelUI;
     private List<AbilityUI> _abilitiesUI;
     private PlayerCivInfo _playerCivInfo;
-    private GalacticEventGenerator _galacticEventGenerator;
     private List<ICivilizationAl> _anotherCivilization;
 
     private DiscoveredCivilization _discoveredCivilization;
@@ -21,7 +20,7 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
        List<AbilityUI> abilitiesUI, List<ICivilizationAl> anotherCivilization)
     {
         (this._discoveredCivilization, this._sciencePanelUI, this._scanerPanelUI, this._playerCivInfo,
-        this._galacticEventGenerator, this._abilitiesUI)
+        this.EventGenerator, this._abilitiesUI)
         = (discoveredCivilization, sciencePanelUI, scanerPanelUI, playerCivInfo, galacticEventGenerator, abilitiesUI);
 
         _anotherCivilization = anotherCivilization;
@@ -50,7 +49,7 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
         base.Assign(civData);
 
         civilizationUI.Assign(this);
-        _galacticEventGenerator.Initialize(this);
+        EventGenerator.Initialize(this);
 
         AbilityCiv.Initialize(this);
         for (int i = 0; i < _abilitiesUI.Count; i++)

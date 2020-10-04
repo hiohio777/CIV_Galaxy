@@ -30,6 +30,7 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
     public Industry IndustryCiv { get; private set; }
     public Science ScienceCiv { get; private set; }
     public Ability AbilityCiv { get; private set; }
+    public GalacticEventGenerator EventGenerator { get; protected set; }
 
     public virtual void Assign(CivilizationScriptable dataBase)
     {

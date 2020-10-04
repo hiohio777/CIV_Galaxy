@@ -9,9 +9,5 @@ public class GalacticEventGeneratorPlayer : GalacticEventGenerator
         this._galacticEventDisplay = galacticEventDisplay;
     }
 
-    protected override void StartNewGalacticEvent()
-    {
-        _galacticEventDisplay.Show(SelectEvent());
-        _progressInterval = GetInterval; // Задать время для срабатывания нового события
-    }
+    protected override void StartNewGalacticEvent() => _galacticEventDisplay.Show(Execute, _typeEvent);
 }

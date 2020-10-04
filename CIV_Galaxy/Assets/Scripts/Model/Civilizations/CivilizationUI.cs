@@ -15,17 +15,17 @@ public class CivilizationUI
     [SerializeField] private Text countPlanet;
     [SerializeField] private Text countDominationPoints;
 
-    [SerializeField] private Image indicator;
+    [SerializeField] private Image indicatorIndustry;
     [SerializeField] private Animator animatorScanerEffect;
 
     public ValueChangeEffectFactory valueChangeEffectFactory;
 
     public void SetIndustryPoints(float points)
     {
-        indicator.fillAmount = points;
+        indicatorIndustry.fillAmount = points;
 
-        if (points >= 1) indicator.color = Color.green;
-        else indicator.color = Color.red;
+        if (points >= 1) indicatorIndustry.color = new Color(0.5f, 0, 0, 1);
+        else indicatorIndustry.color = new Color(1, 0, 0, 1);
     }
 
     public void SetCountPlanet(int count)

@@ -8,10 +8,14 @@ public class GalacticEventDisplay : MonoBehaviour, IGalacticEventDisplay
 {
     [SerializeField] private MovingObject moving;
     [SerializeField] private SpriteRenderer art;
-    [SerializeField] private Sprite dominationBonusSprite, industryBonusSprite, sciencePointBonusSprite, researchBonusSprite, progressAbiliryBonusSprite;
+    [SerializeField]
+    private Sprite dominationBonusSprite, industryBonusSprite, researchBonusSprite, progressAbiliryBonusSprite, ProgressScanerBonusSprite;
+    [SerializeField, Space(10)] private Color activeColor;
+    [SerializeField] private float timeWait = 2f;
 
-    private GalacticEvent _galacticEvent;
     private bool isActive = false;
+    private SpriteRenderer _fon;
+    private Action _execute;
     private Vector3 _positionTarget;
     private IGalaxyUITimer _galaxyUITimer;
 
@@ -19,17 +23,24 @@ public class GalacticEventDisplay : MonoBehaviour, IGalacticEventDisplay
     public void Inject(IGalaxyUITimer galaxyUITimer)
     {
         this._galaxyUITimer = galaxyUITimer;
+        _fon = GetComponent<SpriteRenderer>();
     }
 
-    public void Show(GalacticEvent galacticEvent)
+    public void Show(Action execute, GalaxyTypeEventEnum typeEvent)
     {
-        switch (_galacticEvent = galacticEvent)
+        _fon.color = new Color(0.4f, 0.5f, 0.7f, 1);
+        art.color = new Color(0.4f, 0.5f, 0.7f, 1);
+        transform.localScale = new Vector3(0, 0, 0);
+
+        this._execute = execute;
+        switch (typeEvent)
         {
-            case DominationBonus _: Assing(new Vector3(178, -209), dominationBonusSprite, Color.yellow); break;
-            case IndustryBonus _: Assing(new Vector3(208, -364), industryBonusSprite, Color.red); break;
-            case SciencePointBonus _: Assing(new Vector3(-204, -423), sciencePointBonusSprite, Color.green); break;
-            case ResearchBonus _: Assing(new Vector3(-208, -363), researchBonusSprite, Color.cyan); break;
-            case ProgressAbiliryBonus _: Assing(new Vector3(400, -400), progressAbiliryBonusSprite, Color.grey); break;
+            case GalaxyTypeEventEnum.IndustryBonus: _positionTarget = new Vector3(208, -364); art.sprite = industryBonusSprite; break;
+            case GalaxyTypeEventEnum.ResearchBonus: _positionTarget = new Vector3(-208, -363); art.sprite = researchBonusSprite; break;
+            case GalaxyTypeEventEnum.ProgressAbiliryBonus: _positionTarget = new Vector3(570, -400); art.sprite = progressAbiliryBonusSprite; break;
+            case GalaxyTypeEventEnum.ProgressScanerBonus: _positionTarget = new Vector3(0, -230); art.sprite = ProgressScanerBonusSprite; break;
+            case GalaxyTypeEventEnum.DominationBonus: _positionTarget = new Vector3(178, -209); art.sprite = dominationBonusSprite; break;
+            default: _positionTarget = new Vector3(178, -209); art.sprite = dominationBonusSprite; break;
         }
 
         isActive = false;
@@ -38,7 +49,7 @@ public class GalacticEventDisplay : MonoBehaviour, IGalacticEventDisplay
         transform.position = new Vector3(UnityEngine.Random.Range(-50f, 50f), UnityEngine.Random.Range(-50f, 50f), 0);
 
         var startPosition = new Vector3(UnityEngine.Random.Range(-400, 400), UnityEngine.Random.Range(-50, 350), 0);
-        moving.SetScale(3f, 0.3f).SetPosition(startPosition, 0.3f).Run(() => StartCoroutine(WaitAfter()));
+        moving.SetScale(2.5f, 0.4f).SetPosition(startPosition, 0.4f).Run(() => StartCoroutine(WaitAfter()));
     }
 
     public void EndEvent()
@@ -50,9 +61,11 @@ public class GalacticEventDisplay : MonoBehaviour, IGalacticEventDisplay
     public IEnumerator WaitAfter()
     {
         isActive = true;
+        art.color = activeColor;
+        _fon.color = Color.white;
 
         float timeSecond = 0;
-        while (timeSecond < 2f)
+        while (timeSecond < timeWait)
         {
             if (_galaxyUITimer.IsPause == false)
                 timeSecond += Time.deltaTime * _galaxyUITimer.GetSpeed;
@@ -61,14 +74,10 @@ public class GalacticEventDisplay : MonoBehaviour, IGalacticEventDisplay
         }
 
         isActive = false;
-        moving.SetScale(0f, 0.3f).Run(EndEvent);
-    }
+        art.color = new Color(0.4f, 0.5f, 0.7f, 1);
+        _fon.color = new Color(0.4f, 0.5f, 0.7f, 1);
 
-    private void Assing(Vector3 positionTarget, Sprite sprite, Color color)
-    {
-        _positionTarget = positionTarget;
-        art.sprite = sprite;
-        art.color = color;
+        moving.SetScale(0f, 0.3f).SetPosition(new Vector3(0, 0), 0.3f).Run(EndEvent);
     }
 
     private void OnMouseUp()
@@ -77,13 +86,14 @@ public class GalacticEventDisplay : MonoBehaviour, IGalacticEventDisplay
         {
             StopAllCoroutines();
             isActive = false;
+
             moving.SetScale(1f, 0.2f).SetPosition(_positionTarget, 0.3f).Run(EndExecuteEvent);
         }
     }
 
     private void EndExecuteEvent()
     {
-        _galacticEvent.Execute();
+        _execute?.Invoke();
         EndEvent();
     }
 
@@ -91,5 +101,5 @@ public class GalacticEventDisplay : MonoBehaviour, IGalacticEventDisplay
 
 public interface IGalacticEventDisplay
 {
-    void Show(GalacticEvent galacticEvent);
+    void Show(Action execute, GalaxyTypeEventEnum typeEvent);
 }

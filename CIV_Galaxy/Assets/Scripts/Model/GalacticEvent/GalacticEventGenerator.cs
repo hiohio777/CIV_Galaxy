@@ -1,13 +1,23 @@
-﻿public class GalacticEventGenerator : CivilizationStructureBase
+﻿using UnityEngine;
+
+public class GalacticEventGenerator : CivilizationStructureBase
 {
     protected float _progressInterval = 6; // Интервал
-    private float _progress = 0; // Прогресс
+    protected GalaxyTypeEventEnum _typeEvent;
 
+    private float _progress = 0; // Прогресс
+    private float _bonusEfficiency = 1;
     private ICivilization _civilization;
 
     public void Initialize(ICivilization civilization)
     {
         this._civilization = civilization;
+    }
+
+    public void AddBonusEfficiency(float count)
+    {
+        _bonusEfficiency += count / 100;
+        if (_bonusEfficiency < 0) _bonusEfficiency = 0;
     }
 
     protected override void ExecuteOnTimeEvent(float deltaTime)
@@ -16,36 +26,29 @@
 
         if (_progress >= _progressInterval)
         {
-            _progress -= _progressInterval;
+            _progress = 0;
 
-            SelectEvent().Execute();
-            _progressInterval = GetInterval; // Задать время для срабатывания нового события
+            _progressInterval = UnityEngine.Random.Range(10, 20);
+            _typeEvent = (GalaxyTypeEventEnum)UnityEngine.Random.Range(0, 5);
+
             StartNewGalacticEvent();
         }
     }
 
-    protected virtual void StartNewGalacticEvent()
-    {
-    }
+    protected virtual void StartNewGalacticEvent() => Execute();
 
-    protected GalacticEvent SelectEvent()
+    protected void Execute()
     {
-        int resultRandom = UnityEngine.Random.Range(0, 10);
-
-        if (resultRandom > 0)
+        switch (_typeEvent)
         {
-            resultRandom = UnityEngine.Random.Range(0, 4);
-            switch (resultRandom)
-            {
-                case 0: return new IndustryBonus(_civilization);
-                case 1: return new ResearchBonus(_civilization);
-                case 2: return new ProgressAbiliryBonus(_civilization);
-                default: return new DominationBonus(_civilization);
-            }
+            case GalaxyTypeEventEnum.IndustryBonus: _civilization.IndustryCiv.AddPoints(15f * _bonusEfficiency); break;
+            case GalaxyTypeEventEnum.ResearchBonus: _civilization.ScienceCiv.AddProgress(15f * _bonusEfficiency); break;
+            case GalaxyTypeEventEnum.ProgressAbiliryBonus: _civilization.AbilityCiv.AddProgress(30f * _bonusEfficiency); break;
+            case GalaxyTypeEventEnum.ProgressScanerBonus: _civilization.ScanerPlanets.AddProgress(30f * _bonusEfficiency); break;
+            case GalaxyTypeEventEnum.DominationBonus: _civilization.CivData.AddDominance(_civilization.CivData.Planets * 1.5f * _bonusEfficiency); break;
+            default: _civilization.CivData.AddDominance(_civilization.CivData.Planets * 1.5f * _bonusEfficiency); break;
         }
-
-        return new SciencePointBonus(_civilization);
     }
-
-    protected float GetInterval => UnityEngine.Random.Range(10, 20);
 }
+
+public enum GalaxyTypeEventEnum { IndustryBonus, ResearchBonus, ProgressAbiliryBonus, ProgressScanerBonus, DominationBonus, SciencePointBonus }

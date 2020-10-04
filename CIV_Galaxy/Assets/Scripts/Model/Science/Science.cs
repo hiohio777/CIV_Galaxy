@@ -23,6 +23,7 @@ public class Science : CivilizationStructureBase
         TreeOfScienceCiv.Name = $"Science_{civilization.DataBase.Name}";
 
         Points = _scienceData.SciencePoints;
+        _acceleration = _scienceData.Acceleration / 100;
 
         ProgressEvent?.Invoke(ProgressProc);
         _civilization.ExicuteSciencePoints(Points);
@@ -30,22 +31,18 @@ public class Science : CivilizationStructureBase
 
     public bool IsActive { get; set; } = true; // Активен ли
     public int Points { get; set; }
+    private float _acceleration;
 
     //Бонусы
-    public float AccelerationBonus { get; set; } = 0f; // Бонус скорости работы( уменьшает интервал получения нового поинта - зависит от индустрии)
+    private float _accelerationBonus = 1;
+    public int Acceleration { get => (int)(_accelerationBonus * 100); set => _accelerationBonus = value / 100f; } // ссумируется с уровнем индстрии
 
     public ITreeOfScience TreeOfScienceCiv { get; private set; }
     private float ProgressProc => _progress / (_progressInterval / 100); // Прогресс в процентах
 
-    public void AddPoints(int point) 
-    {
-        Points += point;
-        _civilization.ExicuteSciencePoints(Points);
-    }
-
     public void AddProgress(float count)
     {
-        _progress += _progressInterval / 100 * count; ;
+        _progress += _progressInterval / 100 * count;
         ProgressEvent?.Invoke(ProgressProc);
     }
 
@@ -99,7 +96,7 @@ public class Science : CivilizationStructureBase
     {
         if (IsActive == false) return;
 
-        _progress += deltaTime * (_scienceData.Acceleration + (_civilization.IndustryCiv.Points / 2 * AccelerationBonus));
+        _progress += deltaTime * (_acceleration + (_civilization.IndustryCiv.Points / 2 * _accelerationBonus));
         ProgressEvent?.Invoke(ProgressProc);
 
         if (_progress > _progressInterval)

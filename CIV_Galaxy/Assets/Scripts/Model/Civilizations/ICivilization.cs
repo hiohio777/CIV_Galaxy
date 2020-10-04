@@ -12,6 +12,7 @@ public interface ICivilization
     Science ScienceCiv { get; }
     Industry IndustryCiv { get; }
     Ability AbilityCiv { get; }
+    GalacticEventGenerator EventGenerator { get; }
 
     void Assign(CivilizationScriptable civData);
     bool IsOpen { get; }

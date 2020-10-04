@@ -6,7 +6,7 @@ public class Scanner : CivilizationStructureBase
 {
     public event Action<float> ProgressEvent; // Отображение на экране
 
-    private const float _progressInterval = 10; // Интервал
+    private const float _progressInterval = 15; // Интервал
     private float _progress = 0;
 
     private GalaxyData _galaxyData;
@@ -20,10 +20,20 @@ public class Scanner : CivilizationStructureBase
         (this._galaxyData, this._planetsFactory) = (galaxyData, planetsFactory);
     }
 
+    public void AddProgress(float count)
+    {
+        _progress += _progressInterval / 100 * count; ;
+        ProgressEvent?.Invoke(ProgressProc);
+    }
+
     public void Initialize(ICivilization civilization)
     {
         this._civilization = civilization;
         _scanerData = this._civilization.DataBase.Scaner;
+
+        Acceleration = _scanerData.Acceleration;
+        MinimumDiscoveredPlanetsBonus = _scanerData.MinimumDiscoveredPlanets;
+        RandomDiscoveredPlanetsBonus = _scanerData.RandomDiscoveredPlanets;
 
         ProgressEvent?.Invoke(ProgressProc);
     }
@@ -31,7 +41,8 @@ public class Scanner : CivilizationStructureBase
     public bool IsActive { get; set; } = true; // Активен ли
 
     //Бонусы
-    public float AccelerationBonus { get; set; } = 0; // Бонус скорости работы
+    private float _acceleration;
+    public int Acceleration { get => (int)(_acceleration * 100); set => _acceleration = value / 100f; }
     public int MinimumDiscoveredPlanetsBonus { get; set; } = 0; // Минимальное количество открываемых планет
     public int RandomDiscoveredPlanetsBonus { get; set; } = 0; // Рандомное количество открываемых планет
 
@@ -42,8 +53,7 @@ public class Scanner : CivilizationStructureBase
     {
         if (IsActive == false) return;
 
-        _progress += deltaTime * (_scanerData.Acceleration + AccelerationBonus);
-        ProgressEvent?.Invoke(ProgressProc);
+        _progress += deltaTime * _acceleration;
 
         if (_progress > _progressInterval)
         {
@@ -52,14 +62,14 @@ public class Scanner : CivilizationStructureBase
 
             _civilization.ExicuteScanning();
         }
+
+        ProgressEvent?.Invoke(ProgressProc);
     }
 
     private void DiscoverPlanet()
     {
         // Открыть планеты
-        int countNewPlanet = _scanerData.MinimumDiscoveredPlanets
-        + MinimumDiscoveredPlanetsBonus
-        + UnityEngine.Random.Range(0, (_scanerData.RandomDiscoveredPlanets + RandomDiscoveredPlanetsBonus + 1));
+        int countNewPlanet = MinimumDiscoveredPlanetsBonus + UnityEngine.Random.Range(0, RandomDiscoveredPlanetsBonus + 1);
 
         if (countNewPlanet < 0)
             return;

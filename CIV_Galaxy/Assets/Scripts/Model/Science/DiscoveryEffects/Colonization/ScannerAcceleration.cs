@@ -5,10 +5,10 @@
 /// </summary>
 public class ScannerAcceleration : MonoBehaviour, IDiscoveryEffects
 {
-    [SerializeField, Range(-5, 5)] private float scannerAcceleration;
+    [SerializeField, Range(0, 100)] private int scannerAcceleration;
 
     public void ExecuteStudy(ICivilization civilization, string nameDiscovery)
     {
-        civilization.ScanerPlanets.AccelerationBonus += scannerAcceleration;
+        civilization.ScanerPlanets.Acceleration += scannerAcceleration;
     }
 }

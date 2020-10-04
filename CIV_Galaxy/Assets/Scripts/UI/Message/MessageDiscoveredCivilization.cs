@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public class MessageDiscoveredCivilization : MessageBase
+public class MessageDiscoveredCivilization : MonoBehaviour
 {
     [SerializeField] private Image artDiscoveredCivilization;
     [SerializeField] private LocalisationText nameCiv, descriptionCiv;
@@ -12,12 +12,14 @@ public class MessageDiscoveredCivilization : MessageBase
     private Action _actWelcome, _actOffend;
     private IGalaxyUITimer _galaxyUITimer;
     private bool _selectButton;
+    private Animator _animator;
 
     [Inject]
     public void Inject(IGalaxyUITimer galaxyUITimer)
     {
         this._galaxyUITimer = galaxyUITimer;
 
+        _animator = GetComponent<Animator>();
         welcome.onClick.AddListener(OnWelcome);
         offend.onClick.AddListener(OnOffend); 
     }

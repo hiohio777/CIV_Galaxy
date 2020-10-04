@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class DiscoveryCell : MonoBehaviour
 {
-    [SerializeField, Space(10)] private SpriteRenderer sprite;
-
     [SerializeField, Space(10)] private int researchCost = 10;
     [SerializeField, Space(10)] private List<DiscoveryCell> dependentSciences;
     [SerializeField] private bool isAvailable = false;
     [SerializeField] private Color colorResearch, colorAvailable;
 
+    private SpriteRenderer _sprite;
     public event Action ResearchUI;
     public event Action<bool> AvailableUI;
 
-    public Sprite SpriteIcon => sprite.sprite;
+    public Sprite SpriteIcon => _sprite.sprite;
     public int ResearchCost => researchCost;
     public bool IsResearch { get; private set; }
     public bool IsAvailable => isAvailable;
@@ -27,7 +26,7 @@ public class DiscoveryCell : MonoBehaviour
     public void Study(ICivilization civilization)
     {
         IsResearch = true;
-        sprite.color = colorResearch;
+        _sprite.color = colorResearch;
         ResearchUI?.Invoke();
 
         foreach (var item in GetComponents<IDiscoveryEffects>())
@@ -43,7 +42,7 @@ public class DiscoveryCell : MonoBehaviour
         if (--CountSciencesRequired <= 0)
         {
             isAvailable = true;
-            sprite.color = colorAvailable;
+            _sprite.color = colorAvailable;
 
             AvailableUI?.Invoke(isAvailable);
         }
@@ -51,18 +50,19 @@ public class DiscoveryCell : MonoBehaviour
 
     private void Awake()
     {
+        _sprite = GetComponent<SpriteRenderer>();
         foreach (var item in dependentSciences)
             item.CountSciencesRequired++;
 
         if (IsResearch)
         {
             ResearchUI?.Invoke();
-            sprite.color = colorResearch;
+            _sprite.color = colorResearch;
         }
         else if (isAvailable)
         {
             AvailableUI?.Invoke(isAvailable);
-            sprite.color = colorAvailable;
+            _sprite.color = colorAvailable;
         }
 
         gameObject.SetActive(false);

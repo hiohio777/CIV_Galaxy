@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public class MessageStartGame : MessageBase
+public class MessageStartGame : MonoBehaviour
 {
     [SerializeField] private Image art;
     [SerializeField] private LocalisationText nameCiv, descriptionCiv;
@@ -11,12 +11,14 @@ public class MessageStartGame : MessageBase
 
     private Action _actOK;
     private IGalaxyUITimer _galaxyUITimer;
+    private Animator _animator;
 
     [Inject]
     public void Inject(IGalaxyUITimer galaxyUITimer)
     {
         this._galaxyUITimer = galaxyUITimer;
 
+        _animator = GetComponent<Animator>();
         OK.onClick.AddListener(OnOK);
     }
 

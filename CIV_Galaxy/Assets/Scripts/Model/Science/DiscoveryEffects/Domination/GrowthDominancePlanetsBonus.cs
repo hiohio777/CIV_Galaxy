@@ -4,10 +4,10 @@
 /// </summary>
 public class GrowthDominancePlanetsBonus : MonoBehaviour, IDiscoveryEffects
 {
-    [SerializeField, Range(-60, 60)] private float growthDominancePlanetsBonus;
+    [SerializeField, Range(0, 100)] private int growthDominancePlanetsBonus;
 
     public void ExecuteStudy(ICivilization civilization, string nameDiscovery)
     {
-        civilization.CivData.GrowthDominancePlanetsBonus += growthDominancePlanetsBonus;
+        civilization.CivData.GDPlanets += growthDominancePlanetsBonus;
     }
 }

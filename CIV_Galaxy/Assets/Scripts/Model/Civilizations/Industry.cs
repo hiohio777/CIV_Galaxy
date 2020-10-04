@@ -5,7 +5,7 @@ public class Industry : CivilizationStructureBase
     public event Action<float> ProgressEvent; // Отображение на экране
 
     private const float maxPoint = 1; // Максимальное количество поинтов индустрии
-    private const float _progressInterval = 5; // Интервал
+    private const float _progressInterval = 2; // Интервал
     private float _progress = 0; // Прогресс
     private float _point = 0;
 
@@ -19,15 +19,15 @@ public class Industry : CivilizationStructureBase
         this._civilization = civilization;
         _industryData = this._civilization.DataBase.Industry;
 
-        Points = _industryData.Points;
-        civilization.CivData.GetIndustryPoints += () => Points;
+        Points = _industryData.Points / 100f;
+        Acceleration = _industryData.Acceleration;
 
         _civilization.ExicuteIndustryPoints(Points);
     }
 
-    public void ExicuteIndustryAl()
+    public void AddPoints(float count)
     {
-        // Действия Al
+        Points += count / 100;
     }
 
     public bool IsActive { get; set; } = true; // Активен ли
@@ -42,21 +42,20 @@ public class Industry : CivilizationStructureBase
     }
 
     //Бонусы
-    public float AccelerationBonus { get; set; } = 0; // Бонус к скорости роста индустрии(уменьшает интервал между добавлением очков индустрии)
+    private float _acceleration;
+    public int Acceleration { get => (int)(_acceleration * 100); set => _acceleration = value / 100f; }
 
     // Рост индустрии
     protected override void ExecuteOnTimeEvent(float deltaTime)
     {
         if (IsActive == false || Points >= maxPoint) return;
 
-        _progress += deltaTime * (_industryData.Acceleration + AccelerationBonus);
+        _progress += deltaTime * _acceleration;
 
         if (_progress > _progressInterval)
         {
             _progress -= _progressInterval;
-
             Points += 0.01f;
-            _civilization.ExicuteIndustryPoints(Points);
         }
     }
 }

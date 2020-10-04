@@ -94,7 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffUp: {r: 0.30588236, g: 1, b: 0, a: 1}
   debuff: {r: 1, g: 0.15190284, b: 0, a: 1}
-  startPosition: {x: -150, y: 45, z: 0}
+  startPosition: {x: -170, y: 40, z: 0}
 --- !u!95 &4376084044965198090
 Animator:
   serializedVersion: 3

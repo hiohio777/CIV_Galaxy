@@ -23,19 +23,23 @@ public class CivilizationData
         }
     }
 
-    public event Func<float> GetIndustryPoints;
-
     //Бонусы
-    public float GrowthDominancePlanetsBonus { get; set; } = 0; // Бонус роста доминирования от планет
-    public float GrowthDominanceIndustryBonus { get; set; } = 0; // Бонус роста доминирования от Индустрии
-    public float GrowthDominanceOverallBonus { get; set; } = 0; // Бонус роста доминирования(общий в процентах к годовому приросту)
+    private float _gdPlanets = 0;
+    public int GDPlanets { get => (int)(_gdPlanets * 100); set => _gdPlanets = value / 100f; }
+    private float _gdIndustry = 0;
+    public int GDIndustry { get => (int)(_gdIndustry * 100); set => _gdIndustry = value / 100f; }
+    private float _gdOverall = 0;
+    public int GDOverall { get => (int)(_gdOverall * 100); set => _gdOverall = value / 100f; }
 
     public void Initialize(ICivilization civilization)
     {
         this._civilization = civilization;
         _planets = this._civilization.DataBase.Base.Planets;
-        DominationPoints = this._civilization.DataBase.Base.DominationPoints;
 
+        DominationPoints = _civilization.DataBase.Base.DominationPoints;
+        GDPlanets = _civilization.DataBase.Base.GDPlanets;
+        GDIndustry = _civilization.DataBase.Base.GDIndustry;
+        GDOverall = _civilization.DataBase.Base.GDOverall;
     }
 
     public void AddPlanet(IPlanet planet)
@@ -50,10 +54,10 @@ public class CivilizationData
         _civilization.CivUI.SetCountDominationPoints(DominationPoints, count);
     }
 
-    public float GetPointsFromPlanets => _planets * (_civilization.DataBase.Base.GrowthDominancePlanets + GrowthDominancePlanetsBonus);
-    public float GetPointsFromIndustry => _planets * (GetIndustryPoints.Invoke() * (_civilization.DataBase.Base.GrowthDominanceIndustry + GrowthDominanceIndustryBonus));
+    public float GetPointsFromPlanets => _planets * _gdPlanets;
+    public float GetPointsFromIndustry => _planets * (_civilization.IndustryCiv.Points * _gdIndustry);
     public float GetPointsFromBonus => GetPointsFromPlanets + GetPointsFromIndustry;
-    public float GetPointsAll => GetPointsFromBonus + GetPointsFromBonus * (_civilization.DataBase.Base.GrowthDominanceOverall + GrowthDominanceOverallBonus);
+    public float GetPointsAll => GetPointsFromBonus + GetPointsFromBonus * _gdOverall;
 
     private void ProgressDominance()
     {

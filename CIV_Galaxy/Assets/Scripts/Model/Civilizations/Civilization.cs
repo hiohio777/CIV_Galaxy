@@ -9,7 +9,6 @@ public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
     [SerializeField] private Image diplomaticRelationsIcon;
     [SerializeField] private Color colorHatred, colorThreat, colorNeutrality, colorCooperation, colorFriendship;
 
-    private GalacticEventGenerator _galacticEventGenerator;
     private ICivilizationPlayer _player;
 
     public Diplomacy DiplomacyCiv { get; private set; }
@@ -29,7 +28,7 @@ public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
     public void InjectCivilizationPlayer(GalacticEventGenerator galacticEventGenerator, ICivilizationPlayer player,
         Diplomacy diplomacyCiv)
     {
-        (this._galacticEventGenerator, this._player, this.DiplomacyCiv)
+        (this.EventGenerator, this._player, this.DiplomacyCiv)
         = (galacticEventGenerator, player, diplomacyCiv);
 
         TurnOffFrame();
@@ -40,7 +39,7 @@ public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
     {
         base.Assign(civData);
 
-        _galacticEventGenerator.Initialize(this);
+        EventGenerator.Initialize(this);
     }
 
     public void Open()

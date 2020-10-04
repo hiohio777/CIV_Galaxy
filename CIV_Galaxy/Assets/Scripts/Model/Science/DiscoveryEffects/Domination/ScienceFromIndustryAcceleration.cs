@@ -4,10 +4,10 @@
 /// </summary>
 public class ScienceFromIndustryAcceleration : MonoBehaviour, IDiscoveryEffects
 {
-    [SerializeField, Range(-5, 5)] private float accelerationBonus;
+    [SerializeField, Range(0, 100)] private int accelerationBonus;
 
     public void ExecuteStudy(ICivilization civilization, string nameDiscovery)
     {
-        civilization.ScienceCiv.AccelerationBonus += accelerationBonus;
+        civilization.ScienceCiv.Acceleration += accelerationBonus;
     }
 }
