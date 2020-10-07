@@ -11,7 +11,7 @@ public class Civilizations
         Refresh();
     }
 
-    public void Refresh() =>  civilizationsData = Resources.LoadAll<CivilizationScriptable>($"Civilizations/").ToList();
+    public void Refresh() => civilizationsData = Resources.LoadAll<CivilizationScriptable>($"Civilizations/").ToList();
 
     public CivilizationScriptable GetCivilizationPlayer(string name)
     {

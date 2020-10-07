@@ -458,6 +458,7 @@ GameObject:
   - component: {fileID: 9144355841754039346}
   - component: {fileID: 5394721317358118219}
   - component: {fileID: 3124811872587418770}
+  - component: {fileID: 5245960730967785063}
   m_Layer: 5
   m_Name: Name
   m_TagString: Untagged
@@ -482,7 +483,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 28.731, y: -60}
-  m_SizeDelta: {x: 235.46106, y: 45.55005}
+  m_SizeDelta: {x: 335, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9144355841754039346
 CanvasRenderer:
@@ -540,6 +541,20 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
+--- !u!114 &5245960730967785063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3745254080450826852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a823470ae2eb8f4ba8b8e302d73a3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key: 
+  text: {fileID: 0}
 --- !u!1 &3887306562052428038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,7 +1094,7 @@ MonoBehaviour:
     art: {fileID: 2257501568002706471}
     spriteEmpty: {fileID: 21300000, guid: 7fce7d02b35180044babe3c4b25f025c, type: 3}
     panel: {fileID: 2012402324322440013}
-    name: {fileID: 5394721317358118219}
+    name: {fileID: 5245960730967785063}
     dominatorIcon: {fileID: 6143144135553723782}
     countPlanet: {fileID: 5230229097084416430}
     countDominationPoints: {fileID: 869060075909551481}

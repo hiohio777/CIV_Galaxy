@@ -1,6 +1,4 @@
-﻿using System;
-
-public interface IGalacticEvent
+﻿public interface IGalacticEvent
 {
     float Execute(ICivilization civilization);
 }

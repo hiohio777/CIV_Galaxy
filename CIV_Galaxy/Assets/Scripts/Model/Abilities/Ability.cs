@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 public class Ability : CivilizationStructureBase
 {
@@ -68,7 +67,7 @@ public class Ability : CivilizationStructureBase
 
             return;
         }
-
+         
         if (_civilization is ICivilizationAl alCiv)
             ApplyAl(alCiv.DiplomacyCiv);
     }

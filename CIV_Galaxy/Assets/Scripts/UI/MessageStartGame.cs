@@ -13,6 +13,8 @@ public class MessageStartGame : MonoBehaviour
     private IGalaxyUITimer _galaxyUITimer;
     private Animator _animator;
 
+    public class Factory : PlaceholderFactory<MessageStartGame> { }
+
     [Inject]
     public void Inject(IGalaxyUITimer galaxyUITimer)
     {
@@ -22,16 +24,17 @@ public class MessageStartGame : MonoBehaviour
         OK.onClick.AddListener(OnOK);
     }
 
-    public void Show(CivilizationScriptable civData, Action actOK)
+    public MessageStartGame Show(CivilizationScriptable civData, Action actOK)
     {
         this._actOK = actOK;
         nameCiv.SetKey(civData.Name);
         descriptionCiv.SetKey(civData.Description);
         art.sprite = civData.Icon;
 
-        gameObject.SetActive(true);
-        _galaxyUITimer.SetPause(true);
+        _galaxyUITimer.SetPause(true, string.Empty);
         _animator.SetTrigger("DisplayMessage");
+
+        return this;
     }
 
     public void EndAnimation()

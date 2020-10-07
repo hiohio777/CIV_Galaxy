@@ -19,7 +19,7 @@ MonoBehaviour:
     dominationPoints: 0
     gdOverall: 0
     gdPlanets: 100
-    gdIndustry: 50
+    gdIndustry: 100
   scanerData:
     isScan: 1
     acceleration: 100

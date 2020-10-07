@@ -185,7 +185,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: 102ea72e283ceb344b9fed66fdd84a59, type: 3}
     m_FontSize: 60
-    m_FontStyle: 3
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
     m_MaxSize: 60
@@ -553,7 +553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   artDiscoveredCivilization: {fileID: 6144522470810984786}
-  nameCiv: {fileID: 5346835893020824445}
+  nameCiv: {fileID: 579363674163368229}
   descriptionCiv: {fileID: 853164130042620864}
   welcome: {fileID: 8435979319040409674}
   offend: {fileID: 7362599282175083468}
@@ -568,8 +568,8 @@ GameObject:
   - component: {fileID: 3658740847228920097}
   - component: {fileID: 3445313698991954683}
   - component: {fileID: 9204002531239111430}
-  - component: {fileID: 8818929586805254649}
   - component: {fileID: 8120184992355471425}
+  - component: {fileID: 579363674163368229}
   m_Layer: 5
   m_Name: NameAnotherCiv
   m_TagString: Untagged
@@ -617,7 +617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.47058827, g: 0.67058825, b: 0.82745105, a: 1}
+  m_Color: {r: 0.6084906, g: 1, b: 0.70500845, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -637,20 +637,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Name
---- !u!114 &8818929586805254649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3793483191122848971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a823470ae2eb8f4ba8b8e302d73a3a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Key: 
-  text: {fileID: 0}
 --- !u!114 &8120184992355471425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -666,6 +652,20 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
+--- !u!114 &579363674163368229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3793483191122848971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a823470ae2eb8f4ba8b8e302d73a3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key: 
+  text: {fileID: 0}
 --- !u!1 &5160744880900267503
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,8 +898,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 185.9, y: -45.93}
-  m_SizeDelta: {x: 655.27576, y: 250}
+  m_AnchoredPosition: {x: 185.9, y: -54.1}
+  m_SizeDelta: {x: 655.27576, y: 233.5957}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4846430516788658689
 CanvasRenderer:

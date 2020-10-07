@@ -12,7 +12,7 @@ public class CivilizationFromPlayerSelect : MonoBehaviour, IPointerClickHandler
     private ChoiceCivilization _choiceCivilization;
     private PlayerSettings _playerData;
 
-   [Inject]
+    [Inject]
     public void Inject(ChoiceCivilization choiceCivilization, PlayerSettings playerData)
     {
         this._choiceCivilization = choiceCivilization;

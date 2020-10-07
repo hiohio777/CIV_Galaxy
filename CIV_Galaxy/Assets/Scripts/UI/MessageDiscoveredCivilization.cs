@@ -14,6 +14,8 @@ public class MessageDiscoveredCivilization : MonoBehaviour
     private bool _selectButton;
     private Animator _animator;
 
+    public class Factory : PlaceholderFactory<MessageDiscoveredCivilization> { }
+
     [Inject]
     public void Inject(IGalaxyUITimer galaxyUITimer)
     {
@@ -21,19 +23,20 @@ public class MessageDiscoveredCivilization : MonoBehaviour
 
         _animator = GetComponent<Animator>();
         welcome.onClick.AddListener(OnWelcome);
-        offend.onClick.AddListener(OnOffend); 
+        offend.onClick.AddListener(OnOffend);
     }
 
-    public void Show(CivilizationScriptable civData, Action actWelcome, Action actOffend)
+    public MessageDiscoveredCivilization Show(CivilizationScriptable civData, Action actWelcome, Action actOffend)
     {
         (this._actWelcome, this._actOffend) = (actWelcome, actOffend);
         nameCiv.SetKey(civData.Name);
         descriptionCiv.SetKey(civData.Description);
         artDiscoveredCivilization.sprite = civData.Icon;
 
-        gameObject.SetActive(true);
-        _galaxyUITimer.SetPause(true);
+        _galaxyUITimer.SetPause(true, string.Empty);
         _animator.SetTrigger("DisplayMessage");
+
+        return this;
     }
 
     public void EndAnimation()
@@ -44,7 +47,7 @@ public class MessageDiscoveredCivilization : MonoBehaviour
         welcome.interactable = offend.interactable = true;
 
         _galaxyUITimer.SetPause(false);
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
     private void OnWelcome()
@@ -63,4 +66,3 @@ public class MessageDiscoveredCivilization : MonoBehaviour
         welcome.interactable = offend.interactable = false;
     }
 }
-

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3708421518119059531}
   - component: {fileID: 714280664628655750}
   - component: {fileID: 1460001476881693464}
+  - component: {fileID: 3568557093317136475}
   m_Layer: 5
   m_Name: NameDiscovery
   m_TagString: Untagged
@@ -78,6 +79,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Background radiation
+--- !u!114 &3568557093317136475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342020677692953562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a823470ae2eb8f4ba8b8e302d73a3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key: 
+  text: {fileID: 0}
 --- !u!1 &1077686384081044585
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,7 +1064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imageIcon: {fileID: 4063522290491706649}
-  nameDiscovery: {fileID: 1460001476881693464}
+  nameDiscovery: {fileID: 3568557093317136475}
   cost: {fileID: 5895396278935502399}
   infoDiscovery: {fileID: 3071618252277677740}
   buttonStudy: {fileID: 31346490262806772}

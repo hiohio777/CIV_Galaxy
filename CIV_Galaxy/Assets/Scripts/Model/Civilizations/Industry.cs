@@ -71,7 +71,7 @@ public class Industry : CivilizationStructureBase
     {
         string info = string.Empty;
 
-        if(isPlayer)
+        if (isPlayer)
         {
             info += $"{LocalisationGame.Instance.GetLocalisationString("efficiency")}: <color=lime>{(int)(Points * 100)}%</color>\r\n";
             info += $"{LocalisationGame.Instance.GetLocalisationString("acceleration")}:<color=lime> {Acceleration}%</color>\r\n";

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
@@ -53,10 +52,13 @@ public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
         IsOpen = true;
     }
 
-    public void OnClick()
+    public override void OnClick()
     {
         if (_player.SelectedAbility == null)
-            return;
+        {
+            // Вывести информацию
+            if (IsOpen) base.OnClick();
+        }
         else
         {
             if (_player.SelectedAbility.Apply(this))

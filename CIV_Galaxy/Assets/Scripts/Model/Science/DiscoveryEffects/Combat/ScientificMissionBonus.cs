@@ -5,7 +5,8 @@ using UnityEngine;
 /// </summary>
 public class ScientificMissionBonus : MonoBehaviour, IDiscoveryEffects
 {
-    [SerializeField, Range(0, 500)] private int scientificMissionBonus, countUnits;
+    [SerializeField, Range(0, 5)] private int countUnits;
+    [SerializeField, Range(0, 500)] private int scientificMissionBonus;
 
     public void ExecuteStudy(ICivilization civilization, string nameDiscovery)
     {
@@ -28,7 +29,7 @@ public class ScientificMissionBonus : MonoBehaviour, IDiscoveryEffects
         {
             info += $"{LocalisationGame.Instance.GetLocalisationString("scientific_mission_bonus")}: +{scientificMissionBonus}%\r\n";
         }
-        if (scientificMissionBonus > 0)
+        if (countUnits > 0)
         {
             info += $"{LocalisationGame.Instance.GetLocalisationString("scientific_mission_countUnits")}: +{countUnits}\r\n";
         }

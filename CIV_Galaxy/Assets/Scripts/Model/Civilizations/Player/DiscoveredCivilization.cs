@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class DiscoveredCivilization
 {
     private int _chanceDiscoverAnotherCiv, _countDiscoveredCiv;
-    private MessageDiscoveredCivilization _messageDiscovered;
-    private PlanetsFactory _planetsFactory;
+    private MessageFactory _messageFactory;
 
-    public DiscoveredCivilization(MessageDiscoveredCivilization messageDiscovered, PlanetsFactory planetsFactory)
+    public DiscoveredCivilization(MessageFactory messageFactory)
     {
-        (this._messageDiscovered, _planetsFactory) = (messageDiscovered, planetsFactory);
+        this._messageFactory = messageFactory;
     }
 
     // Попытаться открыть иную цивилизацию, если есть неоткрытые(цивилизации открываются по порядку с 1-вой)
@@ -38,7 +36,7 @@ public class DiscoveredCivilization
                 anotherCiv.Open();
             };
 
-            _messageDiscovered.Show(anotherCiv.DataBase, welcome, offend);
+            _messageFactory.GetMessageDiscoveredCivilization(anotherCiv.DataBase, welcome, offend);
             return true;
         }
 

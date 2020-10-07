@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -74,8 +73,16 @@ public class GalacticEventDisplay : MonoBehaviour, IGalacticEventDisplay
         }
 
         isActive = false;
-        art.color = new Color(0.4f, 0.5f, 0.7f, 1);
-        _fon.color = new Color(0.4f, 0.5f, 0.7f, 1);
+        art.color = Color.red;
+        _fon.color = Color.red;
+        timeSecond = 0;
+        while (timeSecond < timeWait / 3)
+        {
+            if (_galaxyUITimer.IsPause == false)
+                timeSecond += Time.deltaTime * _galaxyUITimer.GetSpeed;
+
+            yield return null;
+        }
 
         moving.SetScale(0f, 0.3f).SetPosition(new Vector3(0, 0), 0.3f).Run(EndEvent);
     }

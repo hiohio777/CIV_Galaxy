@@ -1,6 +1,3 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
-
-public class MainMenu : PanelUI
+﻿public class MainMenu : PanelUI
 {
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -15,15 +14,16 @@ public class SciencePlayerUI : MonoBehaviour
     private IGalaxyUITimer _galaxyUITimer;
     private DiscoveryCellUI.Factory _factoryDiscoveryCellUI;
     private List<DiscoveryCellUI> _discoveries = new List<DiscoveryCellUI>();
+    private MessageInfoScience _messageInfoScience;
 
     [Inject]
-    public void Inject(ICivilizationPlayer civPlayer, IGalaxyUITimer galaxyUITimer, DiscoveryCellUI.Factory factoryDiscoveryCellUI,
-        ImagePanelInfoScience imagePanelInfoScience)
+    public void Inject(ICivilizationPlayer civPlayer, IGalaxyUITimer galaxyUITimer, DiscoveryCellUI.Factory factoryDiscoveryCellUI)
     {
         (this._civPlayer, this._galaxyUITimer, this._factoryDiscoveryCellUI)
         = (civPlayer, galaxyUITimer, factoryDiscoveryCellUI);
 
-        imagePanelInfoScience.UpdateCostDiscoveriesEvent += UpdateCostDiscoveries;
+        _messageInfoScience = GetComponentInChildren<MessageInfoScience>();
+        _messageInfoScience.UpdateCostDiscoveriesEvent += UpdateCostDiscoveries;
     }
 
     public void Enable()
@@ -62,10 +62,12 @@ public class SciencePlayerUI : MonoBehaviour
         {
             var discoveryCellUI = _factoryDiscoveryCellUI.Create(item);
             discoveryCellUI.transform.SetParent(transform, false);
+            discoveryCellUI.MessageInfoScience = _messageInfoScience;
 
             _discoveries.Add(discoveryCellUI);
         }
 
+        _messageInfoScience.transform.SetAsLastSibling();
         _isInit = true;
     }
 

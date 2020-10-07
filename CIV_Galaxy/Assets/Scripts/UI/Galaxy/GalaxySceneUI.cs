@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -11,28 +10,26 @@ public class GalaxySceneUI : MonoBehaviour
     private List<ICivilizationAl> _civsAl;
     private Civilizations _allCivilizations;
     private PlayerSettings _playerData;
-
-    private MessageStartGame _messageStartGame;
-    private MessageBackMainMenu _messageBackMainMenu;
+    private MessageFactory _messageFactory;
 
     [Inject]
     public void Inject(Civilizations allCivilizations, ICivilizationPlayer civPlayer, List<ICivilizationAl> civsAl, PlayerSettings playerData,
-        MessageStartGame messageStartGame, MessageBackMainMenu messageBackMainMenu, SciencePlayerUI sciencePlayerUI)
+        MessageFactory messageFactory, SciencePlayerUI sciencePlayerUI)
     {
-        (this._allCivilizations, this._civPlayer, _civsAl, _playerData, this._messageStartGame, this._messageBackMainMenu)
-        = (allCivilizations, civPlayer, civsAl, playerData, messageStartGame, messageBackMainMenu);
+        (this._allCivilizations, this._civPlayer, _civsAl, _playerData, this._messageFactory)
+        = (allCivilizations, civPlayer, civsAl, playerData, messageFactory);
 
         sciencePlayerUI.gameObject.SetActive(false);
     }
 
     public void BackMainMenu()
     {
-        _messageBackMainMenu.Show(_civPlayer.DataBase, BackMainScene, () => { });
+        _messageFactory.GetMessageBackMainMenu(BackMainScene, () => { });
     }
 
     public void ShowMessageStart()
     {
-        _messageStartGame.Show(_civPlayer.DataBase, () => _animator.SetTrigger("PlayerStart"));
+        _messageFactory.GetMessageStartGame(_civPlayer.DataBase, () => _animator.SetTrigger("PlayerStart"));
     }
 
     public void BackMainScene()

@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
 public abstract class CivilizationBase : MonoBehaviour, ICivilization
 {
     [SerializeField] protected CivilizationUI civilizationUI;
     protected bool isAssign = false; // Назначена ли цивилизация
+    private InfoCivilizationPanelUI _infoCivilizationPanelUI;
 
     [Inject]
-    public void Inject(CivilizationData civData, Scanner scanerPlanets, Science scienceCiv,
-        Industry industryCiv, Ability abilityCiv, ValueChangeEffectFactory valueChangeEffectFactory)
+    public void Inject(CivilizationData civData, Scanner scanerPlanets, Science scienceCiv, Industry industryCiv,
+        Ability abilityCiv, ValueChangeEffectFactory valueChangeEffectFactory, InfoCivilizationPanelUI infoCivilizationPanelUI)
     {
-        (this.CivData, this.ScanerCiv, this.ScienceCiv, this.IndustryCiv, this.AbilityCiv)
-        = (civData, scanerPlanets, scienceCiv, industryCiv, abilityCiv);
+        (this.CivData, this.ScanerCiv, this.ScienceCiv, this.IndustryCiv, this.AbilityCiv, this._infoCivilizationPanelUI)
+        = (civData, scanerPlanets, scienceCiv, industryCiv, abilityCiv, infoCivilizationPanelUI);
 
         PositionCiv = transform.position;
 
@@ -44,6 +43,8 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
 
         isAssign = true;
     }
+
+    public virtual void OnClick() => _infoCivilizationPanelUI.Show(this);
 
     public void ExicuteIndustryPoints(float points)
     {

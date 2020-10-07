@@ -3,9 +3,10 @@ using UnityEngine;
 /// <summary>
 /// Бонусы Ракет и бомб
 /// </summary>
-public class BombsAndMissilesBonus : MonoBehaviour, IDiscoveryEffects
+public class BombsBonus : MonoBehaviour, IDiscoveryEffects
 {
-    [SerializeField, Header("Урон инустрии(%)"), Range(0, 500)] private int minAttackIndustry, randomAttackIndustry, countUnits;
+    [SerializeField, Range(0, 5)] private int countUnits;
+    [SerializeField, Header("Урон инустрии(%)"), Range(0, 500)] private int minAttackIndustry, randomAttackIndustry;
 
     public void ExecuteStudy(ICivilization civilization, string nameDiscovery)
     {

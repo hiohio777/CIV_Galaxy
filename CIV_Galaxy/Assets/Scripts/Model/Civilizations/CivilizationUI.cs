@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
-using System.Globalization;
 
 [Serializable]
 public class CivilizationUI
@@ -10,7 +9,7 @@ public class CivilizationUI
     [SerializeField] private Sprite spriteEmpty;
 
     [SerializeField, Space(10)] private GameObject panel;
-    [SerializeField, Space(10)] private Text name;
+    [SerializeField, Space(10)] private LocalisationText name;
     [SerializeField] private Image dominatorIcon;
     [SerializeField] private Text countPlanet;
     [SerializeField] private Text countDominationPoints;
@@ -81,7 +80,7 @@ public class CivilizationUI
         art.sprite = civilization.DataBase.Icon;
         art.color = new Color(1, 1, 1, 1);
         if (panel != null) panel.SetActive(true);
-        name.text = civilization.DataBase.Name;
+        name.SetKey(civilization.DataBase.Name);
 
         countDominationPoints.text = ((int)civilization.CivData.DominationPoints).ToString("#,#");
 

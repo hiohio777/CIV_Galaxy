@@ -1,7 +1,4 @@
-﻿using System;
-using UnityEngine;
-
-public class CivilizationData
+﻿public class CivilizationData
 {
     private int _planets;
     private float _dominationPoints;
@@ -81,12 +78,11 @@ public class CivilizationData
 
         if (isPlayer)
         {
-            info += $"{LocalisationGame.Instance.GetLocalisationString("growth_rate_per_year")}\r\n ";
-            info += $"<color=yellow>+{(int)GetPointsAll} ({GDOverall + 100}%)</color>\r\n";
+            info += $"<size=50><color=yellow>+{(int)GetPointsAll} ({GDOverall + 100}%)</color></size>\r\n\r\n";
             info += $"{LocalisationGame.Instance.GetLocalisationString("dominance_from_planets")}\r\n";
-            info += $"<color=yellow>+{(int)GetPointsFromPlanets} ({GDPlanets}%)</color>\r\n";
+            info += $"<color=lime>+{(int)GetPointsFromPlanets} ({GDPlanets}%)</color>\r\n";
             info += $"{LocalisationGame.Instance.GetLocalisationString("dominance_from_industry")}\r\n";
-            info += $"<color=yellow>+{(int)GetPointsFromIndustry} ({(int)(_civilization.IndustryCiv.Points* GDIndustry)}%)</color>\r\n";
+            info += $"<color=lime>+{(int)GetPointsFromIndustry} ({(int)(_civilization.IndustryCiv.Points * GDIndustry)}%)</color>\r\n";
         }
 
         return info;

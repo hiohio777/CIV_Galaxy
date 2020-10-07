@@ -60,7 +60,7 @@ public class AbilityUI : MonoBehaviour, IPointerClickHandler
             }
             else
             {
-                _galaxyUITimer.SetPause(true);
+                _galaxyUITimer.SetPause(true, "choose_target");
                 _civilizationPlayer.SelectedAbility?.Select(false);
                 Select(true);
             }

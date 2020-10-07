@@ -44,5 +44,15 @@
   "growth_rate_per_year": "Темп роста в год",
   "dominance_from_planets": "Влияние планет",
   "dominance_from_industry": "Влияние индустрии",
-  "dominance_from_overall": "общий бонус"
+  "dominance_from_overall": "общий бонус",
+  "Ailo": "Айло",
+  "Andarians": "Андариане",
+  "Humanity": "Человечество",
+  "Juu": "Джуу",
+  "Quellons": "Кселонци",
+  "Shaktalasi": "Шакталаси",
+  "Tarkans": "Тарканы",
+  "pause": "Пауза",
+  "choose_target": "Выберите цель",
+  "year": "год"
 }

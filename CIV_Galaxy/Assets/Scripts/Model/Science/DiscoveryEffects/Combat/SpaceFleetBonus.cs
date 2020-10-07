@@ -5,7 +5,8 @@ using UnityEngine;
 /// </summary>
 public class SpaceFleetBonus : MonoBehaviour, IDiscoveryEffects
 {
-    [SerializeField, Range(0, 500)] private int minConquestPlanets, randomConquestPlanets, countUnits; 
+    [SerializeField, Range(0, 5)] private int countUnits;
+    [SerializeField, Range(0, 500)] private int minConquestPlanets, randomConquestPlanets;
 
     public void ExecuteStudy(ICivilization civilization, string nameDiscovery)
     {

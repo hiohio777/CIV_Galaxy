@@ -5,19 +5,19 @@ public abstract class AttackerAbility : MonoBehaviour, IAbility
 {
     [SerializeField] private Sprite spriteArtFon, spriteArt, frame;
     [SerializeField, Space(10)] protected float speedUnits = 5f;
-    [SerializeField, Range(1,10)] protected int countUnits = 1;
+    [SerializeField, Range(1, 10)] protected int countUnits = 1;
     [SerializeField, Header("Величина при появлении")] private float size = 1.5f;
 
     protected string GetInfoCountUnits => $"{LocalisationGame.Instance.GetLocalisationString("units")}: <color=lime>{countUnits}</color>\r\n";
 
     private UnitAbilityFactory _unitFactory;
 
-    public int CountUnits { get => countUnits; set
-    {
-           countUnits = value;
+    public int CountUnits {
+        get => countUnits; set {
+            countUnits = value;
             if (countUnits <= 0) countUnits = 1;
-         }
-     } // Количество запускаемых юнитов за раз
+        }
+    } // Количество запускаемых юнитов за раз
 
     protected ICivilization ThisCivilization { get; private set; }
 
@@ -63,8 +63,8 @@ public abstract class AttackerAbility : MonoBehaviour, IAbility
 
     private void StartAct(IUnitAbility unit, ICivilization civilizationTarget)
         => unit.SetScale(1f, 0.2f).Run(() => MoveAct(unit, civilizationTarget));
-    private void MoveAct(IUnitAbility unit, ICivilization civilizationTarget) 
-        => unit.SetPositionBezier(civilizationTarget.PositionCiv, new Vector3(0,0), new Vector3(0, 0), speedUnits).Run(() => EndAttack(unit, civilizationTarget));
+    private void MoveAct(IUnitAbility unit, ICivilization civilizationTarget)
+        => unit.SetPositionBezier(civilizationTarget.PositionCiv, new Vector3(0, 0), new Vector3(0, 0), speedUnits).Run(() => EndAttack(unit, civilizationTarget));
     private void EndAttack(IUnitAbility unit, ICivilization civilizationTarget)
         => unit.SetScale(0f, 0.2f).Run(() => Finish(unit, civilizationTarget));
 

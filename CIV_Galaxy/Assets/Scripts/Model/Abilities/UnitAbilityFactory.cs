@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class UnitAbilityFactory : BaseFactory
+﻿public class UnitAbilityFactory : BaseFactory
 {
     private readonly UnitAbility.Factory factory;
 
@@ -37,6 +35,6 @@ public class UnitAbilityFactory : BaseFactory
 public enum TypeDisplayAbilityEnum
 {
     PlayerAttack,
-    PlayerTarget, 
+    PlayerTarget,
     Al
 }

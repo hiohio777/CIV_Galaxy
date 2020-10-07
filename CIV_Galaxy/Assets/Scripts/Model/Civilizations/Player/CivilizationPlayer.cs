@@ -1,7 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilizationPlayer
@@ -9,19 +6,17 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
     private ScanerPanelUI _scanerPanelUI;
     private SciencePanelUI _sciencePanelUI;
     private List<AbilityUI> _abilitiesUI;
-    private InfoPlayerCivUI _playerCivInfo;
     private List<ICivilizationAl> _anotherCivilization;
 
     private DiscoveredCivilization _discoveredCivilization;
 
     [Inject]
     public void InjectCivilizationPlayer(DiscoveredCivilization discoveredCivilization, SciencePanelUI sciencePanelUI,
-       ScanerPanelUI scanerPanelUI, InfoPlayerCivUI playerCivInfo, GalacticEventGeneratorPlayer galacticEventGenerator,
+       ScanerPanelUI scanerPanelUI, GalacticEventGeneratorPlayer galacticEventGenerator,
        List<AbilityUI> abilitiesUI, List<ICivilizationAl> anotherCivilization)
     {
-        (this._discoveredCivilization, this._sciencePanelUI, this._scanerPanelUI, this._playerCivInfo,
-        this.EventGenerator, this._abilitiesUI)
-        = (discoveredCivilization, sciencePanelUI, scanerPanelUI, playerCivInfo, galacticEventGenerator, abilitiesUI);
+        (this._discoveredCivilization, this._sciencePanelUI, this._scanerPanelUI, this.EventGenerator, this._abilitiesUI)
+        = (discoveredCivilization, sciencePanelUI, scanerPanelUI, galacticEventGenerator, abilitiesUI);
 
         _anotherCivilization = anotherCivilization;
 
@@ -61,8 +56,6 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
 
         IsOpen = true;
     }
-
-    public void OpenPanelPlayerCivInfo() => _playerCivInfo.Enable();
 
     public override void ExicuteScanning()
     {

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class GalacticEventGeneratorPlayer : GalacticEventGenerator
+﻿public class GalacticEventGeneratorPlayer : GalacticEventGenerator
 {
     private IGalacticEventDisplay _galacticEventDisplay;
 

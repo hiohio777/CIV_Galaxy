@@ -1,6 +1,4 @@
 ﻿using System;
-using UnityEngine;
-using Zenject;
 
 public class Scanner : CivilizationStructureBase
 {
@@ -99,7 +97,7 @@ public class Scanner : CivilizationStructureBase
         {
             info += $"{LocalisationGame.Instance.GetLocalisationString("speed")}:<color=lime> {Acceleration}%</color>\r\n";
             info += $"{LocalisationGame.Instance.GetLocalisationString("new_planets")}: <color=lime>{MinimumDiscoveredPlanetsBonus}</color>";
-            if(RandomDiscoveredPlanetsBonus > 0) info += $" - <color=lime>{RandomDiscoveredPlanetsBonus + MinimumDiscoveredPlanetsBonus}</color>\r\n";
+            if (RandomDiscoveredPlanetsBonus > 0) info += $" - <color=lime>{RandomDiscoveredPlanetsBonus + MinimumDiscoveredPlanetsBonus}</color>\r\n";
         }
 
         return info;

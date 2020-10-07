@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Zenject;
@@ -9,29 +8,27 @@ public class DiscoveryCellUI : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Text researchCost;
     [SerializeField] private Color colorResearch, colorAvailable, colorAvailablePrice;
     private Image imageDiscovery;
-    private ImagePanelInfoScience _imagePanelInfoScience;
     private DiscoveryCell _discoveryCellData;
 
     public class Factory : PlaceholderFactory<DiscoveryCell, DiscoveryCellUI> { }
 
     [Inject]
-    public void Inject(ImagePanelInfoScience imagePanelInfoScience, DiscoveryCell discoveryCell)
+    public void Inject(DiscoveryCell discoveryCell)
     {
-        this._imagePanelInfoScience = imagePanelInfoScience;
-
         this._discoveryCellData = discoveryCell;
         _discoveryCellData.AvailableUI += DiscoveryCell_AvailableUI;
         _discoveryCellData.ResearchUI += DiscoveryCell_ResearchUI;
 
         name = _discoveryCellData.name;
     }
+    public MessageInfoScience MessageInfoScience { get; set; }
 
     public void CheckPrice(int sciencePoints)
     {
         if (_discoveryCellData.IsAvailable == false || _discoveryCellData.IsResearch)
             return;
-   
-        if (sciencePoints >= _discoveryCellData.ResearchCost) 
+
+        if (sciencePoints >= _discoveryCellData.ResearchCost)
         {
             imageDiscovery.color = colorAvailablePrice;
             researchCost.color = colorAvailablePrice;
@@ -45,7 +42,7 @@ public class DiscoveryCellUI : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         // Посмотреть информацию и выбрать для изучения
-        _imagePanelInfoScience.Show(_discoveryCellData);
+        MessageInfoScience.Show(_discoveryCellData);
     }
 
     private void DiscoveryCell_AvailableUI(bool isAvailable)

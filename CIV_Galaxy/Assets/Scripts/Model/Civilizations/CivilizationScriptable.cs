@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 [Serializable]
 public class BaseData
@@ -11,8 +11,8 @@ public class BaseData
     [SerializeField, Range(0, 300)] private int gdPlanets = 0; // роста доминирования от планет(от одной планеты)
     [SerializeField, Range(0, 300)] private int gdIndustry = 0; // роста доминирования от Индустрии(процент)
 
-    public int GDOverall => gdOverall; 
-    public int GDPlanets => gdPlanets;  
+    public int GDOverall => gdOverall;
+    public int GDPlanets => gdPlanets;
     public int GDIndustry => gdIndustry;
 
     public int Planets => planets;

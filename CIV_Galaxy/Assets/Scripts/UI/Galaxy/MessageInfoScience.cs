@@ -3,10 +3,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public class ImagePanelInfoScience : MonoBehaviour
+public class MessageInfoScience : MonoBehaviour
 {
     [SerializeField] private Image imageIcon;
-    [SerializeField] private Text nameDiscovery, cost, infoDiscovery;
+    [SerializeField] private LocalisationText nameDiscovery;
+    [SerializeField] private Text cost, infoDiscovery;
     [SerializeField] private Button buttonStudy, buttonClose;
 
     private Animator _animator;
@@ -33,7 +34,7 @@ public class ImagePanelInfoScience : MonoBehaviour
         this._discoveryCell = discoveryCell;
 
         imageIcon.sprite = discoveryCell.SpriteIcon;
-        nameDiscovery.text = discoveryCell.name;
+        nameDiscovery.SetKey(discoveryCell.name);
         cost.text = discoveryCell.ResearchCost.ToString();
 
         infoDiscovery.text = string.Empty;

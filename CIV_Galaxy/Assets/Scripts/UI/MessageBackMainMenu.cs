@@ -5,13 +5,14 @@ using Zenject;
 
 public class MessageBackMainMenu : MonoBehaviour
 {
-    [SerializeField] private Image art;
     [SerializeField] private Button yes, no;
 
     private Action _actYes, _actNo;
     private IGalaxyUITimer _galaxyUITimer;
     private bool _selectButton;
     private Animator _animator;
+
+    public class Factory : PlaceholderFactory<MessageBackMainMenu> { }
 
     [Inject]
     public void Inject(IGalaxyUITimer galaxyUITimer)
@@ -23,14 +24,14 @@ public class MessageBackMainMenu : MonoBehaviour
         no.onClick.AddListener(OnOffend); ;
     }
 
-    public void Show(CivilizationScriptable civData, Action actYes, Action actNo)
+    public MessageBackMainMenu Show(Action actYes, Action actNo)
     {
         (this._actYes, this._actNo) = (actYes, actNo);
-        art.sprite = civData.Icon;
 
-        gameObject.SetActive(true);
-        _galaxyUITimer.SetPause(true);
+        _galaxyUITimer.SetPause(true, string.Empty);
         _animator.SetTrigger("DisplayMessage");
+
+        return this;
     }
 
     public void EndAnimation()
@@ -41,7 +42,7 @@ public class MessageBackMainMenu : MonoBehaviour
         yes.interactable = no.interactable = true;
 
         _galaxyUITimer.SetPause(false);
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
     private void OnWelcome()

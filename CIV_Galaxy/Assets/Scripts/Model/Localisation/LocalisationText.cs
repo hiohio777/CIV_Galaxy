@@ -15,6 +15,11 @@ public class LocalisationText : MonoBehaviour
         SetLocalisationString();
     }
 
+    public void SetActive(bool isActive)
+    {
+        gameObject.SetActive(isActive);
+    }
+
     private void Awake()
     {
         text = GetComponent<Text>();
