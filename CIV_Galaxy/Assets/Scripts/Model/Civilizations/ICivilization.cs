@@ -8,7 +8,7 @@ public interface ICivilization
     CivilizationScriptable DataBase { get; }
     Vector2 PositionCiv { get; }
     CivilizationData CivData { get; }
-    Scanner ScanerPlanets { get; }
+    Scanner ScanerCiv { get; }
     Science ScienceCiv { get; }
     Industry IndustryCiv { get; }
     Ability AbilityCiv { get; }

@@ -4,6 +4,7 @@ using Zenject;
 public class GalaxyData : MonoBehaviour
 {
     [SerializeField] private int allPlanet = 1000;
+    [SerializeField, Range(0, 600)] private int endGametime = 300; // Время после открытия всех планет до конца игры
     private int _openPlanets;
     private CanvasFonGalaxy _canvasFonGalaxy;
     private MessageGalaxy _messageWholeGalaxyExplored;
@@ -31,7 +32,7 @@ public class GalaxyData : MonoBehaviour
         if (_openPlanets >= allPlanet)
         {
             // Запуск счётчика конца игры
-            _messageWholeGalaxyExplored.Show("Вся Галактика исследована!", _counterEndGame.Show);
+            _messageWholeGalaxyExplored.Show("Вся Галактика исследована!", () => _counterEndGame.Show(endGametime));
         }
 
 

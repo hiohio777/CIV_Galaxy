@@ -8,7 +8,7 @@ public class MinimumDiscoveredPlanets : MonoBehaviour, IDiscoveryEffects
 
     public void ExecuteStudy(ICivilization civilization, string nameDiscovery)
     {
-        civilization.ScanerPlanets.MinimumDiscoveredPlanetsBonus += discoveredPlanets;
+        civilization.ScanerCiv.MinimumDiscoveredPlanetsBonus += discoveredPlanets;
     }
 
     public string GetInfo()

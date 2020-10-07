@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1076241955190188985}
   - component: {fileID: 2611609268226346934}
   m_Layer: 0
-  m_Name: science_fromIndustry_acceleration
+  m_Name: science_acceleration_bonus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,10 +96,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   researchCost: 3
-  dependentSciences:
-  - {fileID: 0}
-  - {fileID: 0}
-  isAvailable: 1
+  dependentSciences: []
+  isAvailable: 0
   colorResearch: {r: 0.48504806, g: 0.9433962, b: 0.50621927, a: 1}
   colorAvailable: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &2611609268226346934

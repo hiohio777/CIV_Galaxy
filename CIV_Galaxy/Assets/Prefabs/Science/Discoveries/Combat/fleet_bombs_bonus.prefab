@@ -97,9 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   researchCost: 1
-  dependentSciences:
-  - {fileID: 0}
-  isAvailable: 1
+  dependentSciences: []
+  isAvailable: 0
   colorResearch: {r: 0.48504806, g: 0.9433962, b: 0.50621927, a: 1}
   colorAvailable: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &246946033826425240
@@ -116,6 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minAttackIndustry: 0
   randomAttackIndustry: 0
+  countUnits: 0
 --- !u!114 &6330440507359356933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,3 +130,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minConquestPlanets: 0
   randomConquestPlanets: 0
+  countUnits: 0

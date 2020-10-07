@@ -28,7 +28,7 @@ public class AbilityFactory
             {
                 case SpaceFleet ability: ability.Initialize(_planetsFactory, _unitAbilityFactor); break;
                 case ScientificMission ability: ability.Initialize(_unitAbilityFactor); break;
-                case BombsAndMissiles ability: ability.Initialize(_unitAbilityFactor); break;
+                case Bombs ability: ability.Initialize(_unitAbilityFactor); break;
             }
 
             abilities.Add(prefab);

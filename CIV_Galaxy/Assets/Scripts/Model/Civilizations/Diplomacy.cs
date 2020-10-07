@@ -49,10 +49,10 @@ public class Diplomacy
         }
     }
 
-    public ICivilization FindEnemy()
+    public ICivilization FindEnemy(AttackerAbility ability)
     {
         foreach (var item in relations)
-            item.CalculateDanger();
+            item.CalculateDanger(ability);
 
         DiplomaticRelations enemy = relations[0];
         for (int i = 1; i < relations.Count; i++)

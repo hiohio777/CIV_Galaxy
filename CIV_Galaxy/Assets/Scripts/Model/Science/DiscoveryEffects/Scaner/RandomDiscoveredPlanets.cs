@@ -8,7 +8,7 @@ public class RandomDiscoveredPlanets : MonoBehaviour, IDiscoveryEffects
 
     public void ExecuteStudy(ICivilization civilization, string nameDiscovery)
     {
-        civilization.ScanerPlanets.RandomDiscoveredPlanetsBonus += randomDiscoveredPlanets;
+        civilization.ScanerCiv.RandomDiscoveredPlanetsBonus += randomDiscoveredPlanets;
     }
 
     public string GetInfo()

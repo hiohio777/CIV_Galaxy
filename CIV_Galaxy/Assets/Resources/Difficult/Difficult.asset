@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: Difficult
   m_EditorClassIdentifier: 
   dangerPlayer: 50
+  scienceSecund: 80
+  scanerSecund: 80
+  gdOverall: 10

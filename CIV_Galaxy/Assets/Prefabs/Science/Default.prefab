@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0c4c87433ec8245bc9dae3715aafcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillRechargeCost: 30
+  skillRechargeCost: 15
 --- !u!1 &380409910075566903
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,7 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e87c2d5468ba147909b8c92661ff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  researchCost: 4
+  researchCost: 5
   dependentSciences:
   - {fileID: 5559869200287824489}
   - {fileID: 142786270438487690}
@@ -502,7 +502,7 @@ GameObject:
   - component: {fileID: 5440779115281693036}
   - component: {fileID: 7012209445480357219}
   m_Layer: 0
-  m_Name: science_fromIndustry_acceleration
+  m_Name: science_acceleration_bonus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -584,7 +584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e87c2d5468ba147909b8c92661ff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  researchCost: 4
+  researchCost: 5
   dependentSciences:
   - {fileID: 3918444025489581903}
   - {fileID: 5735361458916243222}
@@ -603,7 +603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9055c698606b4a54f947d9f61f9401ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accelerationBonus: 20
+  accelerationBonus: 10
 --- !u!1 &729368403214519303
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,7 +817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e87c2d5468ba147909b8c92661ff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  researchCost: 6
+  researchCost: 8
   dependentSciences: []
   isAvailable: 0
   colorResearch: {r: 0.48504806, g: 0.9433962, b: 0.50621927, a: 1}
@@ -930,7 +930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e87c2d5468ba147909b8c92661ff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  researchCost: 3
+  researchCost: 5
   dependentSciences:
   - {fileID: 478338564262393408}
   isAvailable: 0
@@ -1044,7 +1044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e87c2d5468ba147909b8c92661ff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  researchCost: 5
+  researchCost: 9
   dependentSciences: []
   isAvailable: 0
   colorResearch: {r: 0.48504806, g: 0.9433962, b: 0.50621927, a: 1}
@@ -1157,7 +1157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e87c2d5468ba147909b8c92661ff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  researchCost: 4
+  researchCost: 3
   dependentSciences:
   - {fileID: 2995825914425654381}
   isAvailable: 0
@@ -1388,7 +1388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e87c2d5468ba147909b8c92661ff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  researchCost: 8
+  researchCost: 9
   dependentSciences: []
   isAvailable: 0
   colorResearch: {r: 0.48504806, g: 0.9433962, b: 0.50621927, a: 1}
@@ -1418,7 +1418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76adcbbe251c82b4895810455d90a80e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomDiscoveredPlanets: 3
+  randomDiscoveredPlanets: 2
 --- !u!1 &2850915916349147846
 GameObject:
   m_ObjectHideFlags: 0
@@ -1787,7 +1787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e87c2d5468ba147909b8c92661ff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  researchCost: 4
+  researchCost: 5
   dependentSciences:
   - {fileID: 478338564262393408}
   isAvailable: 0
@@ -2149,7 +2149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0c4c87433ec8245bc9dae3715aafcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillRechargeCost: 50
+  skillRechargeCost: 15
 --- !u!1 &5549822609977272992
 GameObject:
   m_ObjectHideFlags: 0
@@ -2245,7 +2245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e87c2d5468ba147909b8c92661ff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  researchCost: 4
+  researchCost: 5
   dependentSciences:
   - {fileID: 2179073418589512330}
   - {fileID: 2398161297908932233}
@@ -2360,7 +2360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e87c2d5468ba147909b8c92661ff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  researchCost: 4
+  researchCost: 6
   dependentSciences:
   - {fileID: 4733294649683535369}
   isAvailable: 0
@@ -2749,7 +2749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e87c2d5468ba147909b8c92661ff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  researchCost: 5
+  researchCost: 6
   dependentSciences:
   - {fileID: 6911298053894438733}
   isAvailable: 0
@@ -2906,7 +2906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e87c2d5468ba147909b8c92661ff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  researchCost: 5
+  researchCost: 9
   dependentSciences: []
   isAvailable: 0
   colorResearch: {r: 0.48504806, g: 0.9433962, b: 0.50621927, a: 1}
@@ -3134,7 +3134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e87c2d5468ba147909b8c92661ff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  researchCost: 6
+  researchCost: 8
   dependentSciences: []
   isAvailable: 0
   colorResearch: {r: 0.48504806, g: 0.9433962, b: 0.50621927, a: 1}
@@ -3164,7 +3164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76adcbbe251c82b4895810455d90a80e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomDiscoveredPlanets: 2
+  randomDiscoveredPlanets: 3
 --- !u!1 &7701884210968488022
 GameObject:
   m_ObjectHideFlags: 0
@@ -3530,7 +3530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e87c2d5468ba147909b8c92661ff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  researchCost: 4
+  researchCost: 3
   dependentSciences:
   - {fileID: 356979756189110710}
   isAvailable: 0
@@ -3562,7 +3562,7 @@ GameObject:
   - component: {fileID: 3918444025489581903}
   - component: {fileID: 2067368305819812672}
   m_Layer: 0
-  m_Name: science_fromIndustry_acceleration II
+  m_Name: science_acceleration_bonus II
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3644,7 +3644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e87c2d5468ba147909b8c92661ff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  researchCost: 4
+  researchCost: 5
   dependentSciences:
   - {fileID: 5205945374689840783}
   isAvailable: 0
@@ -3662,7 +3662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9055c698606b4a54f947d9f61f9401ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accelerationBonus: 30
+  accelerationBonus: 20
 --- !u!1 &8469782192597166617
 GameObject:
   m_ObjectHideFlags: 0
@@ -3874,7 +3874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e87c2d5468ba147909b8c92661ff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  researchCost: 6
+  researchCost: 8
   dependentSciences: []
   isAvailable: 1
   colorResearch: {r: 0.48504806, g: 0.9433962, b: 0.50621927, a: 1}
@@ -3905,7 +3905,6 @@ GameObject:
   - component: {fileID: 6911298053894438733}
   - component: {fileID: 5428456781822310938}
   - component: {fileID: 2164904731377929849}
-  - component: {fileID: 5049962711910407714}
   m_Layer: 0
   m_Name: fleet_bombs_bonus II
   m_TagString: Untagged
@@ -3989,7 +3988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e87c2d5468ba147909b8c92661ff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  researchCost: 8
+  researchCost: 9
   dependentSciences: []
   isAvailable: 0
   colorResearch: {r: 0.48504806, g: 0.9433962, b: 0.50621927, a: 1}
@@ -4008,7 +4007,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minAttackIndustry: 0
   randomAttackIndustry: 0
-  countUnits: 1
+  countUnits: 0
 --- !u!114 &2164904731377929849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4021,22 +4020,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f401baac2f8354191779782cf9168a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minConquestPlanets: 1
-  randomConquestPlanets: 2
+  minConquestPlanets: 0
+  randomConquestPlanets: 0
   countUnits: 1
---- !u!114 &5049962711910407714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8571267180881304042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae0c4c87433ec8245bc9dae3715aafcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillRechargeCost: 10
 --- !u!1 &8823123599647162341
 GameObject:
   m_ObjectHideFlags: 0
@@ -4132,7 +4118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e87c2d5468ba147909b8c92661ff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  researchCost: 1
+  researchCost: 2
   dependentSciences:
   - {fileID: 3512441526048552753}
   - {fileID: 7545219305518251105}

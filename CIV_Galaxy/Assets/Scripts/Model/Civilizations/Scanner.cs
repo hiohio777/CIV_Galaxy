@@ -6,7 +6,7 @@ public class Scanner : CivilizationStructureBase
 {
     public event Action<float> ProgressEvent; // Отображение на экране
 
-    private const float _progressInterval = 15; // Интервал
+    private float _progressInterval = 15; // Интервал
     private float _progress = 0;
 
     private GalaxyData _galaxyData;
@@ -36,13 +36,16 @@ public class Scanner : CivilizationStructureBase
         RandomDiscoveredPlanetsBonus = _scanerData.RandomDiscoveredPlanets;
 
         ProgressEvent?.Invoke(ProgressProc);
+
+        // Установка сложности
+        if (civilization is ICivilizationAl)
+            _progressInterval = _progressInterval / 100f * _difficultSettings.ScanerProc;
     }
 
     public bool IsActive { get; set; } = true; // Активен ли
 
     //Бонусы
-    private float _acceleration;
-    public int Acceleration { get => (int)(_acceleration * 100); set => _acceleration = value / 100f; }
+    public int Acceleration { get; set; }
     public int MinimumDiscoveredPlanetsBonus { get; set; } = 0; // Минимальное количество открываемых планет
     public int RandomDiscoveredPlanetsBonus { get; set; } = 0; // Рандомное количество открываемых планет
 
@@ -53,7 +56,7 @@ public class Scanner : CivilizationStructureBase
     {
         if (IsActive == false) return;
 
-        _progress += deltaTime * _acceleration;
+        _progress += deltaTime * (Acceleration / 100f);
 
         if (_progress > _progressInterval)
         {
@@ -87,15 +90,18 @@ public class Scanner : CivilizationStructureBase
             else planet.OpenPlanet(_civilization.PositionCiv, () => _civilization.CivData.AddPlanet(planet));
         }
     }
-}
 
-public abstract class CivilizationStructureBase
-{
-    [Inject]
-    public void Inject(IGalaxyUITimer galaxyUITimer)
+    public string GetInfo(bool isPlayer = true)
     {
-        galaxyUITimer.ExecuteOfTime += ExecuteOnTimeEvent;
-    }
+        string info = string.Empty;
 
-    protected abstract void ExecuteOnTimeEvent(float deltaTime);
+        if (isPlayer)
+        {
+            info += $"{LocalisationGame.Instance.GetLocalisationString("speed")}:<color=lime> {Acceleration}%</color>\r\n";
+            info += $"{LocalisationGame.Instance.GetLocalisationString("new_planets")}: <color=lime>{MinimumDiscoveredPlanetsBonus}</color>";
+            if(RandomDiscoveredPlanetsBonus > 0) info += $" - <color=lime>{RandomDiscoveredPlanetsBonus + MinimumDiscoveredPlanetsBonus}</color>\r\n";
+        }
+
+        return info;
+    }
 }

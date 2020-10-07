@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: Medium
   m_EditorClassIdentifier: 
   dangerPlayer: 20
+  scienceSecund: 90
+  scanerSecund: 90
+  gdOverall: 5

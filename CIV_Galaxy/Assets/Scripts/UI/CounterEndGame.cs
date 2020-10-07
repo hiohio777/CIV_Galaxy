@@ -5,8 +5,7 @@ using Zenject;
 
 public class CounterEndGame : MonoBehaviour
 {
-    [SerializeField, Range(0, 600)] private int time;
-
+    private int _endGametime;
     private float _secunds = 0;
     private IGalaxyUITimer _galaxyUITimer;
     private EndGameUI _endGameUI;
@@ -22,13 +21,14 @@ public class CounterEndGame : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void Show()
+    public void Show(int endGametime)
     {
         gameObject.SetActive(true);
         this._galaxyUITimer.ExecuteOfTime += ExecuteOnTimeEvent;
 
+        _endGametime = endGametime;
         _secunds = 0;
-        _messadgeTime.text = TimeSpan.FromSeconds(time).ToString(@"mm\:ss");
+        _messadgeTime.text = TimeSpan.FromSeconds(_endGametime).ToString(@"mm\:ss");
     }
 
     private void ExecuteOnTimeEvent(float deltaTime)
@@ -38,9 +38,9 @@ public class CounterEndGame : MonoBehaviour
         if (_secunds >= 1)
         {
             _secunds = 0;
-            _messadgeTime.text = TimeSpan.FromSeconds(time -= 1).ToString(@"mm\:ss");
+            _messadgeTime.text = TimeSpan.FromSeconds(_endGametime -= 1).ToString(@"mm\:ss");
 
-            if (time <= 0)
+            if (_endGametime <= 0)
             {
                 // Время истекло, конец игры
                 _messadgeTime.text = string.Empty;

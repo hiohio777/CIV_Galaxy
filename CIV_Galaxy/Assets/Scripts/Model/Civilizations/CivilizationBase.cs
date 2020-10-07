@@ -12,7 +12,7 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
     public void Inject(CivilizationData civData, Scanner scanerPlanets, Science scienceCiv,
         Industry industryCiv, Ability abilityCiv, ValueChangeEffectFactory valueChangeEffectFactory)
     {
-        (this.CivData, this.ScanerPlanets, this.ScienceCiv, this.IndustryCiv, this.AbilityCiv)
+        (this.CivData, this.ScanerCiv, this.ScienceCiv, this.IndustryCiv, this.AbilityCiv)
         = (civData, scanerPlanets, scienceCiv, industryCiv, abilityCiv);
 
         PositionCiv = transform.position;
@@ -26,7 +26,7 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
     public Vector2 PositionCiv { get; private set; }
     public CivilizationScriptable DataBase { get; private set; }
     public CivilizationData CivData { get; private set; }
-    public Scanner ScanerPlanets { get; private set; }
+    public Scanner ScanerCiv { get; private set; }
     public Industry IndustryCiv { get; private set; }
     public Science ScienceCiv { get; private set; }
     public Ability AbilityCiv { get; private set; }
@@ -38,7 +38,7 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
 
         // Инициализация данных
         CivData.Initialize(this);
-        ScanerPlanets.Initialize(this);
+        ScanerCiv.Initialize(this);
         ScienceCiv.Initialize(this);
         IndustryCiv.Initialize(this);
 

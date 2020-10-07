@@ -26,14 +26,25 @@ public class SpaceFleet : AttackerAbility
         if (randomConquestPlanets < 0) randomConquestPlanets = 0;
     }
 
+    public override bool ApplyAl(Diplomacy diplomacyCiv)
+    {
+        var target = diplomacyCiv.FindEnemy(this);
+        if (target != null)
+        {
+            StartAttack(target); // Цель найдена
+            return true;
+        }
+        else return false;
+    }
+
     public override void SelectedApplayPlayer(List<ICivilizationAl> civilizationsTarget)
     {
         foreach (var item in civilizationsTarget)
         {
             if (item.IsOpen == false) continue;
 
-            if (item.DiplomacyCiv.GetRelationsPlayer() == DiplomaticRelationsEnum.Hatred
-                || item.DiplomacyCiv.GetRelationsPlayer() == DiplomaticRelationsEnum.Threat)
+            if (item.DiplomacyCiv.GetRelationsPlayer() != DiplomaticRelationsEnum.Friendship
+                && item.DiplomacyCiv.GetRelationsPlayer() != DiplomaticRelationsEnum.Cooperation)
                 item.EnableFrame(Color.red);
         }
     }
@@ -41,8 +52,8 @@ public class SpaceFleet : AttackerAbility
     public override bool Apply(ICivilization civilizationTarget)
     {
         var civ = civilizationTarget as ICivilizationAl;
-        if (civ.DiplomacyCiv.GetRelationsPlayer() == DiplomaticRelationsEnum.Hatred
-            || civ.DiplomacyCiv.GetRelationsPlayer() == DiplomaticRelationsEnum.Threat)
+        if (civ.DiplomacyCiv.GetRelationsPlayer() != DiplomaticRelationsEnum.Friendship
+            && civ.DiplomacyCiv.GetRelationsPlayer() != DiplomaticRelationsEnum.Cooperation)
         {
             StartAttack(civilizationTarget);
             return true;
@@ -68,5 +79,19 @@ public class SpaceFleet : AttackerAbility
             var planet = _planetsFactory.GetNewUnit(SpriteUnitEnum.Ideal);
             planet.ConquestPlanets(civilizationTarget.PositionCiv, ThisCivilization.PositionCiv, () => { ThisCivilization.CivData.Planets++; planet.Destroy(); });
         }
+    }
+
+    public override string GetInfo(bool isPlayer = true)
+    {
+        string info = string.Empty;
+
+        if (isPlayer)
+        {
+            info += GetInfoCountUnits;
+            info += $"{LocalisationGame.Instance.GetLocalisationString("capturing_planets")}: <color=lime>{minConquestPlanets}</color>";
+            if (randomConquestPlanets > 0) info += $" - <color=lime>{randomConquestPlanets + minConquestPlanets}</color>\r\n";
+        }
+
+        return info;
     }
 }

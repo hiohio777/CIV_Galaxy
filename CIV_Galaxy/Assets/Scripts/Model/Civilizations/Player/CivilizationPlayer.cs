@@ -77,13 +77,13 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
 
     private void OnEnable()
     {
-        ScanerPlanets.ProgressEvent += _scanerPanelUI.ProgressEvent;
+        ScanerCiv.ProgressEvent += _scanerPanelUI.ProgressEvent;
         ScienceCiv.ProgressEvent += _sciencePanelUI.ProgressEvent;
     }
 
     private void OnDisable()
     {
-        ScanerPlanets.ProgressEvent -= _scanerPanelUI.ProgressEvent;
+        ScanerCiv.ProgressEvent -= _scanerPanelUI.ProgressEvent;
         ScienceCiv.ProgressEvent -= _sciencePanelUI.ProgressEvent;
     }
 }

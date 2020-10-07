@@ -5,8 +5,10 @@ public abstract class AttackerAbility : MonoBehaviour, IAbility
 {
     [SerializeField] private Sprite spriteArtFon, spriteArt, frame;
     [SerializeField, Space(10)] protected float speedUnits = 5f;
-    [SerializeField, Range(1,10)] private int countUnits = 1;
+    [SerializeField, Range(1,10)] protected int countUnits = 1;
     [SerializeField, Header("Величина при появлении")] private float size = 1.5f;
+
+    protected string GetInfoCountUnits => $"{LocalisationGame.Instance.GetLocalisationString("units")}: <color=lime>{countUnits}</color>\r\n";
 
     private UnitAbilityFactory _unitFactory;
 
@@ -35,17 +37,6 @@ public abstract class AttackerAbility : MonoBehaviour, IAbility
         this._unitFactory = unitFactory;
     }
 
-    public virtual bool ApplyAl(Diplomacy diplomacyCiv)
-    {
-        var target = diplomacyCiv.FindEnemy();
-        if (target != null)
-        {
-            StartAttack(target); // Цель найдена
-            return true;
-        }
-        else return false;
-    }
-
     public virtual void SelectedApplayPlayer(List<ICivilizationAl> civilizationsTarget)
     {
         foreach (var item in civilizationsTarget)
@@ -54,12 +45,6 @@ public abstract class AttackerAbility : MonoBehaviour, IAbility
 
             item.EnableFrame(Color.red);
         }
-    }
-
-    public virtual bool Apply(ICivilization civilizationTarget)
-    {
-        StartAttack(civilizationTarget);
-        return true;
     }
 
     // Отправить флот в атаку
@@ -72,7 +57,7 @@ public abstract class AttackerAbility : MonoBehaviour, IAbility
             var unit = _unitFactory.GetNewUnit(this, ThisCivilization, civilizationTarget);
             unit.TtransformUnit.up = new Vector2(0, 0) - ThisCivilization.PositionCiv;
 
-            unit.SetWaitForSeconds(i / 2f).SetScale(size, 0.2f).Run(() => StartAct(unit, civilizationTarget));
+            unit.SetWaitForSeconds(i / 1.5f).SetScale(size, 0.2f).Run(() => StartAct(unit, civilizationTarget));
         }
     }
 
@@ -91,4 +76,9 @@ public abstract class AttackerAbility : MonoBehaviour, IAbility
     }
 
     protected abstract void Finall(IUnitAbility unit, ICivilization civilizationTarget);
+
+
+    public abstract bool Apply(ICivilization civilizationTarget);
+    public abstract bool ApplyAl(Diplomacy diplomacyCiv);
+    public abstract string GetInfo(bool isPlayer);
 }

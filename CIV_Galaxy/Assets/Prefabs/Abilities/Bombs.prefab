@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7333326909734857223}
   - component: {fileID: 3811776985947085971}
   m_Layer: 0
-  m_Name: BombsAndMissiles
+  m_Name: Bombs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3201525429964300333}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96414b5fadb16274a9d46b1a7851fa4a, type: 3}
+  m_Script: {fileID: 11500000, guid: c5999921b0d911a46b619c02697a7b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spriteArtFon: {fileID: 21300000, guid: eb4cf1201595b4a49b7b9fcc2f7cbd43, type: 3}
@@ -50,4 +50,4 @@ MonoBehaviour:
   countUnits: 1
   size: 1
   minAttackIndustry: 10
-  randomAttackIndustry: 10
+  randomAttackIndustry: 0

@@ -44,7 +44,7 @@ public class GalacticEventGenerator : CivilizationStructureBase
             case GalaxyTypeEventEnum.IndustryBonus: _civilization.IndustryCiv.AddPoints(15f * _bonusEfficiency); break;
             case GalaxyTypeEventEnum.ResearchBonus: _civilization.ScienceCiv.AddProgress(15f * _bonusEfficiency); break;
             case GalaxyTypeEventEnum.ProgressAbiliryBonus: _civilization.AbilityCiv.AddProgress(30f * _bonusEfficiency); break;
-            case GalaxyTypeEventEnum.ProgressScanerBonus: _civilization.ScanerPlanets.AddProgress(30f * _bonusEfficiency); break;
+            case GalaxyTypeEventEnum.ProgressScanerBonus: _civilization.ScanerCiv.AddProgress(30f * _bonusEfficiency); break;
             case GalaxyTypeEventEnum.DominationBonus: _civilization.CivData.AddDominance(_civilization.CivData.Planets * 1.5f * _bonusEfficiency); break;
             default: _civilization.CivData.AddDominance(_civilization.CivData.Planets * 1.5f * _bonusEfficiency); break;
         }

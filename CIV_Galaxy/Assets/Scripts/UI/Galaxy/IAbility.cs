@@ -14,4 +14,5 @@ public interface IAbility
     bool ApplyAl(Diplomacy diplomacyCiv);
     void SelectedApplayPlayer(List<ICivilizationAl> civilizationsTarget); // Выделение доступных целей
     bool Apply(ICivilization civilizationTarget);
+    string GetInfo(bool isPlayer = true);
 }

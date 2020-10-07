@@ -6,7 +6,7 @@ using UnityEngine;
 public class Ability : CivilizationStructureBase
 {
     public event Action<float> ProgressEvent; // Отображение на экране
-    private float _progress, _progressInterval = 50;
+    private float _progress, _progressInterval = 45;
 
     private AbilityFactory _abilityFactory;
     protected ICivilization _civilization;
@@ -27,7 +27,7 @@ public class Ability : CivilizationStructureBase
     }
 
     //Бонусы
-    private float _accelerationBonus = 1;
+    private float _accelerationBonus = 0;
     public int AccelerationBonus { get => (int)(_accelerationBonus * 100); set => _accelerationBonus = value / 100f; }
     public bool IsReady => _progress >= _progressInterval;
 
@@ -59,7 +59,7 @@ public class Ability : CivilizationStructureBase
 
         if (_progress < _progressInterval)
         {
-            _progress += deltaTime * (1 + _civilization.IndustryCiv.Points / 1.5f * _accelerationBonus);
+            _progress += deltaTime * (1 + _civilization.IndustryCiv.Points / 2f + _accelerationBonus);
 
             if (_progress >= _progressInterval)
                 _progress = _progressInterval;
@@ -79,5 +79,17 @@ public class Ability : CivilizationStructureBase
         currentAlAbility.ApplyAl(diplomacyCiv);
         AssingCurrentAlAbility();
     }
+    public string GetInfo(bool isPlayer = true)
+    {
+        string info = string.Empty;
 
+        if (isPlayer)
+        {
+            info += $"{LocalisationGame.Instance.GetLocalisationString("acceleration")}: <color=lime>{(int)((1 + _civilization.IndustryCiv.Points / 2f + _accelerationBonus) * 100)}%</color>\r\n";
+            info += $"  <color=#add8e6ff>{LocalisationGame.Instance.GetLocalisationString("base")}:</color> <color=orange>{100 + AccelerationBonus}%</color>\r\n";
+            info += $"  <color=#add8e6ff>{LocalisationGame.Instance.GetLocalisationString("industry")}:</color> <color=orange>{(int)(_civilization.IndustryCiv.Points / 2f * 100)}%</color>\r\n";
+        }
+
+        return info;
+    }
 }

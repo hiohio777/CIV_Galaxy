@@ -52,4 +52,17 @@ public class ScientificMission : AttackerAbility
         ThisCivilization.ScienceCiv.AddProgress(addProgressScienty);
         civilizationTarget.ScienceCiv.AddProgress(addProgressScienty / 2f);
     }
+
+    public override string GetInfo(bool isPlayer = true)
+    {
+        string info = string.Empty;
+
+        if (isPlayer)
+        {
+            info += GetInfoCountUnits;
+            info += $"{LocalisationGame.Instance.GetLocalisationString("science_progress")}: <color=lime>{addProgressScienty}%</color>";
+        }
+
+        return info;
+    }
 }

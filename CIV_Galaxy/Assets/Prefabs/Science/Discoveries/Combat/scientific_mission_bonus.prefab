@@ -96,9 +96,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   researchCost: 1
-  dependentSciences:
-  - {fileID: 0}
-  isAvailable: 1
+  dependentSciences: []
+  isAvailable: 0
   colorResearch: {r: 0.48504806, g: 0.9433962, b: 0.50621927, a: 1}
   colorAvailable: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1284045093949457563
@@ -113,4 +112,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa8d59fe3daf8c640aff98b2d76a4de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "\u044BcientificMissionBonus": 0
+  scientificMissionBonus: 0
+  countUnits: 0

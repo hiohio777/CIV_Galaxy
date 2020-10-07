@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DiplomaticRelations
 {
-    public float Danger { get; private set; }
+    public int Danger { get; private set; }
     private float _progressInterval = 0; // Интервал(Изменить отношение)
     private float _progress = 0; // Прогресс
 
@@ -32,22 +32,33 @@ public class DiplomaticRelations
         ChangeRelations(UnityEngine.Random.Range(0, 4));
     }
 
-    public void CalculateDanger()
+    public void CalculateDanger(AttackerAbility ability)
     {
-        if (AnotherCiv.IsOpen == false || Relation == DiplomaticRelationsEnum.Friendship)
+        if (ability is SpaceFleet)
         {
-            Danger = -1000;
-            return;
+            if (AnotherCiv.IsOpen == false || Relation == DiplomaticRelationsEnum.Friendship || Relation == DiplomaticRelationsEnum.Cooperation)
+            {
+                Danger = -1000; // Не атакует флотом друзей и тех кто в сотрудничестве
+                return;
+            }
         }
 
-        Danger = UnityEngine.Random.Range((float)Relation * 10 - 60, 100f);
+        if (ability is Bombs)
+            if (AnotherCiv.IsOpen == false || Relation == DiplomaticRelationsEnum.Friendship)
+            {
+                Danger = -1000; // Не атакует бомбами друзей
+                return;
+            }
+
+
+        Danger = UnityEngine.Random.Range((int)Relation * 5, 100);
 
         if (_civilization.CivData.DominationPoints < AnotherCiv.CivData.DominationPoints)
-            Danger += UnityEngine.Random.Range(0f, 20f);
+            Danger += UnityEngine.Random.Range(0, 20);
         if (_civilization.CivData.Planets < AnotherCiv.CivData.Planets)
-            Danger += UnityEngine.Random.Range(0f, 20f);
+            Danger += UnityEngine.Random.Range(0, 20);
         if (AnotherCiv.IsLider == LeaderEnum.Leader)
-            Danger += 20f;
+            Danger += 30;
         if (AnotherCiv is ICivilizationPlayer)
             Danger += UnityEngine.Random.Range(_dangerPlayer / 2, _dangerPlayer);
     }
@@ -74,9 +85,15 @@ public class DiplomaticRelations
             SetProgressInterval();
 
             // Определение отношений
-            ChangeRelations(UnityEngine.Random.Range(-1, +2));
+            // Вероятность ухудшить отношения к лидеру
+            if (AnotherCiv.IsLider == LeaderEnum.Leader)
+            {
+                if (UnityEngine.Random.Range(0, 3) > 0) ChangeRelations(+1);
+                else ChangeRelations(-1);
+            }
+            else ChangeRelations(UnityEngine.Random.Range(-1, +2));
         }
     }
 }
 
-public enum DiplomaticRelationsEnum { Friendship = 0, Cooperation = 1, Neutrality = 2, Threat = 3, Hatred = 4,   }
+public enum DiplomaticRelationsEnum { Friendship = 0, Cooperation = 1, Neutrality = 2, Threat = 3, Hatred = 4, }

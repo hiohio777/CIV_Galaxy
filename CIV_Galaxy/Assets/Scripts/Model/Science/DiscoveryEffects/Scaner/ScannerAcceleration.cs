@@ -9,7 +9,7 @@ public class ScannerAcceleration : MonoBehaviour, IDiscoveryEffects
 
     public void ExecuteStudy(ICivilization civilization, string nameDiscovery)
     {
-        civilization.ScanerPlanets.Acceleration += scannerAcceleration;
+        civilization.ScanerCiv.Acceleration += scannerAcceleration;
     }
 
     public string GetInfo()

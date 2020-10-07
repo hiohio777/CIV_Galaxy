@@ -8,11 +8,13 @@ public class CivilizationData
 
     private ICivilization _civilization;
     private LeaderQualifier _leaderQualifier;
+    private DifficultSettingsScriptable _difficultSettings; // Настройки сложности
 
-    public CivilizationData(IGalaxyUITimer galaxyUITimer, LeaderQualifier leaderQualifier)
+    public CivilizationData(IGalaxyUITimer galaxyUITimer, LeaderQualifier leaderQualifier, PlayerSettings playerSettings)
     {
         galaxyUITimer.ExecuteYears += ProgressDominance;
         this._leaderQualifier = leaderQualifier;
+        _difficultSettings = playerSettings.GetDifficultSettings;
     }
 
     public int Planets { get => _planets; set { _planets = value; _civilization.CivUI.SetCountPlanet(_planets); } }
@@ -40,6 +42,11 @@ public class CivilizationData
         GDPlanets = _civilization.DataBase.Base.GDPlanets;
         GDIndustry = _civilization.DataBase.Base.GDIndustry;
         GDOverall = _civilization.DataBase.Base.GDOverall;
+
+
+        // Установка сложности
+        if (civilization is ICivilizationAl)
+            GDOverall += _difficultSettings.GDOverall;
     }
 
     public void AddPlanet(IPlanet planet)
@@ -66,5 +73,22 @@ public class CivilizationData
         DominationPoints += count;
 
         _civilization.CivUI.SetCountDominationPoints(DominationPoints, count);
+    }
+
+    public string GetInfo(bool isPlayer = true)
+    {
+        string info = string.Empty;
+
+        if (isPlayer)
+        {
+            info += $"{LocalisationGame.Instance.GetLocalisationString("growth_rate_per_year")}\r\n ";
+            info += $"<color=yellow>+{(int)GetPointsAll} ({GDOverall + 100}%)</color>\r\n";
+            info += $"{LocalisationGame.Instance.GetLocalisationString("dominance_from_planets")}\r\n";
+            info += $"<color=yellow>+{(int)GetPointsFromPlanets} ({GDPlanets}%)</color>\r\n";
+            info += $"{LocalisationGame.Instance.GetLocalisationString("dominance_from_industry")}\r\n";
+            info += $"<color=yellow>+{(int)GetPointsFromIndustry} ({(int)(_civilization.IndustryCiv.Points* GDIndustry)}%)</color>\r\n";
+        }
+
+        return info;
     }
 }

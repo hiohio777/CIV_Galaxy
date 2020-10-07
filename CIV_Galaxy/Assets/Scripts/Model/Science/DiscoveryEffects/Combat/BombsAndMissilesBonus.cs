@@ -9,11 +9,11 @@ public class BombsAndMissilesBonus : MonoBehaviour, IDiscoveryEffects
 
     public void ExecuteStudy(ICivilization civilization, string nameDiscovery)
     {
-        var abilities = civilization.AbilityCiv.Abilities.Where(x => x is BombsAndMissiles).ToList();
+        var abilities = civilization.AbilityCiv.Abilities.Where(x => x is Bombs).ToList();
 
         foreach (var item in abilities)
         {
-            var abil = item as BombsAndMissiles;
+            var abil = item as Bombs;
             // Бонусы
             abil.AddBonus_minAttackIndustry(minAttackIndustry);
             abil.AddBonus_randomAttackIndustry(randomAttackIndustry);

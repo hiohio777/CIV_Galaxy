@@ -6,7 +6,9 @@ using Zenject;
 public class InfoPlayerCivUI : MonoBehaviour
 {
     [SerializeField] private Image artCivPlayer;
-    [SerializeField] private Text infoIndustry;
+    [SerializeField] private Text infoScaner, infoIndustry, infoScience;
+    [SerializeField] private Text infoAbility, infoBombs, infoSpaceFleet, infoScientificMission;
+    [SerializeField] private Text сountDomination, countPlanets, infoDomination;
 
     private bool _isPause = false; // Была ли активирована пауза игры
 
@@ -32,7 +34,20 @@ public class InfoPlayerCivUI : MonoBehaviour
 
         artCivPlayer.sprite = _civPlayer.DataBase.Icon;
         // Обновить информацию
+
+        // Базовая
         infoIndustry.text = _civPlayer.IndustryCiv.GetInfo();
+        infoScience.text = _civPlayer.ScienceCiv.GetInfo();
+        infoScaner.text = _civPlayer.ScanerCiv.GetInfo();
+        // Скиллы
+        infoAbility.text = _civPlayer.AbilityCiv.GetInfo();
+        infoBombs.text = _civPlayer.AbilityCiv.Abilities[0].GetInfo();
+        infoSpaceFleet.text = _civPlayer.AbilityCiv.Abilities[1].GetInfo(); 
+        infoScientificMission.text = _civPlayer.AbilityCiv.Abilities[2].GetInfo();
+        // Доминирование
+        сountDomination.text = ((int)_civPlayer.CivData.DominationPoints).ToString();
+        countPlanets.text = _civPlayer.CivData.Planets.ToString();
+        infoDomination.text = _civPlayer.CivData.GetInfo();
     }
 
     public void Disable()

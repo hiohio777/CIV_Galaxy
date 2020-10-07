@@ -1,11 +1,10 @@
 ﻿using System;
-using UnityEngine;
 
 public class Science : CivilizationStructureBase
 {
     public event Action<float> ProgressEvent; // Отображение на экране
 
-    private const float _progressInterval = 30; // Интервал
+    private float _progressInterval = 30; // Интервал
     private float _progress = 0; // Прогресс получения нового поинта SciencePoints
 
     private ICivilization _civilization;
@@ -27,6 +26,10 @@ public class Science : CivilizationStructureBase
 
         ProgressEvent?.Invoke(ProgressProc);
         _civilization.ExicuteSciencePoints(Points);
+
+        // Установка сложности
+        if (civilization is ICivilizationAl)
+            _progressInterval = _progressInterval / 100f * _difficultSettings.ScienceProc;
     }
 
     public bool IsActive { get; set; } = true; // Активен ли
@@ -34,8 +37,7 @@ public class Science : CivilizationStructureBase
     private float _acceleration;
 
     //Бонусы
-    private float _accelerationBonus = 1;
-    public int Acceleration { get => (int)(_accelerationBonus * 100); set => _accelerationBonus = value / 100f; } // ссумируется с уровнем индстрии
+    public int AccelerationBonus { get; set; } = 0;
 
     public ITreeOfScience TreeOfScienceCiv { get; private set; }
     private float ProgressProc => _progress / (_progressInterval / 100); // Прогресс в процентах
@@ -96,7 +98,7 @@ public class Science : CivilizationStructureBase
     {
         if (IsActive == false) return;
 
-        _progress += deltaTime * (_acceleration + (_civilization.IndustryCiv.Points / 2f * _accelerationBonus));
+        _progress += deltaTime * ((_acceleration + _civilization.IndustryCiv.Points / 2f) * (AccelerationBonus / 100f + 1));
         ProgressEvent?.Invoke(ProgressProc);
 
         if (_progress > _progressInterval)
@@ -106,5 +108,19 @@ public class Science : CivilizationStructureBase
             Points++;
             _civilization.ExicuteSciencePoints(Points);
         }
+    }
+
+    public string GetInfo(bool isPlayer = true)
+    {
+        string info = string.Empty;
+
+        if (isPlayer)
+        {
+            info += $"{LocalisationGame.Instance.GetLocalisationString("acceleration")}: <color=lime>{(int)((_acceleration + _civilization.IndustryCiv.Points / 2f) * (AccelerationBonus / 100f + 1f) * 100)}%</color>\r\n";
+            info += $"  <color=#add8e6ff>{LocalisationGame.Instance.GetLocalisationString("base")}:</color> <color=orange>{(int)(_acceleration * 100) + AccelerationBonus}%</color>\r\n";
+            info += $"  <color=#add8e6ff>{LocalisationGame.Instance.GetLocalisationString("industry")}:</color> <color=orange>{(int)(_civilization.IndustryCiv.Points / 2f * 100)}%</color>\r\n";
+        }
+
+        return info;
     }
 }
