@@ -6,7 +6,7 @@ using Zenject;
 public class MessageStartGame : MonoBehaviour
 {
     [SerializeField] private Image art;
-    [SerializeField] private LocalisationText nameCiv, descriptionCiv;
+    [SerializeField] private LocalisationText nameCiv;
     [SerializeField] private Button OK;
 
     private Action _actOK;
@@ -28,7 +28,6 @@ public class MessageStartGame : MonoBehaviour
     {
         this._actOK = actOK;
         nameCiv.SetKey(civData.Name);
-        descriptionCiv.SetKey(civData.Description);
         art.sprite = civData.Icon;
 
         _galaxyUITimer.SetPause(true, string.Empty);

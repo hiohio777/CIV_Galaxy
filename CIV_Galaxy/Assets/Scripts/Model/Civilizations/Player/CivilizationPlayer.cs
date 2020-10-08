@@ -60,7 +60,7 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
     public override void ExicuteScanning()
     {
         civilizationUI.ScanerEffect();
-        _discoveredCivilization.DiscoverAnotherCiv(_anotherCivilization);
+        _discoveredCivilization.DiscoverAnotherCiv(this, _anotherCivilization);
     }
 
     public override void ExicuteSciencePoints(int sciencePoints)

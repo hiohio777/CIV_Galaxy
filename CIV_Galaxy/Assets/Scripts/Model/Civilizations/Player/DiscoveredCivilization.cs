@@ -12,7 +12,7 @@ public class DiscoveredCivilization
     }
 
     // Попытаться открыть иную цивилизацию, если есть неоткрытые(цивилизации открываются по порядку с 1-вой)
-    public bool DiscoverAnotherCiv(List<ICivilizationAl> anotherCivilization)
+    public bool DiscoverAnotherCiv(ICivilizationPlayer civilizationPlayer, List<ICivilizationAl> anotherCivilization)
     {
         if (_countDiscoveredCiv >= anotherCivilization.Count)
             return false; // все цивилизации открыты
@@ -28,11 +28,13 @@ public class DiscoveredCivilization
 
             Action welcome = () =>
             {
+                anotherCiv.DiplomacyCiv.ChangeRelations(civilizationPlayer, -1);
                 anotherCiv.Open();
             };
 
             Action offend = () =>
             {
+                anotherCiv.DiplomacyCiv.ChangeRelations(civilizationPlayer, +1);
                 anotherCiv.Open();
             };
 

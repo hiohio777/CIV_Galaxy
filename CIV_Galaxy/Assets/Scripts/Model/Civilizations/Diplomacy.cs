@@ -38,13 +38,18 @@ public class Diplomacy
         relations.Add(new DiplomaticRelations(civilization, _player, _dangerPlayer, _galaxyUITimer));
     }
 
-    // Изменить отношение к данной цивилизации
+    /// <summary>
+    ///  Изменить отношение к данной цивилизации
+    /// </summary>
     public void ChangeRelations(ICivilization civTarget, int count)
     {
         foreach (var item in relations)
         {
             if (item.AnotherCiv == civTarget)
+            {
                 item.ChangeRelations(count);
+                break;
+            }
         }
     }
 

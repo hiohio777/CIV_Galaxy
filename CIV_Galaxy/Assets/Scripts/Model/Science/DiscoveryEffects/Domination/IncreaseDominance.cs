@@ -8,7 +8,7 @@ public class IncreaseDominance : MonoBehaviour, IDiscoveryEffects
 
     public void ExecuteStudy(ICivilization civilization, string nameDiscovery)
     {
-        civilization.CivData.DominationPoints += increaseDominance;
+        civilization.CivData.AddDominance(increaseDominance);
     }
 
     public string GetInfo()

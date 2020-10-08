@@ -45,10 +45,6 @@ public class GalaxySceneDIInstaller : MonoInstaller
         Container.Bind<GalaxyData>().FromComponentsInHierarchy().AsSingle();
         Container.Bind<InfoCivilizationPanelUI>().FromComponentsInHierarchy().AsSingle();
 
-        Container.Bind<MessageDiscoveredCivilization>().FromComponentsInHierarchy().AsSingle();
-        Container.Bind<MessageStartGame>().FromComponentsInHierarchy().AsSingle();
-        Container.Bind<MessageBackMainMenu>().FromComponentsInHierarchy().AsSingle();
-
         // Фабрики
         Container.Bind<PlanetsFactory>().AsSingle();
         Container.Bind<UnitAbilityFactory>().AsSingle();

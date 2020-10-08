@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4342581037658750571}
   - component: {fileID: 291279266365345909}
   - component: {fileID: 7157188517053628989}
+  - component: {fileID: 4515691743376017976}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -78,6 +79,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u041D\u0430\u0447\u0430\u0442\u044C!"
+--- !u!114 &4515691743376017976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795364007750079552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a823470ae2eb8f4ba8b8e302d73a3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key: start
+  text: {fileID: 0}
 --- !u!1 &3093898379066929060
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,7 +106,7 @@ GameObject:
   - component: {fileID: 1296537226075260575}
   - component: {fileID: 49872315850298068}
   m_Layer: 5
-  m_Name: DescriptionCiv
+  m_Name: MessageGreeting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -174,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a823470ae2eb8f4ba8b8e302d73a3a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Key: 
+  Key: message_greeting
   text: {fileID: 0}
 --- !u!1 &3472421203796324908
 GameObject:
@@ -361,7 +376,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -250}
-  m_SizeDelta: {x: 350, y: 120}
+  m_SizeDelta: {x: 360, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5112743821722007463
 CanvasRenderer:
@@ -390,7 +405,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 931ee65063c890d43849f8ea78ccd08e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9b0aa7db38564aa47876b09dbdedd005, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -692,7 +707,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   art: {fileID: 3653570177803871997}
   nameCiv: {fileID: 6132792789828239696}
-  descriptionCiv: {fileID: 49872315850298068}
   OK: {fileID: 7489967120378482284}
 --- !u!1 &8715981719180933682
 GameObject:

@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 4501279510885667892}
   - component: {fileID: 5346835893020824445}
   - component: {fileID: 2687934056813858961}
+  - component: {fileID: 8041714077815840999}
   m_Layer: 5
   m_Name: NamePanel
   m_TagString: Untagged
@@ -152,8 +153,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 104.14, y: 186}
-  m_SizeDelta: {x: 491.716, y: 90}
+  m_AnchoredPosition: {x: 205.1, y: 186}
+  m_SizeDelta: {x: 693.6265, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5508533095309692702
 CanvasRenderer:
@@ -225,6 +226,20 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
+--- !u!114 &8041714077815840999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581882106556243311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a823470ae2eb8f4ba8b8e302d73a3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key: first_contact
+  text: {fileID: 0}
 --- !u!1 &1929099264335264898
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +352,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -175, y: -250}
-  m_SizeDelta: {x: 350, y: 120}
+  m_SizeDelta: {x: 360, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3599762843099537393
 CanvasRenderer:
@@ -366,7 +381,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 931ee65063c890d43849f8ea78ccd08e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9b0aa7db38564aa47876b09dbdedd005, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -677,6 +692,7 @@ GameObject:
   - component: {fileID: 7286226662079999426}
   - component: {fileID: 7402664581408346714}
   - component: {fileID: 7692937150080856259}
+  - component: {fileID: 3052025971460573434}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -744,6 +760,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Welcome
+--- !u!114 &3052025971460573434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5160744880900267503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a823470ae2eb8f4ba8b8e302d73a3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key: welcome
+  text: {fileID: 0}
 --- !u!1 &6484585621234266067
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,7 +811,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 175, y: -250}
-  m_SizeDelta: {x: 350, y: 120}
+  m_SizeDelta: {x: 360, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8349218636075799282
 CanvasRenderer:
@@ -810,7 +840,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 931ee65063c890d43849f8ea78ccd08e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9b0aa7db38564aa47876b09dbdedd005, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -967,6 +997,7 @@ GameObject:
   - component: {fileID: 8582814407337200902}
   - component: {fileID: 8614726717567147297}
   - component: {fileID: 5045280685221243974}
+  - component: {fileID: 7993166624120448588}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -1034,6 +1065,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Offend
+--- !u!114 &7993166624120448588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7783042698812984763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a823470ae2eb8f4ba8b8e302d73a3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key: offend
+  text: {fileID: 0}
 --- !u!1 &7812056215261795713
 GameObject:
   m_ObjectHideFlags: 0

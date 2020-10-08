@@ -72,27 +72,30 @@ public class GalacticEventDisplay : MonoBehaviour, IGalacticEventDisplay
             yield return null;
         }
 
-        isActive = false;
-        art.color = Color.red;
-        _fon.color = Color.red;
-        timeSecond = 0;
-        while (timeSecond < timeWait / 3)
+        if(isActive)
         {
-            if (_galaxyUITimer.IsPause == false)
-                timeSecond += Time.deltaTime * _galaxyUITimer.GetSpeed;
+            isActive = false;
+            art.color = Color.red;
+            _fon.color = Color.red;
+            timeSecond = 0;
+            while (timeSecond < timeWait / 3)
+            {
+                if (_galaxyUITimer.IsPause == false)
+                    timeSecond += Time.deltaTime * _galaxyUITimer.GetSpeed;
 
-            yield return null;
+                yield return null;
+            }
+
+            moving.SetScale(0f, 0.3f).SetPosition(new Vector3(0, 0), 0.3f).Run(EndEvent);
         }
-
-        moving.SetScale(0f, 0.3f).SetPosition(new Vector3(0, 0), 0.3f).Run(EndEvent);
     }
 
     private void OnMouseUp()
     {
         if (isActive)
         {
-            StopAllCoroutines();
             isActive = false;
+            StopAllCoroutines();
 
             moving.SetScale(1f, 0.2f).SetPosition(_positionTarget, 0.3f).Run(EndExecuteEvent);
         }

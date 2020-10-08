@@ -61,9 +61,10 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
 
     private void OnDownSpeed()
     {
+        buttonUpSpeed.image.enabled = true; 
         switch (speedGame)
         {
-            case 1f: speedGame = 0.5f; break;
+            case 1f: speedGame = 0.5f; buttonDownSpeed.image.enabled = false; break;
             case 2f: speedGame = 1f; break;
         }
 
@@ -71,10 +72,10 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
     }
     private void OnUpSpeed()
     {
-
+        buttonDownSpeed.image.enabled = true;
         switch (speedGame)
         {
-            case 1f: speedGame = 2f; break;
+            case 1f: speedGame = 2f; buttonUpSpeed.image.enabled = false; break;
             case 0.5f: speedGame = 1f; break;
         }
 

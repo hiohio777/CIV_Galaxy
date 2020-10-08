@@ -8,7 +8,7 @@ public class IncreaseDominanceProc : MonoBehaviour, IDiscoveryEffects
 
     public void ExecuteStudy(ICivilization civilization, string nameDiscovery)
     {
-        civilization.CivData.DominationPoints += civilization.CivData.DominationPoints / 100 * increaseDominanceProc;
+        civilization.CivData.AddDominance(civilization.CivData.DominationPoints / 100 * increaseDominanceProc);
     }
 
     public string GetInfo()

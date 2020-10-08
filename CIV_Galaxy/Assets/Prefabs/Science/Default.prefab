@@ -3761,7 +3761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e87c2d5468ba147909b8c92661ff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  researchCost: 3
+  researchCost: 4
   dependentSciences:
   - {fileID: 7875257208681830571}
   isAvailable: 0
