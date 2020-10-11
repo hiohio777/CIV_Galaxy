@@ -11,30 +11,32 @@ public class GalaxySceneUI : MonoBehaviour
     private Civilizations _allCivilizations;
     private PlayerSettings _playerData;
     private MessageFactory _messageFactory;
+    private CanvasFonGalaxy _fonGalaxy;
 
     [Inject]
     public void Inject(Civilizations allCivilizations, ICivilizationPlayer civPlayer, List<ICivilizationAl> civsAl, PlayerSettings playerData,
-        MessageFactory messageFactory, SciencePlayerUI sciencePlayerUI)
+        MessageFactory messageFactory, SciencePlayerUI sciencePlayerUI, CanvasFonGalaxy fonGalaxy)
     {
-        (this._allCivilizations, this._civPlayer, _civsAl, _playerData, this._messageFactory)
-        = (allCivilizations, civPlayer, civsAl, playerData, messageFactory);
+        (this._allCivilizations, this._civPlayer, _civsAl, _playerData, this._messageFactory, this._fonGalaxy)
+        = (allCivilizations, civPlayer, civsAl, playerData, messageFactory, fonGalaxy);
 
         sciencePlayerUI.gameObject.SetActive(false);
     }
 
     public void BackMainMenu()
     {
-        _messageFactory.GetMessageBackMainMenu(BackMainScene, () => { });
+        _messageFactory.GetMessageBackMainMenu(BackMainScene);
     }
 
-    public void ShowMessageStart()
+    public void DisplayUI()
     {
-        _messageFactory.GetMessageStartGame(_civPlayer.DataBase, () => _animator.SetTrigger("PlayerStart"));
+        _fonGalaxy.DisplayGalaxy();
+        _civsAl.ForEach(x => x.DisplayCloseCiv());
+        _civPlayer.DisplayCiv();
     }
 
     public void BackMainScene()
     {
-        Debug.Log("BackMainScen!");
         SceneManager.LoadScene("MainScene");
     }
 
@@ -43,7 +45,7 @@ public class GalaxySceneUI : MonoBehaviour
         InitializeNewGame();
 
         _animator = GetComponent<Animator>();
-        _animator.SetTrigger("Start");
+        _messageFactory.GetMessageStartGame(_civPlayer.DataBase, () => _animator.SetTrigger("Start"));
     }
 
     public void InitializeNewGame()

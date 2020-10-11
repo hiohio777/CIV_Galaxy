@@ -14,8 +14,9 @@ public interface ICivilization
 
     void Assign(CivilizationScriptable civData);
     bool IsOpen { get; }
-    LeaderEnum IsLider { get; }
+    LeaderEnum Lider { get; }
 
+    void Shake(float duration, float power);
     void ExicuteScanning();
     void ExicuteSciencePoints(int sciencePoints);
     void ExicuteIndustryPoints(float points);
@@ -30,9 +31,11 @@ public interface ICivilizationAl : ICivilization
 
     void EnableFrame(Color color);
     void TurnOffFrame();
+    void DisplayCloseCiv();
 }
 
 public interface ICivilizationPlayer : ICivilization
 {
     AbilityUI SelectedAbility { get; set; }
+    void DisplayCiv();
 }

@@ -56,7 +56,7 @@ public class DiplomaticRelations
             Danger += UnityEngine.Random.Range(0, 20);
         if (_civilization.CivData.Planets < AnotherCiv.CivData.Planets)
             Danger += UnityEngine.Random.Range(0, 20);
-        if (AnotherCiv.IsLider == LeaderEnum.Leader)
+        if (AnotherCiv.Lider == LeaderEnum.Leader)
             Danger += 30;
         if (AnotherCiv is ICivilizationPlayer)
             Danger += UnityEngine.Random.Range(_dangerPlayer / 2, _dangerPlayer);
@@ -85,7 +85,7 @@ public class DiplomaticRelations
 
             // Определение отношений
             // Вероятность ухудшить отношения к лидеру
-            if (AnotherCiv.IsLider == LeaderEnum.Leader)
+            if (AnotherCiv.Lider == LeaderEnum.Leader)
             {
                 if (UnityEngine.Random.Range(0, 3) > 0) ChangeRelations(+1);
                 else ChangeRelations(-1);

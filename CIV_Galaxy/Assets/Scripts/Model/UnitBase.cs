@@ -4,7 +4,6 @@ using Zenject;
 
 public class UnitBase : MonoBehaviour
 {
-    [SerializeField] private GameObject unitDisplay;
     private static int sortingOrder = 0;
     private MovingObject moving;
     private Action<object> _buffered;
@@ -20,7 +19,7 @@ public class UnitBase : MonoBehaviour
     public Transform TtransformUnit { get; private set; }
     protected int GetSortingOrder => ++sortingOrder;
 
-    public void Destroy()
+    public virtual void Destroy()
     {
         _buffered.Invoke(this);
         gameObject.SetActive(false);

@@ -26,19 +26,7 @@ public class DiscoveredCivilization
             _chanceDiscoverAnotherCiv = 0;
             _countDiscoveredCiv++;
 
-            Action welcome = () =>
-            {
-                anotherCiv.DiplomacyCiv.ChangeRelations(civilizationPlayer, -1);
-                anotherCiv.Open();
-            };
-
-            Action offend = () =>
-            {
-                anotherCiv.DiplomacyCiv.ChangeRelations(civilizationPlayer, +1);
-                anotherCiv.Open();
-            };
-
-            _messageFactory.GetMessageDiscoveredCivilization(anotherCiv.DataBase, welcome, offend);
+            _messageFactory.GetMessageDiscoveredCivilization(anotherCiv.DataBase, anotherCiv.Open);
             return true;
         }
 

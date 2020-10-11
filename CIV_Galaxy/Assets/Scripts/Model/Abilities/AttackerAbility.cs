@@ -7,10 +7,13 @@ public abstract class AttackerAbility : MonoBehaviour, IAbility
     [SerializeField, Space(10)] protected float speedUnits = 5f;
     [SerializeField, Range(1, 10)] protected int countUnits = 1;
     [SerializeField, Header("Величина при появлении")] private float size = 1.5f;
+    [SerializeField, Header("Длина огненного следа")] private float timeTrail = 0.5f;
 
     protected string GetInfoCountUnits => $"{LocalisationGame.Instance.GetLocalisationString("units")}: <color=lime>{countUnits}</color>\r\n";
 
     private UnitAbilityFactory _unitFactory;
+    public int CountUses { get; private set; } = 0; // Сколько раз за игру была использована абилка(имеет значение каждый корабль)
+
 
     public int CountUnits {
         get => countUnits; set {
@@ -26,6 +29,7 @@ public abstract class AttackerAbility : MonoBehaviour, IAbility
     public Sprite Fon => spriteArtFon;
     public Sprite Art => spriteArt;
     public Sprite Frame => frame;
+    public float TimeTrail => timeTrail;
 
     public void Initialize(ICivilization civilization)
     {
@@ -57,7 +61,7 @@ public abstract class AttackerAbility : MonoBehaviour, IAbility
             var unit = _unitFactory.GetNewUnit(this, ThisCivilization, civilizationTarget);
             unit.TtransformUnit.up = new Vector2(0, 0) - ThisCivilization.PositionCiv;
 
-            unit.SetWaitForSeconds(i / 1.5f).SetScale(size, 0.2f).Run(() => StartAct(unit, civilizationTarget));
+            unit.SetWaitForSeconds(i).SetScale(size, 0.2f).Run(() => StartAct(unit, civilizationTarget));
         }
     }
 
@@ -71,6 +75,7 @@ public abstract class AttackerAbility : MonoBehaviour, IAbility
     private void Finish(IUnitAbility unit, ICivilization civilizationTarget)
     {
         Finall(unit, civilizationTarget);
+        CountUses++; // Увеличить счётчик использования
 
         unit.Destroy();
     }

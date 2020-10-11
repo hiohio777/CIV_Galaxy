@@ -20,6 +20,7 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
     public event Action ExecuteYears; // События происходящие каждый год
     public event Action<float> ExecuteOfTime = delegate { }; // Постоянный апдейт
     public event Action<bool> PauseAct; // События вызываются когда игра ставится или снимается с паузы(нужно для контроля за анимациями)
+    public event Action<float> SpeedAct;
 
     public float GetYears => years;
     public float GetSpeed => speedGame;
@@ -48,6 +49,8 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
                 messagePause.SetActive(true);
                 messagePause.SetKey(message);
             }
+            else messagePause.SetActive(false);
+
             buttonPause.image.sprite = playIcon;
         }
         else
@@ -69,6 +72,7 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
         }
 
         textSpeed.text = $"{speedGame}x";
+        SpeedAct?.Invoke(speedGame);
     }
     private void OnUpSpeed()
     {
@@ -80,6 +84,7 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
         }
 
         textSpeed.text = $"{speedGame}x";
+        SpeedAct?.Invoke(speedGame);
     }
 
     private void OnPause()
@@ -123,8 +128,10 @@ public interface IGalaxyUITimer
     event Action ExecuteYears; // События происходящие каждый год
     event Action<float> ExecuteOfTime;
     event Action<bool> PauseAct;
+    event Action<float> SpeedAct;
     bool IsPause { get; }
     float GetYears { get; }
     float GetSpeed { get; }
+
     void SetPause(bool isPause, string message = "pause");
 }

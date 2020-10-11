@@ -1,24 +1,29 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
 public class Planet : UnitBase, IPlanet
 {
-    [SerializeField] protected SpriteRenderer art;
+    [SerializeField] private SpriteRenderer art;
+    [SerializeField] private Sprite[] spritesStars;
 
     public class Factory : PlaceholderFactory<Action<object>, Planet> { }
 
-    public Planet Initialize(SpriteUnitEnum typePlanet)
+    public Planet Initialize()
     {
         gameObject.SetActive(true);
 
-        switch (typePlanet)
+        switch (UnityEngine.Random.Range(0, 6))
         {
-            case SpriteUnitEnum.Ideal: art.color = Color.green; break;
-            case SpriteUnitEnum.Ice: art.color = Color.blue; break;
-            case SpriteUnitEnum.Hot: art.color = Color.red; break;
-            case SpriteUnitEnum.GasGiants: art.color = Color.cyan; break;
+            case 0: art.color = new Color(1, 1, 0.3f, 1); break;
+            case 1: art.color = new Color(0.3f, 1, 1, 1); break;
+            case 2: art.color = new Color(0.3f, 1, 0.3f, 1); break;
+            case 3: art.color = new Color(1, 0.3f, 0.3f, 1); break;
+            default : art.color = new Color(1, 1, 1, 1); break;
         }
+
+        art.sprite = spritesStars[UnityEngine.Random.Range(0, spritesStars.Length)];
 
         transform.position = new Vector3(0, 0, 0);
         art.sortingOrder = GetSortingOrder;
@@ -30,10 +35,10 @@ public class Planet : UnitBase, IPlanet
     public void OpenPlanet(Vector3 positionTarget, Action actFinish)
     {
         TtransformUnit.localScale = new Vector3(0, 0, 0);
-        TtransformUnit.position = new Vector3(UnityEngine.Random.Range(-50f, 50f), UnityEngine.Random.Range(-50f, 50f), 0);
+        TtransformUnit.position = new Vector3(UnityEngine.Random.Range(-60f, 60f), UnityEngine.Random.Range(0f, 100f), 0);
 
         Action endAct = () => SetScale(0f, 0.2f).Run(actFinish);
-        SetScale(1.3f, 0.3f).Run(() => SetScale(1, 0.2f).Run(() => SetPosition(positionTarget, UnityEngine.Random.Range(1f, 2f)).Run(endAct)));
+        SetScale(1.4f, 0.5f).Run(() => SetScale(1, 0.2f).Run(() => SetPosition(positionTarget, UnityEngine.Random.Range(1f, 2f)).Run(endAct)));
     }
 
     public void ConquestPlanets(Vector3 startPosition, Vector3 positionTarget, Action actFinish)

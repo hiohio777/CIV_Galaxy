@@ -9,20 +9,17 @@ public class LoaderDataGame
     {
         if (isLoad)
         {
-            Debug.Log("Data already loaded!");
             restartMainScene.Invoke();
             return;
         }
 
         // Загрузка данных
-        Debug.Log("Data Loaded!");
         isLoad = true;
         startGame.Invoke();
     }
 
     public void Save(Action quit)
     {
-        Debug.Log("Data saved!");
         quit.Invoke();
     }
 }

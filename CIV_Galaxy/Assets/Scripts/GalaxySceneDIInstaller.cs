@@ -7,7 +7,7 @@ public class GalaxySceneDIInstaller : MonoInstaller
     [SerializeField] private UnityEngine.Object planetPrefab, discoveryCellUIPrefab, unitAbilityPrefab, valueChangeEffectPrefab;
 
     [SerializeField, Space(10)] private UnityEngine.Object messageDiscoveredCivilizationPrefab;
-    [SerializeField] private UnityEngine.Object messageStartGamePrefab, messageBackMainMenuPrefab;
+    [SerializeField] private UnityEngine.Object messageStartGamePrefab, messageBackMainMenuPrefab, endGameUIPrefab, civilizationEndGamelUIPrefab;
 
     public override void InstallBindings()
     {
@@ -23,6 +23,7 @@ public class GalaxySceneDIInstaller : MonoInstaller
         Container.Bind<Industry>().AsTransient();
         Container.Bind<Diplomacy>().AsTransient();
         Container.Bind<Ability>().AsTransient();
+        Container.Bind<Statistics>().AsSingle();
 
         Container.Bind<GalacticEventGenerator>().AsTransient();
         Container.Bind<GalacticEventGeneratorPlayer>().AsTransient();
@@ -43,7 +44,7 @@ public class GalaxySceneDIInstaller : MonoInstaller
         Container.Bind<CounterEndGame>().FromComponentsInHierarchy().AsSingle();
         Container.Bind<EndGameUI>().FromComponentsInHierarchy().AsSingle();
         Container.Bind<GalaxyData>().FromComponentsInHierarchy().AsSingle();
-        Container.Bind<InfoCivilizationPanelUI>().FromComponentsInHierarchy().AsSingle();
+        Container.Bind<InfoCivilizationPanelUI>().FromComponentsInHierarchy().AsSingle(); 
 
         // Фабрики
         Container.Bind<PlanetsFactory>().AsSingle();
@@ -60,5 +61,8 @@ public class GalaxySceneDIInstaller : MonoInstaller
         Container.BindFactory<MessageDiscoveredCivilization, MessageDiscoveredCivilization.Factory>().FromComponentInNewPrefab(messageDiscoveredCivilizationPrefab).AsSingle();
         Container.BindFactory<MessageStartGame, MessageStartGame.Factory>().FromComponentInNewPrefab(messageStartGamePrefab).AsSingle();
         Container.BindFactory<MessageBackMainMenu, MessageBackMainMenu.Factory>().FromComponentInNewPrefab(messageBackMainMenuPrefab).AsSingle();
+        Container.BindFactory<EndGameUI, EndGameUI.Factory>().FromComponentInNewPrefab(endGameUIPrefab).AsSingle();
+
+        
     }
 }

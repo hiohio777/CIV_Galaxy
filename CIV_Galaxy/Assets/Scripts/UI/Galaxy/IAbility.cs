@@ -8,6 +8,7 @@ public interface IAbility
     Sprite Art { get; }
     Sprite Fon { get; }
     Sprite Frame { get; }
+    int CountUses { get; }
 
     void Initialize(ICivilization civilization);
     bool ApplyAl(Diplomacy diplomacyCiv);

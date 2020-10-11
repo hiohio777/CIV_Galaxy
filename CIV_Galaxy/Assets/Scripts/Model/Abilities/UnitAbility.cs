@@ -5,6 +5,30 @@ using Zenject;
 public class UnitAbility : UnitBase, IUnitAbility
 {
     [SerializeField] private SpriteRenderer frame, art;
+    [SerializeField] private TrailRenderer trail;
+
+    private IGalaxyUITimer _galaxyUITimer;
+    private float currentTimeTrail;
+
+    [Inject]
+    public void Inject(IGalaxyUITimer galaxyUITimer)
+    {
+        _galaxyUITimer = galaxyUITimer;
+        _galaxyUITimer.PauseAct += _galaxyUITimer_PauseAct;
+        _galaxyUITimer.SpeedAct += _galaxyUITimer_SpeedAct;
+    }
+
+    private void _galaxyUITimer_PauseAct(bool isPause)
+    {
+        if (isPause) trail.time = 1000;
+        else trail.time = currentTimeTrail / _galaxyUITimer.GetSpeed;
+    }
+
+    private void _galaxyUITimer_SpeedAct(float speed)
+    {
+        if (_galaxyUITimer.IsPause == false)
+            trail.time = currentTimeTrail / speed;
+    }
 
     public class Factory : PlaceholderFactory<Action<object>, UnitAbility> { }
 
@@ -14,6 +38,16 @@ public class UnitAbility : UnitBase, IUnitAbility
 
         transform.position = startPosition;
         transform.localScale = new Vector3(0, 0, 0);
+
+        if (ability.TimeTrail <= 0)
+        {
+            trail.gameObject.SetActive(false);
+        }
+        else
+        {
+            trail.gameObject.SetActive(true);
+            trail.time = (currentTimeTrail = ability.TimeTrail) / _galaxyUITimer.GetSpeed;
+        }
 
         frame.sprite = ability.Frame;
         art.sprite = ability.Art;
@@ -38,14 +72,17 @@ public class UnitAbility : UnitBase, IUnitAbility
     private void InitTypeDisplay(Color color)
     {
         frame.enabled = true;
+        trail.sortingOrder = GetSortingOrder;
         frame.sortingOrder = GetSortingOrder;
-        art.sortingOrder = GetSortingOrder + 1;
+        art.sortingOrder = GetSortingOrder;
         art.color = Color.white;
 
         frame.color = color;
     }
 
-    #region IUnitAbility
-
-    #endregion
+    public override void Destroy()
+    {
+        trail.time = 0;
+        trail.gameObject.SetActive(false);
+    }
 }

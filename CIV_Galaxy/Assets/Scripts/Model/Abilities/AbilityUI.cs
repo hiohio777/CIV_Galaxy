@@ -8,7 +8,6 @@ public class AbilityUI : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Image fon, artIndicator, frame;
 
     private ICivilizationPlayer _civilizationPlayer;
-    private IAbility _ability;
     private Ability _abilityCiv;
     private IGalaxyUITimer _galaxyUITimer;
 
@@ -17,20 +16,23 @@ public class AbilityUI : MonoBehaviour, IPointerClickHandler
     {
         this._civilizationPlayer = civilizationPlayer;
         this._galaxyUITimer = galaxyUITimer;
+
+        artIndicator.fillAmount = 0;
+        frame.enabled = true;
     }
 
-    public IAbility Getability => _ability;
+    public IAbility Ability { get; private set; }
 
     public void Assing(IAbility ability, Ability abilityCiv)
     {
-        this._ability = ability;
+        this.Ability = ability;
         this._abilityCiv = abilityCiv;
 
         abilityCiv.ProgressEvent += SetProgress;
 
-        frame.sprite = _ability.Frame;
-        fon.sprite = _ability.Fon;
-        artIndicator.sprite = _ability.Art;
+        frame.sprite = Ability.Frame;
+        fon.sprite = Ability.Fon;
+        artIndicator.sprite = Ability.Art;
 
         SetReady();
         gameObject.SetActive(ability.IsActive);
@@ -38,7 +40,7 @@ public class AbilityUI : MonoBehaviour, IPointerClickHandler
 
     public bool Apply(ICivilization civilizationTarget)
     {
-        if (_ability.Apply(civilizationTarget))
+        if (Ability.Apply(civilizationTarget))
         {
             Select(false);
             _galaxyUITimer.SetPause(false);
@@ -50,7 +52,7 @@ public class AbilityUI : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (_ability.IsActive && _abilityCiv.IsReady)
+        if (Ability.IsActive && _abilityCiv.IsReady)
         {
             if (_civilizationPlayer.SelectedAbility == this)
             {

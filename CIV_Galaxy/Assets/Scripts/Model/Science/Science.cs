@@ -38,6 +38,7 @@ public class Science : CivilizationStructureBase
 
     //Бонусы
     public int AccelerationBonus { get; set; } = 0;
+    public int CountDiscoveries { get; set; } = 0;
 
     public ITreeOfScience TreeOfScienceCiv { get; private set; }
     private float ProgressProc => _progress / (_progressInterval / 100); // Прогресс в процентах
@@ -52,6 +53,9 @@ public class Science : CivilizationStructureBase
     {
         Points -= researchCost;
         _civilization.ExicuteSciencePoints(Points);
+
+        // Подсчёт для статистики
+        CountDiscoveries++;
     }
 
 
@@ -78,6 +82,8 @@ public class Science : CivilizationStructureBase
             Points = 0;
             _currentDiscovery = null;
             ExicuteSciencePointsAl(); // Рекруссивное назначение нового желанного открытия для Al
+
+            CountDiscoveries++;
             return true;
         }
 

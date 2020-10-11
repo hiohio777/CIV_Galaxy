@@ -26,7 +26,10 @@ public class Bombs : AttackerAbility
         if (civilizationTarget.IndustryCiv.Points * 100f > civilizationTarget.IndustryCiv.Shields)
         {
             // Щиты пробиты
-            civilizationTarget.IndustryCiv.Points -= (civilizationTarget.IndustryCiv.Points / 100f) * (minAttackIndustry + UnityEngine.Random.Range(0, randomAttackIndustry));
+            float damege = (civilizationTarget.IndustryCiv.Points / 100f) * (minAttackIndustry + UnityEngine.Random.Range(0, randomAttackIndustry));
+
+            civilizationTarget.Shake(0.5f, 15);
+            civilizationTarget.IndustryCiv.Points -= damege;
             // Нельзя нанести урон больше чем защищают щиты
             if (civilizationTarget.IndustryCiv.Points * 100f < civilizationTarget.IndustryCiv.Shields)
                 civilizationTarget.IndustryCiv.Points = civilizationTarget.IndustryCiv.Shields / 100f;

@@ -31,7 +31,9 @@ public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
         = (galacticEventGenerator, player, diplomacyCiv);
 
         TurnOffFrame();
-        civilizationUI.Close();
+        civilizationUI.Close(); 
+        _moving = GetComponentInChildren<MovingObject>();
+        _moving.AssignScale(0);
     }
 
     public override void Assign(CivilizationScriptable civData)
@@ -41,6 +43,14 @@ public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
         EventGenerator.Initialize(this);
         AbilityCiv.Initialize(this);
         AbilityCiv.IsActive = false;
+    }
+
+    /// <summary>
+    /// Показать на экране значёк закрытой цивилизации в начале игры
+    /// </summary>
+    public void DisplayCloseCiv()
+    {
+        _moving.SetWaitForSeconds(0.8f).SetScale(1, 1f).Run();
     }
 
     public void Open()

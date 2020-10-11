@@ -86,7 +86,7 @@ public class CivilizationUI
 
         SetCountPlanet(civilization.CivData.Planets);
         SetIndustryPoints(civilization.IndustryCiv.Points);
-        SetAdvancedDomination(civilization.IsLider);
+        SetAdvancedDomination(civilization.Lider);
     }
 }
 

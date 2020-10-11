@@ -2,21 +2,21 @@
 
 public class PlanetsFactory : BaseFactory
 {
-    private readonly Planet.Factory factory;
+    private readonly Planet.Factory _factory;
 
     public PlanetsFactory(Planet.Factory factory)
     {
-        this.factory = factory;
+        this._factory = factory;
     }
 
-    public IPlanet GetNewUnit(SpriteUnitEnum typePlanet)
+    public IPlanet GetNewUnit()
     {
         Planet unit;
 
         if (buffer.Count > 0) unit = buffer.Pop() as Planet;
-        else unit = factory.Create(Buffered);
+        else unit = _factory.Create(Buffered);
 
-        unit.Initialize(typePlanet);
+        unit.Initialize();
         return unit;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 using Zenject;
 
 public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilizationPlayer
@@ -34,10 +35,15 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
             {
                 _selectedAbility = value;
                 _anotherCivilization.ForEach(x => x.TurnOffFrame());
-                _selectedAbility.Getability.SelectedApplayPlayer(_anotherCivilization);
+                _selectedAbility.Ability.SelectedApplayPlayer(_anotherCivilization);
             }
         }
     }
+
+    /// <summary>
+    /// Показать на экране
+    /// </summary>
+    public void DisplayCiv() => GetComponent<Animator>().SetTrigger("Display");
 
     public override void Assign(CivilizationScriptable civData)
     {

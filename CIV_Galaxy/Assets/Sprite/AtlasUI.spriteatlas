@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AtlasUI
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 3c9fc12c07a6e5d46a133f8e04cbe8e4, type: 3}
+    totalSpriteSurfaceArea: 2989322
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 931ee65063c890d43849f8ea78ccd08e, type: 3}
+  - {fileID: 21300000, guid: 8b55cd23124dbc143af3d8fb55248ab8, type: 3}
+  - {fileID: 21300000, guid: a8cfc843cfd3e5548bf137384857d92a, type: 3}
+  - {fileID: 21300000, guid: 008dfdb41c67198428e068cb7a2ea392, type: 3}
+  - {fileID: 21300000, guid: d50fb07502babdb4fab8072852929364, type: 3}
+  - {fileID: 21300000, guid: 87212086735bc0441becb4ccebcac1c3, type: 3}
+  - {fileID: 21300000, guid: 580448e66f85063479a9ab003b57c50a, type: 3}
+  - {fileID: 21300000, guid: 0c32f6a7b8e2a16438ea0352158dc0fd, type: 3}
+  - {fileID: 21300000, guid: 17491869d834b204e80c1f88bbfe60a4, type: 3}
+  - {fileID: 21300000, guid: 9b0aa7db38564aa47876b09dbdedd005, type: 3}
+  - {fileID: 21300000, guid: 9d1c5fbce1b8f7644bf95148a15ed59c, type: 3}
+  - {fileID: 21300000, guid: db8bc8dd9d9f49143aaeeba2930d37b4, type: 3}
+  - {fileID: 21300000, guid: 752827ed0fd450041bf1634a045b8b5b, type: 3}
+  - {fileID: 21300000, guid: 7cf4d92fd39b333449f2a64bf787c02b, type: 3}
+  - {fileID: 21300000, guid: e842625fb6cc93f4092663146a201812, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Button1
+  - science
+  - Button1-2
+  - message_game1
+  - event_frame
+  - message_game
+  - Panel2
+  - industry
+  - lider
+  - Button2
+  - Icon3-1
+  - scaner_effect
+  - scaner_ui
+  - Panel6
+  - Panel1
+  m_Tag: AtlasUI
+  m_IsVariant: 0

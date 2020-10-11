@@ -75,7 +75,7 @@ public class SpaceFleet : AttackerAbility
         // Визуализация завоеваний
         for (int i = 0; i < planets; i++)
         {
-            var planet = _planetsFactory.GetNewUnit(SpriteUnitEnum.Ideal);
+            var planet = _planetsFactory.GetNewUnit();
             planet.ConquestPlanets(civilizationTarget.PositionCiv, ThisCivilization.PositionCiv, () => { ThisCivilization.CivData.Planets++; planet.Destroy(); });
         }
     }

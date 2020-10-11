@@ -6,6 +6,8 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
     [SerializeField] protected CivilizationUI civilizationUI;
     protected bool isAssign = false; // Назначена ли цивилизация
     private InfoCivilizationPanelUI _infoCivilizationPanelUI;
+    private ShakeObject _shakeObject;
+    protected MovingObject _moving;
 
     [Inject]
     public void Inject(CivilizationData civData, Scanner scanerPlanets, Science scienceCiv, Industry industryCiv,
@@ -15,13 +17,14 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
         = (civData, scanerPlanets, scienceCiv, industryCiv, abilityCiv, infoCivilizationPanelUI);
 
         PositionCiv = transform.position;
-
+        _shakeObject = GetComponentInChildren<ShakeObject>();
+        _moving = GetComponentInChildren<MovingObject>();
         civilizationUI.valueChangeEffectFactory = valueChangeEffectFactory;
     }
 
     public CivilizationUI CivUI => civilizationUI;
     public bool IsOpen { get; protected set; }
-    public LeaderEnum IsLider { get; protected set; } = LeaderEnum.Lagging;
+    public LeaderEnum Lider { get; protected set; } = LeaderEnum.Lagging;
     public Vector2 PositionCiv { get; private set; }
     public CivilizationScriptable DataBase { get; private set; }
     public CivilizationData CivData { get; private set; }
@@ -51,9 +54,14 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
         civilizationUI.SetIndustryPoints(points);
     }
 
+    /// <summary>
+    ///  Эффект встряски
+    /// </summary>
+    public void Shake(float duration, float power) => _shakeObject.Shake(duration, power);
+
     public void DefineLeader(LeaderEnum leaderEnum)
     {
-        IsLider = leaderEnum;
+        Lider = leaderEnum;
         civilizationUI.SetAdvancedDomination(leaderEnum);
     }
 

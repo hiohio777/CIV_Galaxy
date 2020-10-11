@@ -43,11 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5999921b0d911a46b619c02697a7b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteArtFon: {fileID: 21300000, guid: eb4cf1201595b4a49b7b9fcc2f7cbd43, type: 3}
-  spriteArt: {fileID: 21300000, guid: 8eed1055891014a46b19e699158aeb72, type: 3}
-  frame: {fileID: 21300000, guid: 816c3d5121763824ba511a6640838066, type: 3}
+  spriteArtFon: {fileID: 21300000, guid: 6cf71afc92bf4984cbf126357b79f7e3, type: 3}
+  spriteArt: {fileID: 21300000, guid: 221d9d5ea677ac24a8d0899600159722, type: 3}
+  frame: {fileID: 21300000, guid: bd5f820d032196241bb315308cd570c4, type: 3}
   speedUnits: 3
   countUnits: 1
   size: 1
+  timeTrail: 0.5
   minAttackIndustry: 10
   randomAttackIndustry: 0

@@ -9,6 +9,7 @@
 
     public CivilizationData(IGalaxyUITimer galaxyUITimer, LeaderQualifier leaderQualifier, PlayerSettings playerSettings)
     {
+
         galaxyUITimer.ExecuteYears += ProgressDominance;
         this._leaderQualifier = leaderQualifier;
         _difficultSettings = playerSettings.GetDifficultSettings;

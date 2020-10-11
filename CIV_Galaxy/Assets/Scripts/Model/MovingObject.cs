@@ -24,6 +24,12 @@ public class MovingObject : MonoBehaviour
         _transform = GetComponent<Transform>();
     }
 
+    public MovingObject AssignScale(float scaleTarget)
+    {
+        _transform.localScale = new Vector3(scaleTarget, scaleTarget, scaleTarget);
+        return this;
+    }
+
     public void Stop()
     {
         StopAllCoroutines();
@@ -155,6 +161,8 @@ public class MovingObject : MonoBehaviour
         scaleAnimation = null;
         EndAnimation();
     }
+
+
 
     private void EndAnimation()
     {

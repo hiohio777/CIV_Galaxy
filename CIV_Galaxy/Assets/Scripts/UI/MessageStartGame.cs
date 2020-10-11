@@ -38,7 +38,7 @@ public class MessageStartGame : MonoBehaviour
 
     public void EndAnimation()
     {
-        _actOK.Invoke();
+        _actOK?.Invoke();
 
         OK.interactable = true;
 

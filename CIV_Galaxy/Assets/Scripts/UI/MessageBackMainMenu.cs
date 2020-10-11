@@ -36,8 +36,8 @@ public class MessageBackMainMenu : MonoBehaviour
 
     public void EndAnimation()
     {
-        if (_selectButton) _actYes.Invoke();
-        else _actNo.Invoke();
+        if (_selectButton) _actYes?.Invoke();
+        else _actNo?.Invoke();
 
         yes.interactable = no.interactable = true;
 

@@ -9,13 +9,13 @@ public class CivilizationFromPlayerSelect : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Text nameCiv;
     [SerializeField] private CivilizationScriptable civData;
 
-    private ChoiceCivilization _choiceCivilization;
+    private MainSceneUI _mainSceneUI;
     private PlayerSettings _playerData;
 
     [Inject]
-    public void Inject(ChoiceCivilization choiceCivilization, PlayerSettings playerData)
+    public void Inject(MainSceneUI mainSceneUI, PlayerSettings playerData)
     {
-        this._choiceCivilization = choiceCivilization;
+        this._mainSceneUI = mainSceneUI;
         this._playerData = playerData;
 
         art.sprite = civData.Icon;
@@ -25,7 +25,6 @@ public class CivilizationFromPlayerSelect : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         _playerData.CurrentCivilization = civData.Name;
-
-        _choiceCivilization.AnimationClose();
+        _mainSceneUI.StartUI("GameSettings");
     }
 }

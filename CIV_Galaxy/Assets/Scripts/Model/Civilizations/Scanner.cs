@@ -83,7 +83,8 @@ public class Scanner : CivilizationStructureBase
                 return;
             }
 
-            var planet = _planetsFactory.GetNewUnit(_galaxyData.GetTypePlanet());
+            _galaxyData.TakePlanetFromGalaxy();
+            var planet = _planetsFactory.GetNewUnit();
             if (_civilization.IsOpen == false) _civilization.CivData.AddPlanet(planet);
             else planet.OpenPlanet(_civilization.PositionCiv, () => _civilization.CivData.AddPlanet(planet));
         }

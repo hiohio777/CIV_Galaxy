@@ -23,19 +23,18 @@ public class GalaxyData : MonoBehaviour
 
     public int CountAllPlanet => allPlanet - _openPlanets;
 
-    public SpriteUnitEnum GetTypePlanet()
+    public bool TakePlanetFromGalaxy()
     {
-        SpriteUnitEnum spriteUnitEnum = (SpriteUnitEnum)UnityEngine.Random.Range(0, 4);
         _openPlanets++;
-
         _canvasFonGalaxy.ProgressEvent(_openPlanets / ((float)allPlanet / 100));
+
         if (_openPlanets >= allPlanet)
         {
             // Запуск счётчика конца игры
             _messageWholeGalaxyExplored.Show("Вся Галактика исследована!", () => _counterEndGame.Show(endGametime));
+            return false;
         }
 
-
-        return spriteUnitEnum;
+        return true;
     }
 }
