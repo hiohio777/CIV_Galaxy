@@ -16,13 +16,8 @@ public class CanvasFonGalaxy : MonoBehaviour
     public void Inject(PlayerSettings playerSettings)
     {
         galaxyFon.sprite = galaxyFonSprite[(int)playerSettings.CurrentDifficult];
-        if (SceneManager.GetActiveScene().name == "MainScene")
-            galaxyExploredAreaObject.SetActive(false);
-        else
-            _moving = GetComponentInChildren<MovingObject>().AssignScale(0);
+        _moving = GetComponentInChildren<MovingObject>().AssignScale(0);
     }
-
-    public void SetDifficultFon(DifficultEnum difficult) => galaxyFon.sprite = galaxyFonSprite[(int)difficult];
 
     public void ProgressEvent(float rogress)
     {

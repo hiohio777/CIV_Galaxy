@@ -70,5 +70,9 @@
   "difficult": "Сложно",
   "medium": "Средне",
   "easy": "Легко",
-  "select_game": "Выбрать игру"
+  "select_game": "Выбрать игру",
+  "quit": "Выйти",
+  "name_game": "Галактика: Доминирование",
+  "opponents": "Противники",
+  "difficulty": "Сложность"
 }

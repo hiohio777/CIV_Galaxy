@@ -1527,6 +1527,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5591391151814506213, guid: 2845037b6d3107e4a954f418de82a54d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5591391151814506233, guid: 2845037b6d3107e4a954f418de82a54d,
         type: 3}
       propertyPath: m_Name
@@ -1618,12 +1623,12 @@ PrefabInstance:
     - target: {fileID: 1630231165867566573, guid: 9ddb94fc153f0bc4ab60e07208ed7191,
         type: 3}
       propertyPath: allPlanet
-      value: 35
+      value: 4200
       objectReference: {fileID: 0}
     - target: {fileID: 1630231165867566573, guid: 9ddb94fc153f0bc4ab60e07208ed7191,
         type: 3}
       propertyPath: endGametime
-      value: 30
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 8157961634398486340, guid: 9ddb94fc153f0bc4ab60e07208ed7191,
         type: 3}

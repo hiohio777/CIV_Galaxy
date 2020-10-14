@@ -9,21 +9,32 @@ public class GameSettings : PanelUI
 {
     [SerializeField] private List<Button> buttonsOpponents, buttonsDifficult;
     [SerializeField] private Sprite buttonSelected, buttonDontSelected;
-    [SerializeField] private JustRotate imageArtGalaxy;
+    [SerializeField] private JustRotateArtGalaxy imageArtGalaxy;
+    [SerializeField] private Image galaxyFon;
+    [SerializeField] private Sprite[] galaxyFonSprite;
     private PlayerSettings _playerSettings;
-    private CanvasFonGalaxy _canvasFonGalaxy;
     private PlayerSettings _playerData;
 
     [Inject]
-    public void Inject(PlayerSettings playerSettings, CanvasFonGalaxy canvasFonGalaxy, PlayerSettings playerData)
+    public void Inject(PlayerSettings playerSettings, PlayerSettings playerData)
     {
         this._playerSettings = playerSettings;
-        this._canvasFonGalaxy = canvasFonGalaxy;
-        this._playerData = playerData; 
+        this._playerData = playerData;
+
+        _playerSettings.CurrentDifficult = DifficultEnum.Easy;
 
         Select(buttonsOpponents[(int)_playerSettings.CurrentOpponents]);
         Select(buttonsDifficult[(int)_playerSettings.CurrentDifficult]);
     }
+
+    public override void Disable()
+    {
+        base.Disable();
+        AssignDifficult(0); 
+        AssignOpponents(0);
+    }
+
+    public void SetDifficultFon(DifficultEnum difficult) => galaxyFon.sprite = galaxyFonSprite[(int)difficult];
 
     public void AssignOpponents(int indexButton)
     {
@@ -32,6 +43,9 @@ public class GameSettings : PanelUI
         RemoveSelection(buttonsOpponents[(int)_playerSettings.CurrentOpponents]);
         _playerSettings.CurrentOpponents = (OpponentsEnum)indexButton;
         Select(buttonsOpponents[indexButton]);
+
+        float size = indexButton * 0.2f + 1f;
+        imageArtGalaxy.StartResize(new Vector3(size, size, size), 0.5f);
     }
 
     public void AssignDifficult(int indexButton)
@@ -42,7 +56,7 @@ public class GameSettings : PanelUI
         _playerSettings.CurrentDifficult = (DifficultEnum)indexButton;
         Select(buttonsDifficult[indexButton]);
 
-        _canvasFonGalaxy.SetDifficultFon(_playerSettings.CurrentDifficult);
+        SetDifficultFon(_playerSettings.CurrentDifficult);
     }
 
     public void StartGalaxyScene()
@@ -60,7 +74,7 @@ public class GameSettings : PanelUI
             }
         };
 
-        imageArtGalaxy.StartResize(act, new Vector3(0, 0, 0));
+        imageArtGalaxy.StartResize(new Vector3(0, 0, 0), 1, act);
     }
 
     public void AnimationCloseScen()

@@ -90,7 +90,7 @@ MonoBehaviour:
     type: 3}
   messageBackMainMenuPrefab: {fileID: 8022442089728712997, guid: 41358cd17be67034caa35c57b76f98fe,
     type: 3}
-  endGameUIPrefab: {fileID: 5591391151814506233, guid: 2845037b6d3107e4a954f418de82a54d,
+  endGameUIPrefab: {fileID: 5619285270600156051, guid: 2845037b6d3107e4a954f418de82a54d,
     type: 3}
   civilizationEndGamelUIPrefab: {fileID: 706209650152581560, guid: aec6b0b8feb07524c908d19cdf2ae406,
     type: 3}

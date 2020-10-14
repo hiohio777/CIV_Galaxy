@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -9,6 +10,11 @@ public class Civilizations
     public Civilizations()
     {
         Refresh();
+    }
+
+    public IEnumerator<CivilizationScriptable> GetEnumerator()
+    {
+        return civilizationsData.GetEnumerator();
     }
 
     public void Refresh() => civilizationsData = Resources.LoadAll<CivilizationScriptable>($"Civilizations/").ToList();

@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 public class MainSceneUI : MonoBehaviour
 {
+    [SerializeField] private JustRotateArtGalaxy imageArtGalaxy;
     private Dictionary<string, PanelUI> panelsUI = new Dictionary<string, PanelUI>();
     private PanelUI current;
     private string nextPanalName;
@@ -14,6 +16,7 @@ public class MainSceneUI : MonoBehaviour
     public void Inject(LoaderDataGame loaderDataGame)
     {
         this.loaderDataGame = loaderDataGame;
+        imageArtGalaxy.transform.localScale = new Vector3(0,0,0);
     }
 
     public void StartUI(string panalName)

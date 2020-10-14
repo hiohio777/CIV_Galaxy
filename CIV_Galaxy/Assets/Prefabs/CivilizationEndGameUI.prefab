@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 7390649310132624867}
   - component: {fileID: 4790397176003734286}
   m_Layer: 5
-  m_Name: CivilizationEndGamelUI
+  m_Name: CivilizationEndGameUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 380, y: 128.53455}
+  m_SizeDelta: {x: 600, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7136020371589552453
 CanvasRenderer:

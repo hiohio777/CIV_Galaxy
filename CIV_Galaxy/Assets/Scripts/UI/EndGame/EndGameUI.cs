@@ -8,25 +8,29 @@ public class EndGameUI : MonoBehaviour
     [SerializeField] private Image art;
     [SerializeField] private LocalisationText nameCiv;
     [SerializeField] private Button OK;
-    [SerializeField] private Text yearGame, countPlanet, countDominationPoints, 
+    [SerializeField]
+    private Text yearGame, countPlanet, countDominationPoints,
         countDiscoveries, countBombs, countSpaceFleet, countScientificMission;
-    [SerializeField] private Image dominatorIcon;
+    [SerializeField] private Image liderIcon;
     [SerializeField] private List<CivilizationEndGamelUI> _civilizationEndGamelUI;
+    [SerializeField] private List<GameObject> _civilizationsPanelUI;
 
     private IGalaxyUITimer _galaxyUITimer;
     private GalaxySceneUI _galaxySceneUI;
     private ICivilizationPlayer _civPlayer;
     private List<ICivilizationAl> _civsAl;
+    private Statistics _statistics;
+    private PlayerSettings _playerSettings;
 
     private Animator _animator;
     public class Factory : PlaceholderFactory<EndGameUI> { }
 
     [Inject]
     public void Inject(IGalaxyUITimer galaxyUITimer, GalaxySceneUI galaxySceneUI, ICivilizationPlayer civPlayer,
-        List<ICivilizationAl> civsAl)
+        List<ICivilizationAl> civsAl, Statistics statistics, PlayerSettings playerSettings)
     {
-        (this._galaxyUITimer, this._galaxySceneUI, this._civPlayer, this._civsAl)
-        = (galaxyUITimer, galaxySceneUI, civPlayer, civsAl);
+        (this._galaxyUITimer, this._galaxySceneUI, this._civPlayer, this._civsAl, this._statistics, this._playerSettings)
+        = (galaxyUITimer, galaxySceneUI, civPlayer, civsAl, statistics, playerSettings);
     }
 
     public EndGameUI Show()
@@ -48,17 +52,70 @@ public class EndGameUI : MonoBehaviour
         switch (_civPlayer.Lider)
         {
             case LeaderEnum.Lagging:
-                dominatorIcon.enabled = false;
-                countDominationPoints.color = new Color(0.6f, 0.6f, 0, 1);
+                liderIcon.enabled = false;
+                countDominationPoints.color = Color.red;
                 break;
             case LeaderEnum.Leader:
-                dominatorIcon.enabled = true;
-                countDominationPoints.color = new Color(1, 1, 0, 1);
-                dominatorIcon.color = new Color(1, 1, 0, 0.75f);
+                liderIcon.enabled = true;
+                countDominationPoints.color = Color.yellow;
+                liderIcon.color = new Color(1, 1, 0, 0.75f);
                 break;
         }
 
+        DefinitionOfVctory(CivilizationTable());
+        return this;
+    }
+
+    private void DefinitionOfVctory(List<ICivilization> _civs)
+    {
+        // Определение победы и сравнение статистики
+        if (_civs[0] is ICivilizationPlayer)
+        {
+            Debug.Log("Победа!");
+            // Статистика
+            var stat = _statistics.GetStatistics(_civPlayer.DataBase.Name, _playerSettings.CurrentDifficult, _playerSettings.CurrentOpponents);
+            if (stat.isRecorded)
+            {
+                if (stat.CountDomination < (int)_civPlayer.CivData.DominationPoints)
+                {
+                    SeveStatistics(stat);
+                    Debug.Log("Рекорд обнавлён!");
+                }
+            }
+            else
+            {
+                // Рекорда ещё нет
+                SeveStatistics(stat);
+                Debug.Log("Первый рекорд записан!");
+            }
+        }
+        else//1800
+        {
+            Debug.Log("Поражение!");
+        }
+    }
+
+    private void SeveStatistics(StatisticsData stat)
+    {
+        stat.Write((int)_civPlayer.CivData.DominationPoints, _civPlayer.CivData.Planets, _civPlayer.ScienceCiv.CountDiscoveries,
+            _civPlayer.AbilityCiv.Abilities[0].CountUses, _civPlayer.AbilityCiv.Abilities[1].CountUses, _civPlayer.AbilityCiv.Abilities[2].CountUses);
+        _statistics.SaveDate();
+    }
+
+    private List<ICivilization> CivilizationTable()
+    {
         // Распределить цивилизации в порядке колиества доминирования
+        switch (_playerSettings.CurrentOpponents)
+        {
+            case OpponentsEnum.Two:
+                _civilizationsPanelUI[2].SetActive(false);
+                _civilizationsPanelUI[3].SetActive(false);
+                break;
+            case OpponentsEnum.Four:
+                _civilizationsPanelUI[3].SetActive(false);
+                break;
+        }
+
         List<ICivilization> _civs = new List<ICivilization>(_civsAl);
         _civs.Add(_civPlayer);
         _civs.Sort(CompareTo);
@@ -71,8 +128,7 @@ public class EndGameUI : MonoBehaviour
 
         _animator = GetComponent<Animator>();
         _animator.SetTrigger("DisplayEndGameUI");
-
-        return this;
+        return _civs;
     }
 
     public void EndAnimation()

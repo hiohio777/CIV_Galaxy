@@ -795,7 +795,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8852402272823414047
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1697,6 +1697,7 @@ GameObject:
   - component: {fileID: 618673348152775474}
   - component: {fileID: 694435304904498287}
   - component: {fileID: 461882000753357435}
+  - component: {fileID: 5512176041035950694}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -1744,7 +1745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3820755, g: 0.89674455, b: 1, a: 1}
+  m_Color: {r: 0.6862745, g: 0.8862745, b: 0.99215686, a: 1}
   m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1778,6 +1779,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Key: back
   text: {fileID: 0}
+--- !u!114 &5512176041035950694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6374566541361593896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.7529412}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &6645051179406668984
 GameObject:
   m_ObjectHideFlags: 0

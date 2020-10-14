@@ -2,15 +2,14 @@
 
 public class PlayerSettings
 {
-    private DifficultEnum _currentDifficult;
+    private DifficultEnum _currentDifficult = DifficultEnum.Easy;
+    public OpponentsEnum CurrentOpponents { get; set; } = OpponentsEnum.Two;
 
     public PlayerSettings()
     {
-        _currentDifficult = DifficultEnum.Easy;
         GetDifficultSettings = Resources.Load<DifficultSettingsScriptable>($"Difficult/{_currentDifficult}");
     }
 
-    public OpponentsEnum CurrentOpponents { get; set; } = OpponentsEnum.Two;
     public DifficultEnum CurrentDifficult {
         get => _currentDifficult; set {
             _currentDifficult = value;
