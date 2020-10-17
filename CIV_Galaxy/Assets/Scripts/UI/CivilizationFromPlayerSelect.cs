@@ -6,7 +6,7 @@ using Zenject;
 public class CivilizationFromPlayerSelect : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Image fon, art;
-    [SerializeField] private Text nameCiv;
+    [SerializeField] private LocalisationText nameCiv;
     [SerializeField] private CivilizationScriptable civData;
 
     private MainSceneUI _mainSceneUI;
@@ -19,7 +19,7 @@ public class CivilizationFromPlayerSelect : MonoBehaviour, IPointerClickHandler
         this._playerData = playerData;
 
         art.sprite = civData.Icon;
-        nameCiv.text = civData.Name;
+        nameCiv.SetKey(civData.Name);
     }
 
     public void OnPointerClick(PointerEventData eventData)

@@ -6,6 +6,7 @@ using Zenject;
 public class SciencePlayerUI : MonoBehaviour
 {
     [SerializeField] private Image artCivPlayer;
+    [SerializeField] private Text textCountPoints;
 
     private bool _isInit = false; // Инизиализировано ли древо наук(его UI)
     private bool _isPause = false; // Бфла ли активирована пауза игры
@@ -22,7 +23,7 @@ public class SciencePlayerUI : MonoBehaviour
         (this._civPlayer, this._galaxyUITimer, this._factoryDiscoveryCellUI)
         = (civPlayer, galaxyUITimer, factoryDiscoveryCellUI);
 
-        _messageInfoScience = GetComponentInChildren<MessageInfoScience>();
+        _messageInfoScience = GetComponentInChildren<MessageInfoScience>(true);
         _messageInfoScience.UpdateCostDiscoveriesEvent += UpdateCostDiscoveries;
     }
 
@@ -38,8 +39,7 @@ public class SciencePlayerUI : MonoBehaviour
 
         if (_isInit == false) InitiateUIScience();
 
-        foreach (var item in _discoveries)
-            item.CheckPrice(_civPlayer.ScienceCiv.Points);
+        UpdateCostDiscoveries();
     }
 
     public void Disable()
@@ -75,5 +75,7 @@ public class SciencePlayerUI : MonoBehaviour
     {
         foreach (var item in _discoveries)
             item.CheckPrice(_civPlayer.ScienceCiv.Points);
+
+        textCountPoints.text = _civPlayer.ScienceCiv.Points.ToString();
     }
 }

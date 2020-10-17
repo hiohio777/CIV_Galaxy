@@ -20,6 +20,14 @@ public class TreeOfScience : MonoBehaviour, ITreeOfScience
     private void Awake()
     {
         Discoveries = GetComponentsInChildren<DiscoveryCell>();
+
+        int pointsAll = 0;
+        foreach (var item in Discoveries)
+        {
+            pointsAll += item.ResearchCost;
+        }
+
+        Debug.Log($"{name}: count: {Discoveries.Length} points: {pointsAll}");
     }
 }
 

@@ -82,6 +82,8 @@ MonoBehaviour:
     type: 3}
   unitAbilityPrefab: {fileID: 3763614538343413743, guid: d16eb0d097cd5d94388543cb75b42beb,
     type: 3}
+  specialEffectPrefab: {fileID: 8458183823514125673, guid: eeeffd09226208e4eb7c2b2556e2f65f,
+    type: 3}
   valueChangeEffectPrefab: {fileID: 57317334369050565, guid: cebdcc0e6bc7a3c499fdfde0d35683f2,
     type: 3}
   messageDiscoveredCivilizationPrefab: {fileID: 3455809953295383601, guid: 2cce9c1c1c5e357459fd0e78ff733c01,

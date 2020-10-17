@@ -26,7 +26,7 @@ MonoBehaviour:
     minimumDiscoveredPlanets: 1
     randomDiscoveredPlanets: 0
   scienceData:
-    treeOfSciencePrefab: {fileID: 4770582084060642709, guid: 89ff7eb429ef5fb4c95eaa1d7cdf5bd2,
+    treeOfSciencePrefab: {fileID: 1989101130050539048, guid: 2eb1c76d87130314ba9c94786e4640fb,
       type: 3}
     Points: 0
     acceleration: 100

@@ -12,7 +12,6 @@ public class Scanner : CivilizationStructureBase
     private ICivilization _civilization;
     private ScanerData _scanerData;
 
-
     public Scanner(GalaxyData galaxyData, PlanetsFactory planetsFactory)
     {
         (this._galaxyData, this._planetsFactory) = (galaxyData, planetsFactory);
@@ -89,6 +88,36 @@ public class Scanner : CivilizationStructureBase
             else planet.OpenPlanet(_civilization.PositionCiv, () => _civilization.CivData.AddPlanet(planet));
         }
     }
+
+    /// <summary>
+    ///  Открытие планет по событию(например изучение науки)
+    /// </summary>
+    public int DiscoverPlanetEvent(int countNewPlanet)
+    {
+        // Открыть планеты
+        if (countNewPlanet < 0)
+            return 0;
+
+        int countIsOpenNewPlanet = 0;
+        for (int i = 0; i < countNewPlanet; i++)
+        {
+            if (_galaxyData.CountAllPlanet <= 0)
+            {
+                IsActive = false;
+                return countIsOpenNewPlanet;
+            }
+
+            _galaxyData.TakePlanetFromGalaxy();
+            var planet = _planetsFactory.GetNewUnit();
+            if (_civilization.IsOpen == false) _civilization.CivData.AddPlanet(planet);
+            else planet.OpenPlanet(_civilization.PositionCiv, () => _civilization.CivData.AddPlanet(planet));
+
+            countIsOpenNewPlanet++; 
+        }
+
+        return countIsOpenNewPlanet;
+    }
+
 
     public string GetInfo(bool isPlayer = true)
     {

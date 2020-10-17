@@ -28,7 +28,7 @@
             type = TypeDisplayAbilityEnum.Al;
         }
 
-        return unit.Initialize(ability, civilization.PositionCiv, type);
+        return unit.Initialize(ability, civilization.PositionCiv, civilizationTarget, type);
     }
 }
 

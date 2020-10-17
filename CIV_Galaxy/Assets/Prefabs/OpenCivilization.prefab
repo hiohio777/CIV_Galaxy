@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5261964304797945212}
   - component: {fileID: 9024336119232949253}
   - component: {fileID: 2070679737155438044}
+  - component: {fileID: 3522203329496628315}
   m_Layer: 5
   m_Name: Name
   m_TagString: Untagged
@@ -94,6 +95,20 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &3522203329496628315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295222349456366378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a823470ae2eb8f4ba8b8e302d73a3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key: 
+  text: {fileID: 0}
 --- !u!1 &3494036005410305390
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fon: {fileID: 1296458007095977834}
   art: {fileID: 2933327838632248681}
-  nameCiv: {fileID: 9024336119232949253}
+  nameCiv: {fileID: 3522203329496628315}
   civData: {fileID: 11400000, guid: 540a2930fe4db7345bbe16eb28c9fbe1, type: 2}
 --- !u!1 &7137586148173388860
 GameObject:
@@ -257,8 +272,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -20}
-  m_SizeDelta: {x: -40, y: -40}
+  m_AnchoredPosition: {x: 0, y: -1}
+  m_SizeDelta: {x: -40, y: -51.958405}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7571738739574307836
 CanvasRenderer:

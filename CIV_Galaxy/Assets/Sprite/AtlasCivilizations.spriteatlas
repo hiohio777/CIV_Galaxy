@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AtlasCivilizations
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 7fefebff32c90254aa38cf01e61c772d, type: 3}
+    totalSpriteSurfaceArea: 183708
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: fd0eda5078b1b554ba0e088382f60636, type: 3}
+  - {fileID: 21300000, guid: c90581b03a04f29459ea2ab9781a03a5, type: 3}
+  - {fileID: 21300000, guid: bea6f24121260db42902ddcd97c18857, type: 3}
+  - {fileID: 21300000, guid: fa9fd0354eab14d48912c84883ce6b0f, type: 3}
+  - {fileID: 21300000, guid: 2e89474ad23614147a2bc001c2be13c8, type: 3}
+  - {fileID: 21300000, guid: 5f1d15bac37b6f141b598ec4e4b0c221, type: 3}
+  - {fileID: 21300000, guid: 694f24faac6fb604ebae0370d1bf8f4b, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Humanity
+  - Ailo
+  - Tarkans
+  - Juu
+  - Quellons
+  - Andarians
+  - Shaktalasi
+  m_Tag: AtlasCivilizations
+  m_IsVariant: 0

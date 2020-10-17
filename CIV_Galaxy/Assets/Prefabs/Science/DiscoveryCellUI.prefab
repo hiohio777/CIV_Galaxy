@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   researchCost: {fileID: 1970390216520200483}
-  colorResearch: {r: 0.36320752, g: 1, b: 0.39327064, a: 1}
+  colorResearch: {r: 0.5801887, g: 1, b: 0.6030875, a: 1}
   colorAvailable: {r: 0.4431373, g: 0.4431373, b: 0.4431373, a: 1}
   colorAvailablePrice: {r: 0.8078432, g: 0.9568628, b: 1, a: 1}
 --- !u!1 &8187373747917845603

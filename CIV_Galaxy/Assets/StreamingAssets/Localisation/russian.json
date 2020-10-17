@@ -72,7 +72,10 @@
   "easy": "Легко",
   "select_game": "Выбрать игру",
   "quit": "Выйти",
-  "name_game": "Галактика: Доминирование",
+  "name_game": "Галактика",
   "opponents": "Противники",
-  "difficulty": "Сложность"
+  "difficulty": "Сложность",
+  "your_record": "Ваш рекорд",
+  "defeat": "Поражение!",
+  "victory": "Победа!"
 }

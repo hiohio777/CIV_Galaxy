@@ -4,7 +4,7 @@ public class Science : CivilizationStructureBase
 {
     public event Action<float> ProgressEvent; // Отображение на экране
 
-    private float _progressInterval = 30; // Интервал
+    private float _progressInterval = 33; // Интервал
     private float _progress = 0; // Прогресс получения нового поинта SciencePoints
 
     private ICivilization _civilization;

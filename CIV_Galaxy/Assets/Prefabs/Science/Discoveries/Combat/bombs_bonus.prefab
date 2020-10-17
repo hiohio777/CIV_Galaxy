@@ -98,7 +98,7 @@ MonoBehaviour:
   researchCost: 1
   dependentSciences: []
   isAvailable: 0
-  colorResearch: {r: 0.48504806, g: 0.9433962, b: 0.50621927, a: 1}
+  colorResearch: {r: 0.748932, g: 0.9622642, b: 0.7580488, a: 1}
   colorAvailable: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &6893957879330432412
 MonoBehaviour:
@@ -112,6 +112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1c7e7ddaa414664986a132a1b3f6627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  countUnits: 0
   minAttackIndustry: 0
   randomAttackIndustry: 0
-  countUnits: 0

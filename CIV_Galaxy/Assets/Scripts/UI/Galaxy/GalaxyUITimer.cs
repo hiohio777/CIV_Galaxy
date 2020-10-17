@@ -40,7 +40,8 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
         textTimer.text = (years = 0).ToString();
     }
 
-    public void SetPause(bool active, string message = "pause")
+    public void SetPause(bool active, string message = "pause") => SetPause(active, Color.red, message);
+    public void SetPause(bool active, Color color, string message = "pause")
     {
         if (IsPause = active)
         {
@@ -48,6 +49,7 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
             {
                 messagePause.SetActive(true);
                 messagePause.SetKey(message);
+                messagePause.Color = color;
             }
             else messagePause.SetActive(false);
 
@@ -134,4 +136,5 @@ public interface IGalaxyUITimer
     float GetSpeed { get; }
 
     void SetPause(bool isPause, string message = "pause");
+    void SetPause(bool active, Color color, string message = "pause");
 }

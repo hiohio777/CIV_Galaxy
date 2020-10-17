@@ -8,13 +8,14 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
     private InfoCivilizationPanelUI _infoCivilizationPanelUI;
     private ShakeObject _shakeObject;
     protected MovingObject _moving;
+    private SpecialEffectFactory _specialEffectFactory;
 
     [Inject]
-    public void Inject(CivilizationData civData, Scanner scanerPlanets, Science scienceCiv, Industry industryCiv,
-        Ability abilityCiv, ValueChangeEffectFactory valueChangeEffectFactory, InfoCivilizationPanelUI infoCivilizationPanelUI)
+    public void Inject(CivilizationData civData, Scanner scanerPlanets, Science scienceCiv, Industry industryCiv, Ability abilityCiv,
+        ValueChangeEffectFactory valueChangeEffectFactory, InfoCivilizationPanelUI infoCivilizationPanelUI, SpecialEffectFactory specialEffectFactory)
     {
-        (this.CivData, this.ScanerCiv, this.ScienceCiv, this.IndustryCiv, this.AbilityCiv, this._infoCivilizationPanelUI)
-        = (civData, scanerPlanets, scienceCiv, industryCiv, abilityCiv, infoCivilizationPanelUI);
+        (this.CivData, this.ScanerCiv, this.ScienceCiv, this.IndustryCiv, this.AbilityCiv, this._infoCivilizationPanelUI, this._specialEffectFactory)
+        = (civData, scanerPlanets, scienceCiv, industryCiv, abilityCiv, infoCivilizationPanelUI, specialEffectFactory);
 
         PositionCiv = transform.position;
         _shakeObject = GetComponentInChildren<ShakeObject>();
@@ -52,6 +53,12 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
     public void ExicuteIndustryPoints(float points)
     {
         civilizationUI.SetIndustryPoints(points);
+    }
+
+    public void ExicuteSpecialEffect(Sprite spriteEffect, EffectEnum effectEnum = EffectEnum.Standart)
+    {
+        if (IsOpen)
+            _specialEffectFactory.GetEffect(PositionCiv, spriteEffect, effectEnum);
     }
 
     /// <summary>

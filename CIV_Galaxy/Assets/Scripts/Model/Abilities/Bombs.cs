@@ -16,6 +16,23 @@ public class Bombs : AttackerAbility
         if (randomAttackIndustry < 0) randomAttackIndustry = 0;
     }
 
+    public override bool Apply(ICivilization civilizationTarget)
+    {
+        StartAttack(civilizationTarget);
+        return true;
+    }
+
+    public override bool ApplyAl(Diplomacy diplomacyCiv)
+    {
+        var target = diplomacyCiv.FindEnemy(this);
+        if (target != null)
+        {
+            StartAttack(target); // Цель найдена
+            return true;
+        }
+        else return false;
+    }
+
     protected override void Finall(IUnitAbility unit, ICivilization civilizationTarget)
     {
         // Ухудшить отношения, если напал игрок
@@ -34,23 +51,6 @@ public class Bombs : AttackerAbility
             if (civilizationTarget.IndustryCiv.Points * 100f < civilizationTarget.IndustryCiv.Shields)
                 civilizationTarget.IndustryCiv.Points = civilizationTarget.IndustryCiv.Shields / 100f;
         }
-    }
-
-    public override bool Apply(ICivilization civilizationTarget)
-    {
-        StartAttack(civilizationTarget);
-        return true;
-    }
-
-    public override bool ApplyAl(Diplomacy diplomacyCiv)
-    {
-        var target = diplomacyCiv.FindEnemy(this);
-        if (target != null)
-        {
-            StartAttack(target); // Цель найдена
-            return true;
-        }
-        else return false;
     }
 
     public override string GetInfo(bool isPlayer = true)

@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5776582298741551956}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -72,15 +72,15 @@ SpriteRenderer:
   m_SortingLayerID: -1855244601
   m_SortingLayer: 4
   m_SortingOrder: 12
-  m_Sprite: {fileID: 21300000, guid: b3e010a19750d9745a513bf7c4b431a4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8c43eb2ecc3c44441b407c0c0d5c559f, type: 3}
   m_Color: {r: 1, g: 0.514151, b: 0.514151, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 162, y: 162}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1350244126373315723
@@ -98,7 +98,7 @@ MonoBehaviour:
   researchCost: 3
   dependentSciences: []
   isAvailable: 0
-  colorResearch: {r: 0.48504806, g: 0.9433962, b: 0.50621927, a: 1}
+  colorResearch: {r: 0.7490196, g: 0.9647059, b: 0.7607843, a: 1}
   colorAvailable: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &3827067225890640868
 MonoBehaviour:

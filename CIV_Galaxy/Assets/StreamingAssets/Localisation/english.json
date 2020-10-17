@@ -8,6 +8,7 @@
   "increase_dominance_proc": "Доминирование увеличится на",
   "increase_dominance": "Доминирование увеличится на",
   "gd_planets_bonus": "Рост доминирования от количества планет",
+  "if_galaxy_has_not_been_fully": "Если галактика еще не полностью исследована, получить планеты.",
   "random_discovered_planets": "Максимум открываемых сканером планет",
   "shields_bonus": "Щиты",
   "skill_recharge_cost": "Скорость активации скиллов",
@@ -72,7 +73,10 @@
   "easy": "Легко",
   "select_game": "Выбрать игру",
   "quit": "Выйти",
-  "name_game": "Галактика: Доминирование",
+  "name_game": "Галактика",
   "opponents": "Противники",
-  "difficulty": "Сложность"
+  "difficulty": "Сложность",
+  "your_record": "Ваш рекорд",
+  "defeat": "Поражение!",
+  "victory": "Победа!"
 }

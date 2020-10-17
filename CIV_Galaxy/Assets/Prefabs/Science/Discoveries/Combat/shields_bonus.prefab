@@ -98,7 +98,7 @@ MonoBehaviour:
   researchCost: 3
   dependentSciences: []
   isAvailable: 0
-  colorResearch: {r: 0.48504806, g: 0.9433962, b: 0.50621927, a: 1}
+  colorResearch: {r: 0.748932, g: 0.9622642, b: 0.7580488, a: 1}
   colorAvailable: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1726393769224451358
 MonoBehaviour:

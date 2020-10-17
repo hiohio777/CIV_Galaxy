@@ -32,12 +32,14 @@ public class UnitAbility : UnitBase, IUnitAbility
 
     public class Factory : PlaceholderFactory<Action<object>, UnitAbility> { }
 
-    public UnitAbility Initialize(AttackerAbility ability, Vector3 startPosition, TypeDisplayAbilityEnum type)
+    public ICivilization TargetCiv { get; private set; }// Целевая цивилизация
+    public UnitAbility Initialize(AttackerAbility ability, Vector3 startPosition, ICivilization targetCiv, TypeDisplayAbilityEnum type)
     {
         gameObject.SetActive(true);
 
         transform.position = startPosition;
         transform.localScale = new Vector3(0, 0, 0);
+        this.TargetCiv = targetCiv;
 
         if (ability.TimeTrail <= 0)
         {

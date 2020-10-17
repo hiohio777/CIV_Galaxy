@@ -8,8 +8,8 @@ public class EndGameUI : MonoBehaviour
     [SerializeField] private Image art;
     [SerializeField] private LocalisationText nameCiv;
     [SerializeField] private Button OK;
-    [SerializeField]
-    private Text yearGame, countPlanet, countDominationPoints,
+    [SerializeField] private LocalisationText textVictory;
+    [SerializeField] private Text yearGame, countPlanet, countDominationPoints,
         countDiscoveries, countBombs, countSpaceFleet, countScientificMission;
     [SerializeField] private Image liderIcon;
     [SerializeField] private List<CivilizationEndGamelUI> _civilizationEndGamelUI;
@@ -66,43 +66,50 @@ public class EndGameUI : MonoBehaviour
         return this;
     }
 
-    private void DefinitionOfVctory(List<ICivilization> _civs)
+    private void DefinitionOfVctory(bool isVictory)
     {
         // Определение победы и сравнение статистики
-        if (_civs[0] is ICivilizationPlayer)
+        if (isVictory)
         {
-            Debug.Log("Победа!");
-            // Статистика
-            var stat = _statistics.GetStatistics(_civPlayer.DataBase.Name, _playerSettings.CurrentDifficult, _playerSettings.CurrentOpponents);
-            if (stat.isRecorded)
+            textVictory.Color = Color.green;
+            textVictory.SetKey("victory");
+            CreateBattleStatistics();
+        }
+        else
+        {
+            textVictory.Color = Color.red;
+            textVictory.SetKey("defeat");
+        }
+    }
+
+    private void CreateBattleStatistics()
+    {
+        // Статистика
+        var stat = _statistics.GetStatistics(_civPlayer.DataBase.Name, _playerSettings.CurrentDifficult, _playerSettings.CurrentOpponents);
+        if (stat.IsRecorded)
+        {
+            if (stat.CountDomination < (int)_civPlayer.CivData.DominationPoints)
             {
-                if (stat.CountDomination < (int)_civPlayer.CivData.DominationPoints)
-                {
-                    SeveStatistics(stat);
-                    Debug.Log("Рекорд обнавлён!");
-                }
-            }
-            else
-            {
-                // Рекорда ещё нет
                 SeveStatistics(stat);
-                Debug.Log("Первый рекорд записан!");
+                Debug.Log("Рекорд обнавлён!");
             }
         }
-        else//1800
+        else
         {
-            Debug.Log("Поражение!");
+            // Рекорда ещё нет
+            SeveStatistics(stat);
+            Debug.Log("Первый рекорд записан!");
         }
     }
 
     private void SeveStatistics(StatisticsData stat)
     {
-        stat.Write((int)_civPlayer.CivData.DominationPoints, _civPlayer.CivData.Planets, _civPlayer.ScienceCiv.CountDiscoveries,
+        stat.Write((int)_galaxyUITimer.GetYears, (int)_civPlayer.CivData.DominationPoints, _civPlayer.CivData.Planets, _civPlayer.ScienceCiv.CountDiscoveries,
             _civPlayer.AbilityCiv.Abilities[0].CountUses, _civPlayer.AbilityCiv.Abilities[1].CountUses, _civPlayer.AbilityCiv.Abilities[2].CountUses);
         _statistics.SaveDate();
     }
 
-    private List<ICivilization> CivilizationTable()
+    private bool CivilizationTable()
     {
         // Распределить цивилизации в порядке колиества доминирования
         switch (_playerSettings.CurrentOpponents)
@@ -128,7 +135,7 @@ public class EndGameUI : MonoBehaviour
 
         _animator = GetComponent<Animator>();
         _animator.SetTrigger("DisplayEndGameUI");
-        return _civs;
+        return _civs[0] is ICivilizationPlayer;
     }
 
     public void EndAnimation()

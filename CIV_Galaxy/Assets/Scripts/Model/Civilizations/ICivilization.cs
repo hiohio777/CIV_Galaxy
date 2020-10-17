@@ -17,6 +17,7 @@ public interface ICivilization
     LeaderEnum Lider { get; }
 
     void Shake(float duration, float power);
+    void ExicuteSpecialEffect(Sprite spriteEffect, EffectEnum effectEnum = EffectEnum.Standart);
     void ExicuteScanning();
     void ExicuteSciencePoints(int sciencePoints);
     void ExicuteIndustryPoints(float points);

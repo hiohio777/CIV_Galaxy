@@ -8,8 +8,27 @@ public class Statistics
 {
     private static string PATH = $"{Application.dataPath}/StreamingAssets/Statistics.dat";
     private Dictionary<string, List<StatisticsData>> data;
+    private Civilizations _civilizations;
 
     public Statistics(Civilizations civilizations)
+    {
+        _civilizations = civilizations;
+        LoadDate();
+    }
+
+    public void SaveDate()
+    {
+        var formatter = new BinaryFormatter(); // создаем объект BinaryFormatter
+        using (var fs = new FileStream(PATH, FileMode.OpenOrCreate))
+        {
+            formatter.Serialize(fs, data);
+        }
+    }
+
+    public StatisticsData GetStatistics(string nameCiv, DifficultEnum difficult, OpponentsEnum opponents) =>
+        data[nameCiv].Where(x => x.Difficult == difficult && x.Opponents == opponents).FirstOrDefault();
+
+    private void LoadDate()
     {
         if (File.Exists(PATH))
         {
@@ -22,9 +41,9 @@ public class Statistics
             return;
         }
 
-        civilizations.Refresh();
+        _civilizations.Refresh();
         data = new Dictionary<string, List<StatisticsData>>();
-        foreach (var item in civilizations)
+        foreach (var item in _civilizations)
         {
             var stat = new List<StatisticsData>()
             {
@@ -43,19 +62,5 @@ public class Statistics
 
             data.Add(item.Name, stat);
         }
-        SaveDate();
     }
-
-    public void SaveDate()
-    {
-        var formatter = new BinaryFormatter(); // создаем объект BinaryFormatter
-        using (var fs = new FileStream(PATH, FileMode.OpenOrCreate))
-        {
-            formatter.Serialize(fs, data);
-        }
-    }
-
-    public StatisticsData GetStatistics(string nameCiv, DifficultEnum difficult, OpponentsEnum opponents) =>
-        data[nameCiv].Where(x => x.Difficult == difficult && x.Opponents == opponents).FirstOrDefault();
-
 }

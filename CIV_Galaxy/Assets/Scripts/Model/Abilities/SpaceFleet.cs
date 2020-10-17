@@ -54,6 +54,7 @@ public class SpaceFleet : AttackerAbility
         if (civ.DiplomacyCiv.GetRelationsPlayer() != DiplomaticRelationsEnum.Friendship
             && civ.DiplomacyCiv.GetRelationsPlayer() != DiplomaticRelationsEnum.Cooperation)
         {
+
             StartAttack(civilizationTarget);
             return true;
         }

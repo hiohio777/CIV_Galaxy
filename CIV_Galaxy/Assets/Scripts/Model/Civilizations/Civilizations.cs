@@ -19,10 +19,10 @@ public class Civilizations
 
     public void Refresh() => civilizationsData = Resources.LoadAll<CivilizationScriptable>($"Civilizations/").ToList();
 
-    public CivilizationScriptable GetCivilizationPlayer(string name)
+    public CivilizationScriptable GetCivilizationPlayer(string name, bool isDelet = true)
     {
         var civPlayer = civilizationsData.Where(x => x.Name == name).FirstOrDefault();
-        civilizationsData.Remove(civPlayer);
+        if(isDelet) civilizationsData.Remove(civPlayer);
         return civPlayer;
     }
 
