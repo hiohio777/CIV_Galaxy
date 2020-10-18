@@ -85,6 +85,6 @@ public class UnitAbility : UnitBase, IUnitAbility
     public override void Destroy()
     {
         trail.time = 0;
-        trail.gameObject.SetActive(false);
+        base.Destroy();
     }
 }

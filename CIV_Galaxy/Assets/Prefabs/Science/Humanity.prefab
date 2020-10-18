@@ -1733,7 +1733,7 @@ PrefabInstance:
     - target: {fileID: 8905601568686095777, guid: c3e696d22a91f754b8b78517a942d354,
         type: 3}
       propertyPath: increaseDominanceProc
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3e696d22a91f754b8b78517a942d354, type: 3}

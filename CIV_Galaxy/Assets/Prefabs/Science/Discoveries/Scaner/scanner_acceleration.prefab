@@ -95,8 +95,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e87c2d5468ba147909b8c92661ff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  researchCost: 1
-  dependentSciences: []
+  researchCost: 3
+  dependentSciences:
+  - {fileID: 0}
+  - {fileID: 0}
   isAvailable: 0
   colorResearch: {r: 0.7490196, g: 0.9647059, b: 0.7607843, a: 1}
   colorAvailable: {r: 1, g: 1, b: 1, a: 1}
@@ -112,4 +114,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5678283093e0c6b46868b538ff583d86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scannerAcceleration: 0
+  scannerAcceleration: 10

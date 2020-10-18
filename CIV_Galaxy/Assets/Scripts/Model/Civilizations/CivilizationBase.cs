@@ -57,8 +57,7 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
 
     public void ExicuteSpecialEffect(Sprite spriteEffect, EffectEnum effectEnum = EffectEnum.Standart)
     {
-        if (IsOpen)
-            _specialEffectFactory.GetEffect(PositionCiv, spriteEffect, effectEnum);
+        if (IsOpen) _specialEffectFactory.GetEffect(PositionCiv, spriteEffect, effectEnum);
     }
 
     /// <summary>

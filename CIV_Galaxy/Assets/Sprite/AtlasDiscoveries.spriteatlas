@@ -33,10 +33,11 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 228aefbecd995724e9e09aa9c4d6abf2, type: 3}
     - {fileID: 102900000, guid: 3d8587d0fc730144b924a8209b18a2df, type: 3}
     - {fileID: 102900000, guid: ddd5dc48f54c3144699e617c78bf8a31, type: 3}
-    totalSpriteSurfaceArea: 781376
+    totalSpriteSurfaceArea: 830528
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 45dd6b00c1f16284da311660d76741f9, type: 3}
   - {fileID: 21300000, guid: c89cb640b2baf994e93432d6b4ccbe53, type: 3}
   - {fileID: 21300000, guid: 66a14650ac69037428c0dfd871fc7889, type: 3}
   - {fileID: 21300000, guid: 9e01db602d98aa044bb852288e243f52, type: 3}
@@ -46,9 +47,11 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 7fd37ac138fced546a89a75d728d0710, type: 3}
   - {fileID: 21300000, guid: 7fce7d02b35180044babe3c4b25f025c, type: 3}
   - {fileID: 21300000, guid: 1ec0fd3251fdec940a2d74bc104d46dc, type: 3}
+  - {fileID: 21300000, guid: 9785b382d1f68c942aa7cbb02ba8f901, type: 3}
   - {fileID: 21300000, guid: 92574ed2db78afa40a834bfbe3169cbc, type: 3}
   - {fileID: 21300000, guid: bff7443309a85e64e852b54c0b1e1eb8, type: 3}
   - {fileID: 21300000, guid: 6d3635049bf6044469a255ffc81ca4ee, type: 3}
+  - {fileID: 21300000, guid: 7fda8b449b8b053488a0b7dc8a54897c, type: 3}
   - {fileID: 21300000, guid: 201af874a3491d64b9d9688c8447a26b, type: 3}
   - {fileID: 21300000, guid: 1869fb7484aa0c143afc697469c77982, type: 3}
   - {fileID: 21300000, guid: 2ac0db94ff1d5c041bafd13526beb3c4, type: 3}
@@ -90,6 +93,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: acee28cf6c62a1a4d85d4db2dfa0b76b, type: 3}
   - {fileID: 21300000, guid: f61845ff0fcabb149af7e9f6d8b660ea, type: 3}
   m_PackedSpriteNamesToIndex:
+  - 073
   - 004
   - Btn_DirectionWhite
   - Cream-Violet-Planet
@@ -99,9 +103,11 @@ SpriteAtlas:
   - blue-planet
   - Dominator
   - industry_icon
+  - 068
   - 008
   - 005
   - 012
+  - 075
   - 011
   - red-planet-sputnik
   - Orange-Planet

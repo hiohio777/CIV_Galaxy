@@ -44,7 +44,8 @@ public class Ability : CivilizationStructureBase
         IsActive = true;
     }
 
-    public void ReduceProgress() => _progress = 1;
+    public void Damage(float damage) => _progress -= damage;
+    public void ReduceProgress() => _progress = 1.5f;
 
     private void AssingCurrentAlAbility()
     {

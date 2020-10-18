@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4113883343884121291}
   - component: {fileID: 8886259693861990167}
-  - component: {fileID: 1639879950675617376}
-  - component: {fileID: -554406058009938052}
+  - component: {fileID: 8020146223839502396}
+  - component: {fileID: 6893957879330432412}
   m_Layer: 0
-  m_Name: fleet_units
+  m_Name: bombs_damage_Scaner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: -1855244601
   m_SortingLayer: 4
   m_SortingOrder: 12
-  m_Sprite: {fileID: 21300000, guid: 1c7fb7c9c4bc7a147911a881da27fbfd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 45dd6b00c1f16284da311660d76741f9, type: 3}
   m_Color: {r: 1, g: 0.514151, b: 0.514151, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1639879950675617376
+--- !u!114 &8020146223839502396
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,7 +100,7 @@ MonoBehaviour:
   isAvailable: 0
   colorResearch: {r: 0.748932, g: 0.9622642, b: 0.7580488, a: 1}
   colorAvailable: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &-554406058009938052
+--- !u!114 &6893957879330432412
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,9 +109,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3304170296132655075}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99f401baac2f8354191779782cf9168a, type: 3}
+  m_Script: {fileID: 11500000, guid: a1c7e7ddaa414664986a132a1b3f6627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countUnits: 1
-  minConquestPlanets: 0
-  randomConquestPlanets: 0
+  countUnits: 0
+  minAttackIndustry: 0
+  randomAttackIndustry: 0
+  attackScaner: 5
+  attackScience: 0
+  attackAbility: 0

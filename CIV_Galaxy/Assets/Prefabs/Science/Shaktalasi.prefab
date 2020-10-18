@@ -836,7 +836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4d57ba6ee079a544a7a5a872610714a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  increaseDominanceProc: 15
+  increaseDominanceProc: 10
 --- !u!1 &879338145854474997
 GameObject:
   m_ObjectHideFlags: 0
@@ -1660,7 +1660,7 @@ GameObject:
   - component: {fileID: 5093481735810724544}
   - component: {fileID: 4770582084060642709}
   m_Layer: 0
-  m_Name: Default
+  m_Name: Shaktalasi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

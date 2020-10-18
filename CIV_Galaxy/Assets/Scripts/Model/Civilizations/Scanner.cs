@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public class Scanner : CivilizationStructureBase
 {
@@ -41,6 +42,7 @@ public class Scanner : CivilizationStructureBase
 
     public bool IsActive { get; set; } = true; // Активен ли
 
+    public void Damage(float damage) => _progress -= damage;
     //Бонусы
     public int Acceleration { get; set; }
     public int MinimumDiscoveredPlanetsBonus { get; set; } = 0; // Минимальное количество открываемых планет
