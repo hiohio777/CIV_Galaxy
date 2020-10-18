@@ -28,11 +28,11 @@ public class CivilizationData
 
     //Бонусы
     private float _gdPlanets = 0;
-    public int GDPlanets { get => (int)(_gdPlanets * 100f); set => _gdPlanets = value / 100f; }
+    public int GDPlanets { get => (int)Math.Round(_gdPlanets * 100f, 0); set => _gdPlanets = value / 100f; }
     private float _gdIndustry = 0;
-    public int GDIndustry { get => (int)(_gdIndustry * 100f); set => _gdIndustry = value / 100f; }
+    public int GDIndustry { get => (int)Math.Round(_gdIndustry * 100f, 0); set => _gdIndustry = value / 100f; }
     private float _gdOverall = 0;
-    public int GDOverall { get => (int)(_gdOverall * 100f); set => _gdOverall = value / 100f; }
+    public int GDOverall { get => (int)Math.Round(_gdOverall * 100f, 0); set => _gdOverall = value / 100f; }
 
     public void Initialize(ICivilization civilization)
     {
@@ -80,7 +80,6 @@ public class CivilizationData
     {
         string info = string.Empty;
 
-        Debug.Log((int)Math.Round(1.05f * 100f, 0));
         if (isPlayer)
         {
             info += $"<size=50><color=yellow>+{(int)GetPointsAll} ({GDOverall + 100}%)</color></size>\r\n\r\n";

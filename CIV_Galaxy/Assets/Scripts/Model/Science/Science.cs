@@ -125,7 +125,7 @@ public class Science : CivilizationStructureBase
         if (isPlayer)
         {
             info += $"{LocalisationGame.Instance.GetLocalisationString("acceleration")}: <color=lime>{(int)((_acceleration + _civilization.IndustryCiv.Points / 2f) * (AccelerationBonus / 100f + 1f) * 100)}%</color>\r\n";
-            info += $"  <color=#add8e6ff>{LocalisationGame.Instance.GetLocalisationString("base")}:</color> <color=orange>{(int)(_acceleration * 100) + AccelerationBonus}%</color>\r\n";
+            info += $"  <color=#add8e6ff>{LocalisationGame.Instance.GetLocalisationString("base")}:</color> <color=orange>{(int)Math.Round(_acceleration * 100, 0) + AccelerationBonus}%</color>\r\n";
             info += $"  <color=#add8e6ff>{LocalisationGame.Instance.GetLocalisationString("industry")}:</color> <color=orange>{(int)(_civilization.IndustryCiv.Points / 2f * 100)}%</color>\r\n";
         }
 

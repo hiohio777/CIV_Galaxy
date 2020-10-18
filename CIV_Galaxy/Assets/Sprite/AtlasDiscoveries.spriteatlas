@@ -33,7 +33,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 228aefbecd995724e9e09aa9c4d6abf2, type: 3}
     - {fileID: 102900000, guid: 3d8587d0fc730144b924a8209b18a2df, type: 3}
     - {fileID: 102900000, guid: ddd5dc48f54c3144699e617c78bf8a31, type: 3}
-    totalSpriteSurfaceArea: 830528
+    totalSpriteSurfaceArea: 863296
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -43,6 +43,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 9e01db602d98aa044bb852288e243f52, type: 3}
   - {fileID: 21300000, guid: 04aec9b08dd8f7144b9ec817d62fab05, type: 3}
   - {fileID: 21300000, guid: 4f98fdc086f0e534aa159f3230263ec2, type: 3}
+  - {fileID: 21300000, guid: 57493ad0e3105174bb947f5ce836b85c, type: 3}
   - {fileID: 21300000, guid: 71ac7bd0a112e0445a75d4cf6d697128, type: 3}
   - {fileID: 21300000, guid: 7fd37ac138fced546a89a75d728d0710, type: 3}
   - {fileID: 21300000, guid: 7fce7d02b35180044babe3c4b25f025c, type: 3}
@@ -67,6 +68,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 15b894a600ae24641a86ca1c0f3b06ac, type: 3}
   - {fileID: 21300000, guid: 76c4b7976161cb744a44d8527a8f675f, type: 3}
   - {fileID: 21300000, guid: 65688cd761f6d524d85a1890139563d0, type: 3}
+  - {fileID: 21300000, guid: 75652be72ac833e4ea0481e3a1835203, type: 3}
   - {fileID: 21300000, guid: a911b148485da5b47aa1fe8eaa9ae4ff, type: 3}
   - {fileID: 21300000, guid: da11ae7884684ca4c9c59ac186552277, type: 3}
   - {fileID: 21300000, guid: 95aa85c81ab148b42bfb2e66df6eb3ce, type: 3}
@@ -99,6 +101,7 @@ SpriteAtlas:
   - Cream-Violet-Planet
   - 072
   - cyan-planet1
+  - 046
   - Sand-Planet
   - blue-planet
   - Dominator
@@ -123,6 +126,7 @@ SpriteAtlas:
   - 017
   - 081
   - Purple-Planet-wih-Moon
+  - 051
   - diplomatic_icon
   - Frost-Planet
   - 083

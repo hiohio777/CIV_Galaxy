@@ -32,13 +32,13 @@ public class Planet : UnitBase, IPlanet
     }
 
     #region IPlanet
-    public void OpenPlanet(Vector3 positionTarget, Action actFinish)
+    public void OpenPlanet(Vector3 positionTarget, float timeWait, Action actFinish)
     {
         TtransformUnit.localScale = new Vector3(0, 0, 0);
         TtransformUnit.position = new Vector3(UnityEngine.Random.Range(-60f, 60f), UnityEngine.Random.Range(0f, 100f), 0);
 
         Action endAct = () => SetScale(0f, 0.2f).Run(actFinish);
-        SetScale(1.4f, 0.5f).Run(() => SetScale(1, 0.2f).Run(() => SetPosition(positionTarget, UnityEngine.Random.Range(1f, 2f)).Run(endAct)));
+        SetScale(1.4f, 0.5f).SetWaitForSeconds(timeWait).Run(() => SetScale(1, 0.2f).Run(() => SetPosition(positionTarget, UnityEngine.Random.Range(1f, 2f)).Run(endAct)));
     }
 
     public void ConquestPlanets(Vector3 startPosition, Vector3 positionTarget, Action actFinish)
@@ -62,7 +62,7 @@ public interface IPlanet
     /// <summary>
     /// Открыть планету(получить новую планету из галактики)
     /// </summary>
-    void OpenPlanet(Vector3 positionTarget, Action actFinish);
+    void OpenPlanet(Vector3 positionTarget, float timeWait, Action actFinish);
     void ConquestPlanets(Vector3 startPosition, Vector3 positionTarget, Action actFinish);
     void Destroy();
 }

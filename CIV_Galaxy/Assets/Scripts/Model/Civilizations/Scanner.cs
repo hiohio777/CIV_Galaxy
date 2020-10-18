@@ -84,10 +84,7 @@ public class Scanner : CivilizationStructureBase
                 return;
             }
 
-            _galaxyData.TakePlanetFromGalaxy();
-            var planet = _planetsFactory.GetNewUnit();
-            if (_civilization.IsOpen == false) _civilization.CivData.AddPlanet(planet);
-            else planet.OpenPlanet(_civilization.PositionCiv, () => _civilization.CivData.AddPlanet(planet));
+            CreatNewPlanet(i);
         }
     }
 
@@ -109,15 +106,19 @@ public class Scanner : CivilizationStructureBase
                 return countIsOpenNewPlanet;
             }
 
-            _galaxyData.TakePlanetFromGalaxy();
-            var planet = _planetsFactory.GetNewUnit();
-            if (_civilization.IsOpen == false) _civilization.CivData.AddPlanet(planet);
-            else planet.OpenPlanet(_civilization.PositionCiv, () => _civilization.CivData.AddPlanet(planet));
-
+            CreatNewPlanet(i);
             countIsOpenNewPlanet++; 
         }
 
         return countIsOpenNewPlanet;
+    }
+
+    private void CreatNewPlanet(int namber)
+    {
+        _galaxyData.TakePlanetFromGalaxy();
+        var planet = _planetsFactory.GetNewUnit();
+        if (_civilization.IsOpen == false) _civilization.CivData.AddPlanet(planet);
+        else planet.OpenPlanet(_civilization.PositionCiv, namber * 0.1f, () => _civilization.CivData.AddPlanet(planet));
     }
 
 

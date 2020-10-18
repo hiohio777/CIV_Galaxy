@@ -43,7 +43,7 @@ public class Industry : CivilizationStructureBase
 
     //Бонусы
     private float _acceleration;
-    public int Acceleration { get => (int)(_acceleration * 100); set => _acceleration = value / 100f; }
+    public int Acceleration { get => (int)Math.Round(_acceleration * 100f, 0); set => _acceleration = value / 100f; }
     private int _shields = 0; // Щиты(защищают индустрию)
     public int Shields {
         get => _shields; set {

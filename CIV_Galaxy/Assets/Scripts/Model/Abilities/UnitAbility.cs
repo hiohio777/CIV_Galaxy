@@ -38,6 +38,7 @@ public class UnitAbility : UnitBase, IUnitAbility
         gameObject.SetActive(true);
 
         transform.position = startPosition;
+        trail.Clear();
         transform.localScale = new Vector3(0, 0, 0);
         this.TargetCiv = targetCiv;
 
@@ -80,11 +81,5 @@ public class UnitAbility : UnitBase, IUnitAbility
         art.color = Color.white;
 
         frame.color = color;
-    }
-
-    public override void Destroy()
-    {
-        trail.time = 0;
-        base.Destroy();
     }
 }

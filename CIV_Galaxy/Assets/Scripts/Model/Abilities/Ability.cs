@@ -27,7 +27,7 @@ public class Ability : CivilizationStructureBase
 
     //Бонусы
     private float _accelerationBonus = 0;
-    public int AccelerationBonus { get => (int)(_accelerationBonus * 100); set => _accelerationBonus = value / 100f; }
+    public int AccelerationBonus { get => (int)Math.Round(_accelerationBonus * 100f, 0); set => _accelerationBonus = value / 100f; }
     public bool IsReady => _progress >= _progressInterval;
 
     public virtual void Initialize(ICivilization civilization)
