@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6135562110328826879}
   - component: {fileID: 4636798068252903711}
   m_Layer: 0
-  m_Name: SpecialEffect
+  m_Name: SpecialEffect_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,6 +111,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8458183823514125673}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f32493b92c0fb9b4b81aa810967af88f, type: 3}
+  m_Script: {fileID: 11500000, guid: 323fb670294eccd4f9d35c99de8c478e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  art: {fileID: 8763206754561298634}

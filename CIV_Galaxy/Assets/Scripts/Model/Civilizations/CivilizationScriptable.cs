@@ -10,6 +10,7 @@ public class BaseData
     [SerializeField, Range(0, 300)] private int gdOverall = 0; // роста доминирования(общий в процентах к годовому приросту)
     [SerializeField, Range(0, 300)] private int gdPlanets = 0; // роста доминирования от планет(от одной планеты)
     [SerializeField, Range(0, 300)] private int gdIndustry = 0; // роста доминирования от Индустрии(процент)
+    [SerializeField, Range(0, 300)] private int shields = 0; // Щиты
 
     public int GDOverall => gdOverall;
     public int GDPlanets => gdPlanets;
@@ -17,6 +18,7 @@ public class BaseData
 
     public int Planets => planets;
     public int DominationPoints => dominationPoints;
+    public int Shields => shields;
 
     public void Validate()
     {
@@ -30,7 +32,6 @@ public class BaseData
 [Serializable]
 public class ScanerData
 {
-    [SerializeField, Space(10), Space(10)] private bool isScan = true; // Разрешение сканировать галактику(искать планеты сканером)
     [SerializeField, Range(0, 300)] private int acceleration = 0; // Интервал между сканированиями галактики в поиске планет
     [SerializeField, Range(0, 20)] private int minimumDiscoveredPlanets = 0; // Минимальное количество открываемых планет
     [SerializeField, Range(0, 20)] private int randomDiscoveredPlanets = 0; // Рандомное количество открываемых планет
@@ -53,7 +54,7 @@ public class ScienceData
 {
     [SerializeField, Space(10)] private TreeOfScience treeOfSciencePrefab; // Префаб дерева науки
     [SerializeField, Range(0, 100)] private int Points = 0; // Начальные очки науки
-    [SerializeField, Range(0, 5)] private int acceleration = 0; // Скорость накопления очков исследований
+    [SerializeField, Range(0, 300)] private int acceleration = 0; // Скорость накопления очков исследований
 
     public TreeOfScience TreeOfSciencePrefab => treeOfSciencePrefab;
     public int SciencePoints => Points;

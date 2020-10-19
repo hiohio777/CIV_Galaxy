@@ -26,6 +26,15 @@ public class CivilizationData
         }
     }
 
+    private int _shields = 0; // Щиты
+    public int Shields {
+        get => _shields; set {
+            _shields = value;
+            if (_shields > 100) _shields = 100;
+            if (_shields < 0) _shields = 0;
+        }
+    }
+
     //Бонусы
     private float _gdPlanets = 0;
     public int GDPlanets { get => (int)Math.Round(_gdPlanets * 100f, 0); set => _gdPlanets = value / 100f; }
@@ -44,6 +53,7 @@ public class CivilizationData
         GDIndustry = _civilization.DataBase.Base.GDIndustry;
         GDOverall = _civilization.DataBase.Base.GDOverall;
 
+        Shields = _civilization.DataBase.Base.Shields;
 
         // Установка сложности
         if (civilization is ICivilizationAl)

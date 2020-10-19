@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Easy
   m_EditorClassIdentifier: 
   dangerPlayer: 0
-  scienceSecund: 100
-  scanerSecund: 100
+  scienceSecund: 105
+  scanerSecund: 105
   gdOverall: 0

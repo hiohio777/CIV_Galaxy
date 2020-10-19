@@ -10,7 +10,7 @@ public class IncreaseDominance : MonoBehaviour, IDiscoveryEffects
     public void ExecuteStudy(ICivilization civilization, string nameDiscovery)
     {
         civilization.CivData.AddDominance(increaseDominance);
-        civilization.ExicuteSpecialEffect(effectSprite, EffectEnum.Standart);
+        civilization.ExicuteSpecialEffect(effectSprite, EffectEnum.SpecialEffect_1);
     }
 
     public string GetInfo()

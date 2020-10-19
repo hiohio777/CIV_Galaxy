@@ -4,7 +4,8 @@ using Zenject;
 
 public class GalaxySceneDIInstaller : MonoInstaller
 {
-    [SerializeField] private UnityEngine.Object planetPrefab, discoveryCellUIPrefab, unitAbilityPrefab, specialEffectPrefab, valueChangeEffectPrefab;
+    [SerializeField] private UnityEngine.Object planetPrefab, discoveryCellUIPrefab, unitAbilityPrefab, 
+        specialEffect0Prefab, specialEffect1Prefab, specialEffect2Prefab, valueChangeEffectPrefab;
 
     [SerializeField, Space(10)] private UnityEngine.Object messageDiscoveredCivilizationPrefab;
     [SerializeField] private UnityEngine.Object messageStartGamePrefab, messageBackMainMenuPrefab, endGameUIPrefab, civilizationEndGamelUIPrefab;
@@ -55,7 +56,9 @@ public class GalaxySceneDIInstaller : MonoInstaller
         Container.BindFactory<Action<object>, ValueChangeEffect, ValueChangeEffect.Factory>().FromComponentInNewPrefab(valueChangeEffectPrefab).AsSingle();
         Container.BindFactory<Action<object>, Planet, Planet.Factory>().FromComponentInNewPrefab(planetPrefab).AsSingle();
         Container.BindFactory<Action<object>, UnitAbility, UnitAbility.Factory>().FromComponentInNewPrefab(unitAbilityPrefab).AsSingle(); 
-        Container.BindFactory<Action<object>, SpecialEffect, SpecialEffect.Factory>().FromComponentInNewPrefab(specialEffectPrefab).AsSingle();
+        Container.BindFactory<SpecialEffect_0, SpecialEffect_0.Factory>().FromComponentInNewPrefab(specialEffect0Prefab).AsSingle();
+        Container.BindFactory<SpecialEffect_1, SpecialEffect_1.Factory>().FromComponentInNewPrefab(specialEffect1Prefab).AsSingle();
+        Container.BindFactory<SpecialEffect_2, SpecialEffect_2.Factory>().FromComponentInNewPrefab(specialEffect2Prefab).AsSingle();
         Container.BindFactory<DiscoveryCell, DiscoveryCellUI, DiscoveryCellUI.Factory>().FromComponentInNewPrefab(discoveryCellUIPrefab).AsSingle();
 
         Container.BindFactory<MessageDiscoveredCivilization, MessageDiscoveredCivilization.Factory>().FromComponentInNewPrefab(messageDiscoveredCivilizationPrefab).AsSingle();

@@ -23,7 +23,7 @@ public class Science : CivilizationStructureBase
         TreeOfScienceCiv.Name = $"Science_{civilization.DataBase.Name}";
 
         Points = _scienceData.SciencePoints;
-        _acceleration = _scienceData.Acceleration / 100;
+        _acceleration = _scienceData.Acceleration / 100f;
 
         ProgressEvent?.Invoke(ProgressProc);
         _civilization.ExicuteSciencePoints(Points);

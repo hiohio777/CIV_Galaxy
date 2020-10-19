@@ -2604,7 +2604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countUnits: 0
   minAttackIndustry: 0
-  randomAttackIndustry: 30
+  randomAttackIndustry: 20
 --- !u!1 &5132790622514392463
 GameObject:
   m_ObjectHideFlags: 0
@@ -3665,7 +3665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countUnits: 0
   minAttackIndustry: 0
-  randomAttackIndustry: 50
+  randomAttackIndustry: 30
 --- !u!1 &7879289619230699173
 GameObject:
   m_ObjectHideFlags: 0

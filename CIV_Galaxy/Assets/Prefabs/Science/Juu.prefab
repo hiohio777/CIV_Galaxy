@@ -835,7 +835,7 @@ PrefabInstance:
     - target: {fileID: 5642921557679062383, guid: f2bb5ca5725bb2941be0651ea01f9042,
         type: 3}
       propertyPath: researchCost
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2bb5ca5725bb2941be0651ea01f9042, type: 3}
@@ -1054,7 +1054,7 @@ PrefabInstance:
     - target: {fileID: 7393298319853552593, guid: e618b15cc3a1da0439e1c3c44d5be58c,
         type: 3}
       propertyPath: researchCost
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7393298319853552593, guid: e618b15cc3a1da0439e1c3c44d5be58c,
         type: 3}
@@ -1201,7 +1201,7 @@ PrefabInstance:
     - target: {fileID: 3827067225890640868, guid: 94c34c70019feee4583f3d1f7ff94fb9,
         type: 3}
       propertyPath: growthDominanceIndustryBonus
-      value: 50
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4965003654679826556, guid: 94c34c70019feee4583f3d1f7ff94fb9,
         type: 3}
@@ -1348,7 +1348,7 @@ PrefabInstance:
     - target: {fileID: 6616175304553498476, guid: b635f6a35b40e824d9c34df6154559c2,
         type: 3}
       propertyPath: researchCost
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6655279157222819757, guid: b635f6a35b40e824d9c34df6154559c2,
         type: 3}
@@ -1460,7 +1460,7 @@ PrefabInstance:
     - target: {fileID: 6330440507359356933, guid: 5b4e7024a0fb38343b60aa5f555610c3,
         type: 3}
       propertyPath: randomConquestPlanets
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7831526373554636016, guid: 5b4e7024a0fb38343b60aa5f555610c3,
         type: 3}
@@ -1470,7 +1470,7 @@ PrefabInstance:
     - target: {fileID: 7831526373554636016, guid: 5b4e7024a0fb38343b60aa5f555610c3,
         type: 3}
       propertyPath: researchCost
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7831526373554636016, guid: 5b4e7024a0fb38343b60aa5f555610c3,
         type: 3}
@@ -1574,6 +1574,12 @@ PrefabInstance:
       propertyPath: increaseDominanceProc
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8905601568686095777, guid: c3e696d22a91f754b8b78517a942d354,
+        type: 3}
+      propertyPath: effectSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 53cb7484587e0a44895207d6d5453a68,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3e696d22a91f754b8b78517a942d354, type: 3}
 --- !u!4 &9129935261264919722 stripped
@@ -1674,7 +1680,7 @@ PrefabInstance:
     - target: {fileID: 7393298319853552593, guid: e618b15cc3a1da0439e1c3c44d5be58c,
         type: 3}
       propertyPath: researchCost
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7393298319853552593, guid: e618b15cc3a1da0439e1c3c44d5be58c,
         type: 3}
@@ -2027,7 +2033,7 @@ PrefabInstance:
     - target: {fileID: 1284045093949457563, guid: 66e03c6a6a6f5be4f9ff86f58aa571d3,
         type: 3}
       propertyPath: scientificMissionBonus
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2418709867407034516, guid: 66e03c6a6a6f5be4f9ff86f58aa571d3,
         type: 3}
@@ -2558,7 +2564,7 @@ PrefabInstance:
     - target: {fileID: 3542374832393662778, guid: 22d0e039baaa55c4ea6fb0ea6b805369,
         type: 3}
       propertyPath: researchCost
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3636472827453564193, guid: 22d0e039baaa55c4ea6fb0ea6b805369,
         type: 3}
@@ -2752,12 +2758,12 @@ PrefabInstance:
     - target: {fileID: 1892183055973534029, guid: ab97747a732fb9b47b9d99fccef3f7e0,
         type: 3}
       propertyPath: accelerationBonus
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2607429424816300628, guid: ab97747a732fb9b47b9d99fccef3f7e0,
         type: 3}
       propertyPath: dependentSciences.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2607429424816300628, guid: ab97747a732fb9b47b9d99fccef3f7e0,
         type: 3}
@@ -2779,6 +2785,11 @@ PrefabInstance:
       propertyPath: dependentSciences.Array.data[2]
       value: 
       objectReference: {fileID: 5466091269615864699}
+    - target: {fileID: 2607429424816300628, guid: ab97747a732fb9b47b9d99fccef3f7e0,
+        type: 3}
+      propertyPath: dependentSciences.Array.data[3]
+      value: 
+      objectReference: {fileID: 3875727171508892376}
     - target: {fileID: 3811711943959599928, guid: ab97747a732fb9b47b9d99fccef3f7e0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3317,7 +3328,7 @@ PrefabInstance:
     - target: {fileID: 1892183055973534029, guid: ab97747a732fb9b47b9d99fccef3f7e0,
         type: 3}
       propertyPath: accelerationBonus
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2607429424816300628, guid: ab97747a732fb9b47b9d99fccef3f7e0,
         type: 3}

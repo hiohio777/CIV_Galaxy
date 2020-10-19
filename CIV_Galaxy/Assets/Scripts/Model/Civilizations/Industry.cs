@@ -44,14 +44,6 @@ public class Industry : CivilizationStructureBase
     //Бонусы
     private float _acceleration;
     public int Acceleration { get => (int)Math.Round(_acceleration * 100f, 0); set => _acceleration = value / 100f; }
-    private int _shields = 0; // Щиты(защищают индустрию)
-    public int Shields {
-        get => _shields; set {
-            _shields = value;
-            if (_shields > 100) _shields = 100;
-            if (_shields < 0) _shields = 0;
-        }
-    }
 
     // Рост индустрии
     protected override void ExecuteOnTimeEvent(float deltaTime)
@@ -75,7 +67,7 @@ public class Industry : CivilizationStructureBase
         {
             info += $"{LocalisationGame.Instance.GetLocalisationString("efficiency")}: <color=lime>{(int)(Points * 100)}%</color>\r\n";
             info += $"{LocalisationGame.Instance.GetLocalisationString("acceleration")}:<color=lime> {Acceleration}%</color>\r\n";
-            info += $"{LocalisationGame.Instance.GetLocalisationString("shields")}: <color=lime>{Shields}</color>\r\n";
+            info += $"{LocalisationGame.Instance.GetLocalisationString("shields")}: <color=lime>{_civilization.CivData.Shields}</color>\r\n";
         }
 
         return info;

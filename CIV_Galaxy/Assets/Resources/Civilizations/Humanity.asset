@@ -18,11 +18,11 @@ MonoBehaviour:
     planets: 1
     dominationPoints: 0
     gdOverall: 0
-    gdPlanets: 100
-    gdIndustry: 100
+    gdPlanets: 90
+    gdIndustry: 115
+    shields: 20
   scanerData:
-    isScan: 1
-    acceleration: 100
+    acceleration: 110
     minimumDiscoveredPlanets: 1
     randomDiscoveredPlanets: 0
   scienceData:
@@ -32,8 +32,8 @@ MonoBehaviour:
     acceleration: 100
   industryData:
     acceleration: 100
-    points: 50
+    points: 60
   abilities:
   - {fileID: 3201525429964300333, guid: aef0b77b66e4d9e49becb57e11a25fc2, type: 3}
   - {fileID: 3201525429964300333, guid: dc7cab9ea9fa0f34b898b65fd22129e3, type: 3}
-  - {fileID: 3201525429964300333, guid: 4c163f4e14294e340aeebea1e82e2d3c, type: 3}
+  - {fileID: 3201525429964300333, guid: 357125e4a727b614b889bcf751f0d108, type: 3}

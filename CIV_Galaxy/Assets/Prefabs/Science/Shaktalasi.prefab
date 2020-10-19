@@ -837,6 +837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   increaseDominanceProc: 10
+  effectSprite: {fileID: 21300000, guid: 53cb7484587e0a44895207d6d5453a68, type: 3}
 --- !u!1 &879338145854474997
 GameObject:
   m_ObjectHideFlags: 0

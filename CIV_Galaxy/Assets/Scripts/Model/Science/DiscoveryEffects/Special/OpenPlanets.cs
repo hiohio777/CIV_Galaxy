@@ -17,7 +17,7 @@ public class OpenPlanets : MonoBehaviour, IDiscoveryEffects
         if (civilization.ScanerCiv.DiscoverPlanetEvent(countNewPlanet) > 0)
         {
             // Специфект открытия
-            civilization.ExicuteSpecialEffect(effectSprite, EffectEnum.Standart);
+            civilization.ExicuteSpecialEffect(effectSprite, EffectEnum.SpecialEffect_0);
         }
     }
 

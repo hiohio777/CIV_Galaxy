@@ -1,4 +1,6 @@
 ﻿public enum EffectEnum
 {
-    Standart,
+    SpecialEffect_0,
+    SpecialEffect_1,
+    SpecialEffect_2,
 }

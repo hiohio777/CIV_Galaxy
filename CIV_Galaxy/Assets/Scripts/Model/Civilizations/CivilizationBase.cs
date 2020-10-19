@@ -55,7 +55,7 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
         civilizationUI.SetIndustryPoints(points);
     }
 
-    public void ExicuteSpecialEffect(Sprite spriteEffect, EffectEnum effectEnum = EffectEnum.Standart)
+    public void ExicuteSpecialEffect(Sprite spriteEffect, EffectEnum effectEnum = EffectEnum.SpecialEffect_0)
     {
         if (IsOpen) _specialEffectFactory.GetEffect(PositionCiv, spriteEffect, effectEnum);
     }

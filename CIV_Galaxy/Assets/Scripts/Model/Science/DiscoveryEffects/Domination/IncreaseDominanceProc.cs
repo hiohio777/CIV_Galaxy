@@ -5,10 +5,12 @@
 public class IncreaseDominanceProc : MonoBehaviour, IDiscoveryEffects
 {
     [SerializeField] private float increaseDominanceProc;
+    [SerializeField] private Sprite effectSprite;
 
     public void ExecuteStudy(ICivilization civilization, string nameDiscovery)
     {
         civilization.CivData.AddDominance(civilization.CivData.DominationPoints / 100 * increaseDominanceProc);
+        civilization.ExicuteSpecialEffect(effectSprite, EffectEnum.SpecialEffect_2);
     }
 
     public string GetInfo()

@@ -15,24 +15,23 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 2e89474ad23614147a2bc001c2be13c8, type: 3}
   color: {r: 0, g: 0.896049, b: 1, a: 1}
   baseData:
-    planets: 1
+    planets: 10
     dominationPoints: 0
     gdOverall: 0
     gdPlanets: 100
-    gdIndustry: 100
+    gdIndustry: 90
   scanerData:
-    isScan: 1
-    acceleration: 100
-    minimumDiscoveredPlanets: 1
-    randomDiscoveredPlanets: 0
+    acceleration: 115
+    minimumDiscoveredPlanets: 0
+    randomDiscoveredPlanets: 1
   scienceData:
-    treeOfSciencePrefab: {fileID: 4770582084060642709, guid: 89ff7eb429ef5fb4c95eaa1d7cdf5bd2,
+    treeOfSciencePrefab: {fileID: 4770582084060642709, guid: 1d17b9e5eedd3ee4ab6e9f104793b945,
       type: 3}
     Points: 0
     acceleration: 100
   industryData:
     acceleration: 100
-    points: 50
+    points: 10
   abilities:
   - {fileID: 3201525429964300333, guid: aef0b77b66e4d9e49becb57e11a25fc2, type: 3}
   - {fileID: 3201525429964300333, guid: dc7cab9ea9fa0f34b898b65fd22129e3, type: 3}

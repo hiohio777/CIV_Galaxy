@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e3d6f344a18068438c19a891ae39f5f, type: 3}
   m_Name: Difficult
   m_EditorClassIdentifier: 
-  dangerPlayer: 40
-  scienceSecund: 85
-  scanerSecund: 85
+  dangerPlayer: 30
+  scienceSecund: 90
+  scanerSecund: 90
   gdOverall: 7

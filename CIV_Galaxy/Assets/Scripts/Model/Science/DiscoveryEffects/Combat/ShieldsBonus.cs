@@ -8,7 +8,7 @@ public class ShieldsBonus : MonoBehaviour, IDiscoveryEffects
 
     public void ExecuteStudy(ICivilization civilization, string nameDiscovery)
     {
-        civilization.IndustryCiv.Shields += shieldsBonus;
+        civilization.CivData.Shields += shieldsBonus;
     }
 
     public string GetInfo()

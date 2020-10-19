@@ -3264,6 +3264,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5858364282005454295, guid: 5bb66efb46c9c48408565b4503bc9f42,
+        type: 3}
+      propertyPath: skillRechargeCost
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6330440507359356933, guid: 5bb66efb46c9c48408565b4503bc9f42,
         type: 3}
       propertyPath: minConquestPlanets
@@ -3833,7 +3838,7 @@ PrefabInstance:
         type: 3}
       propertyPath: dependentSciences.Array.data[1]
       value: 
-      objectReference: {fileID: 8885260129415155325}
+      objectReference: {fileID: 2173561564502775602}
     - target: {fileID: 7393298319853552593, guid: e618b15cc3a1da0439e1c3c44d5be58c,
         type: 3}
       propertyPath: dependentSciences.Array.data[2]
