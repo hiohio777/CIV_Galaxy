@@ -25,7 +25,8 @@ namespace Zenject
             bindStatement.SetFinalizer(null);
         }
 
-        protected IBindingFinalizer SubFinalizer {
+        protected IBindingFinalizer SubFinalizer
+        {
             set { _bindStatement.SetFinalizer(value); }
         }
 

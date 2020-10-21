@@ -19,19 +19,23 @@ namespace Zenject
         [InjectOptional]
         readonly Type _fallbackType = null;
 
-        protected DiContainer Container {
+        protected DiContainer Container
+        {
             get { return _container; }
         }
 
-        protected abstract IEnumerable<Type> ProvidedTypes {
+        protected abstract IEnumerable<Type> ProvidedTypes
+        {
             get;
         }
 
-        public ICollection<TKey> Keys {
+        public ICollection<TKey> Keys
+        {
             get { return _typeMap.Keys; }
         }
 
-        protected Dictionary<TKey, Type> TypeMap {
+        protected Dictionary<TKey, Type> TypeMap
+        {
             get { return _typeMap; }
         }
 
@@ -93,7 +97,8 @@ namespace Zenject
     // Zero parameters
     public class KeyedFactory<TBase, TKey> : KeyedFactoryBase<TBase, TKey>
     {
-        protected override IEnumerable<Type> ProvidedTypes {
+        protected override IEnumerable<Type> ProvidedTypes
+        {
             get { return new Type[0]; }
         }
 
@@ -107,7 +112,8 @@ namespace Zenject
     // One parameter
     public class KeyedFactory<TBase, TKey, TParam1> : KeyedFactoryBase<TBase, TKey>
     {
-        protected override IEnumerable<Type> ProvidedTypes {
+        protected override IEnumerable<Type> ProvidedTypes
+        {
             get { return new[] { typeof(TParam1) }; }
         }
 
@@ -125,7 +131,8 @@ namespace Zenject
     // Two parameters
     public class KeyedFactory<TBase, TKey, TParam1, TParam2> : KeyedFactoryBase<TBase, TKey>
     {
-        protected override IEnumerable<Type> ProvidedTypes {
+        protected override IEnumerable<Type> ProvidedTypes
+        {
             get { return new[] { typeof(TParam1), typeof(TParam2) }; }
         }
 
@@ -144,7 +151,8 @@ namespace Zenject
     // Three parameters
     public class KeyedFactory<TBase, TKey, TParam1, TParam2, TParam3> : KeyedFactoryBase<TBase, TKey>
     {
-        protected override IEnumerable<Type> ProvidedTypes {
+        protected override IEnumerable<Type> ProvidedTypes
+        {
             get { return new[] { typeof(TParam1), typeof(TParam2), typeof(TParam3) }; }
         }
 
@@ -164,7 +172,8 @@ namespace Zenject
     // Four parameters
     public class KeyedFactory<TBase, TKey, TParam1, TParam2, TParam3, TParam4> : KeyedFactoryBase<TBase, TKey>
     {
-        protected override IEnumerable<Type> ProvidedTypes {
+        protected override IEnumerable<Type> ProvidedTypes
+        {
             get { return new[] { typeof(TParam1), typeof(TParam2), typeof(TParam3), typeof(TParam4) }; }
         }
 

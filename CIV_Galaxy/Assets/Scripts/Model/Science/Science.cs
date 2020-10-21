@@ -19,8 +19,10 @@ public class Science : CivilizationStructureBase
         this._civilization = civilization;
         _scienceData = this._civilization.DataBase.Science;
 
-        TreeOfScienceCiv = UnityEngine.Object.Instantiate(_scienceData.TreeOfSciencePrefab);
-        TreeOfScienceCiv.Name = $"Science_{civilization.DataBase.Name}";
+        var treeOfScienceCiv = UnityEngine.Object.Instantiate(_scienceData.TreeOfSciencePrefab);
+        treeOfScienceCiv.transform.SetParent(civilization.GetTransform, false);
+        TreeOfScienceCiv = treeOfScienceCiv;
+        TreeOfScienceCiv.Name = $"TreeOfScience_{TreeOfScienceCiv.Name}";
 
         Points = _scienceData.SciencePoints;
         _acceleration = _scienceData.Acceleration / 100f;

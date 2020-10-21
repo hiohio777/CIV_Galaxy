@@ -25,7 +25,8 @@ namespace Zenject
             _container = container;
         }
 
-        public IEnumerable<object> Instances {
+        public IEnumerable<object> Instances
+        {
             get { return _instancesToInject; }
         }
 

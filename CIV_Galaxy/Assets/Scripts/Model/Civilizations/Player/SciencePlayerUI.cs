@@ -25,6 +25,8 @@ public class SciencePlayerUI : MonoBehaviour
 
         _messageInfoScience = GetComponentInChildren<MessageInfoScience>(true);
         _messageInfoScience.UpdateCostDiscoveriesEvent += UpdateCostDiscoveries;
+
+        gameObject.SetActive(false);
     }
 
     public void Enable()

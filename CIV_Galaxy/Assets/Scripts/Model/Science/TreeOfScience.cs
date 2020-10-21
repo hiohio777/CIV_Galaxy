@@ -21,13 +21,13 @@ public class TreeOfScience : MonoBehaviour, ITreeOfScience
     {
         Discoveries = GetComponentsInChildren<DiscoveryCell>();
 
-        int pointsAll = 0;
-        foreach (var item in Discoveries)
-        {
-            pointsAll += item.ResearchCost;
-        }
+        //int pointsAll = 0;
+        //foreach (var item in Discoveries)
+        //{
+        //    pointsAll += item.ResearchCost;
+        //}
 
-        Debug.Log($"{name}: count: {Discoveries.Length} points: {pointsAll}");
+        //Debug.Log($"{name}: count: {Discoveries.Length} points: {pointsAll}");
     }
 }
 

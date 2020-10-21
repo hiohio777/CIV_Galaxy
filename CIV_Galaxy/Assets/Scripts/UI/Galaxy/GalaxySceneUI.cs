@@ -19,8 +19,6 @@ public class GalaxySceneUI : MonoBehaviour
     {
         (this._allCivilizations, this._civPlayer, _civsAl, _playerData, this._messageFactory, this._fonGalaxy)
         = (allCivilizations, civPlayer, civsAl, playerData, messageFactory, fonGalaxy);
-
-        sciencePlayerUI.gameObject.SetActive(false);
     }
 
     public void BackMainMenu()

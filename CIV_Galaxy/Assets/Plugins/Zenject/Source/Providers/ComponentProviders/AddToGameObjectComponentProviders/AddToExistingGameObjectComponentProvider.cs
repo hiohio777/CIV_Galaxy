@@ -24,7 +24,8 @@ namespace Zenject
         // This will cause [Inject] to be triggered after awake / start
         // We could return true, but what if toggling active has other negative repercussions?
         // For now let's just not do anything
-        protected override bool ShouldToggleActive {
+        protected override bool ShouldToggleActive
+        {
             get { return false; }
         }
 
@@ -51,7 +52,8 @@ namespace Zenject
         // This will cause [Inject] to be triggered after awake / start
         // We could return true, but what if toggling active has other negative repercussions?
         // For now let's just not do anything
-        protected override bool ShouldToggleActive {
+        protected override bool ShouldToggleActive
+        {
             get { return false; }
         }
 

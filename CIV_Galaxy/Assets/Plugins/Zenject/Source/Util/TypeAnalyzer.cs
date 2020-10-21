@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using ModestTree;
 using Zenject.Internal;
 
@@ -33,7 +34,8 @@ namespace Zenject
         public const string ReflectionBakingFieldSetterPrefix = "__zenFieldSetter";
         public const string ReflectionBakingPropertySetterPrefix = "__zenPropertySetter";
 
-        public static ReflectionBakingCoverageModes ReflectionBakingCoverageMode {
+        public static ReflectionBakingCoverageModes ReflectionBakingCoverageMode
+        {
             get; set;
         }
 

@@ -10,7 +10,8 @@ namespace Zenject
 
         bool _hasInjected;
 
-        public ContainerSources ContainerSource {
+        public ContainerSources ContainerSource
+        {
             get { return _containerSource; }
             set { _containerSource = value; }
         }

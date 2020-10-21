@@ -7,7 +7,7 @@ public class Scanner : CivilizationStructureBase
 
     private float _progressInterval = 15; // Интервал
     private float _progress = 0;
-
+     
     private GalaxyData _galaxyData;
     private PlanetsFactory _planetsFactory;
     private ICivilization _civilization;

@@ -10,7 +10,8 @@ namespace Zenject
             SubContainerCreatorBindInfo = subContainerBindInfo;
         }
 
-        protected SubContainerCreatorBindInfo SubContainerCreatorBindInfo {
+        protected SubContainerCreatorBindInfo SubContainerCreatorBindInfo
+        {
             get; private set;
         }
 

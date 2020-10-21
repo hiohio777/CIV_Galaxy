@@ -13,21 +13,25 @@ namespace Zenject
             PoolId = poolId;
         }
 
-        public bool IsCached {
+        public bool IsCached
+        {
             get { return false; }
         }
 
-        protected Guid PoolId {
+        protected Guid PoolId
+        {
             get;
             private set;
         }
 
-        protected DiContainer Container {
+        protected DiContainer Container
+        {
             get;
             private set;
         }
 
-        public bool TypeVariesBasedOnMemberType {
+        public bool TypeVariesBasedOnMemberType
+        {
             get { return false; }
         }
 

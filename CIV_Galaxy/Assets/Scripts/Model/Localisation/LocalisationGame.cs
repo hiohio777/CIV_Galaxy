@@ -33,7 +33,7 @@ public class LocalisationGame
         foreach (var item in arrayDir)
             Localisations.Add(item.Name.Replace(".json", ""));
 
-        ChangeLanguage(PlayerPrefs.GetString("Language", "english"));
+        ChangeLanguageAutomatically();
     }
 
     public string GetLocalisationString(string key)
@@ -66,5 +66,21 @@ public class LocalisationGame
             if (data == null)
                 data = new Dictionary<string, string>();
         }
+    }
+
+    public void ChangeLanguageAutomatically()
+    {
+        switch (Application.systemLanguage)
+        {
+            case SystemLanguage.English:
+                ChangeLanguage("english");
+                break;
+            case SystemLanguage.Russian:
+                ChangeLanguage("russian");
+                break;
+        }
+
+        PlayerPrefs.SetString("Language", CurrentLanguage);
+        Debug.Log(CurrentLanguage);
     }
 }

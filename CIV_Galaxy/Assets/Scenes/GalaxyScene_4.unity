@@ -1183,7 +1183,7 @@ PrefabInstance:
     - target: {fileID: 1630231165867566573, guid: 9ddb94fc153f0bc4ab60e07208ed7191,
         type: 3}
       propertyPath: allPlanet
-      value: 3000
+      value: 2500
       objectReference: {fileID: 0}
     - target: {fileID: 2013024668717673484, guid: 9ddb94fc153f0bc4ab60e07208ed7191,
         type: 3}

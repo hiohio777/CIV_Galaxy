@@ -350,8 +350,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -10.8}
-  m_SizeDelta: {x: 1150, y: 370}
+  m_AnchoredPosition: {x: 7.7, y: -9.05}
+  m_SizeDelta: {x: 1200, y: 388.10004}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7136866504694544705
 CanvasRenderer:
@@ -387,7 +387,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 60
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -509,7 +509,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -40}
-  m_SizeDelta: {x: 1300, y: 800}
+  m_SizeDelta: {x: 1400, y: 750}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3371582966142811613
 CanvasRenderer:
@@ -974,6 +974,7 @@ GameObject:
   - component: {fileID: 7874633165798066222}
   - component: {fileID: 7591131487468430095}
   - component: {fileID: 3324690515657121549}
+  - component: {fileID: 5916472103566683613}
   m_Layer: 5
   m_Name: MessageInfoScience
   m_TagString: Untagged
@@ -1099,3 +1100,16 @@ MonoBehaviour:
   infoDiscovery: {fileID: 3071618252277677740}
   buttonStudy: {fileID: 31346490262806772}
   buttonClose: {fileID: 5404285000084533745}
+--- !u!114 &5916472103566683613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874633165798066220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9429a710617449f41a9c93891fec7182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingLayerName: 1

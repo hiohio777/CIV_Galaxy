@@ -9,15 +9,7 @@ public class MainSceneUI : MonoBehaviour
     private Dictionary<string, PanelUI> panelsUI = new Dictionary<string, PanelUI>();
     private PanelUI current;
     private string nextPanalName;
-
-    private LoaderDataGame loaderDataGame;
-
-    [Inject]
-    public void Inject(LoaderDataGame loaderDataGame)
-    {
-        this.loaderDataGame = loaderDataGame;
-        imageArtGalaxy.transform.localScale = new Vector3(0,0,0);
-    }
+    private static bool isFirstStartGame = true;
 
     public void StartUI(string panalName)
     {
@@ -37,18 +29,19 @@ public class MainSceneUI : MonoBehaviour
     {
         Debug.Log("ExitGame!");
 
-        loaderDataGame.Save(Application.Quit);
+        Application.Quit();
     }
 
     private void StartGame()
     {
-        current = panelsUI["Screensaver"];
-        current.Enable();
-    }
+        if (isFirstStartGame)
+        {
+            current = panelsUI["Screensaver"];
+            isFirstStartGame = false;
+        }
+        else
+            current = panelsUI["GameSettings"];
 
-    private void RestartMainScene()
-    {
-        current = panelsUI["MainMenu"];
         current.Enable();
     }
 
@@ -60,13 +53,14 @@ public class MainSceneUI : MonoBehaviour
 
     private void Start()
     {
+        imageArtGalaxy.transform.localScale = new Vector3(0, 0, 0);
+
         var panels = new List<PanelUI>();
         GetComponentsInChildren<PanelUI>(true, panels);
-
         PanelUI.startNewPanelUI = StartUI;
         PanelUI.finishDisableUI = DisableFinishUI;
         panels.ForEach(x => panelsUI.Add(x.name, x.Initialize()));
 
-        loaderDataGame.Load(StartGame, RestartMainScene);
+        StartGame();
     }
 }

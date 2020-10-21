@@ -16,11 +16,13 @@ namespace Zenject
             _method = method;
         }
 
-        public bool IsCached {
+        public bool IsCached
+        {
             get { return false; }
         }
 
-        public bool TypeVariesBasedOnMemberType {
+        public bool TypeVariesBasedOnMemberType
+        {
             get { return false; }
         }
 
@@ -62,11 +64,13 @@ namespace Zenject
             _method = method;
         }
 
-        public bool IsCached {
+        public bool IsCached
+        {
             get { return false; }
         }
 
-        public bool TypeVariesBasedOnMemberType {
+        public bool TypeVariesBasedOnMemberType
+        {
             get { return false; }
         }
 
@@ -112,11 +116,13 @@ namespace Zenject
             _method = method;
         }
 
-        public bool IsCached {
+        public bool IsCached
+        {
             get { return false; }
         }
 
-        public bool TypeVariesBasedOnMemberType {
+        public bool TypeVariesBasedOnMemberType
+        {
             get { return false; }
         }
 
@@ -164,11 +170,13 @@ namespace Zenject
             _method = method;
         }
 
-        public bool IsCached {
+        public bool IsCached
+        {
             get { return false; }
         }
 
-        public bool TypeVariesBasedOnMemberType {
+        public bool TypeVariesBasedOnMemberType
+        {
             get { return false; }
         }
 
@@ -226,11 +234,13 @@ namespace Zenject
             _method = method;
         }
 
-        public bool IsCached {
+        public bool IsCached
+        {
             get { return false; }
         }
 
-        public bool TypeVariesBasedOnMemberType {
+        public bool TypeVariesBasedOnMemberType
+        {
             get { return false; }
         }
 
@@ -290,11 +300,13 @@ namespace Zenject
             _method = method;
         }
 
-        public bool IsCached {
+        public bool IsCached
+        {
             get { return false; }
         }
 
-        public bool TypeVariesBasedOnMemberType {
+        public bool TypeVariesBasedOnMemberType
+        {
             get { return false; }
         }
 
@@ -356,11 +368,13 @@ namespace Zenject
             _method = method;
         }
 
-        public bool IsCached {
+        public bool IsCached
+        {
             get { return false; }
         }
 
-        public bool TypeVariesBasedOnMemberType {
+        public bool TypeVariesBasedOnMemberType
+        {
             get { return false; }
         }
 
@@ -424,11 +438,13 @@ namespace Zenject
             _method = method;
         }
 
-        public bool IsCached {
+        public bool IsCached
+        {
             get { return false; }
         }
 
-        public bool TypeVariesBasedOnMemberType {
+        public bool TypeVariesBasedOnMemberType
+        {
             get { return false; }
         }
 

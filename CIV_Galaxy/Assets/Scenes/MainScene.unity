@@ -339,10 +339,20 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1937606976734875927, guid: 2e35b8b40dc2f5a469cdc6975871069a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4126569339730725700, guid: 2e35b8b40dc2f5a469cdc6975871069a,
         type: 3}
       propertyPath: m_FontData.m_FontSize
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442293715711720823, guid: 2e35b8b40dc2f5a469cdc6975871069a,
+        type: 3}
+      propertyPath: help
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e35b8b40dc2f5a469cdc6975871069a, type: 3}
@@ -486,6 +496,16 @@ PrefabInstance:
     - target: {fileID: 3676641881617679171, guid: 31fa29e119ab34346b18d8aa5251a346,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6269902318753646136, guid: 31fa29e119ab34346b18d8aa5251a346,
+        type: 3}
+      propertyPath: _contractNames.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6269902318753646136, guid: 31fa29e119ab34346b18d8aa5251a346,
+        type: 3}
+      propertyPath: _parentNewObjectsUnderSceneContext
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

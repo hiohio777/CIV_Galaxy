@@ -3,7 +3,8 @@ namespace Zenject
     [NoReflectionBaking]
     public class NullBindingFinalizer : IBindingFinalizer
     {
-        public BindingInheritanceMethods BindingInheritanceMethod {
+        public BindingInheritanceMethods BindingInheritanceMethod
+        {
             get { return BindingInheritanceMethods.None; }
         }
 

@@ -1,5 +1,5 @@
 ﻿public class GalacticEventGenerator : CivilizationStructureBase
-{
+{ 
     protected float _progressInterval = 6; // Интервал
     protected GalaxyTypeEventEnum _typeEvent;
 

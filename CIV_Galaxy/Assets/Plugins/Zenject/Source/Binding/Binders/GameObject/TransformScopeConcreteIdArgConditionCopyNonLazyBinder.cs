@@ -16,7 +16,8 @@ namespace Zenject
             GameObjectInfo = gameObjectInfo;
         }
 
-        protected GameObjectCreationParameters GameObjectInfo {
+        protected GameObjectCreationParameters GameObjectInfo
+        {
             get;
             private set;
         }

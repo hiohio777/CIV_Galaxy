@@ -54,11 +54,11 @@ public class GalaxySceneDIInstaller : MonoInstaller
         Container.Bind<SpecialEffectFactory>().AsSingle();
 
         Container.BindFactory<Action<object>, ValueChangeEffect, ValueChangeEffect.Factory>().FromComponentInNewPrefab(valueChangeEffectPrefab).AsSingle();
-        Container.BindFactory<Action<object>, Planet, Planet.Factory>().FromComponentInNewPrefab(planetPrefab).AsSingle();
-        Container.BindFactory<Action<object>, UnitAbility, UnitAbility.Factory>().FromComponentInNewPrefab(unitAbilityPrefab).AsSingle(); 
-        Container.BindFactory<SpecialEffect_0, SpecialEffect_0.Factory>().FromComponentInNewPrefab(specialEffect0Prefab).AsSingle();
-        Container.BindFactory<SpecialEffect_1, SpecialEffect_1.Factory>().FromComponentInNewPrefab(specialEffect1Prefab).AsSingle();
-        Container.BindFactory<SpecialEffect_2, SpecialEffect_2.Factory>().FromComponentInNewPrefab(specialEffect2Prefab).AsSingle();
+        Container.BindFactory<Action<object>, Planet, Planet.Factory>().FromComponentInNewPrefab(planetPrefab).UnderTransformGroup("Planets").AsSingle();
+        Container.BindFactory<Action<object>, UnitAbility, UnitAbility.Factory>().FromComponentInNewPrefab(unitAbilityPrefab).UnderTransformGroup("UnitAbilities").AsSingle(); 
+        Container.BindFactory<SpecialEffect_0, SpecialEffect_0.Factory>().FromComponentInNewPrefab(specialEffect0Prefab).UnderTransformGroup("SpecialEffect").AsSingle();
+        Container.BindFactory<SpecialEffect_1, SpecialEffect_1.Factory>().FromComponentInNewPrefab(specialEffect1Prefab).UnderTransformGroup("SpecialEffect").AsSingle();
+        Container.BindFactory<SpecialEffect_2, SpecialEffect_2.Factory>().FromComponentInNewPrefab(specialEffect2Prefab).UnderTransformGroup("SpecialEffect").AsSingle();
         Container.BindFactory<DiscoveryCell, DiscoveryCellUI, DiscoveryCellUI.Factory>().FromComponentInNewPrefab(discoveryCellUIPrefab).AsSingle();
 
         Container.BindFactory<MessageDiscoveredCivilization, MessageDiscoveredCivilization.Factory>().FromComponentInNewPrefab(messageDiscoveredCivilizationPrefab).AsSingle();

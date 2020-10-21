@@ -19,7 +19,8 @@ namespace Zenject
         bool _hasInitialized;
         bool _isDestroyed;
 
-        protected bool IsDestroyed {
+        protected bool IsDestroyed
+        {
             get { return _isDestroyed; }
         }
 

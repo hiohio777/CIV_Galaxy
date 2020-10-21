@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+ 
 public class Ability : CivilizationStructureBase
 {
     public event Action<float> ProgressEvent; // Отображение на экране

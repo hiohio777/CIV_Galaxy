@@ -447,6 +447,7 @@ GameObject:
   - component: {fileID: 3455809953295383603}
   - component: {fileID: 3785057610066891906}
   - component: {fileID: 8736071209845058632}
+  - component: {fileID: 7323946789272183686}
   m_Layer: 5
   m_Name: MessageDiscoveredCivilization
   m_TagString: Untagged
@@ -570,6 +571,19 @@ MonoBehaviour:
   nameCiv: {fileID: 579363674163368229}
   descriptionCiv: {fileID: 853164130042620864}
   welcome: {fileID: 8435979319040409674}
+--- !u!114 &7323946789272183686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3455809953295383601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9429a710617449f41a9c93891fec7182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingLayerName: 1
 --- !u!1 &3793483191122848971
 GameObject:
   m_ObjectHideFlags: 0

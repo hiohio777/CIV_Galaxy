@@ -26,11 +26,13 @@ namespace Zenject
             _matchAll = matchAll;
         }
 
-        public bool IsCached {
+        public bool IsCached
+        {
             get { return false; }
         }
 
-        public bool TypeVariesBasedOnMemberType {
+        public bool TypeVariesBasedOnMemberType
+        {
             get { return false; }
         }
 

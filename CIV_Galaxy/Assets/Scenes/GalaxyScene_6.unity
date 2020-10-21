@@ -548,6 +548,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1622236073, guid: 609926c172113a647b4a39a5c211dcb0, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1622236073, guid: 609926c172113a647b4a39a5c211dcb0, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1622236073, guid: 609926c172113a647b4a39a5c211dcb0, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8081890024285171546, guid: 609926c172113a647b4a39a5c211dcb0,
         type: 3}
       propertyPath: m_Name
@@ -1484,7 +1496,7 @@ PrefabInstance:
     - target: {fileID: 1630231165867566573, guid: 9ddb94fc153f0bc4ab60e07208ed7191,
         type: 3}
       propertyPath: allPlanet
-      value: 4200
+      value: 3500
       objectReference: {fileID: 0}
     - target: {fileID: 1630231165867566573, guid: 9ddb94fc153f0bc4ab60e07208ed7191,
         type: 3}

@@ -1,7 +1,10 @@
 #if !NOT_UNITY3D
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using ModestTree;
+using Zenject.Internal;
 
 namespace Zenject
 {
@@ -15,7 +18,8 @@ namespace Zenject
             _container = container;
         }
 
-        protected DiContainer Container {
+        protected DiContainer Container
+        {
             get { return _container; }
         }
 

@@ -10,12 +10,13 @@ namespace Zenject
 
     //No parameters
     public class PrefabResourceFactory<T> : IFactory<string, T>
-    //where T : Component
+        //where T : Component
     {
         [Inject]
         readonly DiContainer _container = null;
 
-        public DiContainer Container {
+        public DiContainer Container
+        {
             get { return _container; }
         }
 
@@ -35,12 +36,13 @@ namespace Zenject
 
     // One parameter
     public class PrefabResourceFactory<P1, T> : IFactory<string, P1, T>
-    //where T : Component
+        //where T : Component
     {
         [Inject]
         readonly DiContainer _container = null;
 
-        public DiContainer Container {
+        public DiContainer Container
+        {
             get { return _container; }
         }
 
@@ -57,12 +59,13 @@ namespace Zenject
 
     // Two parameters
     public class PrefabResourceFactory<P1, P2, T> : IFactory<string, P1, P2, T>
-    //where T : Component
+        //where T : Component
     {
         [Inject]
         readonly DiContainer _container = null;
 
-        public DiContainer Container {
+        public DiContainer Container
+        {
             get { return _container; }
         }
 
@@ -80,12 +83,13 @@ namespace Zenject
 
     // Three parameters
     public class PrefabResourceFactory<P1, P2, P3, T> : IFactory<string, P1, P2, P3, T>
-    //where T : Component
+        //where T : Component
     {
         [Inject]
         readonly DiContainer _container = null;
 
-        public DiContainer Container {
+        public DiContainer Container
+        {
             get { return _container; }
         }
 
@@ -103,12 +107,13 @@ namespace Zenject
 
     // Four parameters
     public class PrefabResourceFactory<P1, P2, P3, P4, T> : IFactory<string, P1, P2, P3, P4, T>
-    //where T : Component
+        //where T : Component
     {
         [Inject]
         readonly DiContainer _container = null;
 
-        public DiContainer Container {
+        public DiContainer Container
+        {
             get { return _container; }
         }
 

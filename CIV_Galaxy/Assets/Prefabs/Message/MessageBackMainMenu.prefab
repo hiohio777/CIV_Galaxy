@@ -763,6 +763,7 @@ GameObject:
   - component: {fileID: 8022442089728712999}
   - component: {fileID: 7729369284884679174}
   - component: {fileID: 4659019203310521237}
+  - component: {fileID: 2975363494814463207}
   m_Layer: 5
   m_Name: MessageBackMainMenu
   m_TagString: Untagged
@@ -884,3 +885,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yes: {fileID: 7489967120378482284}
   no: {fileID: 6187163914370566030}
+--- !u!114 &2975363494814463207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8022442089728712997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9429a710617449f41a9c93891fec7182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingLayerName: 1

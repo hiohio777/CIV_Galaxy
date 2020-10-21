@@ -34,6 +34,8 @@ public abstract class AttackerAbility : MonoBehaviour, IAbility
     public void Initialize(ICivilization civilization)
     {
         (this.ThisCivilization) = (civilization);
+
+        transform.SetParent(civilization.GetTransform, false);
     }
 
     public void Initialize(UnitAbilityFactory unitFactory)

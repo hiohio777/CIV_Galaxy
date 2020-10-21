@@ -1456,6 +1456,11 @@ PrefabInstance:
       propertyPath: dependentSciences.Array.data[0]
       value: 
       objectReference: {fileID: 497561343341896604}
+    - target: {fileID: 1639879950675617376, guid: 67e85ea72f8d4184b8ec031102d63670,
+        type: 3}
+      propertyPath: researchCost
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3304170296132655075, guid: 67e85ea72f8d4184b8ec031102d63670,
         type: 3}
       propertyPath: m_Name

@@ -25,8 +25,10 @@ namespace Zenject
             _container.Resolve(_context);
         }
 
-        public T Value {
-            get {
+        public T Value
+        {
+            get
+            {
                 if (!_hasValue)
                 {
                     _value = (T)_container.Resolve(_context);

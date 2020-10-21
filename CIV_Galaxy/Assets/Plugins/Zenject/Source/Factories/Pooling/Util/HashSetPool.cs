@@ -13,7 +13,8 @@ namespace Zenject
             OnDespawnedMethod = OnDespawned;
         }
 
-        public static HashSetPool<T> Instance {
+        public static HashSetPool<T> Instance
+        {
             get { return _instance; }
         }
 

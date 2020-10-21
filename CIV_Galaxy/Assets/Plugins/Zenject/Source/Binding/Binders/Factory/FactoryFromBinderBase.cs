@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ModestTree;
 
 #if !NOT_UNITY3D
 using UnityEngine;
@@ -24,26 +25,32 @@ namespace Zenject
         }
 
         // Don't use this
-        internal DiContainer BindContainer {
+        internal DiContainer BindContainer
+        {
             get; private set;
         }
 
-        protected FactoryBindInfo FactoryBindInfo {
+        protected FactoryBindInfo FactoryBindInfo
+        {
             get; private set;
         }
 
         // Don't use this
-        internal Func<DiContainer, IProvider> ProviderFunc {
+        internal Func<DiContainer, IProvider> ProviderFunc
+        {
             get { return FactoryBindInfo.ProviderFunc; }
             set { FactoryBindInfo.ProviderFunc = value; }
         }
 
-        protected Type ContractType {
+        protected Type ContractType
+        {
             get; private set;
         }
 
-        public IEnumerable<Type> AllParentTypes {
-            get {
+        public IEnumerable<Type> AllParentTypes
+        {
+            get
+            {
                 yield return ContractType;
 
                 foreach (var type in BindInfo.ToTypes)
@@ -187,7 +194,7 @@ namespace Zenject
                     ContractType,
                     new PrefabInstantiator(
                         container, gameObjectInfo,
-                        ContractType, new[] { ContractType }, new List<TypeValuePair>(),
+                        ContractType, new [] { ContractType }, new List<TypeValuePair>(),
                         new PrefabProvider(prefab), BindInfo.InstantiatedCallback));
 
             return new NameTransformScopeConcreteIdArgConditionCopyNonLazyBinder(BindInfo, gameObjectInfo);
@@ -205,7 +212,7 @@ namespace Zenject
                     ContractType,
                     new PrefabInstantiator(
                         container, gameObjectInfo,
-                        ContractType, new[] { ContractType }, new List<TypeValuePair>(),
+                        ContractType, new [] { ContractType }, new List<TypeValuePair>(),
                         new PrefabProvider(prefab),
                         BindInfo.InstantiatedCallback), true);
 
@@ -224,7 +231,7 @@ namespace Zenject
                     ContractType,
                     new PrefabInstantiator(
                         container, gameObjectInfo,
-                        ContractType, new[] { ContractType }, new List<TypeValuePair>(),
+                        ContractType, new [] { ContractType }, new List<TypeValuePair>(),
                         new PrefabProviderResource(resourcePath), BindInfo.InstantiatedCallback), true);
 
             return new NameTransformScopeConcreteIdArgConditionCopyNonLazyBinder(BindInfo, gameObjectInfo);
@@ -243,7 +250,7 @@ namespace Zenject
                     ContractType,
                     new PrefabInstantiator(
                         container, gameObjectInfo,
-                        ContractType, new[] { ContractType }, new List<TypeValuePair>(),
+                        ContractType, new [] { ContractType }, new List<TypeValuePair>(),
                         new PrefabProviderResource(resourcePath),
                         BindInfo.InstantiatedCallback));
 

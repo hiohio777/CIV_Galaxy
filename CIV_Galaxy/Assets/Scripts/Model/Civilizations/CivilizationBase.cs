@@ -23,11 +23,13 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
         civilizationUI.valueChangeEffectFactory = valueChangeEffectFactory;
     }
 
+    public Transform GetTransform => transform;
     public CivilizationUI CivUI => civilizationUI;
     public bool IsOpen { get; protected set; }
     public LeaderEnum Lider { get; protected set; } = LeaderEnum.Lagging;
     public Vector2 PositionCiv { get; private set; }
     public CivilizationScriptable DataBase { get; private set; }
+
     public CivilizationData CivData { get; private set; }
     public Scanner ScanerCiv { get; private set; }
     public Industry IndustryCiv { get; private set; }

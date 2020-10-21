@@ -2,6 +2,7 @@
 
 public abstract class CivilizationStructureBase
 {
+
     protected DifficultSettingsScriptable _difficultSettings; // Настройки сложности
 
     [Inject]

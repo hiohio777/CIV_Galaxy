@@ -12,11 +12,13 @@ namespace Zenject
     public class MonoInstallerBase : MonoBehaviour, IInstaller
     {
         [Inject]
-        protected DiContainer Container {
+        protected DiContainer Container
+        {
             get; set;
         }
 
-        public virtual bool IsEnabled {
+        public virtual bool IsEnabled
+        {
             get { return enabled; }
         }
 

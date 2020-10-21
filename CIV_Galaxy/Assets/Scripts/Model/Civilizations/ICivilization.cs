@@ -2,6 +2,7 @@
 
 public interface ICivilization
 {
+    Transform GetTransform { get; }
     CivilizationUI CivUI { get; }
     CivilizationScriptable DataBase { get; }
     Vector2 PositionCiv { get; }

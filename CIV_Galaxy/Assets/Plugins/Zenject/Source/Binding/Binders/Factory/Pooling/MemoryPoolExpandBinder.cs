@@ -12,7 +12,8 @@ namespace Zenject
             ExpandByOneAtATime();
         }
 
-        protected MemoryPoolBindInfo MemoryPoolBindInfo {
+        protected MemoryPoolBindInfo MemoryPoolBindInfo
+        {
             get; private set;
         }
 

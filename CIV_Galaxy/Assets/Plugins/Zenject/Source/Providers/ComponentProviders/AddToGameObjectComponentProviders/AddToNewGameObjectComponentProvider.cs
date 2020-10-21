@@ -21,7 +21,8 @@ namespace Zenject
             _gameObjectBindInfo = gameObjectBindInfo;
         }
 
-        protected override bool ShouldToggleActive {
+        protected override bool ShouldToggleActive
+        {
             get { return true; }
         }
 
