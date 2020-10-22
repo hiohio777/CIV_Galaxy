@@ -1,13 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class Civilizations
 {
+    private static readonly Civilizations _instance = new Civilizations();
+    public static Civilizations Instance => _instance;
+
     private List<CivilizationScriptable> civilizationsData;
 
-    public Civilizations()
+    private Civilizations()
     {
         Refresh();
     }
@@ -22,7 +24,7 @@ public class Civilizations
     public CivilizationScriptable GetCivilizationPlayer(string name, bool isDelet = true)
     {
         var civPlayer = civilizationsData.Where(x => x.Name == name).FirstOrDefault();
-        if(isDelet) civilizationsData.Remove(civPlayer);
+        if (isDelet) civilizationsData.Remove(civPlayer);
         return civPlayer;
     }
 

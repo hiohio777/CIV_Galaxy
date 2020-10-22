@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using Zenject;
 
-public class GalaxyData : MonoBehaviour
+public class GalaxyData : RegisterMonoBehaviour
 {
     [SerializeField] private int allPlanet = 1000;
     [SerializeField, Range(0, 600)] private int endGametime = 300; // Время после открытия всех планет до конца игры
@@ -10,13 +9,11 @@ public class GalaxyData : MonoBehaviour
     private MessageGalaxy _messageWholeGalaxyExplored;
     private CounterEndGame _counterEndGame;
 
-    [Inject]
-    public void Inject(CanvasFonGalaxy canvasFonGalaxy, MessageGalaxy messageWholeGalaxyExplored,
-        CounterEndGame counterEndGame)
+    public void Start()
     {
-        this._canvasFonGalaxy = canvasFonGalaxy;
-        this._messageWholeGalaxyExplored = messageWholeGalaxyExplored;
-        this._counterEndGame = counterEndGame;
+        _canvasFonGalaxy = GetRegisterObject<CanvasFonGalaxy>();
+        _counterEndGame = GetRegisterObject<CounterEndGame>();
+        _messageWholeGalaxyExplored = GetRegisterObject<MessageGalaxy>();
 
         _canvasFonGalaxy.ProgressEvent(allPlanet / 100);
     }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class ScanerPanelUI : MonoBehaviour
+public class ScanerPanelUI : RegisterMonoBehaviour
 {
     [SerializeField] private Image indicator;
 

@@ -2,8 +2,6 @@
 
 public class Industry : CivilizationStructureBase
 {
-    public event Action<float> ProgressEvent; // Отображение на экране
-
     private const float maxPoint = 1; // Максимальное количество поинтов индустрии
     private const float _progressInterval = 2; // Интервал
     private float _progress = 0; // Прогресс
@@ -12,7 +10,7 @@ public class Industry : CivilizationStructureBase
     private ICivilization _civilization;
     private IndustryData _industryData;
 
-    public Industry() { }
+    public Industry(IGalaxyUITimer galaxyUITimer) : base(galaxyUITimer) { }
 
     public void Initialize(ICivilization civilization)
     {

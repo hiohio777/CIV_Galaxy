@@ -6,13 +6,12 @@ public class Science : CivilizationStructureBase
 
     private float _progressInterval = 33; // Интервал
     private float _progress = 0; // Прогресс получения нового поинта SciencePoints
-    private float _repairTime = 0; // Время на которое приостановлена работа
 
     private ICivilization _civilization;
     private DiscoveryCell _currentDiscovery;
     private ScienceData _scienceData;
 
-    public Science() { }
+    public Science(IGalaxyUITimer galaxyUITimer) : base(galaxyUITimer) { }
 
     public void Initialize(ICivilization civilization)
     {

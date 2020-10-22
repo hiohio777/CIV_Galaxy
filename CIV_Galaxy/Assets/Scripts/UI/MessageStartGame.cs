@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
 public class MessageStartGame : MonoBehaviour
 {
@@ -13,19 +12,13 @@ public class MessageStartGame : MonoBehaviour
     private IGalaxyUITimer _galaxyUITimer;
     private Animator _animator;
 
-    public class Factory : PlaceholderFactory<MessageStartGame> { }
-
-    [Inject]
-    public void Inject(IGalaxyUITimer galaxyUITimer)
+    public MessageStartGame Show(IGalaxyUITimer galaxyUITimer, CivilizationScriptable civData, Action actOK)
     {
         this._galaxyUITimer = galaxyUITimer;
 
         _animator = GetComponent<Animator>();
         OK.onClick.AddListener(OnOK);
-    }
 
-    public MessageStartGame Show(CivilizationScriptable civData, Action actOK)
-    {
         this._actOK = actOK;
         nameCiv.SetKey(civData.Name);
         art.sprite = civData.Icon;

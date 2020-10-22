@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
- 
+
 public class Ability : CivilizationStructureBase
 {
     public event Action<float> ProgressEvent; // Отображение на экране
@@ -10,7 +10,7 @@ public class Ability : CivilizationStructureBase
     private AbilityFactory _abilityFactory;
     protected ICivilization _civilization;
 
-    public Ability(AbilityFactory abilityFactory)
+    public Ability(IGalaxyUITimer galaxyUITimer, AbilityFactory abilityFactory) : base(galaxyUITimer)
     {
         this._abilityFactory = abilityFactory;
     }
@@ -68,7 +68,7 @@ public class Ability : CivilizationStructureBase
 
             return;
         }
-         
+
         if (_civilization is ICivilizationAl alCiv)
             ApplyAl(alCiv.DiplomacyCiv);
     }

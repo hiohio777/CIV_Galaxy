@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
 public class MessageDiscoveredCivilization : MonoBehaviour
 {
@@ -13,19 +12,13 @@ public class MessageDiscoveredCivilization : MonoBehaviour
     private IGalaxyUITimer _galaxyUITimer;
     private Animator _animator;
 
-    public class Factory : PlaceholderFactory<MessageDiscoveredCivilization> { }
-
-    [Inject]
-    public void Inject(IGalaxyUITimer galaxyUITimer)
+    public MessageDiscoveredCivilization Show(IGalaxyUITimer galaxyUITimer, CivilizationScriptable civData, Action actWelcome)
     {
         this._galaxyUITimer = galaxyUITimer;
 
         _animator = GetComponent<Animator>();
         welcome.onClick.AddListener(OnWelcome);
-    }
 
-    public MessageDiscoveredCivilization Show(CivilizationScriptable civData, Action actWelcome)
-    {
         this._actWelcome = actWelcome;
         nameCiv.SetKey(civData.Name);
         descriptionCiv.SetKey(civData.Description);

@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
-public class InfoCivilizationPanelUI : MonoBehaviour
+public class InfoCivilizationPanelUI : RegisterMonoBehaviour
 {
     [SerializeField] private Image artCiv;
     [SerializeField] private LocalisationText nameCiv;
@@ -14,10 +13,9 @@ public class InfoCivilizationPanelUI : MonoBehaviour
 
     private IGalaxyUITimer _galaxyUITimer;
 
-    [Inject]
-    public void Inject(IGalaxyUITimer galaxyUITimer)
+    public void Start()
     {
-        this._galaxyUITimer = galaxyUITimer;
+        this._galaxyUITimer = GetRegisterObject<IGalaxyUITimer>();
         gameObject.SetActive(false);
     }
 

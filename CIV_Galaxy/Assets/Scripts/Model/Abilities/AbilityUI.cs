@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Zenject;
 
-public class AbilityUI : MonoBehaviour, IPointerClickHandler
+public class AbilityUI : RegisterMonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Image fon, artIndicator, frame;
 
@@ -11,11 +10,10 @@ public class AbilityUI : MonoBehaviour, IPointerClickHandler
     private Ability _abilityCiv;
     private IGalaxyUITimer _galaxyUITimer;
 
-    [Inject]
-    public void Inject(ICivilizationPlayer civilizationPlayer, IGalaxyUITimer galaxyUITimer)
+    public void Start()
     {
-        this._civilizationPlayer = civilizationPlayer;
-        this._galaxyUITimer = galaxyUITimer;
+        this._civilizationPlayer = GetRegisterObject<ICivilizationPlayer>();
+        this._galaxyUITimer = GetRegisterObject<IGalaxyUITimer>();
 
         artIndicator.fillAmount = 0;
         frame.enabled = true;

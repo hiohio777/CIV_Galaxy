@@ -1,5 +1,4 @@
 ﻿using System;
-using UnityEngine;
 
 public class CivilizationData
 {
@@ -10,12 +9,12 @@ public class CivilizationData
     private LeaderQualifier _leaderQualifier;
     private DifficultSettingsScriptable _difficultSettings; // Настройки сложности
 
-    public CivilizationData(IGalaxyUITimer galaxyUITimer, LeaderQualifier leaderQualifier, PlayerSettings playerSettings)
+    public CivilizationData(IGalaxyUITimer galaxyUITimer, LeaderQualifier leaderQualifier)
     {
 
         galaxyUITimer.ExecuteYears += ProgressDominance;
         this._leaderQualifier = leaderQualifier;
-        _difficultSettings = playerSettings.GetDifficultSettings;
+        _difficultSettings = PlayerSettings.Instance.GetDifficultSettings;
     }
 
     public int Planets { get => _planets; set { _planets = value; _civilization.CivUI.SetCountPlanet(_planets); } }

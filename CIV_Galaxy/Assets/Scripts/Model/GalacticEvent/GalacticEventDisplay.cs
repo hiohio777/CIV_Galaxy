@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using Zenject;
 
-public class GalacticEventDisplay : MonoBehaviour, IGalacticEventDisplay
+public class GalacticEventDisplay : RegisterMonoBehaviour, IGalacticEventDisplay
 {
     [SerializeField] private MovingObject moving;
     [SerializeField] private SpriteRenderer art;
@@ -18,10 +17,9 @@ public class GalacticEventDisplay : MonoBehaviour, IGalacticEventDisplay
     private Vector3 _positionTarget;
     private IGalaxyUITimer _galaxyUITimer;
 
-    [Inject]
-    public void Inject(IGalaxyUITimer galaxyUITimer)
+    public void Start()
     {
-        this._galaxyUITimer = galaxyUITimer;
+        this._galaxyUITimer = GetRegisterObject<IGalaxyUITimer>();
         _fon = GetComponent<SpriteRenderer>();
     }
 
@@ -72,7 +70,7 @@ public class GalacticEventDisplay : MonoBehaviour, IGalacticEventDisplay
             yield return null;
         }
 
-        if(isActive)
+        if (isActive)
         {
             isActive = false;
             art.color = Color.red;

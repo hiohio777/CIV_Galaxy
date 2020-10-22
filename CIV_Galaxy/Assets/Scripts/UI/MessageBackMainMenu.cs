@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
 public class MessageBackMainMenu : MonoBehaviour
 {
@@ -12,20 +11,14 @@ public class MessageBackMainMenu : MonoBehaviour
     private bool _selectButton;
     private Animator _animator;
 
-    public class Factory : PlaceholderFactory<MessageBackMainMenu> { }
-
-    [Inject]
-    public void Inject(IGalaxyUITimer galaxyUITimer)
+    public MessageBackMainMenu Show(IGalaxyUITimer galaxyUITimer, Action actYes, Action actNo)
     {
         this._galaxyUITimer = galaxyUITimer;
 
         _animator = GetComponent<Animator>();
         yes.onClick.AddListener(OnWelcome);
-        no.onClick.AddListener(OnOffend); ;
-    }
+        no.onClick.AddListener(OnOffend);
 
-    public MessageBackMainMenu Show(Action actYes, Action actNo)
-    {
         (this._actYes, this._actNo) = (actYes, actNo);
 
         _galaxyUITimer.SetPause(true, string.Empty);

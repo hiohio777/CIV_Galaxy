@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using Zenject;
 
 public class UnitBase : MonoBehaviour
 {
@@ -8,8 +7,7 @@ public class UnitBase : MonoBehaviour
     private MovingObject moving;
     private Action<object> _buffered;
 
-    [Inject]
-    public void Inject(Action<object> buffered)
+    public void Creat(Action<object> buffered)
     {
         this._buffered = buffered;
         TtransformUnit = transform;

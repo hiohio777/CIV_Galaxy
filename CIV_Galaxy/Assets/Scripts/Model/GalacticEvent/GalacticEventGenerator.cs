@@ -1,11 +1,13 @@
 ﻿public class GalacticEventGenerator : CivilizationStructureBase
-{ 
+{
     protected float _progressInterval = 6; // Интервал
     protected GalaxyTypeEventEnum _typeEvent;
 
     private float _progress = 0; // Прогресс
     private float _bonusEfficiency = 1;
     private ICivilization _civilization;
+
+    public GalacticEventGenerator(IGalaxyUITimer galaxyUITimer) : base(galaxyUITimer) { }
 
     public void Initialize(ICivilization civilization)
     {

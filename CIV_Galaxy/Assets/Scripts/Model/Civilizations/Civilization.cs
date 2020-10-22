@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
 public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
 {
@@ -23,15 +22,18 @@ public class Civilization : CivilizationBase, ICivilization, ICivilizationAl
         frame.enabled = false;
     }
 
-    [Inject]
-    public void InjectCivilizationPlayer(GalacticEventGenerator galacticEventGenerator, ICivilizationPlayer player,
-        Diplomacy diplomacyCiv)
+    public override void Start()
     {
-        (this.EventGenerator, this._player, this.DiplomacyCiv)
-        = (galacticEventGenerator, player, diplomacyCiv);
+        base.Start();
+
+        var timerUI = GetRegisterObject<IGalaxyUITimer>();
+        EventGenerator = new GalacticEventGenerator(timerUI);
+
+        _player = GetRegisterObject<ICivilizationPlayer>();
+        DiplomacyCiv = new Diplomacy(GetRegisterObjects<ICivilizationAl>(), _player, timerUI);
 
         TurnOffFrame();
-        civilizationUI.Close(); 
+        civilizationUI.Close();
         _moving = GetComponentInChildren<MovingObject>();
         _moving.AssignScale(0);
     }

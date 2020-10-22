@@ -1,18 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
-using System.Linq;
 
 public class Statistics
 {
+    private static readonly Statistics _instance = new Statistics();
+    public static Statistics Instance => _instance;
+
     private static string PATH = $"{Application.dataPath}/StreamingAssets/Statistics.dat";
     private Dictionary<string, List<StatisticsData>> data;
-    private Civilizations _civilizations;
 
-    public Statistics(Civilizations civilizations)
+    private Statistics()
     {
-        _civilizations = civilizations;
         LoadDate();
     }
 
@@ -41,9 +42,9 @@ public class Statistics
             return;
         }
 
-        _civilizations.Refresh();
+        Civilizations.Instance.Refresh();
         data = new Dictionary<string, List<StatisticsData>>();
-        foreach (var item in _civilizations)
+        foreach (var item in Civilizations.Instance)
         {
             var stat = new List<StatisticsData>()
             {

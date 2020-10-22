@@ -1,15 +1,13 @@
 ﻿using UnityEngine;
-using Zenject;
 
-public class JustRotateGalaxyUITimer : MonoBehaviour
+public class JustRotateGalaxyUITimer : RegisterMonoBehaviour
 {
     public float speed = 10;
     private IGalaxyUITimer _galaxyUITimer;
 
-    [Inject]
-    public void Inject(IGalaxyUITimer galaxyUITimer)
+    public void Start()
     {
-        this._galaxyUITimer = galaxyUITimer;
+        _galaxyUITimer = GetRegisterObject<IGalaxyUITimer>();
     }
 
     private void FixedUpdate()

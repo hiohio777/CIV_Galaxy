@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Zenject;
 
-public class CanvasFonGalaxy : MonoBehaviour
+public class CanvasFonGalaxy : RegisterMonoBehaviour
 {
     [SerializeField] private GameObject galaxyExploredAreaObject;
     [SerializeField] private Image galaxyExploredArea;
@@ -12,10 +10,9 @@ public class CanvasFonGalaxy : MonoBehaviour
 
     private MovingObject _moving;
 
-    [Inject]
-    public void Inject(PlayerSettings playerSettings)
+    private void Start()
     {
-        galaxyFon.sprite = galaxyFonSprite[(int)playerSettings.CurrentDifficult];
+        galaxyFon.sprite = galaxyFonSprite[(int)PlayerSettings.Instance.CurrentDifficult];
         _moving = GetComponentInChildren<MovingObject>().AssignScale(0);
     }
 

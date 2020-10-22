@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 public class Scanner : CivilizationStructureBase
 {
@@ -7,13 +6,13 @@ public class Scanner : CivilizationStructureBase
 
     private float _progressInterval = 15; // Интервал
     private float _progress = 0;
-     
+
     private GalaxyData _galaxyData;
     private PlanetsFactory _planetsFactory;
     private ICivilization _civilization;
     private ScanerData _scanerData;
 
-    public Scanner(GalaxyData galaxyData, PlanetsFactory planetsFactory)
+    public Scanner(IGalaxyUITimer galaxyUITimer, GalaxyData galaxyData, PlanetsFactory planetsFactory) : base(galaxyUITimer)
     {
         (this._galaxyData, this._planetsFactory) = (galaxyData, planetsFactory);
     }
@@ -107,7 +106,7 @@ public class Scanner : CivilizationStructureBase
             }
 
             CreatNewPlanet(i);
-            countIsOpenNewPlanet++; 
+            countIsOpenNewPlanet++;
         }
 
         return countIsOpenNewPlanet;

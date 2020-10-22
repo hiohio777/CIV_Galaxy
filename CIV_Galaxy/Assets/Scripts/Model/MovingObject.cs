@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using Zenject;
 
-public class MovingObject : MonoBehaviour
+public class MovingObject : RegisterMonoBehaviour
 {
     private Transform _transform;
     private Action execute, positionAnimation, scaleAnimation;
@@ -17,16 +16,9 @@ public class MovingObject : MonoBehaviour
 
     private IGalaxyUITimer _galaxyUITimer;
 
-    [Inject]
-    public void Inject(IGalaxyUITimer galaxyUITimer)
-    {
-        this._galaxyUITimer = galaxyUITimer;
-        _transform = GetComponent<Transform>();
-    }
-
     public MovingObject AssignScale(float scaleTarget)
     {
-        _transform.localScale = new Vector3(scaleTarget, scaleTarget, scaleTarget);
+        transform.localScale = new Vector3(scaleTarget, scaleTarget, scaleTarget);
         return this;
     }
 
@@ -74,6 +66,12 @@ public class MovingObject : MonoBehaviour
     public void Run() => Run(null);
     public void Run(Action execute)
     {
+        if(_galaxyUITimer == null)
+        {
+            _transform = transform;
+            _galaxyUITimer = GetRegisterObject<IGalaxyUITimer>();
+        }
+
         this.execute = execute;
         positionAnimation?.Invoke();
         scaleAnimation?.Invoke();
@@ -161,8 +159,6 @@ public class MovingObject : MonoBehaviour
         scaleAnimation = null;
         EndAnimation();
     }
-
-
 
     private void EndAnimation()
     {

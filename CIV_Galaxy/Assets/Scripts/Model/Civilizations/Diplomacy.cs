@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Zenject;
 
 public class Diplomacy
 {
@@ -22,13 +21,12 @@ public class Diplomacy
     public int Count => relations.Count;
     public IEnumerator GetEnumerator() => relations.GetEnumerator();
 
-    [Inject]
-    public void Inject(List<ICivilizationAl> anotherCivilization, ICivilizationPlayer player, PlayerSettings playerSettings, IGalaxyUITimer galaxyUITimer)
+    public Diplomacy(List<ICivilizationAl> anotherCivilization, ICivilizationPlayer player, IGalaxyUITimer galaxyUITimer)
     {
         this._anotherCivilization = anotherCivilization;
         this._player = player;
         this._galaxyUITimer = galaxyUITimer;
-        _dangerPlayer = playerSettings.GetDifficultSettings.DangerPlayer;
+        _dangerPlayer = PlayerSettings.Instance.GetDifficultSettings.DangerPlayer;
     }
 
     public void Initialize(ICivilizationAl civilization)

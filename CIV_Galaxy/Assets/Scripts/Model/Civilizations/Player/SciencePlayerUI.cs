@@ -1,27 +1,25 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
-public class SciencePlayerUI : MonoBehaviour
+public class SciencePlayerUI : RegisterMonoBehaviour
 {
     [SerializeField] private Image artCivPlayer;
     [SerializeField] private Text textCountPoints;
+    [SerializeField] private DiscoveryCellUI discoveryCellUIPrefab;
 
     private bool _isInit = false; // Инизиализировано ли древо наук(его UI)
     private bool _isPause = false; // Бфла ли активирована пауза игры
 
     private ICivilizationPlayer _civPlayer;
     private IGalaxyUITimer _galaxyUITimer;
-    private DiscoveryCellUI.Factory _factoryDiscoveryCellUI;
     private List<DiscoveryCellUI> _discoveries = new List<DiscoveryCellUI>();
     private MessageInfoScience _messageInfoScience;
 
-    [Inject]
-    public void Inject(ICivilizationPlayer civPlayer, IGalaxyUITimer galaxyUITimer, DiscoveryCellUI.Factory factoryDiscoveryCellUI)
+    public void Start()
     {
-        (this._civPlayer, this._galaxyUITimer, this._factoryDiscoveryCellUI)
-        = (civPlayer, galaxyUITimer, factoryDiscoveryCellUI);
+        _civPlayer = GetRegisterObject<ICivilizationPlayer>();
+        _galaxyUITimer = GetRegisterObject<IGalaxyUITimer>();
 
         _messageInfoScience = GetComponentInChildren<MessageInfoScience>(true);
         _messageInfoScience.UpdateCostDiscoveriesEvent += UpdateCostDiscoveries;
@@ -61,13 +59,9 @@ public class SciencePlayerUI : MonoBehaviour
         artCivPlayer.sprite = _civPlayer.DataBase.Icon;
 
         foreach (var item in _civPlayer.ScienceCiv.TreeOfScienceCiv.Discoveries)
-        {
-            var discoveryCellUI = _factoryDiscoveryCellUI.Create(item);
-            discoveryCellUI.transform.SetParent(transform, false);
-            discoveryCellUI.MessageInfoScience = _messageInfoScience;
+            _discoveries.Add(Instantiate(discoveryCellUIPrefab).Creat(item, _messageInfoScience, transform));
 
-            _discoveries.Add(discoveryCellUI);
-        }
+        _discoveries.ForEach(x => x.Initialize()); // Инициализировать
 
         _messageInfoScience.transform.SetAsLastSibling();
         _isInit = true;

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using Zenject;
 
-public abstract class CivilizationBase : MonoBehaviour, ICivilization
+public abstract class CivilizationBase : RegisterMonoBehaviour, ICivilization
 {
     [SerializeField] protected CivilizationUI civilizationUI;
     protected bool isAssign = false; // Назначена ли цивилизация
@@ -10,17 +9,23 @@ public abstract class CivilizationBase : MonoBehaviour, ICivilization
     protected MovingObject _moving;
     private SpecialEffectFactory _specialEffectFactory;
 
-    [Inject]
-    public void Inject(CivilizationData civData, Scanner scanerPlanets, Science scienceCiv, Industry industryCiv, Ability abilityCiv,
-        ValueChangeEffectFactory valueChangeEffectFactory, InfoCivilizationPanelUI infoCivilizationPanelUI, SpecialEffectFactory specialEffectFactory)
+    public virtual void Start()
     {
-        (this.CivData, this.ScanerCiv, this.ScienceCiv, this.IndustryCiv, this.AbilityCiv, this._infoCivilizationPanelUI, this._specialEffectFactory)
-        = (civData, scanerPlanets, scienceCiv, industryCiv, abilityCiv, infoCivilizationPanelUI, specialEffectFactory);
+        _infoCivilizationPanelUI = GetRegisterObject<InfoCivilizationPanelUI>();
+        var timerUI = GetRegisterObject<IGalaxyUITimer>();
+
+        CivData = new CivilizationData(timerUI, GetRegisterObject<LeaderQualifier>());
+        ScanerCiv = new Scanner(timerUI, GetRegisterObject<GalaxyData>(), GetRegisterObject<PlanetsFactory>());
+        ScienceCiv = new Science(timerUI);
+        IndustryCiv = new Industry(timerUI);
+        AbilityCiv = new Ability(timerUI, GetRegisterObject<AbilityFactory>());
 
         PositionCiv = transform.position;
         _shakeObject = GetComponentInChildren<ShakeObject>();
         _moving = GetComponentInChildren<MovingObject>();
-        civilizationUI.valueChangeEffectFactory = valueChangeEffectFactory;
+
+        _specialEffectFactory = GetRegisterObject<SpecialEffectFactory>();
+        civilizationUI.valueChangeEffectFactory = GetRegisterObject<ValueChangeEffectFactory>();
     }
 
     public Transform GetTransform => transform;

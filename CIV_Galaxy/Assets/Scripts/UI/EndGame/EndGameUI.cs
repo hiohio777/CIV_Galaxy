@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
-public class EndGameUI : MonoBehaviour
+public class EndGameUI : RegisterMonoBehaviour
 {
     [SerializeField] private Image art;
     [SerializeField] private LocalisationText nameCiv;
     [SerializeField] private Button OK;
     [SerializeField] private LocalisationText textVictory;
-    [SerializeField] private Text yearGame, countPlanet, countDominationPoints,
+    [SerializeField]
+    private Text yearGame, countPlanet, countDominationPoints,
         countDiscoveries, countBombs, countSpaceFleet, countScientificMission;
     [SerializeField] private Image liderIcon;
     [SerializeField] private List<CivilizationEndGamelUI> _civilizationEndGamelUI;
@@ -19,22 +19,22 @@ public class EndGameUI : MonoBehaviour
     private GalaxySceneUI _galaxySceneUI;
     private ICivilizationPlayer _civPlayer;
     private List<ICivilizationAl> _civsAl;
-    private Statistics _statistics;
-    private PlayerSettings _playerSettings;
 
     private Animator _animator;
-    public class Factory : PlaceholderFactory<EndGameUI> { }
 
-    [Inject]
-    public void Inject(IGalaxyUITimer galaxyUITimer, GalaxySceneUI galaxySceneUI, ICivilizationPlayer civPlayer,
-        List<ICivilizationAl> civsAl, Statistics statistics, PlayerSettings playerSettings)
+    private void Creat()
     {
-        (this._galaxyUITimer, this._galaxySceneUI, this._civPlayer, this._civsAl, this._statistics, this._playerSettings)
-        = (galaxyUITimer, galaxySceneUI, civPlayer, civsAl, statistics, playerSettings);
+        _galaxyUITimer = GetRegisterObject<IGalaxyUITimer>();
+        _galaxySceneUI = GetRegisterObject<GalaxySceneUI>();
+        _civPlayer = GetRegisterObject<ICivilizationPlayer>();
+        _civsAl = GetRegisterObjects<ICivilizationAl>();
+
     }
 
     public EndGameUI Show()
     {
+        Creat();
+
         _galaxyUITimer.SetPause(true);
         OK.onClick.AddListener(OnOK);
 
@@ -85,7 +85,7 @@ public class EndGameUI : MonoBehaviour
     private void CreateBattleStatistics()
     {
         // Статистика
-        var stat = _statistics.GetStatistics(_civPlayer.DataBase.Name, _playerSettings.CurrentDifficult, _playerSettings.CurrentOpponents);
+        var stat = Statistics.Instance.GetStatistics(_civPlayer.DataBase.Name, PlayerSettings.Instance.CurrentDifficult, PlayerSettings.Instance.CurrentOpponents);
         if (stat.IsRecorded)
         {
             if (stat.CountDomination < (int)_civPlayer.CivData.DominationPoints)
@@ -106,13 +106,13 @@ public class EndGameUI : MonoBehaviour
     {
         stat.Write((int)_galaxyUITimer.GetYears, (int)_civPlayer.CivData.DominationPoints, _civPlayer.CivData.Planets, _civPlayer.ScienceCiv.CountDiscoveries,
             _civPlayer.AbilityCiv.Abilities[0].CountUses, _civPlayer.AbilityCiv.Abilities[1].CountUses, _civPlayer.AbilityCiv.Abilities[2].CountUses);
-        _statistics.SaveDate();
+        Statistics.Instance.SaveDate();
     }
 
     private bool CivilizationTable()
     {
         // Распределить цивилизации в порядке колиества доминирования
-        switch (_playerSettings.CurrentOpponents)
+        switch (PlayerSettings.Instance.CurrentOpponents)
         {
             case OpponentsEnum.Two:
                 _civilizationsPanelUI[2].SetActive(false);

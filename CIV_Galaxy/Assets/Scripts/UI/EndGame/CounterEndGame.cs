@@ -1,21 +1,18 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
-public class CounterEndGame : MonoBehaviour
+public class CounterEndGame : RegisterMonoBehaviour
 {
+    [SerializeField] private EndGameUI endGameUIPrefab;
     private int _endGametime;
     private float _secunds = 0;
     private IGalaxyUITimer _galaxyUITimer;
-    private MessageFactory _messageFactory;
     private Text _messadgeTime;
 
-    [Inject]
-    public void Inject(IGalaxyUITimer galaxyUITimer, MessageFactory messageFactory)
+    public void Start()
     {
-        this._galaxyUITimer = galaxyUITimer;
-        this._messageFactory = messageFactory;
+        _galaxyUITimer = GetRegisterObject<IGalaxyUITimer>();
 
         _messadgeTime = GetComponent<Text>();
         gameObject.SetActive(false);
@@ -44,7 +41,7 @@ public class CounterEndGame : MonoBehaviour
             {
                 // Время истекло, конец игры
                 _messadgeTime.text = string.Empty;
-                _messageFactory.GetEndGameUI();
+                Instantiate(endGameUIPrefab);
             }
         }
     }

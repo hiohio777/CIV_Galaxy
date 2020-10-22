@@ -1,14 +1,11 @@
-﻿using Zenject;
-
-public class LeaderQualifier
+﻿public class LeaderQualifier : RegisterMonoBehaviour
 {
     private ICivilization _civPlayer;
     private ICivilization _lider;
 
-    [Inject]
-    public void Inject(ICivilizationPlayer civPlayer)
+    public void Start()
     {
-        _lider = this._civPlayer = civPlayer;
+        _lider = this._civPlayer = GetRegisterObject<ICivilizationPlayer>();
     }
 
     public void DefineLeader(ICivilization civilization)

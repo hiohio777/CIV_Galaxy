@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using Zenject;
 
 public class MainSceneUI : MonoBehaviour
 {

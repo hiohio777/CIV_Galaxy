@@ -1,25 +1,25 @@
 ﻿using UnityEngine;
 
-public class SpecialEffectFactory
+public class SpecialEffectFactory : BaseFactory
 {
-    private readonly SpecialEffect_0.Factory _factory_0;
-    private readonly SpecialEffect_1.Factory _factory_1;
-    private readonly SpecialEffect_2.Factory _factory_2;
+    private IGalaxyUITimer _galaxyUITimer;
 
-    public SpecialEffectFactory(SpecialEffect_0.Factory factory_0, SpecialEffect_1.Factory factory_1, SpecialEffect_2.Factory factory_2)
+    [SerializeField] private SpecialEffect_0 effect_0;
+    [SerializeField] private SpecialEffect_1 effect_1;
+    [SerializeField] private SpecialEffect_2 effect_2;
+
+    private void Start()
     {
-        this._factory_0 = factory_0;
-        this._factory_1 = factory_1;
-        this._factory_2 = factory_2;
+        this._galaxyUITimer = GetRegisterObject<IGalaxyUITimer>();
     }
 
     public void GetEffect(Vector3 position, Sprite spriteEffect, EffectEnum effectEnum = EffectEnum.SpecialEffect_0)
     {
         switch (effectEnum)
         {
-            case EffectEnum.SpecialEffect_0: _factory_0.Create().Initialize(position, spriteEffect); break;
-            case EffectEnum.SpecialEffect_1: _factory_1.Create().Initialize(position, spriteEffect); break;
-            case EffectEnum.SpecialEffect_2: _factory_2.Create().Initialize(position, spriteEffect); break;
+            case EffectEnum.SpecialEffect_0: InstantiateObject(effect_0).Initialize(_galaxyUITimer, position, spriteEffect); break;
+            case EffectEnum.SpecialEffect_1: InstantiateObject(effect_1).Initialize(_galaxyUITimer, position, spriteEffect); break;
+            case EffectEnum.SpecialEffect_2: InstantiateObject(effect_2).Initialize(_galaxyUITimer, position, spriteEffect); break;
         }
     }
 }

@@ -1,14 +1,11 @@
-﻿using System;
-using UnityEngine;
-using Zenject;
+﻿using UnityEngine;
 
 public abstract class SpecialEffectBase : MonoBehaviour
 {
     private Animator animator;
     private IGalaxyUITimer _galaxyUITimer;
 
-    [Inject]
-    public void Inject(IGalaxyUITimer galaxyUITimer)
+    public void SetGalaxyUITimer(IGalaxyUITimer galaxyUITimer)
     {
         _galaxyUITimer = galaxyUITimer;
         _galaxyUITimer.PauseAct += _galaxyUITimer_PauseAct;

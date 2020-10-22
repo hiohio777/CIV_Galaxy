@@ -1451,6 +1451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 254f9b0decc9acc438598e20074ae24a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRegister: 0
   art: {fileID: 5148897091206032254}
   nameCiv: {fileID: 4809398885279555756}
   OK: {fileID: 7217269391434174862}
@@ -1488,6 +1489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9429a710617449f41a9c93891fec7182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sortingLayerName: 0
 --- !u!1 &5619285270773965239
 GameObject:
   m_ObjectHideFlags: 0

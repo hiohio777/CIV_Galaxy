@@ -1,15 +1,12 @@
-﻿using System;
-using UnityEngine;
-using Zenject;
+﻿using UnityEngine;
 
-public class SpecialEffect_1 : SpecialEffectBase 
+public class SpecialEffect_1 : SpecialEffectBase
 {
     [SerializeField] private SpriteRenderer art0, art1, art2;
 
-    public class Factory : PlaceholderFactory<SpecialEffect_1> { }
-
-    public void Initialize(Vector3 position, Sprite spriteEffect)
+    public void Initialize(IGalaxyUITimer galaxyUITimer, Vector3 position, Sprite spriteEffect)
     {
+        SetGalaxyUITimer(galaxyUITimer);
         art0.sprite = art1.sprite = art2.sprite = spriteEffect;
 
         InitializeBase(position, "DisplayEffect_1");

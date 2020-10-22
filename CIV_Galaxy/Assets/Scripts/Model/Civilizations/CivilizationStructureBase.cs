@@ -1,15 +1,12 @@
-﻿using Zenject;
-
-public abstract class CivilizationStructureBase
+﻿public abstract class CivilizationStructureBase
 {
 
     protected DifficultSettingsScriptable _difficultSettings; // Настройки сложности
 
-    [Inject]
-    public void Inject(IGalaxyUITimer galaxyUITimer, PlayerSettings playerSettings)
+    protected CivilizationStructureBase(IGalaxyUITimer galaxyUITimer)
     {
         galaxyUITimer.ExecuteOfTime += ExecuteOnTimeEvent;
-        _difficultSettings = playerSettings.GetDifficultSettings;
+        _difficultSettings = PlayerSettings.Instance.GetDifficultSettings;
     }
 
     protected abstract void ExecuteOnTimeEvent(float deltaTime);

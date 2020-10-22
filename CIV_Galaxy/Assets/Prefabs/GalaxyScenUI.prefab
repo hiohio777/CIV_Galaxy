@@ -94,7 +94,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5259965093418327475
 RectTransform:
   m_ObjectHideFlags: 0
@@ -182,6 +182,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ee6406c747a6649a0e6a8f9f346606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRegister: 1
+  endGameUIPrefab: {fileID: 5619285270600156049, guid: 2845037b6d3107e4a954f418de82a54d,
+    type: 3}
 --- !u!1 &6556083935973153980
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +205,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5518253784303774833
 RectTransform:
   m_ObjectHideFlags: 0
@@ -309,6 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c3eae4350b71734fa0112cb8821efa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRegister: 1
   messadge: {fileID: 3444968283545030602}
 --- !u!1 &8157961634398486360
 GameObject:
@@ -326,6 +330,13 @@ GameObject:
   - component: {fileID: 8157961634398486361}
   - component: {fileID: 1630231165867566573}
   - component: {fileID: 6632846541473747234}
+  - component: {fileID: 4971569619511811326}
+  - component: {fileID: 6577767129789654191}
+  - component: {fileID: 1339064006000338654}
+  - component: {fileID: 8227959131985676586}
+  - component: {fileID: 1215051015795442982}
+  - component: {fileID: 832908333875660097}
+  - component: {fileID: 5058866073536175724}
   m_Layer: 5
   m_Name: GalaxyScenUI
   m_TagString: Untagged
@@ -450,6 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e1af029924d30b42908c132614a2ccc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRegister: 1
 --- !u!114 &1630231165867566573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,6 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21a53d75c958de84b954fb46283bf616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRegister: 1
   allPlanet: 30
   endGametime: 0
 --- !u!114 &6632846541473747234
@@ -477,6 +490,105 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sortingLayerName: 1
+--- !u!114 &4971569619511811326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8157961634398486360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b62c4dff8c0fc4396e292e584c2f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRegister: 1
+--- !u!114 &6577767129789654191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8157961634398486360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efd476ff8cb60a94dba38daada40fd3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRegister: 1
+--- !u!114 &1339064006000338654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8157961634398486360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d64d54d7d0960644b9ba4e2c4a3c49a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRegister: 1
+  effect_0: {fileID: 4636798068252903711, guid: eeeffd09226208e4eb7c2b2556e2f65f,
+    type: 3}
+  effect_1: {fileID: 4636798068252903711, guid: 60fe9f121805426429ceb48158e77639,
+    type: 3}
+  effect_2: {fileID: 1264867050874358502, guid: 69c98dfc82caca04aba633eed162fe61,
+    type: 3}
+--- !u!114 &8227959131985676586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8157961634398486360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0bbba740e42d9c4d9d2a9c1a0953b7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRegister: 1
+  planetprefab: {fileID: 225457601850385852, guid: 799c29339af917c49989018599ac05bb,
+    type: 3}
+--- !u!114 &1215051015795442982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8157961634398486360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff73605e0e013e43a3068b299799d30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRegister: 1
+--- !u!114 &832908333875660097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8157961634398486360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8fa9ab12052dda4b8e36d7a90b77c52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRegister: 1
+--- !u!114 &5058866073536175724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8157961634398486360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ea065e00ed12a74ea3ceb01a052d704, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRegister: 1
 --- !u!1 &9037289826682166278
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,6 +808,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: InfoCivilizationPanelUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3237078057491199600, guid: 677f92fce7c34c74c91cbc9bc6a8a5fe,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6128946099001135713, guid: 677f92fce7c34c74c91cbc9bc6a8a5fe,
+        type: 3}
+      propertyPath: isRegister
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8852402272823414047, guid: 677f92fce7c34c74c91cbc9bc6a8a5fe,
         type: 3}
@@ -922,10 +1044,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4679893292254678866, guid: eab8238891b6c7743bbec39c0e3b9bda,
+        type: 3}
+      propertyPath: discoveryCellUIPrefab
+      value: 
+      objectReference: {fileID: 6998028955566685122, guid: 2860ea3bcfa571248ae8c005b0047e9b,
+        type: 3}
     - target: {fileID: 5866438002664548921, guid: eab8238891b6c7743bbec39c0e3b9bda,
         type: 3}
       propertyPath: m_Name
       value: SciencePlayerUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866438002664548921, guid: eab8238891b6c7743bbec39c0e3b9bda,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eab8238891b6c7743bbec39c0e3b9bda, type: 3}
@@ -942,6 +1075,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8157961634398486341}
     m_Modifications:
+    - target: {fileID: 218947460534926475, guid: 72fc567b4e9bb614ca0bf323ba8fd350,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 525.7012
+      objectReference: {fileID: 0}
+    - target: {fileID: 451491844040610672, guid: 72fc567b4e9bb614ca0bf323ba8fd350,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 416.79883
+      objectReference: {fileID: 0}
     - target: {fileID: 1411926956584862412, guid: 72fc567b4e9bb614ca0bf323ba8fd350,
         type: 3}
       propertyPath: m_Name
@@ -1051,6 +1194,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8570865715097702427, guid: 72fc567b4e9bb614ca0bf323ba8fd350,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 151.3457
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72fc567b4e9bb614ca0bf323ba8fd350, type: 3}

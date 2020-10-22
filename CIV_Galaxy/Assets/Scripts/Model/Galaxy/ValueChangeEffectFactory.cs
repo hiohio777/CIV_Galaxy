@@ -1,10 +1,12 @@
-﻿public class ValueChangeEffectFactory : BaseFactory
-{
-    private readonly ValueChangeEffect.Factory factory;
+﻿using UnityEngine;
 
-    public ValueChangeEffectFactory(ValueChangeEffect.Factory factory)
+public class ValueChangeEffectFactory : BaseFactory 
+{
+    private IGalaxyUITimer _galaxyUITimer;
+
+    private void Start()
     {
-        this.factory = factory;
+        this._galaxyUITimer = GetRegisterObject<IGalaxyUITimer>();
     }
 
     public ValueChangeEffect GetEffect()
@@ -12,8 +14,12 @@
         ValueChangeEffect buffParam;
 
         if (buffer.Count > 0) buffParam = buffer.Pop() as ValueChangeEffect;
-        else buffParam = factory.Create(Buffered);
-
+        else 
+        {
+            buffParam = InstantiateObject<ValueChangeEffect>("ValueChangeEffect");
+            buffParam.Creat(Buffered, _galaxyUITimer);
+        }
+        
         return buffParam;
     }
 }

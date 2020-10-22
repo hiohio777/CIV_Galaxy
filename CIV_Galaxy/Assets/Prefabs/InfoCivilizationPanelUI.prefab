@@ -870,6 +870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 820489fb302118447917c7f7e1474b90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRegister: 0
   artCiv: {fileID: 8743067791609035070}
   nameCiv: {fileID: 5378769281413168077}
   infoScaner: {fileID: 9179438372902911161}

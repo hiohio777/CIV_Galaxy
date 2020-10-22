@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 
 public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilizationPlayer
 {
@@ -11,16 +10,19 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
 
     private DiscoveredCivilization _discoveredCivilization;
 
-    [Inject]
-    public void InjectCivilizationPlayer(DiscoveredCivilization discoveredCivilization, SciencePanelUI sciencePanelUI,
-       ScanerPanelUI scanerPanelUI, GalacticEventGeneratorPlayer galacticEventGenerator,
-       List<AbilityUI> abilitiesUI, List<ICivilizationAl> anotherCivilization)
-    {
-        (this._discoveredCivilization, this._sciencePanelUI, this._scanerPanelUI, this.EventGenerator, this._abilitiesUI)
-        = (discoveredCivilization, sciencePanelUI, scanerPanelUI, galacticEventGenerator, abilitiesUI);
+    public override void Start()
+    { 
+        base.Start();
+        _discoveredCivilization = new DiscoveredCivilization(GetRegisterObject<MessageFactory>());
+        EventGenerator = new GalacticEventGeneratorPlayer(GetRegisterObject<IGalacticEventDisplay>(), GetRegisterObject<IGalaxyUITimer>());
 
-        _anotherCivilization = anotherCivilization;
+        _sciencePanelUI = GetRegisterObject<SciencePanelUI>();
+        _scanerPanelUI = GetRegisterObject<ScanerPanelUI>();
+        _anotherCivilization = GetRegisterObjects<ICivilizationAl>();
+        _abilitiesUI = GetRegisterObjects<AbilityUI>();
 
+        ScanerCiv.ProgressEvent += _scanerPanelUI.ProgressEvent;
+        ScienceCiv.ProgressEvent += _sciencePanelUI.ProgressEvent;
     }
 
     private AbilityUI _selectedAbility;
@@ -72,17 +74,5 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
     public override void ExicuteSciencePoints(int sciencePoints)
     {
         _sciencePanelUI.SetSciencePoints(sciencePoints, ScienceCiv.IsAvailableForStudy());
-    }
-
-    private void OnEnable()
-    {
-        ScanerCiv.ProgressEvent += _scanerPanelUI.ProgressEvent;
-        ScienceCiv.ProgressEvent += _sciencePanelUI.ProgressEvent;
-    }
-
-    private void OnDisable()
-    {
-        ScanerCiv.ProgressEvent -= _scanerPanelUI.ProgressEvent;
-        ScienceCiv.ProgressEvent -= _sciencePanelUI.ProgressEvent;
     }
 }

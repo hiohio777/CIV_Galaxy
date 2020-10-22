@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 
 public class Planet : UnitBase, IPlanet
 {
     [SerializeField] private SpriteRenderer art;
     [SerializeField] private Sprite[] spritesStars;
-
-    public class Factory : PlaceholderFactory<Action<object>, Planet> { }
 
     public Planet Initialize()
     {
@@ -20,7 +16,7 @@ public class Planet : UnitBase, IPlanet
             case 1: art.color = new Color(0.3f, 1, 1, 1); break;
             case 2: art.color = new Color(0.3f, 1, 0.3f, 1); break;
             case 3: art.color = new Color(1, 0.3f, 0.3f, 1); break;
-            default : art.color = new Color(1, 1, 1, 1); break;
+            default: art.color = new Color(1, 1, 1, 1); break;
         }
 
         art.sprite = spritesStars[UnityEngine.Random.Range(0, spritesStars.Length)];

@@ -1,10 +1,10 @@
 ﻿public class UnitAbilityFactory : BaseFactory
 {
-    private readonly UnitAbility.Factory factory;
+    private IGalaxyUITimer _galaxyUITimer;
 
-    public UnitAbilityFactory(UnitAbility.Factory factory)
+    private void Start()
     {
-        this.factory = factory;
+        this._galaxyUITimer = GetRegisterObject<IGalaxyUITimer>();
     }
 
     public IUnitAbility GetNewUnit(AttackerAbility ability, ICivilization civilization, ICivilization civilizationTarget)
@@ -12,7 +12,11 @@
         UnitAbility unit;
 
         if (buffer.Count > 0) unit = buffer.Pop() as UnitAbility;
-        else unit = factory.Create(Buffered);
+        else
+        {
+            unit = InstantiateObject<UnitAbility>("UnitAbility");
+            unit.Creat(_galaxyUITimer, Buffered);
+        }
 
         TypeDisplayAbilityEnum type;
         if (civilization is ICivilizationPlayer)

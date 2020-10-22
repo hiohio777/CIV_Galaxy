@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Zenject;
 
 public class GameSettings : PanelUI
 {
@@ -20,24 +19,14 @@ public class GameSettings : PanelUI
     private Text yearGame, countPlanet, countDominationPoints,
         countDiscoveries, countBombs, countSpaceFleet, countScientificMission;
 
-    private PlayerSettings _playerSettings;
-    private PlayerSettings _playerData;
-    private Civilizations _civilizations;
-    private Statistics _statistics;
     private CivilizationScriptable _civPlayer;
 
-    [Inject]
-    public void Inject(PlayerSettings playerSettings, PlayerSettings playerData, Civilizations civilizations, Statistics statistics)
+    public void Start()
     {
-        this._playerSettings = playerSettings;
-        this._playerData = playerData;
-        this._civilizations = civilizations;
-        this._statistics = statistics;
+        PlayerSettings.Instance.CurrentDifficult = DifficultEnum.Easy;
 
-        _playerSettings.CurrentDifficult = DifficultEnum.Easy;
-
-        Select(buttonsOpponents[(int)_playerSettings.CurrentOpponents]);
-        Select(buttonsDifficult[(int)_playerSettings.CurrentDifficult]);
+        Select(buttonsOpponents[(int)PlayerSettings.Instance.CurrentOpponents]);
+        Select(buttonsDifficult[(int)PlayerSettings.Instance.CurrentDifficult]);
     }
 
     public override void Disable()
@@ -51,10 +40,10 @@ public class GameSettings : PanelUI
 
     public void AssignOpponents(int indexButton)
     {
-        if (_playerSettings.CurrentOpponents == (OpponentsEnum)indexButton) return;
+        if (PlayerSettings.Instance.CurrentOpponents == (OpponentsEnum)indexButton) return;
 
-        RemoveSelection(buttonsOpponents[(int)_playerSettings.CurrentOpponents]);
-        _playerSettings.CurrentOpponents = (OpponentsEnum)indexButton;
+        RemoveSelection(buttonsOpponents[(int)PlayerSettings.Instance.CurrentOpponents]);
+        PlayerSettings.Instance.CurrentOpponents = (OpponentsEnum)indexButton;
         Select(buttonsOpponents[indexButton]);
 
         float size = indexButton * 0.2f + 1f;
@@ -64,13 +53,13 @@ public class GameSettings : PanelUI
 
     public void AssignDifficult(int indexButton)
     {
-        if (_playerSettings.CurrentDifficult == (DifficultEnum)indexButton) return;
+        if (PlayerSettings.Instance.CurrentDifficult == (DifficultEnum)indexButton) return;
 
-        RemoveSelection(buttonsDifficult[(int)_playerSettings.CurrentDifficult]);
-        _playerSettings.CurrentDifficult = (DifficultEnum)indexButton;
+        RemoveSelection(buttonsDifficult[(int)PlayerSettings.Instance.CurrentDifficult]);
+        PlayerSettings.Instance.CurrentDifficult = (DifficultEnum)indexButton;
         Select(buttonsDifficult[indexButton]);
 
-        SetDifficultFon(_playerSettings.CurrentDifficult);
+        SetDifficultFon(PlayerSettings.Instance.CurrentDifficult);
         DisplayRecord(_civPlayer);
     }
 
@@ -78,7 +67,7 @@ public class GameSettings : PanelUI
     {
         Action act = () =>
         {
-            switch (_playerData.CurrentOpponents)
+            switch (PlayerSettings.Instance.CurrentOpponents)
             {
                 case OpponentsEnum.Two:
                     SceneManager.LoadScene("GalaxyScene_2"); break;
@@ -101,8 +90,8 @@ public class GameSettings : PanelUI
     {
         base.Enable();
 
-        _civilizations.Refresh();
-        _civPlayer = _civilizations.GetCivilizationPlayer(_playerSettings.CurrentCivilization, false);
+        Civilizations.Instance.Refresh();
+        _civPlayer = Civilizations.Instance.GetCivilizationPlayer(PlayerSettings.Instance.CurrentCivilization, false);
         art.sprite = _civPlayer.Icon;
         nameCiv.SetKey(_civPlayer.Name);
 
@@ -111,7 +100,7 @@ public class GameSettings : PanelUI
 
     private void DisplayRecord(CivilizationScriptable civPlayer)
     {
-        var stat = _statistics.GetStatistics(civPlayer.Name, _playerSettings.CurrentDifficult, _playerSettings.CurrentOpponents);
+        var stat = Statistics.Instance.GetStatistics(civPlayer.Name, PlayerSettings.Instance.CurrentDifficult, PlayerSettings.Instance.CurrentOpponents);
         if (stat.IsRecorded)
         {
             // Есть рекорд

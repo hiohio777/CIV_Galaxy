@@ -1,9 +1,8 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
-public class MessageInfoScience : MonoBehaviour
+public class MessageInfoScience : RegisterMonoBehaviour
 {
     [SerializeField] private Image imageIcon;
     [SerializeField] private LocalisationText nameDiscovery;
@@ -15,10 +14,9 @@ public class MessageInfoScience : MonoBehaviour
     private ICivilizationPlayer _civPlayer;
     private bool isStudy = false;
 
-    [Inject]
-    public void Inject(ICivilizationPlayer civPlayer)
+    public void Start()
     {
-        this._civPlayer = civPlayer;
+        this._civPlayer = GetRegisterObject<ICivilizationPlayer>();
 
         buttonStudy.onClick.AddListener(OnStudy);
         buttonClose.onClick.AddListener(OnClose);

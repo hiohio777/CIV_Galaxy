@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Zenject;
 
-public class SciencePanelUI : MonoBehaviour, IPointerClickHandler
+public class SciencePanelUI : RegisterMonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Image indicator;
     [SerializeField] private GameObject IconAccessible;
@@ -11,10 +10,9 @@ public class SciencePanelUI : MonoBehaviour, IPointerClickHandler
 
     private SciencePlayerUI _sciencePlayerUI;
 
-    [Inject]
-    public void Inject(SciencePlayerUI sciencePlayerUI)
+    public void Start()
     {
-        this._sciencePlayerUI = sciencePlayerUI;
+        this._sciencePlayerUI = GetRegisterObject<SciencePlayerUI>();
     }
 
     public void SetSciencePoints(int points, bool isAccessible)

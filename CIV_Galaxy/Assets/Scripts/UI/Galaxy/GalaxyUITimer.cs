@@ -2,9 +2,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
-public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
+public class GalaxyUITimer : RegisterMonoBehaviour, IGalaxyUITimer
 {
     [SerializeField] private Button buttonPause, buttonUpSpeed, buttonDownSpeed;
     [SerializeField] private Text textTimer, textSpeed;
@@ -25,10 +24,9 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
     public float GetYears => years;
     public float GetSpeed => speedGame;
 
-    [Inject]
-    public void InjectCivilizationPlayer(ICivilizationPlayer civilizationPlayer)
+    public void Start()
     {
-        this._civilizationPlayer = civilizationPlayer;
+        this._civilizationPlayer = GetRegisterObject<ICivilizationPlayer>();
 
         buttonPause.onClick.AddListener(OnPause);
         buttonUpSpeed.onClick.AddListener(OnUpSpeed);
@@ -45,7 +43,7 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
     {
         if (IsPause = active)
         {
-            if(message != string.Empty)
+            if (message != string.Empty)
             {
                 messagePause.SetActive(true);
                 messagePause.SetKey(message);
@@ -66,7 +64,7 @@ public class GalaxyUITimer : MonoBehaviour, IGalaxyUITimer
 
     private void OnDownSpeed()
     {
-        buttonUpSpeed.image.enabled = true; 
+        buttonUpSpeed.image.enabled = true;
         switch (speedGame)
         {
             case 1f: speedGame = 0.5f; buttonDownSpeed.image.enabled = false; break;

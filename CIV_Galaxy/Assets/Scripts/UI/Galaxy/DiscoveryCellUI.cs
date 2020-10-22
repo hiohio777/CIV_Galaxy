@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Zenject;
 
 public class DiscoveryCellUI : MonoBehaviour, IPointerClickHandler
 {
@@ -9,19 +8,32 @@ public class DiscoveryCellUI : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Color colorResearch, colorAvailable, colorAvailablePrice;
     private Image imageDiscovery;
     private DiscoveryCell _discoveryCellData;
+    private MessageInfoScience _messageInfoScience;
 
-    public class Factory : PlaceholderFactory<DiscoveryCell, DiscoveryCellUI> { }
-
-    [Inject]
-    public void Inject(DiscoveryCell discoveryCell)
+    public DiscoveryCellUI Creat(DiscoveryCell discoveryCell, MessageInfoScience messageInfoScience, Transform transformParent)
     {
         this._discoveryCellData = discoveryCell;
         _discoveryCellData.AvailableUI += DiscoveryCell_AvailableUI;
         _discoveryCellData.ResearchUI += DiscoveryCell_ResearchUI;
 
+        _messageInfoScience = messageInfoScience;
+        transform.transform.SetParent(transformParent, false);
         name = _discoveryCellData.name;
+
+        return this;
     }
-    public MessageInfoScience MessageInfoScience { get; set; }
+
+    public void Initialize()
+    {
+        transform.localPosition = _discoveryCellData.transform.localPosition;
+        researchCost.text = _discoveryCellData.ResearchCost.ToString();
+        imageDiscovery = GetComponent<Image>();
+        imageDiscovery.sprite = _discoveryCellData.SpriteIcon;
+
+        DiscoveryCell_AvailableUI(_discoveryCellData.IsAvailable);
+        if (_discoveryCellData.IsResearch)
+            DiscoveryCell_ResearchUI();
+    }
 
     public void CheckPrice(int sciencePoints)
     {
@@ -42,7 +54,7 @@ public class DiscoveryCellUI : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         // Посмотреть информацию и выбрать для изучения
-        MessageInfoScience.Show(_discoveryCellData);
+        _messageInfoScience.Show(_discoveryCellData);
     }
 
     private void DiscoveryCell_AvailableUI(bool isAvailable)
@@ -55,17 +67,5 @@ public class DiscoveryCellUI : MonoBehaviour, IPointerClickHandler
     {
         imageDiscovery.color = colorResearch;
         researchCost.gameObject.SetActive(false);
-    }
-
-    private void Awake()
-    {
-        transform.localPosition = _discoveryCellData.transform.localPosition;
-        researchCost.text = _discoveryCellData.ResearchCost.ToString();
-        imageDiscovery = GetComponent<Image>();
-        imageDiscovery.sprite = _discoveryCellData.SpriteIcon;
-
-        DiscoveryCell_AvailableUI(_discoveryCellData.IsAvailable);
-        if (_discoveryCellData.IsResearch)
-            DiscoveryCell_ResearchUI();
     }
 }

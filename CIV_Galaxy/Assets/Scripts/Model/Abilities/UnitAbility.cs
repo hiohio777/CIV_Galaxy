@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using Zenject;
 
 public class UnitAbility : UnitBase, IUnitAbility
 {
@@ -10,9 +9,10 @@ public class UnitAbility : UnitBase, IUnitAbility
     private IGalaxyUITimer _galaxyUITimer;
     private float currentTimeTrail;
 
-    [Inject]
-    public void Inject(IGalaxyUITimer galaxyUITimer)
+    public void Creat(IGalaxyUITimer galaxyUITimer, Action<object> buffered)
     {
+        Creat(buffered);
+
         _galaxyUITimer = galaxyUITimer;
         _galaxyUITimer.PauseAct += _galaxyUITimer_PauseAct;
         _galaxyUITimer.SpeedAct += _galaxyUITimer_SpeedAct;
@@ -29,8 +29,6 @@ public class UnitAbility : UnitBase, IUnitAbility
         if (_galaxyUITimer.IsPause == false)
             trail.time = currentTimeTrail / speed;
     }
-
-    public class Factory : PlaceholderFactory<Action<object>, UnitAbility> { }
 
     public ICivilization TargetCiv { get; private set; }// Целевая цивилизация
     public UnitAbility Initialize(AttackerAbility ability, Vector3 startPosition, ICivilization targetCiv, TypeDisplayAbilityEnum type)

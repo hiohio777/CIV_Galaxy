@@ -1,16 +1,14 @@
 ﻿using System.Collections.Generic;
 
-public class AbilityFactory
+public class AbilityFactory : RegisterMonoBehaviour
 {
     private UnitAbilityFactory _unitAbilityFactor;
     private PlanetsFactory _planetsFactory;
-    private IGalaxyUITimer _galaxyUITimer;
 
-    public AbilityFactory(PlanetsFactory planetsFactory, UnitAbilityFactory unitAbilityFactor, IGalaxyUITimer galaxyUITimer)
+    public void Start()
     {
-        this._planetsFactory = planetsFactory;
-        this._unitAbilityFactor = unitAbilityFactor;
-        this._galaxyUITimer = galaxyUITimer;
+        this._planetsFactory = GetRegisterObject<PlanetsFactory>();
+        this._unitAbilityFactor = GetRegisterObject<UnitAbilityFactory>(); 
     }
 
     public List<IAbility> GetAbilities(ICivilization civilization)

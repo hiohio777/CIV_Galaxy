@@ -1,30 +1,26 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Zenject;
 
-public class CivilizationFromPlayerSelect : MonoBehaviour, IPointerClickHandler
+public class CivilizationFromPlayerSelect : MonoBehaviour
 {
     [SerializeField] private Image fon, art;
     [SerializeField] private LocalisationText nameCiv;
     [SerializeField] private CivilizationScriptable civData;
 
     private MainSceneUI _mainSceneUI;
-    private PlayerSettings _playerData;
 
-    [Inject]
-    public void Inject(MainSceneUI mainSceneUI, PlayerSettings playerData)
+    private void Awake()
     {
-        this._mainSceneUI = mainSceneUI;
-        this._playerData = playerData;
-
+        _mainSceneUI = GetComponentInParent<MainSceneUI>();
+        GetComponent<Button>().onClick.AddListener(OnSelect);
         art.sprite = civData.Icon;
         nameCiv.SetKey(civData.Name);
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    private void OnSelect()
     {
-        _playerData.CurrentCivilization = civData.Name;
+        PlayerSettings.Instance.CurrentCivilization = civData.Name;
         _mainSceneUI.StartUI("GameSettings");
     }
 }

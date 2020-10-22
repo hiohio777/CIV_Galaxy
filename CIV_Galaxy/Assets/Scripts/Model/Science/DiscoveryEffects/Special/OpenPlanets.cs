@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using Zenject;
+﻿using UnityEngine;
 
 /// <summary>
 /// Одномоментное открытие определённого количества планет
@@ -24,7 +22,7 @@ public class OpenPlanets : MonoBehaviour, IDiscoveryEffects
     public string GetInfo()
     {
         string info = $"{LocalisationGame.Instance.GetLocalisationString("if_galaxy_has_not_been_fully")}\r\n+{minPlanet}";
-        if(maxPlanet > 0) info = $" - {minPlanet + maxPlanet}\r\n";
+        if (maxPlanet > 0) info = $" - {minPlanet + maxPlanet}\r\n";
         return info;
     }
 }

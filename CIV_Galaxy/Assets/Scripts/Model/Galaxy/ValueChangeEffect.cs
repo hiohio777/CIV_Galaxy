@@ -1,12 +1,11 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
 public class ValueChangeEffect : MonoBehaviour
 {
     [SerializeField] private Color buffUp, debuff;
-    [SerializeField] private Vector3 startPosition;
+    [SerializeField] private Vector3 startPosition; 
     private Text _textCount;
     private Animator _animator;
     private Action<object> _buffered;
@@ -14,10 +13,7 @@ public class ValueChangeEffect : MonoBehaviour
     private IGalaxyUITimer _galaxyUITimer;
     private Action _finishAct;
 
-    public class Factory : PlaceholderFactory<Action<object>, ValueChangeEffect> { }
-
-    [Inject]
-    public void Inject(Action<object> buffered, IGalaxyUITimer galaxyUITimer)
+    public void Creat(Action<object> buffered, IGalaxyUITimer galaxyUITimer)
     {
         this._buffered = buffered;
         this._galaxyUITimer = galaxyUITimer;

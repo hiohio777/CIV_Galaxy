@@ -2,7 +2,7 @@
 {
     private IGalacticEventDisplay _galacticEventDisplay;
 
-    public GalacticEventGeneratorPlayer(IGalacticEventDisplay galacticEventDisplay)
+    public GalacticEventGeneratorPlayer(IGalacticEventDisplay galacticEventDisplay, IGalaxyUITimer galaxyUITimer) : base(galaxyUITimer)
     {
         this._galacticEventDisplay = galacticEventDisplay;
     }
