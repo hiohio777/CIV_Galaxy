@@ -38,7 +38,9 @@ public class MainSceneUI : MonoBehaviour
             isFirstStartGame = false;
         }
         else
+        {
             current = panelsUI["GameSettings"];
+        }
 
         current.Enable();
     }

@@ -32,8 +32,8 @@ public class GameSettings : PanelUI
     public override void Disable()
     {
         base.Disable();
-        AssignDifficult(0);
-        AssignOpponents(0);
+        ExecuteAssignDifficult(0);
+        ExecuteAssignOpponents(0);
     }
 
     public void SetDifficultFon(DifficultEnum difficult) => galaxyFon.sprite = galaxyFonSprite[(int)difficult];
@@ -42,25 +42,14 @@ public class GameSettings : PanelUI
     {
         if (PlayerSettings.Instance.CurrentOpponents == (OpponentsEnum)indexButton) return;
 
-        RemoveSelection(buttonsOpponents[(int)PlayerSettings.Instance.CurrentOpponents]);
-        PlayerSettings.Instance.CurrentOpponents = (OpponentsEnum)indexButton;
-        Select(buttonsOpponents[indexButton]);
-
-        float size = indexButton * 0.2f + 1f;
-        imageArtGalaxy.StartResize(new Vector3(size, size, size), 0.5f);
-        DisplayRecord(_civPlayer);
+        ExecuteAssignOpponents(indexButton);
     }
 
     public void AssignDifficult(int indexButton)
     {
         if (PlayerSettings.Instance.CurrentDifficult == (DifficultEnum)indexButton) return;
 
-        RemoveSelection(buttonsDifficult[(int)PlayerSettings.Instance.CurrentDifficult]);
-        PlayerSettings.Instance.CurrentDifficult = (DifficultEnum)indexButton;
-        Select(buttonsDifficult[indexButton]);
-
-        SetDifficultFon(PlayerSettings.Instance.CurrentDifficult);
-        DisplayRecord(_civPlayer);
+        ExecuteAssignDifficult(indexButton);
     }
 
     public void StartGalaxyScene()
@@ -95,6 +84,9 @@ public class GameSettings : PanelUI
         art.sprite = _civPlayer.Icon;
         nameCiv.SetKey(_civPlayer.Name);
 
+        ExecuteAssignDifficult((int)PlayerSettings.Instance.CurrentDifficult);
+        ExecuteAssignOpponents((int)PlayerSettings.Instance.CurrentOpponents);
+
         DisplayRecord(_civPlayer);
     }
 
@@ -128,5 +120,24 @@ public class GameSettings : PanelUI
         button.GetComponentInChildren<Text>().color = new Color(0.8f, 0.8f, 0.8f, 1); ;
     }
 
+    private void ExecuteAssignDifficult(int indexButton)
+    {
+        RemoveSelection(buttonsDifficult[(int)PlayerSettings.Instance.CurrentDifficult]);
+        PlayerSettings.Instance.CurrentDifficult = (DifficultEnum)indexButton;
+        Select(buttonsDifficult[indexButton]);
 
+        SetDifficultFon(PlayerSettings.Instance.CurrentDifficult);
+        DisplayRecord(_civPlayer);
+    }
+
+    private void ExecuteAssignOpponents(int indexButton)
+    {
+        RemoveSelection(buttonsOpponents[(int)PlayerSettings.Instance.CurrentOpponents]);
+        PlayerSettings.Instance.CurrentOpponents = (OpponentsEnum)indexButton;
+        Select(buttonsOpponents[indexButton]);
+
+        float size = indexButton * 0.2f + 1f;
+        imageArtGalaxy.StartResize(new Vector3(size, size, size), 0.5f);
+        DisplayRecord(_civPlayer);
+    }
 }
