@@ -7,9 +7,8 @@ public class MyCanvas : MonoBehaviour
     private void Awake()
     {
         var canvas = GetComponent<Canvas>();
-
-        canvas.sortingLayerName = sortingLayerName.ToString();
         canvas.worldCamera = Camera.main;
+        canvas.sortingLayerName = sortingLayerName.ToString();
     }
 }
 
