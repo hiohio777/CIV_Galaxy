@@ -1,5 +1,9 @@
-﻿public class UnitAbilityFactory : BaseFactory
+﻿using UnityEngine;
+
+public class UnitAbilityFactory : BaseFactory
 {
+    [SerializeField] private UnitAbility prefab;
+
     private IGalaxyUITimer _galaxyUITimer;
 
     private void Start()
@@ -14,7 +18,7 @@
         if (buffer.Count > 0) unit = buffer.Pop() as UnitAbility;
         else
         {
-            unit = InstantiateObject<UnitAbility>("UnitAbility");
+            unit = InstantiateObject(prefab);
             unit.Creat(_galaxyUITimer, Buffered);
         }
 

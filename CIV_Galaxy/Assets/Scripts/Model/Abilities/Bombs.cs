@@ -18,7 +18,7 @@ public class Bombs : AttackerAbility
 
     public override bool Apply(ICivilization civilizationTarget)
     {
-        StartAttack(civilizationTarget);
+        StartAbility(civilizationTarget);
         return true;
     }
 
@@ -27,7 +27,7 @@ public class Bombs : AttackerAbility
         var target = diplomacyCiv.FindEnemy(this);
         if (target != null)
         {
-            StartAttack(target); // Цель найдена
+            StartAbility(target); // Цель найдена
             return true;
         }
         else return false;

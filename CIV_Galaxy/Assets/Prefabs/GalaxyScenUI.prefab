@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -137,6 +138,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.32166532, b: 0.27843142, a: 0.33333334}
   m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -218,7 +220,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8157961634398486341}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -248,6 +250,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.2783019, g: 0.63090914, b: 1, a: 1}
   m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -358,9 +361,9 @@ RectTransform:
   - {fileID: 3388834301025894627}
   - {fileID: 1727928420348088467}
   - {fileID: 4746058327509935235}
+  - {fileID: 5518253784303774833}
   - {fileID: 8585481122916052857}
   - {fileID: 2607552184724301433}
-  - {fileID: 5518253784303774833}
   - {fileID: 5259965093418327475}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -462,6 +465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRegister: 1
+  musicScene: {fileID: 8300000, guid: 953ca09a6e0515349864485e92c05e82, type: 3}
 --- !u!114 &1630231165867566573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,8 +479,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRegister: 1
-  allPlanet: 30
-  endGametime: 0
+  allPlanet: 2500
+  endGametime: 360
 --- !u!114 &6632846541473747234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -516,6 +520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRegister: 1
+  prefab: {fileID: 4290281074228729109, guid: d16eb0d097cd5d94388543cb75b42beb, type: 3}
 --- !u!114 &1339064006000338654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,6 +568,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRegister: 1
+  messageDiscoveredCivilizationPrefab: {fileID: 8736071209845058632, guid: 2cce9c1c1c5e357459fd0e78ff733c01,
+    type: 3}
+  messageStartGamePrefab: {fileID: 6171390532663764568, guid: 904479440d746a74d8792c511bf9be59,
+    type: 3}
+  messageBackMainMenuPrefab: {fileID: 4659019203310521237, guid: 41358cd17be67034caa35c57b76f98fe,
+    type: 3}
 --- !u!114 &832908333875660097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -589,6 +600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRegister: 1
+  prefab: {fileID: 9105073364687140431, guid: cebdcc0e6bc7a3c499fdfde0d35683f2, type: 3}
 --- !u!1 &9037289826682166278
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,6 +661,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.37970796, g: 0.3726415, b: 1, a: 1}
   m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -857,7 +870,7 @@ PrefabInstance:
     - target: {fileID: 8852402272823414047, guid: 677f92fce7c34c74c91cbc9bc6a8a5fe,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8852402272823414047, guid: 677f92fce7c34c74c91cbc9bc6a8a5fe,
         type: 3}
@@ -977,7 +990,7 @@ PrefabInstance:
     - target: {fileID: 1998899084634605219, guid: eab8238891b6c7743bbec39c0e3b9bda,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1998899084634605219, guid: eab8238891b6c7743bbec39c0e3b9bda,
         type: 3}
@@ -1044,21 +1057,10 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4679893292254678866, guid: eab8238891b6c7743bbec39c0e3b9bda,
-        type: 3}
-      propertyPath: discoveryCellUIPrefab
-      value: 
-      objectReference: {fileID: 6998028955566685122, guid: 2860ea3bcfa571248ae8c005b0047e9b,
-        type: 3}
     - target: {fileID: 5866438002664548921, guid: eab8238891b6c7743bbec39c0e3b9bda,
         type: 3}
       propertyPath: m_Name
       value: SciencePlayerUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 5866438002664548921, guid: eab8238891b6c7743bbec39c0e3b9bda,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eab8238891b6c7743bbec39c0e3b9bda, type: 3}

@@ -30,7 +30,7 @@ public class SpaceFleet : AttackerAbility
         var target = diplomacyCiv.FindEnemy(this);
         if (target != null)
         {
-            StartAttack(target); // Цель найдена
+            StartAbility(target); // Цель найдена
             return true;
         }
         else return false;
@@ -55,7 +55,7 @@ public class SpaceFleet : AttackerAbility
             && civ.DiplomacyCiv.GetRelationsPlayer() != DiplomaticRelationsEnum.Cooperation)
         {
 
-            StartAttack(civilizationTarget);
+            StartAbility(civilizationTarget);
             return true;
         }
 

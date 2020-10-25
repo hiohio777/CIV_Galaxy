@@ -40,8 +40,9 @@ public class CounterEndGame : RegisterMonoBehaviour
             if (_endGametime <= 0)
             {
                 // Время истекло, конец игры
+                _galaxyUITimer.ExecuteOfTime -= ExecuteOnTimeEvent;
                 _messadgeTime.text = string.Empty;
-                Instantiate(endGameUIPrefab);
+                Instantiate(endGameUIPrefab).Show();
             }
         }
     }

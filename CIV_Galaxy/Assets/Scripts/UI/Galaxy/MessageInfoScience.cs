@@ -13,6 +13,7 @@ public class MessageInfoScience : RegisterMonoBehaviour
     private DiscoveryCell _discoveryCell;
     private ICivilizationPlayer _civPlayer;
     private bool isStudy = false;
+    private AudioSourceGame _audioSourceGame;
 
     public void Start()
     {
@@ -22,6 +23,7 @@ public class MessageInfoScience : RegisterMonoBehaviour
         buttonClose.onClick.AddListener(OnClose);
 
         _animator = GetComponent<Animator>();
+        _audioSourceGame = GetComponent<AudioSourceGame>();
     }
 
 
@@ -50,6 +52,7 @@ public class MessageInfoScience : RegisterMonoBehaviour
         }
 
         gameObject.SetActive(true);
+        _audioSourceGame.PlayOneShot(0, 0.5f);
         _animator.SetTrigger("DisplayMessage");
     }
 
@@ -69,6 +72,7 @@ public class MessageInfoScience : RegisterMonoBehaviour
     private void OnStudy()
     {
         _animator.SetTrigger("CloseMessage");
+        _audioSourceGame.PlayOneShot(0, 0.5f);
         buttonStudy.interactable = buttonClose.interactable = false;
         isStudy = true;
     }
@@ -76,6 +80,7 @@ public class MessageInfoScience : RegisterMonoBehaviour
     private void OnClose()
     {
         _animator.SetTrigger("CloseMessage");
+        _audioSourceGame.PlayOneShot(0, 0.5f);
         buttonStudy.interactable = buttonClose.interactable = false;
         isStudy = false;
     }

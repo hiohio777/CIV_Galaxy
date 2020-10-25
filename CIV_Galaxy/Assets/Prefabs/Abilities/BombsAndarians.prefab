@@ -50,5 +50,7 @@ MonoBehaviour:
   countUnits: 2
   size: 1
   timeTrail: 0.5
+  startAbilityAudioClip: {fileID: 8300000, guid: 5c7112828f512441f88a38364a8552b0,
+    type: 3}
   minAttackIndustry: 1
   randomAttackIndustry: 10

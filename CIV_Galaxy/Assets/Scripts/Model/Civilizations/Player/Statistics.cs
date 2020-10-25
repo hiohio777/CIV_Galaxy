@@ -10,55 +10,63 @@ using UnityEngine.UI;
 
 public class Statistics
 {
-    private static readonly Statistics _instance = new Statistics();
-    public static Statistics Instance => _instance;
+    private static Statistics instance;
+    public static Statistics Instance {
+        get {
+            if (instance == null)
+                return instance = new Statistics();
+            return instance;
+        }
+    }
 
     private Dictionary<string, List<StatisticsData>> data;
+    private string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "Statistics.dat");
 
     private Statistics()
     {
         LoadDate();
     }
 
-    public void SaveDate()
-    {
-        //var formatter = new BinaryFormatter(); // создаем объект BinaryFormatter
-        //using (var fs = new FileStream(PATH, FileMode.OpenOrCreate))
-        //{
-        //    formatter.Serialize(fs, data);
-        //}
-
-        
-    }
-
     public StatisticsData GetStatistics(string nameCiv, DifficultEnum difficult, OpponentsEnum opponents) =>
         data[nameCiv].Where(x => x.Difficult == difficult && x.Opponents == opponents).FirstOrDefault();
 
-    private void LoadDate()
+    public void SaveDate()
     {
-        if (Application.platform == RuntimePlatform.WindowsEditor)
+        switch (Application.platform)
+        {
+            case RuntimePlatform.WindowsPlayer:
+            case RuntimePlatform.WindowsEditor:
+                var formatter = new BinaryFormatter(); // создаем объект BinaryFormatter
+                using (var fs = new FileStream(filePath, FileMode.OpenOrCreate))
+                {
+                    formatter.Serialize(fs, data);
+                }
+                break;
+            case RuntimePlatform.Android:
+                var jsonString = "";// JsonConvert.SerializeObject(data);
+                PlayerPrefs.SetString("Statistics", jsonString);
+                PlayerPrefs.Save();
+                break;
+        }
+    }
 
-            switch (Application.platform)
-            {
-                case RuntimePlatform.WindowsPlayer:
-                case RuntimePlatform.WindowsEditor:
-                    LoadFromWindows();
-                    break;
-                case RuntimePlatform.Android:
-                    break;
-                default:
-                    CreateNew();
-                    break;
-            }
+    public void LoadDate()
+    {
+        switch (Application.platform)
+        {
+            case RuntimePlatform.WindowsPlayer:
+            case RuntimePlatform.WindowsEditor: LoadFromWindows(); break;
+            case RuntimePlatform.Android: LoadFromAndroid(); break;
+            default: CreateNew(); break;
+        }
     }
 
     private void LoadFromWindows()
     {
-        string PATH = $"{Application.dataPath}/StreamingAssets/Statistics.dat";
-        if (File.Exists(PATH))
+        if (File.Exists(filePath))
         {
             var formatter = new BinaryFormatter(); // создаем объект BinaryFormatter
-            using (var fs = new FileStream($"{PATH}", FileMode.Open))
+            using (var fs = new FileStream(filePath, FileMode.Open))
             {
                 data = (Dictionary<string, List<StatisticsData>>)formatter.Deserialize(fs);
             }
@@ -72,24 +80,14 @@ public class Statistics
 
     private void LoadFromAndroid()
     {
-        string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "Settings.txt");
-        UnityWebRequest wwwfile = new UnityWebRequest(filePath);
-
-        if (string.IsNullOrEmpty(wwwfile.error))
+        string result = PlayerPrefs.GetString("Statistics", "");
+        if (result != "")
         {
-            // Данные не обнаружены
+            //data = JsonConvert.DeserializeObject<Dictionary<string, List<StatisticsData>>>(result);
             CreateNew();
-            return;
         }
-
-        while (!wwwfile.isDone) { } // Ожидание загрузки данных
-
-        // десериализация
-        var formatter = new BinaryFormatter(); // создаем объект BinaryFormatter
-        using (var fs = new MemoryStream(wwwfile.downloadHandler.data))
-        {
-            data = (Dictionary<string, List<StatisticsData>>)formatter.Deserialize(fs);
-        }
+        else
+            CreateNew();
     }
 
     /// <summary>

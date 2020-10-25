@@ -3,6 +3,7 @@
 public abstract class CivilizationBase : RegisterMonoBehaviour, ICivilization
 {
     [SerializeField] protected CivilizationUI civilizationUI;
+    protected AudioSourceGame _audioSourceGame;
     protected bool isAssign = false; // Назначена ли цивилизация
     private InfoCivilizationPanelUI _infoCivilizationPanelUI;
     private ShakeObject _shakeObject;
@@ -11,6 +12,7 @@ public abstract class CivilizationBase : RegisterMonoBehaviour, ICivilization
 
     public virtual void Start()
     {
+        _audioSourceGame = GetComponent<AudioSourceGame>();
         _infoCivilizationPanelUI = GetRegisterObject<InfoCivilizationPanelUI>();
         var timerUI = GetRegisterObject<IGalaxyUITimer>();
 
@@ -34,7 +36,6 @@ public abstract class CivilizationBase : RegisterMonoBehaviour, ICivilization
     public LeaderEnum Lider { get; protected set; } = LeaderEnum.Lagging;
     public Vector2 PositionCiv { get; private set; }
     public CivilizationScriptable DataBase { get; private set; }
-
     public CivilizationData CivData { get; private set; }
     public Scanner ScanerCiv { get; private set; }
     public Industry IndustryCiv { get; private set; }
@@ -76,6 +77,11 @@ public abstract class CivilizationBase : RegisterMonoBehaviour, ICivilization
     {
         Lider = leaderEnum;
         civilizationUI.SetAdvancedDomination(leaderEnum);
+    }
+
+    public virtual void AddCountPlanet(int count, bool isAdd = false)
+    {
+        CivUI.SetCountPlanet(count);
     }
 
     public abstract void ExicuteScanning();

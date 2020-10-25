@@ -16,7 +16,7 @@ public interface ICivilization
     void Assign(CivilizationScriptable civData);
     bool IsOpen { get; }
     LeaderEnum Lider { get; }
-
+    void AddCountPlanet(int count, bool v);
     void Shake(float duration, float power);
     void ExicuteSpecialEffect(Sprite spriteEffect, EffectEnum effectEnum = EffectEnum.SpecialEffect_0);
     void ExicuteScanning();

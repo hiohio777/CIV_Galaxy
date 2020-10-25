@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class PanelUI : MonoBehaviour
+public class PanelUI : NoRegisterMonoBehaviour
 {
     public static Action<string> startNewPanelUI;
     public static Action finishDisableUI;

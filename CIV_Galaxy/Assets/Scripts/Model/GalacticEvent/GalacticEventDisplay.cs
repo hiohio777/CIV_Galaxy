@@ -16,11 +16,13 @@ public class GalacticEventDisplay : RegisterMonoBehaviour, IGalacticEventDisplay
     private Action _execute;
     private Vector3 _positionTarget;
     private IGalaxyUITimer _galaxyUITimer;
+    private AudioSourceGame _audioSourceGame;
 
     public void Start()
     {
         this._galaxyUITimer = GetRegisterObject<IGalaxyUITimer>();
         _fon = GetComponent<SpriteRenderer>();
+        _audioSourceGame = GetComponent<AudioSourceGame>();
     }
 
     public void Show(Action execute, GalaxyTypeEventEnum typeEvent)
@@ -43,8 +45,9 @@ public class GalacticEventDisplay : RegisterMonoBehaviour, IGalacticEventDisplay
         isActive = false;
         gameObject.SetActive(true);
 
-        transform.position = new Vector3(UnityEngine.Random.Range(-50f, 50f), UnityEngine.Random.Range(-50f, 50f), 0);
+        _audioSourceGame.PlayOneShot(0);
 
+        transform.position = new Vector3(UnityEngine.Random.Range(-50f, 50f), UnityEngine.Random.Range(-50f, 50f), 0);
         var startPosition = new Vector3(UnityEngine.Random.Range(-400, 400), UnityEngine.Random.Range(-50, 350), 0);
         moving.SetScale(2.5f, 0.4f).SetPosition(startPosition, 0.4f).Run(() => StartCoroutine(WaitAfter()));
     }
@@ -94,6 +97,7 @@ public class GalacticEventDisplay : RegisterMonoBehaviour, IGalacticEventDisplay
         {
             isActive = false;
             StopAllCoroutines();
+            _audioSourceGame.PlayOneShot(1);
 
             moving.SetScale(1f, 0.2f).SetPosition(_positionTarget, 0.3f).Run(EndExecuteEvent);
         }

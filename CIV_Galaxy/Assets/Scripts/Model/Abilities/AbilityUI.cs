@@ -2,6 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSourceGame))]
 public class AbilityUI : RegisterMonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Image fon, artIndicator, frame;
@@ -42,6 +43,7 @@ public class AbilityUI : RegisterMonoBehaviour, IPointerClickHandler
         {
             Select(false);
             _galaxyUITimer.SetPause(false);
+
             return true;
         }
 

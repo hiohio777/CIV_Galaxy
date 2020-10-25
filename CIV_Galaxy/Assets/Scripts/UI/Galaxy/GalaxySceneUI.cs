@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class GalaxySceneUI : RegisterMonoBehaviour
 {
+    [SerializeField, Space(10)] private AudioClip musicScene;
     private Animator _animator;
     private ICivilizationPlayer _civPlayer;
     private List<ICivilizationAl> _civsAl;
@@ -37,12 +38,14 @@ public class GalaxySceneUI : RegisterMonoBehaviour
 
     public void BackMainScene()
     {
-        ObjectRegister.InstanceReg.Clear(); // Очистить все обьекты сцены
+        GameManager.Instance.Clear(); // Очистить все обьекты сцены
         SceneManager.LoadScene("MainScene");
     }
 
     public void InitializeNewGame()
     {
+        PlayNewMusic(musicScene);
+
         Civilizations.Instance.Refresh();
 
         // Создание цивилизаций

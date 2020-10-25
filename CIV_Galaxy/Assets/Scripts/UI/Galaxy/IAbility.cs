@@ -9,6 +9,7 @@ public interface IAbility
     Sprite Fon { get; }
     Sprite Frame { get; }
     int CountUses { get; }
+    AudioClip StartAbilityAudioClip { get; }
 
     void Initialize(ICivilization civilization);
     bool ApplyAl(Diplomacy diplomacyCiv);

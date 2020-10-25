@@ -17,7 +17,7 @@ public class CivilizationData
         _difficultSettings = PlayerSettings.Instance.GetDifficultSettings;
     }
 
-    public int Planets { get => _planets; set { _planets = value; _civilization.CivUI.SetCountPlanet(_planets); } }
+    public int Planets { get => _planets; set { _civilization.AddCountPlanet(value, _planets < value); _planets = value; } }
     public float DominationPoints {
         get => _dominationPoints; set {
             _dominationPoints = value;

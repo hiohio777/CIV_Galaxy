@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class MovingObject : RegisterMonoBehaviour
+public class MovingObject : NoRegisterMonoBehaviour
 {
     private Transform _transform;
     private Action execute, positionAnimation, scaleAnimation;

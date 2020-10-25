@@ -11,6 +11,7 @@ public class MessageDiscoveredCivilization : MonoBehaviour
     private Action _actWelcome;
     private IGalaxyUITimer _galaxyUITimer;
     private Animator _animator;
+    private AudioSourceGame _audioSourceGame;
 
     public MessageDiscoveredCivilization Show(IGalaxyUITimer galaxyUITimer, CivilizationScriptable civData, Action actWelcome)
     {
@@ -27,6 +28,8 @@ public class MessageDiscoveredCivilization : MonoBehaviour
         _galaxyUITimer.SetPause(true, string.Empty);
         _animator.SetTrigger("DisplayMessage");
 
+        _audioSourceGame = GetComponent<AudioSourceGame>();
+        _audioSourceGame.PlayOneShot(0, 0.5f);
         return this;
     }
 
@@ -41,6 +44,7 @@ public class MessageDiscoveredCivilization : MonoBehaviour
 
     private void OnWelcome()
     {
+        _audioSourceGame.PlayOneShot(0, 0.5f);
         _animator.SetTrigger("CloseMessage");
 
         welcome.interactable = false;

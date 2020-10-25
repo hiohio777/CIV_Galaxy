@@ -11,7 +11,7 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
     private DiscoveredCivilization _discoveredCivilization;
 
     public override void Start()
-    { 
+    {
         base.Start();
         _discoveredCivilization = new DiscoveredCivilization(GetRegisterObject<MessageFactory>());
         EventGenerator = new GalacticEventGeneratorPlayer(GetRegisterObject<IGalacticEventDisplay>(), GetRegisterObject<IGalaxyUITimer>());
@@ -62,11 +62,13 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
             else _abilitiesUI[i].gameObject.SetActive(false);
         }
 
+        DefineLeader(LeaderEnum.Leader);
         IsOpen = true;
     }
 
     public override void ExicuteScanning()
     {
+        _audioSourceGame.PlayOneShot(1, 1);
         civilizationUI.ScanerEffect();
         _discoveredCivilization.DiscoverAnotherCiv(this, _anotherCivilization);
     }
@@ -74,5 +76,13 @@ public class CivilizationPlayer : CivilizationBase, ICivilization, ICivilization
     public override void ExicuteSciencePoints(int sciencePoints)
     {
         _sciencePanelUI.SetSciencePoints(sciencePoints, ScienceCiv.IsAvailableForStudy());
+    }
+
+    public override void AddCountPlanet(int count, bool isAdd)
+    {
+        if (isAdd) _audioSourceGame.PlayOneShot(0, 0.9f);
+        else _audioSourceGame.PlayOneShot(2, 0.9f);
+
+        base.AddCountPlanet(count);
     }
 }

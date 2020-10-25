@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AttackerAbility : MonoBehaviour, IAbility
+public abstract class AttackerAbility : NoRegisterMonoBehaviour, IAbility
 {
     [SerializeField] private Sprite spriteArtFon, spriteArt, frame;
     [SerializeField, Space(10)] protected float speedUnits = 5f;
@@ -9,18 +9,21 @@ public abstract class AttackerAbility : MonoBehaviour, IAbility
     [SerializeField, Header("Величина при появлении")] private float size = 1.5f;
     [SerializeField, Header("Длина огненного следа")] private float timeTrail = 0.5f;
 
+    // Звуки
+    [SerializeField, Space(10)] private AudioClip startAbilityAudioClip;
+
     protected string GetInfoCountUnits => $"{LocalisationGame.Instance.GetLocalisationString("units")}: <color=lime>{countUnits}</color>\r\n";
 
     private UnitAbilityFactory _unitFactory;
     public int CountUses { get; private set; } = 0; // Сколько раз за игру была использована абилка(имеет значение каждый корабль)
 
-
+    // Количество запускаемых юнитов за раз
     public int CountUnits {
         get => countUnits; set {
             countUnits = value;
             if (countUnits <= 0) countUnits = 1;
         }
-    } // Количество запускаемых юнитов за раз
+    } 
 
     protected ICivilization ThisCivilization { get; private set; }
 
@@ -30,6 +33,7 @@ public abstract class AttackerAbility : MonoBehaviour, IAbility
     public Sprite Art => spriteArt;
     public Sprite Frame => frame;
     public float TimeTrail => timeTrail;
+    public AudioClip StartAbilityAudioClip => startAbilityAudioClip;
 
     public void Initialize(ICivilization civilization)
     {
@@ -53,8 +57,8 @@ public abstract class AttackerAbility : MonoBehaviour, IAbility
         }
     }
 
-    // Отправить флот в атаку
-    protected void StartAttack(ICivilization civilizationTarget)
+    // Запустить
+    protected void StartAbility(ICivilization civilizationTarget)
     {
         ThisCivilization.AbilityCiv.ReduceProgress();
 
@@ -68,7 +72,12 @@ public abstract class AttackerAbility : MonoBehaviour, IAbility
     }
 
     private void StartAct(IUnitAbility unit, ICivilization civilizationTarget)
-        => unit.SetScale(1f, 0.2f).Run(() => MoveAct(unit, civilizationTarget));
+    {
+        if(ThisCivilization is ICivilizationPlayer) PlayUISound(startAbilityAudioClip, 1);
+        else PlayUISound(startAbilityAudioClip, 0.5f);
+
+        unit.SetScale(1f, 0.2f).Run(() => MoveAct(unit, civilizationTarget));
+    }
     private void MoveAct(IUnitAbility unit, ICivilization civilizationTarget)
         => unit.SetPositionBezier(civilizationTarget.PositionCiv, new Vector3(0, 0), new Vector3(0, 0), speedUnits).Run(() => EndAttack(unit, civilizationTarget));
     private void EndAttack(IUnitAbility unit, ICivilization civilizationTarget)

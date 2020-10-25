@@ -10,20 +10,23 @@ public class MessageBackMainMenu : MonoBehaviour
     private IGalaxyUITimer _galaxyUITimer;
     private bool _selectButton;
     private Animator _animator;
+    private AudioSourceGame _audioSourceGame;
 
     public MessageBackMainMenu Show(IGalaxyUITimer galaxyUITimer, Action actYes, Action actNo)
     {
         this._galaxyUITimer = galaxyUITimer;
 
         _animator = GetComponent<Animator>();
-        yes.onClick.AddListener(OnWelcome);
-        no.onClick.AddListener(OnOffend);
+        yes.onClick.AddListener(Yes);
+        no.onClick.AddListener(No);
 
         (this._actYes, this._actNo) = (actYes, actNo);
 
         _galaxyUITimer.SetPause(true, string.Empty);
         _animator.SetTrigger("DisplayMessage");
 
+        _audioSourceGame = GetComponent<AudioSourceGame>();
+        _audioSourceGame.PlayOneShot(0, 0.5f);
         return this;
     }
 
@@ -38,17 +41,19 @@ public class MessageBackMainMenu : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnWelcome()
+    private void Yes()
     {
         _animator.SetTrigger("CloseMessage");
+        _audioSourceGame.PlayOneShot(0, 0.5f);
         _selectButton = true;
 
         yes.interactable = no.interactable = false;
     }
 
-    private void OnOffend()
+    private void No()
     {
         _animator.SetTrigger("CloseMessage");
+        _audioSourceGame.PlayOneShot(0, 0.5f);
         _selectButton = false;
 
         yes.interactable = no.interactable = false;

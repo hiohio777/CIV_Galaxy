@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 
-public class ValueChangeEffectFactory : BaseFactory 
+public class ValueChangeEffectFactory : BaseFactory
 {
+    [SerializeField] private ValueChangeEffect prefab;
     private IGalaxyUITimer _galaxyUITimer;
 
     private void Start()
@@ -16,7 +17,7 @@ public class ValueChangeEffectFactory : BaseFactory
         if (buffer.Count > 0) buffParam = buffer.Pop() as ValueChangeEffect;
         else 
         {
-            buffParam = InstantiateObject<ValueChangeEffect>("ValueChangeEffect");
+            buffParam = InstantiateObject(prefab);
             buffParam.Creat(Buffered, _galaxyUITimer);
         }
         

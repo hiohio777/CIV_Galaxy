@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -20,19 +19,8 @@ public class LocalisationGame
     public List<string> Localisations { get; private set; } = new List<string>();
     private Dictionary<string, string> data = new Dictionary<string, string>();
 
-    private readonly string path = $"{Application.dataPath}/StreamingAssets/Localisation/";
-
     private LocalisationGame()
     {
-        //// Получить список всех локализаций
-        //var arrayDir = (new DirectoryInfo(path)).GetFiles("*.json");
-
-        //if (arrayDir.Length == 0)
-        //    throw new Exception("Localization files not found!");
-
-        //foreach (var item in arrayDir)
-        //    Localisations.Add(item.Name.Replace(".json", ""));
-
         ChangeLanguageAutomatically();
     }
 
@@ -54,20 +42,6 @@ public class LocalisationGame
     private void LoadLocalisation(string newLanguage)
     {
         data = JsonConvert.DeserializeObject<Dictionary<string, string>>(Resources.Load<TextAsset>($"Localisation/{newLanguage}").text);
-
-        //var pathNewLanguageFile = $"{path}{newLanguage}.json";
-
-        //if (File.Exists(pathNewLanguageFile) == false)
-        //    throw new Exception($"File does not exist! { path }{ newLanguage}.json");
-
-        //using (var sr = new StreamReader(pathNewLanguageFile))
-        //{
-        //    data = JsonConvert.DeserializeObject<Dictionary<string, string>>(sr.ReadToEnd());
-
-        //    // Если данные не будут правильно загружены, то будет создана пустая локализация, не содержащая строк
-        //    if (data == null)
-        //        data = new Dictionary<string, string>();
-        //}
     }
 
     public void ChangeLanguageAutomatically()
@@ -82,8 +56,5 @@ public class LocalisationGame
                 break;
             default: ChangeLanguage("english"); break;
         }
-
-        // PlayerPrefs.SetString("Language", CurrentLanguage);
-        Debug.Log(CurrentLanguage);
     }
 }

@@ -21,14 +21,6 @@ public class GameSettings : PanelUI
 
     private CivilizationScriptable _civPlayer;
 
-    public void Start()
-    {
-        PlayerSettings.Instance.CurrentDifficult = DifficultEnum.Easy;
-
-        Select(buttonsOpponents[(int)PlayerSettings.Instance.CurrentOpponents]);
-        Select(buttonsDifficult[(int)PlayerSettings.Instance.CurrentDifficult]);
-    }
-
     public override void Disable()
     {
         base.Disable();
@@ -84,6 +76,13 @@ public class GameSettings : PanelUI
         art.sprite = _civPlayer.Icon;
         nameCiv.SetKey(_civPlayer.Name);
 
+        int countButton = buttonsDifficult.Count > buttonsOpponents.Count ? buttonsDifficult.Count : buttonsOpponents.Count;
+        for (int i = 0; i < countButton; i++)
+        {
+            if (buttonsDifficult.Count < i) RevokeSelection(buttonsDifficult[i]);
+            if (buttonsOpponents.Count < i) RevokeSelection(buttonsOpponents[i]);
+        }
+
         ExecuteAssignDifficult((int)PlayerSettings.Instance.CurrentDifficult);
         ExecuteAssignOpponents((int)PlayerSettings.Instance.CurrentOpponents);
 
@@ -114,7 +113,8 @@ public class GameSettings : PanelUI
         button.image.sprite = buttonSelected;
         button.GetComponentInChildren<Text>().color = new Color(1, 1, 1, 1);
     }
-    private void RemoveSelection(Button button)
+
+    private void RevokeSelection(Button button)
     {
         button.image.sprite = buttonDontSelected;
         button.GetComponentInChildren<Text>().color = new Color(0.8f, 0.8f, 0.8f, 1); ;
@@ -122,7 +122,7 @@ public class GameSettings : PanelUI
 
     private void ExecuteAssignDifficult(int indexButton)
     {
-        RemoveSelection(buttonsDifficult[(int)PlayerSettings.Instance.CurrentDifficult]);
+        RevokeSelection(buttonsDifficult[(int)PlayerSettings.Instance.CurrentDifficult]);
         PlayerSettings.Instance.CurrentDifficult = (DifficultEnum)indexButton;
         Select(buttonsDifficult[indexButton]);
 
@@ -132,7 +132,7 @@ public class GameSettings : PanelUI
 
     private void ExecuteAssignOpponents(int indexButton)
     {
-        RemoveSelection(buttonsOpponents[(int)PlayerSettings.Instance.CurrentOpponents]);
+        RevokeSelection(buttonsOpponents[(int)PlayerSettings.Instance.CurrentOpponents]);
         PlayerSettings.Instance.CurrentOpponents = (OpponentsEnum)indexButton;
         Select(buttonsOpponents[indexButton]);
 

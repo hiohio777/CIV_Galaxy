@@ -10,7 +10,7 @@ public class ScientificMission : AttackerAbility
         var target = diplomacyCiv.FindFriend();
         if (target != null)
         {
-            StartAttack(target); // Цель найдена
+            StartAbility(target); // Цель найдена
             return true;
         }
 
@@ -38,7 +38,7 @@ public class ScientificMission : AttackerAbility
         var civ = civilizationTarget as ICivilizationAl;
         if (civ.DiplomacyCiv.GetRelationsPlayer() == DiplomaticRelationsEnum.Friendship)
         {
-            StartAttack(civilizationTarget);
+            StartAbility(civilizationTarget);
             return true;
         }
 

@@ -1,7 +1,12 @@
 ﻿using System;
+using UnityEngine;
 
 public class MessageFactory : BaseFactory
 {
+    [SerializeField] private MessageDiscoveredCivilization messageDiscoveredCivilizationPrefab;
+    [SerializeField] private MessageStartGame messageStartGamePrefab;
+    [SerializeField] private MessageBackMainMenu messageBackMainMenuPrefab;
+
     private IGalaxyUITimer _galaxyUITimer;
 
     private void Start()
@@ -10,11 +15,11 @@ public class MessageFactory : BaseFactory
     }
 
     public MessageDiscoveredCivilization GetMessageDiscoveredCivilization(CivilizationScriptable civData, Action actWelcome) =>
-        InstantiateObject<MessageDiscoveredCivilization>("Message/MessageDiscoveredCivilization").Show(_galaxyUITimer, civData, actWelcome);
+        InstantiateObject(messageDiscoveredCivilizationPrefab).Show(_galaxyUITimer, civData, actWelcome);
 
     public MessageStartGame GetMessageStartGame(CivilizationScriptable civData, Action actOK = null) =>
-        InstantiateObject<MessageStartGame>("Message/MessageStartGame").Show(_galaxyUITimer, civData, actOK);
+        InstantiateObject(messageStartGamePrefab).Show(_galaxyUITimer, civData, actOK);
 
     public MessageBackMainMenu GetMessageBackMainMenu(Action actYes = null, Action actNo = null) =>
-       InstantiateObject<MessageBackMainMenu>("Message/MessageBackMainMenu").Show(_galaxyUITimer, actYes, actNo);
+       InstantiateObject(messageBackMainMenuPrefab).Show(_galaxyUITimer, actYes, actNo);
 }

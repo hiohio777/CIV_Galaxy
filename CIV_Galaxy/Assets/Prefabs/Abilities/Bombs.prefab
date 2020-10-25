@@ -50,14 +50,7 @@ MonoBehaviour:
   countUnits: 1
   size: 1
   timeTrail: 0.5
+  startAbilityAudioClip: {fileID: 8300000, guid: 5c7112828f512441f88a38364a8552b0,
+    type: 3}
   minAttackIndustry: 10
   randomAttackIndustry: 0
-  attackScaner: 0
-  attackScience: 0
-  attackAbility: 0
-  attackScanerEffectSprite: {fileID: 21300000, guid: 2760fb9594f7f4542b8e6afa783cf71f,
-    type: 3}
-  attackScienceEffectSprite: {fileID: 21300000, guid: 2760fb9594f7f4542b8e6afa783cf71f,
-    type: 3}
-  attackAbilityEffectSprite: {fileID: 21300000, guid: 2760fb9594f7f4542b8e6afa783cf71f,
-    type: 3}

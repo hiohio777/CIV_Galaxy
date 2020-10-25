@@ -11,6 +11,7 @@ public class MessageStartGame : MonoBehaviour
     private Action _actOK;
     private IGalaxyUITimer _galaxyUITimer;
     private Animator _animator;
+    private AudioSourceGame _audioSourceGame;
 
     public MessageStartGame Show(IGalaxyUITimer galaxyUITimer, CivilizationScriptable civData, Action actOK)
     {
@@ -26,6 +27,8 @@ public class MessageStartGame : MonoBehaviour
         _galaxyUITimer.SetPause(true, string.Empty);
         _animator.SetTrigger("DisplayMessage");
 
+        _audioSourceGame = GetComponent<AudioSourceGame>();
+        _audioSourceGame.PlayOneShot(0, 0.5f);
         return this;
     }
 
@@ -43,6 +46,7 @@ public class MessageStartGame : MonoBehaviour
     {
         OK.interactable = false;
 
+        _audioSourceGame.PlayOneShot(0, 0.5f);
         _animator.SetTrigger("CloseMessage");
     }
 }

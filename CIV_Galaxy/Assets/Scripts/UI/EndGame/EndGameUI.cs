@@ -28,14 +28,12 @@ public class EndGameUI : RegisterMonoBehaviour
         _galaxySceneUI = GetRegisterObject<GalaxySceneUI>();
         _civPlayer = GetRegisterObject<ICivilizationPlayer>();
         _civsAl = GetRegisterObjects<ICivilizationAl>();
-
     }
 
     public EndGameUI Show()
     {
         Creat();
 
-        _galaxyUITimer.SetPause(true);
         OK.onClick.AddListener(OnOK);
 
         art.sprite = _civPlayer.DataBase.Icon;
@@ -63,6 +61,9 @@ public class EndGameUI : RegisterMonoBehaviour
         }
 
         DefinitionOfVctory(CivilizationTable());
+        _galaxyUITimer.SetPause(true, string.Empty);
+        _animator = GetComponent<Animator>();
+        _animator.SetTrigger("DisplayEndGameUI");
         return this;
     }
 
@@ -125,7 +126,13 @@ public class EndGameUI : RegisterMonoBehaviour
 
         List<ICivilization> _civs = new List<ICivilization>(_civsAl);
         _civs.Add(_civPlayer);
-        _civs.Sort(CompareTo);
+
+        _civs.Sort((x, y) =>
+        {
+            if (x.CivData.DominationPoints > y.CivData.DominationPoints) return -1;
+            return 1;
+        });
+
         for (int i = 0; i < _civilizationEndGamelUI.Count; i++)
         {
             if (i < _civs.Count)
@@ -133,8 +140,6 @@ public class EndGameUI : RegisterMonoBehaviour
             else _civilizationEndGamelUI[i].gameObject.SetActive(false);
         }
 
-        _animator = GetComponent<Animator>();
-        _animator.SetTrigger("DisplayEndGameUI");
         return _civs[0] is ICivilizationPlayer;
     }
 
@@ -146,12 +151,5 @@ public class EndGameUI : RegisterMonoBehaviour
     private void OnOK()
     {
         _galaxySceneUI.BackMainScene();
-    }
-
-    private int CompareTo(ICivilization x, ICivilization y)
-    {
-        if (x.CivData.DominationPoints > y.CivData.DominationPoints)
-            return -1;
-        return 1;
     }
 }

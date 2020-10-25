@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class MainSceneUI : MonoBehaviour
+public class MainSceneUI : NoRegisterMonoBehaviour
 {
+    [SerializeField, Space(10)] private AudioClip musicScene;
     [SerializeField] private JustRotateArtGalaxy imageArtGalaxy;
     private Dictionary<string, PanelUI> panelsUI = new Dictionary<string, PanelUI>();
     private PanelUI current;
@@ -26,7 +28,6 @@ public class MainSceneUI : MonoBehaviour
     public void ExitGame()
     {
         Debug.Log("ExitGame!");
-
         Application.Quit();
     }
 
@@ -60,6 +61,8 @@ public class MainSceneUI : MonoBehaviour
         PanelUI.startNewPanelUI = StartUI;
         PanelUI.finishDisableUI = DisableFinishUI;
         panels.ForEach(x => panelsUI.Add(x.name, x.Initialize()));
+
+        PlayNewMusic(musicScene);
 
         StartGame();
     }
