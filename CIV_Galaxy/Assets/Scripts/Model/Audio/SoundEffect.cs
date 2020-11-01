@@ -3,5 +3,5 @@
 public class SoundEffect : NoRegisterMonoBehaviour
 {
     [SerializeField] private AudioClip soundEffect;
-    public void Play() => PlayUISound(soundEffect);
+    public void Play() => PlaySoundEffect(soundEffect);
 }

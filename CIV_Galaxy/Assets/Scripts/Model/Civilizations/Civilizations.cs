@@ -19,7 +19,11 @@ public class Civilizations
         return civilizationsData.GetEnumerator();
     }
 
-    public void Refresh() => civilizationsData = Resources.LoadAll<CivilizationScriptable>($"Civilizations/").ToList();
+    public Civilizations Refresh() 
+    {
+        civilizationsData = Resources.LoadAll<CivilizationScriptable>($"Civilizations/").ToList();
+        return this;
+    }
 
     public CivilizationScriptable GetCivilizationPlayer(string name, bool isDelet = true)
     {

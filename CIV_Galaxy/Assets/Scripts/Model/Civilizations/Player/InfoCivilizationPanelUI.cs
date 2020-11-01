@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class InfoCivilizationPanelUI : RegisterMonoBehaviour
+public class InfoCivilizationPanelUI : NoRegisterMonoBehaviour
 {
     [SerializeField] private Image artCiv;
     [SerializeField] private LocalisationText nameCiv;
@@ -9,19 +9,20 @@ public class InfoCivilizationPanelUI : RegisterMonoBehaviour
     [SerializeField] private Text infoAbility, infoBombs, infoSpaceFleet, infoScientificMission;
     [SerializeField] private Text сountDomination, countPlanets, infoDomination;
 
+    private bool isActive = false; // Был ли обект активирован
     private bool _isPause = false; // Была ли активирована пауза игры
 
     private IGalaxyUITimer _galaxyUITimer;
 
-    public void Start()
-    {
-        this._galaxyUITimer = GetRegisterObject<IGalaxyUITimer>();
-        gameObject.SetActive(false);
-    }
+    public void Start() => gameObject.SetActive(isActive);
 
     public void Show(ICivilization civilization)
     {
-        gameObject.SetActive(true);
+        if (isActive == false)
+        {
+            _galaxyUITimer = GetRegisterObject<IGalaxyUITimer>();
+            isActive = true;
+        }
 
         if (_galaxyUITimer.IsPause == false)
         {
@@ -29,6 +30,7 @@ public class InfoCivilizationPanelUI : RegisterMonoBehaviour
             _isPause = true;
         }
 
+        gameObject.SetActive(true);
         nameCiv.SetKey(civilization.DataBase.Name);
         artCiv.sprite = civilization.DataBase.Icon;
 

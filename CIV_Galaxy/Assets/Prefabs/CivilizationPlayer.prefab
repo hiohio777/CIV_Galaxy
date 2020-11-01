@@ -257,6 +257,7 @@ GameObject:
   - component: {fileID: 3340701496103301896}
   - component: {fileID: 5271878114779241132}
   - component: {fileID: 8139787142985431650}
+  - component: {fileID: 7980174312953691846}
   m_Layer: 5
   m_Name: TextName
   m_TagString: Untagged
@@ -281,7 +282,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 114.26}
-  m_SizeDelta: {x: 180, y: 48.519478}
+  m_SizeDelta: {x: 230, y: 48.519478}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3340701496103301896
 CanvasRenderer:
@@ -340,6 +341,20 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &7980174312953691846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094272130840629211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a823470ae2eb8f4ba8b8e302d73a3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key: industry
+  text: {fileID: 0}
 --- !u!1 &2791115216531157986
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,6 +913,7 @@ GameObject:
   - component: {fileID: 7024549280239712971}
   - component: {fileID: 4387471335081687528}
   - component: {fileID: 8470866194813230132}
+  - component: {fileID: 5531150441769389525}
   m_Layer: 5
   m_Name: TextName
   m_TagString: Untagged
@@ -922,7 +938,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 114.26}
-  m_SizeDelta: {x: 180, y: 48.519478}
+  m_SizeDelta: {x: 230, y: 48.519478}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7024549280239712971
 CanvasRenderer:
@@ -981,6 +997,20 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &5531150441769389525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4077222101143091137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a823470ae2eb8f4ba8b8e302d73a3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key: science
+  text: {fileID: 0}
 --- !u!1 &4219863431067205579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1517,6 +1547,7 @@ GameObject:
   - component: {fileID: 2617271760181763970}
   - component: {fileID: 2697547436333062695}
   - component: {fileID: 6113294054311066138}
+  - component: {fileID: 4480984055668836047}
   m_Layer: 5
   m_Name: TextName
   m_TagString: Untagged
@@ -1600,6 +1631,20 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &4480984055668836047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5679583150871893634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a823470ae2eb8f4ba8b8e302d73a3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key: scaner
+  text: {fileID: 0}
 --- !u!1 &6089063594146395554
 GameObject:
   m_ObjectHideFlags: 0

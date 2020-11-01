@@ -447,7 +447,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b325e455f1d104e8758ba3fe724033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isRegister: 1
   artCivPlayer: {fileID: 3554945163844440925}
   textCountPoints: {fileID: 258175916492358222}
   discoveryCellUIPrefab: {fileID: 6998028955566685122, guid: 2860ea3bcfa571248ae8c005b0047e9b,
@@ -749,6 +748,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1998899084634605219}
     m_Modifications:
+    - target: {fileID: 342020677692953562, guid: fb4b0d861545da7468a4b2ae0990b70e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4865358486156559656, guid: fb4b0d861545da7468a4b2ae0990b70e,
         type: 3}
       propertyPath: m_Color.r

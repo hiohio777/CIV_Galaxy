@@ -5,8 +5,8 @@ using UnityEngine;
 public class AudioPlayer : MonoBehaviour
 {
     private AudioSource audioSourceMusic1, audioSourceMusic2, audioSourceUI;
-    private AudioSource _currentAudioSourceMusic;
     private float fadeInSec = 2f;
+    private AudioSource _currentAudioSourceMusic;
 
     private void Awake()
     {
@@ -16,10 +16,9 @@ public class AudioPlayer : MonoBehaviour
 
         audioSourceUI = gameObject.AddComponent<AudioSource>();
         audioSourceUI.loop = false;
-        DontDestroyOnLoad(gameObject);
     }
 
-    public void PlayUISound(AudioClip soundEffect, float volume = 1f) => audioSourceUI.PlayOneShot(soundEffect, volume);
+    public void PlaySoundEffect(AudioClip soundEffect, float volume = 1f) => audioSourceUI.PlayOneShot(soundEffect, volume);
 
     public void PlayNewMusic(AudioClip clip)
     {

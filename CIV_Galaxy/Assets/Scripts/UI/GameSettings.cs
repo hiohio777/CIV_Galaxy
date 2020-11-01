@@ -91,7 +91,7 @@ public class GameSettings : PanelUI
 
     private void DisplayRecord(CivilizationScriptable civPlayer)
     {
-        var stat = Statistics.Instance.GetStatistics(civPlayer.Name, PlayerSettings.Instance.CurrentDifficult, PlayerSettings.Instance.CurrentOpponents);
+        var stat = StatisticsPurchasePlayer.GetStatistics(civPlayer.Name, PlayerSettings.Instance.CurrentDifficult, PlayerSettings.Instance.CurrentOpponents);
         if (stat.IsRecorded)
         {
             // Есть рекорд

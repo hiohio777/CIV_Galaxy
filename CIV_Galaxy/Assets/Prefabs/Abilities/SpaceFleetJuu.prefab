@@ -52,5 +52,6 @@ MonoBehaviour:
   timeTrail: 0.5
   startAbilityAudioClip: {fileID: 8300000, guid: 053305631f13240d0a559a947fcefde4,
     type: 3}
+  endAbilityAudioClip: {fileID: 8300000, guid: 4eb37002b28fe4876a69f40ef096fc6a, type: 3}
   minConquestPlanets: 1
   randomConquestPlanets: 0

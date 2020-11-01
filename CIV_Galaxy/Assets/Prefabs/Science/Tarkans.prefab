@@ -211,7 +211,7 @@ PrefabInstance:
     - target: {fileID: 1284045093949457563, guid: 66e03c6a6a6f5be4f9ff86f58aa571d3,
         type: 3}
       propertyPath: scientificMissionBonus
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2418709867407034516, guid: 66e03c6a6a6f5be4f9ff86f58aa571d3,
         type: 3}
@@ -628,7 +628,7 @@ PrefabInstance:
     - target: {fileID: 1284045093949457563, guid: 66e03c6a6a6f5be4f9ff86f58aa571d3,
         type: 3}
       propertyPath: scientificMissionBonus
-      value: 30
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2418709867407034516, guid: 66e03c6a6a6f5be4f9ff86f58aa571d3,
         type: 3}

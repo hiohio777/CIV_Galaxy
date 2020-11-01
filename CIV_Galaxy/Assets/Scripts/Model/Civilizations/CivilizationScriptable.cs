@@ -92,6 +92,7 @@ public class CivilizationScriptable : ScriptableObject
 {
     [SerializeField, Space(10)] private Sprite icon = null;
     [SerializeField] private Color color = Color.red;
+    [SerializeField] private string idPurchase;
 
     [SerializeField, Space(10)] private BaseData baseData;
     [SerializeField] private ScanerData scanerData;
@@ -103,6 +104,7 @@ public class CivilizationScriptable : ScriptableObject
     public Sprite Icon => icon;
     public Color ColorCiv => color;
     public string Name => name;
+    public string IdPurchase => idPurchase;
     public string Description => $"{name}_description";
 
     public BaseData Base => baseData;

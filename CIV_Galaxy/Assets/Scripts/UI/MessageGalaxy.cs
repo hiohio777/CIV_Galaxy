@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MessageGalaxy : RegisterMonoBehaviour
+public class MessageGalaxy : NoRegisterMonoBehaviour
 {
     [SerializeField] private Text messadge;
     private Action _endAct;

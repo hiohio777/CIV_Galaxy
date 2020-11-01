@@ -1289,6 +1289,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GalaxySceneUI
       objectReference: {fileID: 0}
+    - target: {fileID: 8157961634398486360, guid: 9ddb94fc153f0bc4ab60e07208ed7191,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ddb94fc153f0bc4ab60e07208ed7191, type: 3}
 --- !u!4 &8857477144437529322

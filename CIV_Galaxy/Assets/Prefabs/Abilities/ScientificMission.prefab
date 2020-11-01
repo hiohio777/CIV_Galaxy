@@ -52,4 +52,5 @@ MonoBehaviour:
   timeTrail: 0
   startAbilityAudioClip: {fileID: 8300000, guid: e85cd4c1dddc94535a85d4e37d54ea45,
     type: 3}
+  endAbilityAudioClip: {fileID: 8300000, guid: 3800d9607389c45b0a8673d3db98aded, type: 3}
   addProgressScienty: 30

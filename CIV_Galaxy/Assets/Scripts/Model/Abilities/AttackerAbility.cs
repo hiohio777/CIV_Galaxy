@@ -11,6 +11,7 @@ public abstract class AttackerAbility : NoRegisterMonoBehaviour, IAbility
 
     // Звуки
     [SerializeField, Space(10)] private AudioClip startAbilityAudioClip;
+    [SerializeField] private AudioClip endAbilityAudioClip;
 
     protected string GetInfoCountUnits => $"{LocalisationGame.Instance.GetLocalisationString("units")}: <color=lime>{countUnits}</color>\r\n";
 
@@ -73,8 +74,8 @@ public abstract class AttackerAbility : NoRegisterMonoBehaviour, IAbility
 
     private void StartAct(IUnitAbility unit, ICivilization civilizationTarget)
     {
-        if(ThisCivilization is ICivilizationPlayer) PlayUISound(startAbilityAudioClip, 1);
-        else PlayUISound(startAbilityAudioClip, 0.5f);
+        if(ThisCivilization is ICivilizationPlayer) PlaySoundEffect(startAbilityAudioClip, 1);
+        else PlaySoundEffect(startAbilityAudioClip, 0.4f);
 
         unit.SetScale(1f, 0.2f).Run(() => MoveAct(unit, civilizationTarget));
     }
@@ -85,6 +86,8 @@ public abstract class AttackerAbility : NoRegisterMonoBehaviour, IAbility
 
     private void Finish(IUnitAbility unit, ICivilization civilizationTarget)
     {
+        if (ThisCivilization is ICivilizationPlayer || civilizationTarget is ICivilizationPlayer) PlaySoundEffect(endAbilityAudioClip, 1);
+        else PlaySoundEffect(endAbilityAudioClip, 0.4f);
         Finall(unit, civilizationTarget);
         CountUses++; // Увеличить счётчик использования
 

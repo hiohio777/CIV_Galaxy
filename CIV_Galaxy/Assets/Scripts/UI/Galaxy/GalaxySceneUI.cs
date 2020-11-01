@@ -4,6 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class GalaxySceneUI : RegisterMonoBehaviour
 {
+    [SerializeField, Space(10)] private MessageGalaxy messageGalaxy;
+    [SerializeField] private CounterEndGame counterEndGame;
+    [SerializeField] private InfoCivilizationPanelUI infoCivilizationPanelUI;
+    [SerializeField] private SciencePlayerUI sciencePlayerUI;
+
     [SerializeField, Space(10)] private AudioClip musicScene;
     private Animator _animator;
     private ICivilizationPlayer _civPlayer;
@@ -11,8 +16,14 @@ public class GalaxySceneUI : RegisterMonoBehaviour
     private MessageFactory _messageFactory;
     private CanvasFonGalaxy _fonGalaxy;
 
-    public void Start()
-    { 
+    protected override void Awake()
+    {
+        base.Awake();
+        Register(messageGalaxy, counterEndGame, infoCivilizationPanelUI, sciencePlayerUI);
+    }
+
+    private void Start()
+    {
         _civPlayer = GetRegisterObject<ICivilizationPlayer>();
         _civsAl = GetRegisterObjects<ICivilizationAl>();
         _messageFactory = GetRegisterObject<MessageFactory>();
@@ -38,7 +49,7 @@ public class GalaxySceneUI : RegisterMonoBehaviour
 
     public void BackMainScene()
     {
-        GameManager.Instance.Clear(); // Очистить все обьекты сцены
+        ClearRegisteScene(); // Очистить регистр обьектов сцены
         SceneManager.LoadScene("MainScene");
     }
 

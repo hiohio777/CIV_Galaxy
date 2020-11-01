@@ -2,34 +2,25 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SciencePlayerUI : RegisterMonoBehaviour
+public class SciencePlayerUI : NoRegisterMonoBehaviour
 {
     [SerializeField] private Image artCivPlayer;
     [SerializeField] private Text textCountPoints;
     [SerializeField] private DiscoveryCellUI discoveryCellUIPrefab;
 
-    private bool _isInit = false; // Инизиализировано ли древо наук(его UI)
     private bool _isPause = false; // Бфла ли активирована пауза игры
+    private bool isActive = false; // Был ли обект активирован
 
     private ICivilizationPlayer _civPlayer;
     private IGalaxyUITimer _galaxyUITimer;
     private List<DiscoveryCellUI> _discoveries = new List<DiscoveryCellUI>();
     private MessageInfoScience _messageInfoScience;
 
-    public void Start()
-    {
-        _civPlayer = GetRegisterObject<ICivilizationPlayer>();
-        _galaxyUITimer = GetRegisterObject<IGalaxyUITimer>();
-
-        _messageInfoScience = GetComponentInChildren<MessageInfoScience>(true);
-        _messageInfoScience.UpdateCostDiscoveriesEvent += UpdateCostDiscoveries;
-
-        gameObject.SetActive(false);
-    }
+    public void Start() => gameObject.SetActive(isActive);
 
     public void Enable()
     {
-        gameObject.SetActive(true);
+        if (isActive == false) InitiateUIScience();
 
         if (_galaxyUITimer.IsPause == false)
         {
@@ -37,8 +28,7 @@ public class SciencePlayerUI : RegisterMonoBehaviour
             _isPause = true;
         }
 
-        if (_isInit == false) InitiateUIScience();
-
+        gameObject.SetActive(true);
         UpdateCostDiscoveries();
     }
 
@@ -56,6 +46,12 @@ public class SciencePlayerUI : RegisterMonoBehaviour
     // Настроить отображение древа наук и его UI
     private void InitiateUIScience()
     {
+        _civPlayer = GetRegisterObject<ICivilizationPlayer>();
+        _galaxyUITimer = GetRegisterObject<IGalaxyUITimer>();
+
+        _messageInfoScience = GetComponentInChildren<MessageInfoScience>(true);
+        _messageInfoScience.UpdateCostDiscoveriesEvent += UpdateCostDiscoveries;
+
         artCivPlayer.sprite = _civPlayer.DataBase.Icon;
 
         foreach (var item in _civPlayer.ScienceCiv.TreeOfScienceCiv.Discoveries)
@@ -64,7 +60,7 @@ public class SciencePlayerUI : RegisterMonoBehaviour
         _discoveries.ForEach(x => x.Initialize()); // Инициализировать
 
         _messageInfoScience.transform.SetAsLastSibling();
-        _isInit = true;
+        isActive = true;
     }
 
     private void UpdateCostDiscoveries()

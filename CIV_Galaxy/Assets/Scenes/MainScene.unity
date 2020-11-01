@@ -301,29 +301,13 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 711360114405930151, guid: 2e35b8b40dc2f5a469cdc6975871069a,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1528045196}
     - target: {fileID: 711360114405930171, guid: 2e35b8b40dc2f5a469cdc6975871069a,
         type: 3}
       propertyPath: m_Name
       value: MainSceneUI
       objectReference: {fileID: 0}
-    - target: {fileID: 2330798338378944890, guid: 2e35b8b40dc2f5a469cdc6975871069a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e35b8b40dc2f5a469cdc6975871069a, type: 3}
---- !u!20 &1528045196 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 5885727839688441719, guid: 8f0373d33c731cd4c93e67c0ac08c22f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1644136293}
-  m_PrefabAsset: {fileID: 0}
 --- !u!850595691 &1632431135
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -396,6 +380,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MainCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 5885727839688441719, guid: 8f0373d33c731cd4c93e67c0ac08c22f,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5885727839688441719, guid: 8f0373d33c731cd4c93e67c0ac08c22f,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5885727839688441719, guid: 8f0373d33c731cd4c93e67c0ac08c22f,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5885727839688441736, guid: 8f0373d33c731cd4c93e67c0ac08c22f,
         type: 3}

@@ -33,8 +33,8 @@ public class MessageInfoScience : RegisterMonoBehaviour
     {
         this._discoveryCell = discoveryCell;
 
+        // Названий у открытий нет, поэтому не испорльзуется nameDiscovery.SetKey(discoveryCell.name);
         imageIcon.sprite = discoveryCell.SpriteIcon;
-        nameDiscovery.SetKey(discoveryCell.name);
         cost.text = discoveryCell.ResearchCost.ToString();
 
         infoDiscovery.text = string.Empty;

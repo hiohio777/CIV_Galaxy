@@ -1,25 +1,26 @@
-﻿using System;
-
-[Serializable]
-public class StatisticsData
+﻿public class StatisticsData
 {
-    public StatisticsData(DifficultEnum difficult, OpponentsEnum opponents)
+    public StatisticsData() { }
+
+    public StatisticsData(string nameCiv, int opponents, int difficult)
     {
-        Difficult = difficult;
-        Opponents = opponents;
+        NameCiv = nameCiv;
+        Opponents = (OpponentsEnum)opponents;
+        Difficult = (DifficultEnum)difficult;
     }
 
-    public int Years { get; private set; }
-    public int CountDomination { get; private set; }
-    public int CountPlanets { get; private set; }
-    public int CountDiscoveries { get; private set; }
-    public int CountBombs { get; private set; }
-    public int CountSpaceFleet { get; private set; }
-    public int CountScientificMission { get; private set; }
+    public string NameCiv;
+    public int Years;
+    public int CountDomination;
+    public int CountPlanets;
+    public int CountDiscoveries;
+    public int CountBombs;
+    public int CountSpaceFleet;
+    public int CountScientificMission;
+    public bool IsRecorded;
 
-    public bool IsRecorded { get; private set; }
-    public DifficultEnum Difficult { get; private set; } = DifficultEnum.Easy;
-    public OpponentsEnum Opponents { get; private set; } = OpponentsEnum.Two;
+    public DifficultEnum Difficult { get; set; }
+    public OpponentsEnum Opponents { get; set; }
 
     public void Write(int years, int countDomination, int countPlanets, int countDiscoveries, int countBombs, int countSpaceFleet, int countScientificMission)
     {

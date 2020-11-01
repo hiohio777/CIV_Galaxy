@@ -72,7 +72,7 @@ public class Scanner : CivilizationStructureBase
         // Открыть планеты
         int countNewPlanet = MinimumDiscoveredPlanetsBonus + UnityEngine.Random.Range(0, RandomDiscoveredPlanetsBonus + 1);
 
-        if (countNewPlanet < 0)
+        if (countNewPlanet <= 0)
             return;
 
         for (int i = 0; i < countNewPlanet; i++)

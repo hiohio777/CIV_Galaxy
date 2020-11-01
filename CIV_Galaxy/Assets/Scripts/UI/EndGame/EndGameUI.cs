@@ -2,9 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EndGameUI : RegisterMonoBehaviour
+public class EndGameUI : NoRegisterMonoBehaviour
 {
-    [SerializeField] private Image art;
+    [SerializeField] private AudioClip musicEndGame, audioEffectVictiry, audioEffectDefeat;
+    [SerializeField, Space(10)] private Image art;
     [SerializeField] private LocalisationText nameCiv;
     [SerializeField] private Button OK;
     [SerializeField] private LocalisationText textVictory;
@@ -35,6 +36,7 @@ public class EndGameUI : RegisterMonoBehaviour
         Creat();
 
         OK.onClick.AddListener(OnOK);
+        OK.interactable = false;
 
         art.sprite = _civPlayer.DataBase.Icon;
         nameCiv.SetKey(_civPlayer.DataBase.Name);
@@ -63,6 +65,7 @@ public class EndGameUI : RegisterMonoBehaviour
         DefinitionOfVctory(CivilizationTable());
         _galaxyUITimer.SetPause(true, string.Empty);
         _animator = GetComponent<Animator>();
+        PlayNewMusic(musicEndGame);
         _animator.SetTrigger("DisplayEndGameUI");
         return this;
     }
@@ -75,18 +78,20 @@ public class EndGameUI : RegisterMonoBehaviour
             textVictory.Color = Color.green;
             textVictory.SetKey("victory");
             CreateBattleStatistics();
+            PlaySoundEffect(audioEffectVictiry);
         }
         else
         {
             textVictory.Color = Color.red;
             textVictory.SetKey("defeat");
+            PlaySoundEffect(audioEffectDefeat);
         }
     }
 
     private void CreateBattleStatistics()
     {
         // Статистика
-        var stat = Statistics.Instance.GetStatistics(_civPlayer.DataBase.Name, PlayerSettings.Instance.CurrentDifficult, PlayerSettings.Instance.CurrentOpponents);
+        var stat = StatisticsPurchasePlayer.GetStatistics(_civPlayer.DataBase.Name, PlayerSettings.Instance.CurrentDifficult, PlayerSettings.Instance.CurrentOpponents);
         if (stat.IsRecorded)
         {
             if (stat.CountDomination < (int)_civPlayer.CivData.DominationPoints)
@@ -107,7 +112,7 @@ public class EndGameUI : RegisterMonoBehaviour
     {
         stat.Write((int)_galaxyUITimer.GetYears, (int)_civPlayer.CivData.DominationPoints, _civPlayer.CivData.Planets, _civPlayer.ScienceCiv.CountDiscoveries,
             _civPlayer.AbilityCiv.Abilities[0].CountUses, _civPlayer.AbilityCiv.Abilities[1].CountUses, _civPlayer.AbilityCiv.Abilities[2].CountUses);
-        Statistics.Instance.SaveDate();
+        StatisticsPurchasePlayer.SaveDate();
     }
 
     private bool CivilizationTable()

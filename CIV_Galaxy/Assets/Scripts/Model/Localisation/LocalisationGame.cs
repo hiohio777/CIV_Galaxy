@@ -42,6 +42,12 @@ public class LocalisationGame
     private void LoadLocalisation(string newLanguage)
     {
         data = JsonConvert.DeserializeObject<Dictionary<string, string>>(Resources.Load<TextAsset>($"Localisation/{newLanguage}").text);
+
+        //string str = "";
+        //foreach (var item in data.Values)
+        //    str += $"{item}\r\n";
+
+        //Debug.Log(str);
     }
 
     public void ChangeLanguageAutomatically()
@@ -56,5 +62,6 @@ public class LocalisationGame
                 break;
             default: ChangeLanguage("english"); break;
         }
+        //ChangeLanguage("english");
     }
 }

@@ -79,7 +79,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Background radiation
+  m_Text: 
 --- !u!114 &3568557093317136475
 MonoBehaviour:
   m_ObjectHideFlags: 0
